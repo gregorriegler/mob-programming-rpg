@@ -3,17 +3,22 @@ import { Countdown } from "./Countdown";
 
 describe('Countdown', () => {
     
-    const noop: () => void = () => {};
+    const noOp = () => {};
+    let clock;
+    
+    beforeEach(() => {
+        clock = new ClockStub();
+        jest.useFakeTimers();
+    })
+    
     it('provides time left', () => {
-        const clock = new ClockStub();
-        const countdown = new Countdown(3, noop, clock);
+        const countdown = new Countdown(3, noOp, clock);
         expect(countdown.timeLeft()).toBe(3);
     })
 
-    it('does not count when not  started', () => {
-        const clock = new ClockStub();
-        const countdown = new Countdown(3, noop, clock);
-        clock.setTime(123)
+    it('does not count when not started', () => {
+        const countdown = new Countdown(3, noOp, clock);
+        advanceTimeBy(123)
         expect(countdown.timeLeft()).toBe(3);
     })
     
@@ -24,22 +29,41 @@ describe('Countdown', () => {
         [3, 0],
         [4, 0],
     ])('after starting, past %p ms has %p ms left', (time: MilliSeconds, expectedLeft: MilliSeconds) => {
-        const clock = new ClockStub();
-        const countdown = new Countdown(3, noop, clock);
+        const countdown = new Countdown(3, noOp, clock);
         countdown.start();
-        clock.setTime(time);
+        advanceTimeBy(time);
         expect(countdown.timeLeft()).toBe(expectedLeft);
     })
     
     it('notifies when its over', () => {
-        jest.useFakeTimers();
         const onFinish = jest.fn();
-        const clockStub = new ClockStub();
-        const countdown = new Countdown(300, onFinish, clockStub);
-        countdown.start();
-        clockStub.setTime(300)
-        jest.runOnlyPendingTimers();
+        new Countdown(300, onFinish, clock).start();
+        
+        advanceTimeBy(300);
+        
         expect(onFinish).toHaveBeenCalled();
     })
-    
+
+    it('sends no notification prior to being over', () => {
+        const onFinish = jest.fn();
+        new Countdown(300, onFinish, clock).start();
+        
+        advanceTimeBy(299);
+
+        expect(onFinish).not.toHaveBeenCalled();
+    })
+
+    it('sends no notification prior getting started', () => {
+        const onFinish = jest.fn();
+        new Countdown(300, onFinish, clock);
+
+        advanceTimeBy(300);
+
+        expect(onFinish).not.toHaveBeenCalled();
+    })
+
+    function advanceTimeBy(time: MilliSeconds) {
+        clock.setTime(time)
+        jest.advanceTimersByTime(time);
+    }
 })
