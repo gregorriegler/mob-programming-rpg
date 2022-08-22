@@ -8,7 +8,6 @@ describe('Participant', () => {
         participant = new Participant('Gregor');
     })
 
-
     it('starts with no badges and no points', () => {
         expect(participant.name()).toBe('Gregor');
         expect(participant.badges()).toEqual([]);
@@ -44,7 +43,7 @@ describe('Participant', () => {
         expect(participant.pointsFor('Mobber')).toEqual(3);
     });
 
-    it('earns all Badges', () => {
+    it('earns all level 1 Badges', () => {
         participant.scoreTimes('Mobber', 3);
         participant.scoreTimes('Driver', 3);
         participant.scoreTimes('Navigator', 3);
@@ -55,14 +54,10 @@ describe('Participant', () => {
         expect(participant.pointsFor('Mobber')).toEqual(3);
     });
 
-
     it('cannot score for a Role that is not yet selected', () => {
         participant.score('Researcher');
 
         expect(participant.badges()).toEqual([]);
-        expect(participant.pointsFor('Driver')).toEqual(0);
-        expect(participant.pointsFor('Navigator')).toEqual(0);
-        expect(participant.pointsFor('Mobber')).toEqual(0);
         expect(participant.pointsFor('Researcher')).toEqual(0);
     });
 

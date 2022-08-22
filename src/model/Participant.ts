@@ -1,12 +1,22 @@
+type Role = "Driver" 
+    | "Navigator" 
+    | "Mobber" 
+    | "Archivist" 
+    | "Automationist" 
+    | "Nose" 
+    | "Rear Admiral" 
+    | "Researcher" 
+    | "Sponsor" 
+    | "Traffic Cop";
+
 export class Participant {
     private readonly _name: string;
-
-    private readonly _points = new Map([
+    private readonly _points = new Map<Role, number>([
         ["Driver", 0],
         ["Navigator", 0],
         ["Mobber", 0],
     ]);
-    private _badges = new Set<string>();
+    private readonly _badges = new Set<string>();
 
     constructor(name: string) {
         this._name = name;
@@ -26,7 +36,7 @@ export class Participant {
         }
     }
 
-    score(role: string) {
+    score(role: Role) {
         if (!this._points.has(role)) {
             return;
         }
@@ -36,18 +46,18 @@ export class Participant {
         }
     }
 
-    private increasePointsFor(role: string) {
+    private increasePointsFor(role: Role) {
         this._points.set(role, this._points.get(role) + 1);
     }
 
-    pointsFor(role: string) {
+    pointsFor(role: Role) {
         if (!this._points.has(role)) {
             return 0;
         }
         return this._points.get(role);
     }
 
-    selectRole(role: string) {
+    selectRole(role: Role) {
         if(this._points.has(role)) {
             return;
         }
