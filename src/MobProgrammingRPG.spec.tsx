@@ -1,6 +1,7 @@
 import MobProgrammingRPG from "./MobProgrammingRPG";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
+import exp from "constants";
 
 describe('Mob Programming RPG', () => {
     function getSettingsButton() {
@@ -34,8 +35,9 @@ describe('Mob Programming RPG', () => {
 
         const playerList = screen.getByRole('list', {name: /Player List/});
         const items = within(playerList).getAllByRole("listitem");
-        const players = items.map(item => item.textContent);
-        expect(players).toEqual(['Gregor', 'Max']);
+        expect(items.length).toBe(2);
+        expect(items[0]).toHaveTextContent('Gregor');
+        expect(items[1]).toHaveTextContent('Max');
     })
     
     it('shows playing players in settings', () => {

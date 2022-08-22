@@ -35,8 +35,11 @@ describe('Participant', () => {
     });
 
     it('earns Mobber Badge', () => {
+        expect(participant.hasBadge('Mobber')).toBeFalsy();
+        
         participant.scoreTimes('Mobber', 3);
 
+        expect(participant.hasBadge('Mobber')).toBeTruthy();
         expect(participant.badges()).toEqual(['Mobber']);
         expect(participant.pointsFor('Driver')).toEqual(0);
         expect(participant.pointsFor('Navigator')).toEqual(0);

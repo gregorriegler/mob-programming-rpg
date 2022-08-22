@@ -30,7 +30,11 @@ export class Participant {
         return Array.from(this._badges);
     }
     
-    scoreTimes(role, times) {
+    hasBadge(role: Role) {
+        return this._badges.has(role)
+    }
+    
+    scoreTimes(role: Role, times) {
         for (let i = 0; i < times; i++) {
             this.score(role);
         }

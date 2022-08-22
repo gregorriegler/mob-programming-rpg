@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Player from "./Player";
 
 const MobProgrammingRPG = ({startingPlayers = []}) => {
 
@@ -21,12 +22,15 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
     return (
         <>
             <h1>Mob Programming RPG</h1>
-            <ul aria-label="Player List">{gameState.players.map((player) => <li key={player}>{player}</li>)}</ul>
+            <ul aria-label="Player List">
+                {gameState.players.map((player) => <Player playerName={player} key={player}/>)}
+            </ul>
             <button onClick={() => showSettings()}>Settings</button>
             {gameState.showSettings &&
               <form onSubmit={changePlayers}>
                 <label>Change Players
-                  <textarea id="change-players" name="change-players" defaultValue={gameState.players.join(", ")}></textarea>
+                  <textarea id="change-players" name="change-players"
+                            defaultValue={gameState.players.join(", ")}></textarea>
                 </label>
                 <button type="submit">Save</button>
               </form>
