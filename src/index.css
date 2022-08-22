@@ -11,21 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-label {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
-  margin: 10px;
-}
-
-label:after {
-  content: ": ";
-}
-
-input[type="submit"] {
-  position: relative;
-  display: inline-block;
-  left: 110px;
-  margin: 10px;
-}
