@@ -19,6 +19,7 @@ describe('Player', () => {
 
         roleInitialized('Driver');
         roleInitialized('Navigator');
+        roleInitialized('Mobber');
     });
 
     it('adds driver points', () => {

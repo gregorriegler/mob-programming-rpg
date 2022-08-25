@@ -26,7 +26,7 @@ function RolePoints(props) {
 
     return <>
         <label>{props.role}<input disabled={true} value={props.playerState.player.pointsFor(props.role)}/></label>
-        <button onClick={showRolePointsForm(props.role)}>Add Points</button>
+        <button onClick={showRolePointsForm(props.role)}>Add {props.role} Points</button>
         {props.playerState.addingPointsFor.includes(props.role) &&
           <form onSubmit={addDriverPoints}><label>Add Points<input type="text" name="amount" defaultValue="0"/></label>
             <button type="submit">Add</button>
@@ -47,6 +47,7 @@ const Player = (props) => {
         {props.playerName}<br/>
         <RolePoints role="Driver" playerState={playerState} setPlayerState={setPlayerState}/>
         <RolePoints role="Navigator" playerState={playerState} setPlayerState={setPlayerState}/>
+        <RolePoints role="Mobber" playerState={playerState} setPlayerState={setPlayerState}/>
     </li>
 }
 
