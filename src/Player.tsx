@@ -20,17 +20,18 @@ const Player = (props) => {
         });
     }
 
-    function showAddDriverPointsForm() {
-        setPlayerState({
+    function showRolePointsForm(role: string){
+        return ()=>
+            setPlayerState({
                 ...playerState,
-                addingPointsFor: [...playerState.addingPointsFor, "Driver"]
+                addingPointsFor: [...playerState.addingPointsFor, role]
             });
     }
-
+    
     return <li title={playerState.player.name()}>
         {props.playerName}<br/>
         <label>Driver<input disabled={true} value={playerState.player.pointsFor("Driver")}/></label>
-        <button onClick={showAddDriverPointsForm}>Add Points</button>
+        <button onClick={showRolePointsForm("Driver")}>Add Points</button>
         {playerState.addingPointsFor.includes("Driver") &&
           <form onSubmit={addDriverPoints}><label>Add Points<input type="text" name="amount" defaultValue="0"/></label>
             <button type="submit">Add</button>
