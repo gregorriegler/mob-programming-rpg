@@ -10,14 +10,20 @@ describe('Player', () => {
 
     it('shows initial points', () => {
         render(<Player playerName={"Roger"}/>);
-        const driverPoints = screen.getByLabelText('Driver');
-        expect(driverPoints).toHaveValue("0");
-        expect(driverPoints).toBeDisabled();
+
+        function roleInitialized(role: string) {
+            const driverPoints = screen.getByLabelText(role);
+            expect(driverPoints).toHaveValue("0");
+            expect(driverPoints).toBeDisabled();
+        }
+
+        roleInitialized('Driver');
+        roleInitialized('Navigator');
     });
 
     it('adds driver points', () => {
         render(<Player playerName={"Roger"}/>);
-        const addDriverPoints = screen.getByRole('button', {name: /Add Points/i});
+        const addDriverPoints = screen.getByRole('button', {name: /Add Driver Points/i});
         fireEvent.click(addDriverPoints);
         const howMany = screen.getByLabelText('Add Points');
         expect(howMany).toBeInTheDocument();
@@ -30,7 +36,7 @@ describe('Player', () => {
 
     it('adds up points', () => {
         render(<Player playerName={"Roger"}/>);
-        const addDriverPoints = screen.getByRole('button', {name: /Add Points/i});
+        const addDriverPoints = screen.getByRole('button', {name: /Add Driver Points/i});
         fireEvent.click(addDriverPoints);
         fireEvent.change(screen.getByLabelText('Add Points'), {target: {value: "1"}})
         fireEvent.click(screen.getByText('Add'));

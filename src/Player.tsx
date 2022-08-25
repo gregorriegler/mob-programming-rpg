@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { Participant } from "./model/Participant";
 
+
 function RolePoints(props) {
+    function showRolePointsForm(role: string) {
+        return () =>
+            props.setPlayerState({
+                ...props.playerState,
+                addingPointsFor: [...props.playerState.addingPointsFor, role]
+            });
+    }
+
     function addDriverPoints(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -14,36 +23,30 @@ function RolePoints(props) {
             addingPointsFor: props.playerState.addingPointsFor.filter(it => it !== props.role)
         });
     }
-    
+
     return <>
+        <label>{props.role}<input disabled={true} value={props.playerState.player.pointsFor(props.role)}/></label>
+        <button onClick={showRolePointsForm(props.role)}>Add Points</button>
         {props.playerState.addingPointsFor.includes(props.role) &&
           <form onSubmit={addDriverPoints}><label>Add Points<input type="text" name="amount" defaultValue="0"/></label>
             <button type="submit">Add</button>
           </form>
         }
         {props.playerState.player.hasBadge(props.role) && <span>{props.role} Badge</span>}
-        </>
+    </>
 }
 
 const Player = (props) => {
+
     const [playerState, setPlayerState] = useState({
         player: new Participant(props.playerName),
         addingPointsFor: []
     })
 
-    function showRolePointsForm(role: string) {
-        return () =>
-            setPlayerState({
-                ...playerState,
-                addingPointsFor: [...playerState.addingPointsFor, role]
-            });
-    }
-
     return <li title={playerState.player.name()}>
         {props.playerName}<br/>
-        <label>Driver<input disabled={true} value={playerState.player.pointsFor("Driver")}/></label>
-        <button onClick={showRolePointsForm("Driver")}>Add Points</button>
         <RolePoints role="Driver" playerState={playerState} setPlayerState={setPlayerState}/>
+        <RolePoints role="Navigator" playerState={playerState} setPlayerState={setPlayerState}/>
     </li>
 }
 
