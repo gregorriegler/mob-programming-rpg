@@ -43,11 +43,12 @@ const Player = (props) => {
         addingPointsFor: []
     })
 
-    return <li title={playerState.player.name()}>
+    return <li aria-label={playerState.player.name()}>
         {props.playerName}<br/>
         <RolePoints role="Driver" playerState={playerState} setPlayerState={setPlayerState}/>
         <RolePoints role="Navigator" playerState={playerState} setPlayerState={setPlayerState}/>
         <RolePoints role="Mobber" playerState={playerState} setPlayerState={setPlayerState}/>
+        {playerState.player.canSelectRole() && <button>select next role</button>}   
     </li>
 }
 

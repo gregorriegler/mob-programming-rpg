@@ -65,10 +65,13 @@ describe('Participant', () => {
     });
 
     it('can select level 2 Role after gaining a level 1 Badge', () => {
+        expect(participant.canSelectRole()).toBeFalsy();
         participant.scoreTimes('Mobber', 3);
 
+        expect(participant.canSelectRole()).toBeTruthy();
         participant.selectRole('Researcher');
         participant.score('Researcher');
+        expect(participant.canSelectRole()).toBeFalsy();
 
         expect(participant.pointsFor('Researcher')).toEqual(1);
     });

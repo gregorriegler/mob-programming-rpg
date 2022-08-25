@@ -1,12 +1,12 @@
-type Role = "Driver" 
-    | "Navigator" 
-    | "Mobber" 
-    | "Archivist" 
-    | "Automationist" 
-    | "Nose" 
-    | "Rear Admiral" 
-    | "Researcher" 
-    | "Sponsor" 
+type Role = "Driver"
+    | "Navigator"
+    | "Mobber"
+    | "Archivist"
+    | "Automationist"
+    | "Nose"
+    | "Rear Admiral"
+    | "Researcher"
+    | "Sponsor"
     | "Traffic Cop";
 
 export class Participant {
@@ -29,11 +29,11 @@ export class Participant {
     badges() {
         return Array.from(this._badges);
     }
-    
+
     hasBadge(role: Role) {
         return this._badges.has(role)
     }
-    
+
     scoreTimes(role: Role, times) {
         for (let i = 0; i < times; i++) {
             this.score(role);
@@ -61,11 +61,15 @@ export class Participant {
         return this._points.get(role);
     }
 
+    canSelectRole() {
+        return this.badges().length !== 0 && this._points.size === 3;
+    }
+
     selectRole(role: Role) {
-        if(this._points.has(role)) {
+        if (this._points.has(role)) {
             return;
         }
-        if(this._badges.size === 0) {
+        if (this._badges.size === 0) {
             throw Error("Need a level 1 Badge first.");
         }
         this._points.set(role, 0);
