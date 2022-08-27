@@ -3,8 +3,6 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 
 describe('Player', () => {
-
-
     class PlayerComponent {
         addPointsButton(role) {
             return screen.getByRole('button', {name: new RegExp(`Add ${role} Points`)});
@@ -15,14 +13,18 @@ describe('Player', () => {
         }
 
         addPointsInput() {
-            return screen.getByLabelText('Add Points');
+            return screen.queryByLabelText('Add Points');
         }
-
         enterAddPointsForm(value: string) {
             fireEvent.change(this.addPointsInput(), {target: {value: value}})
             fireEvent.click(screen.getByText('Add'));
         }
+
+        pointsDisplay(driver: string) {
+            return screen.getByLabelText(driver);
+        }
     }
+
 
     const player = new PlayerComponent();
 
@@ -30,6 +32,7 @@ describe('Player', () => {
         render(<Player playerName={"Roger"}/>);
         expect(screen.getByRole('listitem')).toHaveTextContent("Roger");
     });
+
 
     it('shows initial points', () => {
         render(<Player playerName={"Roger"}/>);
@@ -45,30 +48,27 @@ describe('Player', () => {
         roleInitialized('Mobber');
     });
 
-
     it('adds driver points', () => {
         render(<Player playerName={"Roger"}/>);
         player.clickAddPoints('Driver');
-        const howMany = player.addPointsInput();
-        expect(howMany).toBeInTheDocument();
-        expect(howMany).toHaveValue("0");
+        expect(player.addPointsInput()).toBeInTheDocument();
+        expect(player.addPointsInput()).toHaveValue("0");
         player.enterAddPointsForm("2");
-        expect(screen.getByLabelText('Driver')).toHaveValue("2");
-        expect(howMany).not.toBeInTheDocument();
+        expect(player.pointsDisplay('Driver')).toHaveValue("2");
+        expect(player.addPointsInput()).not.toBeInTheDocument();
     });
 
     it('adds up points', () => {
         render(<Player playerName={"Roger"}/>);
-        const addDriverPoints = screen.getByRole('button', {name: /Add Driver Points/i});
-        fireEvent.click(addDriverPoints);
+        player.clickAddPoints('Driver');
         player.enterAddPointsForm("1");
-        expect(screen.getByLabelText('Driver')).toHaveValue("1");
+        expect(player.pointsDisplay('Driver')).toHaveValue("1");
 
-        fireEvent.click(addDriverPoints);
+        player.clickAddPoints('Driver');
         player.enterAddPointsForm("2");
-        
-        
-        expect(screen.getByLabelText('Driver')).toHaveValue("3");
+
+
+        expect(player.pointsDisplay('Driver')).toHaveValue("3");
 
         expect(screen.getByText('Driver Badge')).toBeInTheDocument();
     });
