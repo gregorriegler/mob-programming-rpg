@@ -82,7 +82,6 @@ describe('Player', () => {
     it('cannot select a new role before having a badge', () => {
         render(<Player playerName={"Roger"}/>);
         expect(player.selectNextRoleButton()).not.toBeInTheDocument();
-
     });
 
     it('can select a new role after earning a badge', () => {
@@ -91,11 +90,8 @@ describe('Player', () => {
         player.enterAddPointsForm("3");
 
         expect(screen.getByText('Navigator Badge')).toBeInTheDocument();
-        const byRole = screen.getByRole('listitem', {name: /Roger/i});
-        expect(byRole).toBeInTheDocument();
-        const selectNextRoleButton = within(byRole).getByRole('button', {name: /select next role/i});
-        expect(selectNextRoleButton).toBeInTheDocument();
-        //todo add new role   
+        expect(screen.getByRole('listitem', {name: /Roger/i})).toBeInTheDocument();
+        expect(player.selectNextRoleButton()).toBeInTheDocument();
     });
 
 })
