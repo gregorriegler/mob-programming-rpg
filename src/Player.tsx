@@ -48,21 +48,21 @@ const Player = (props) => {
         const formData = new FormData(e.target);
         const role = formData.get("role") as Role;
         playerState.player.selectRole(role)
-        props.setPlayerState({
-            player: Object.create(props.playerState.player),
-            addingPointsFor: props.playerState.addingPointsFor
+        setPlayerState({
+            player: Object.create(playerState.player),
+            addingPointsFor: playerState.addingPointsFor
         });
     }
 
-    return <li aria-label={playerState.player.name()}>
+    return <li key={playerState.player.name()} aria-label={playerState.player.name()}>
         {props.playerName}<br/>
-        <RolePoints role="Driver" playerState={playerState} setPlayerState={setPlayerState}/>
-        <RolePoints role="Navigator" playerState={playerState} setPlayerState={setPlayerState}/>
-        <RolePoints role="Mobber" playerState={playerState} setPlayerState={setPlayerState}/>
+        {playerState.player.roles().map(role => {
+            return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
+        })}
         {playerState.player.canSelectRole() && <button>select next role</button>}
         <form onSubmit={selectRole}>
             <label>Available Roles
-                <select name="roles">
+                <select name="role">
                     <option value="Researcher">Researcher</option>
                 </select>
             </label>

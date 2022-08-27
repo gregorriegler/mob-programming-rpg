@@ -11,6 +11,11 @@ describe('Participant', () => {
     it('starts with no badges and no points', () => {
         expect(participant.name()).toBe('Gregor');
         expect(participant.badges()).toEqual([]);
+        expect(participant.roles()).toEqual([
+            'Driver',
+            'Navigator',
+            'Mobber',
+        ]);
         expect(participant.pointsFor('Driver')).toEqual(0);
         expect(participant.pointsFor('Navigator')).toEqual(0);
         expect(participant.pointsFor('Mobber')).toEqual(0);
@@ -36,7 +41,7 @@ describe('Participant', () => {
 
     it('earns Mobber Badge', () => {
         expect(participant.hasBadge('Mobber')).toBeFalsy();
-        
+
         participant.scoreTimes('Mobber', 3);
 
         expect(participant.hasBadge('Mobber')).toBeTruthy();

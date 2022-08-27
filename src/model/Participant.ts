@@ -29,6 +29,10 @@ export class Participant {
     badges() {
         return Array.from(this._badges);
     }
+    
+    roles() {
+        return Array.from(this._points.keys());
+    }
 
     hasBadge(role: Role) {
         return this._badges.has(role)
