@@ -58,10 +58,6 @@ export class Participant {
             }, 0);
     }
 
-    private hasCompleted(level: number) {
-        return levels[level].some(it => this.hasBadge(it));
-    }
-
     badges() {
         return Array.from(this._badges);
     }
@@ -79,14 +75,6 @@ export class Participant {
             throw Error("Need to complete the current Roles first");
         }
         this._points.set(role, 0);
-    }
-
-    private canSelectRoleFor(level) {
-        return this.hasCompleted(level-1) && !this.hasRoleForLevel(level);
-    }
-
-    private hasRoleForLevel(level: number) {
-        return this.roles().some(it => levels[level].includes(it));
     }
 
     roles() {
@@ -113,15 +101,27 @@ export class Participant {
         }
     }
 
-    private increasePointsFor(role: Role) {
-        this._points.set(role, this._points.get(role) + 1);
-    }
-
     pointsFor(role: Role) {
         if (!this.hasRole(role)) {
             return 0;
         }
         return this._points.get(role);
+    }
+
+    private hasCompleted(level: number) {
+        return levels[level].some(it => this.hasBadge(it));
+    }
+
+    private increasePointsFor(role: Role) {
+        this._points.set(role, this._points.get(role) + 1);
+    }
+
+    private canSelectRoleFor(level) {
+        return this.hasCompleted(level-1) && !this.hasRoleForLevel(level);
+    }
+
+    private hasRoleForLevel(level: number) {
+        return this.roles().some(it => levels[level].includes(it));
     }
 
     private hasRole(role: Role) {
