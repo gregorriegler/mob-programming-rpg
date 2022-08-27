@@ -15,6 +15,7 @@ describe('Player', () => {
         addPointsInput() {
             return screen.queryByLabelText('Add Points');
         }
+
         enterAddPointsForm(value: string) {
             fireEvent.change(this.addPointsInput(), {target: {value: value}})
             fireEvent.click(screen.getByText('Add'));
@@ -23,16 +24,21 @@ describe('Player', () => {
         pointsDisplay(driver: string) {
             return screen.getByLabelText(driver);
         }
+
+        selectNextRoleButton() {
+            return within(screen.getByRole('listitem', {name: /Roger/i}))
+                .queryByRole('button', {name: /select next role/i});
+        }
     }
 
 
     const player = new PlayerComponent();
 
+
     it('shows their name', () => {
         render(<Player playerName={"Roger"}/>);
         expect(screen.getByRole('listitem')).toHaveTextContent("Roger");
     });
-
 
     it('shows initial points', () => {
         render(<Player playerName={"Roger"}/>);
@@ -75,15 +81,13 @@ describe('Player', () => {
 
     it('cannot select a new role before having a badge', () => {
         render(<Player playerName={"Roger"}/>);
-        const selectNextRoleButton = within(screen.getByRole('listitem', {name: /Roger/i}))
-            .queryByRole('button', {name: /select next role/i});
-        expect(selectNextRoleButton).not.toBeInTheDocument();
+        expect(player.selectNextRoleButton()).not.toBeInTheDocument();
 
     });
 
     it('can select a new role after earning a badge', () => {
         render(<Player playerName={"Roger"}/>);
-        fireEvent.click(screen.getByRole('button', {name: /Add Navigator Points/i}));
+        player.clickAddPoints("Navigator");
         player.enterAddPointsForm("3");
 
         expect(screen.getByText('Navigator Badge')).toBeInTheDocument();
