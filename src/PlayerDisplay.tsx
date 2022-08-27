@@ -13,8 +13,7 @@ function RolePoints(props) {
 
     function addDriverPoints(e) {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const amount = formData.get("amount") as String;
+        const amount = new FormData(e.target).get("amount") as String;
         props.playerState.player.scoreTimes(props.role, amount);
         // TODO participant immutable!?
         // TODO save everything in local storage or its gone after refresh
@@ -45,8 +44,7 @@ const PlayerDisplay = (props) => {
 
     function selectRole(e) {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const role = formData.get("role") as Role;
+        const role = new FormData(e.target).get("role") as Role;
         playerState.player.selectRole(role)
         setPlayerState({
             player: Object.create(playerState.player),
