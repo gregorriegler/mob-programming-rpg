@@ -66,6 +66,15 @@ export class Player {
         return Array.from(levels.keys())
             .some(level => this.canSelectRoleFor(level+1))
     }
+    
+    selectableRoles() {
+        for (let nextLevel = 1; nextLevel <= Array.from(levels.keys()).length; nextLevel++) {
+            if(this.canSelectRoleFor(nextLevel)){
+                return levels[nextLevel];
+            }
+        }
+        return [];
+    }
 
     selectRole(role: Role) {
         if (this.hasRole(role)) {

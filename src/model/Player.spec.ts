@@ -2,120 +2,123 @@ import { Player } from "./Player";
 
 describe('Participant', () => {
 
-    let participant;
+    let player;
 
     beforeEach(() => {
-        participant = new Player('Gregor');
+        player = new Player('Gregor');
     })
 
     it('starts with no badges and no points', () => {
-        expect(participant.name()).toBe('Gregor');
-        expect(participant.level()).toBe(0);
-        expect(participant.badges()).toEqual([]);
-        expect(participant.roles()).toEqual([
+        expect(player.name()).toBe('Gregor');
+        expect(player.level()).toBe(0);
+        expect(player.badges()).toEqual([]);
+        expect(player.roles()).toEqual([
             'Driver',
             'Navigator',
             'Mobber',
         ]);
-        expect(participant.pointsFor('Driver')).toEqual(0);
-        expect(participant.pointsFor('Navigator')).toEqual(0);
-        expect(participant.pointsFor('Mobber')).toEqual(0);
+        expect(player.pointsFor('Driver')).toEqual(0);
+        expect(player.pointsFor('Navigator')).toEqual(0);
+        expect(player.pointsFor('Mobber')).toEqual(0);
     });
 
     it('scores as Driver', () => {
-        participant.score('Driver');
+        player.score('Driver');
 
-        expect(participant.badges()).toEqual([]);
-        expect(participant.level()).toBe(0);
-        expect(participant.pointsFor('Driver')).toEqual(1);
-        expect(participant.pointsFor('Navigator')).toEqual(0);
-        expect(participant.pointsFor('Mobber')).toEqual(0);
+        expect(player.badges()).toEqual([]);
+        expect(player.level()).toBe(0);
+        expect(player.pointsFor('Driver')).toEqual(1);
+        expect(player.pointsFor('Navigator')).toEqual(0);
+        expect(player.pointsFor('Mobber')).toEqual(0);
     });
 
     it('scores two times as Navigator', () => {
-        participant.scoreTimes('Navigator', 2);
+        player.scoreTimes('Navigator', 2);
 
-        expect(participant.badges()).toEqual([]);
-        expect(participant.pointsFor('Driver')).toEqual(0);
-        expect(participant.pointsFor('Navigator')).toEqual(2);
-        expect(participant.pointsFor('Mobber')).toEqual(0);
+        expect(player.badges()).toEqual([]);
+        expect(player.pointsFor('Driver')).toEqual(0);
+        expect(player.pointsFor('Navigator')).toEqual(2);
+        expect(player.pointsFor('Mobber')).toEqual(0);
     });
 
     it('earns Mobber Badge', () => {
-        expect(participant.hasBadge('Mobber')).toBeFalsy();
+        expect(player.hasBadge('Mobber')).toBeFalsy();
 
-        participant.scoreTimes('Mobber', 3);
+        player.scoreTimes('Mobber', 3);
 
-        expect(participant.hasBadge('Mobber')).toBeTruthy();
-        expect(participant.badges()).toEqual(['Mobber']);
-        expect(participant.level()).toBe(1);
-        expect(participant.pointsFor('Driver')).toEqual(0);
-        expect(participant.pointsFor('Navigator')).toEqual(0);
-        expect(participant.pointsFor('Mobber')).toEqual(3);
+        expect(player.hasBadge('Mobber')).toBeTruthy();
+        expect(player.badges()).toEqual(['Mobber']);
+        expect(player.level()).toBe(1);
+        expect(player.pointsFor('Driver')).toEqual(0);
+        expect(player.pointsFor('Navigator')).toEqual(0);
+        expect(player.pointsFor('Mobber')).toEqual(3);
     });
 
     it('earns all level 1 Badges', () => {
-        participant.scoreTimes('Mobber', 3);
-        participant.scoreTimes('Driver', 3);
-        participant.scoreTimes('Navigator', 3);
+        player.scoreTimes('Mobber', 3);
+        player.scoreTimes('Driver', 3);
+        player.scoreTimes('Navigator', 3);
 
-        expect(participant.badges()).toEqual(expect.arrayContaining(['Mobber', 'Driver', 'Navigator']));
-        expect(participant.pointsFor('Driver')).toEqual(3);
-        expect(participant.pointsFor('Navigator')).toEqual(3);
-        expect(participant.pointsFor('Mobber')).toEqual(3);
+        expect(player.badges()).toEqual(expect.arrayContaining(['Mobber', 'Driver', 'Navigator']));
+        expect(player.pointsFor('Driver')).toEqual(3);
+        expect(player.pointsFor('Navigator')).toEqual(3);
+        expect(player.pointsFor('Mobber')).toEqual(3);
     });
 
     it('cannot score for a Role that is not yet selected', () => {
-        participant.score('Researcher');
+        player.score('Researcher');
 
-        expect(participant.badges()).toEqual([]);
-        expect(participant.pointsFor('Researcher')).toEqual(0);
+        expect(player.badges()).toEqual([]);
+        expect(player.pointsFor('Researcher')).toEqual(0);
     });
 
     it('can select level 2 Role after gaining a level 1 Badge', () => {
-        expect(participant.canSelectRole()).toBeFalsy();
-        participant.scoreTimes('Mobber', 3);
+        expect(player.selectableRoles()).toEqual([]);
+        player.scoreTimes('Mobber', 3);
 
-        expect(participant.canSelectRole()).toBeTruthy();
-        participant.selectRole('Researcher');
-        participant.score('Researcher');
-        expect(participant.canSelectRole()).toBeFalsy();
+        expect(player.selectableRoles()).toEqual([
+            "Rear Admiral",
+            "Researcher",
+            "Sponsor",
+        ]);
+        player.selectRole('Researcher');
+        player.score('Researcher');
+        expect(player.selectableRoles()).toEqual([]);
 
-        expect(participant.pointsFor('Researcher')).toEqual(1);
+        expect(player.pointsFor('Researcher')).toEqual(1);
     });
 
     it('does not reset points on selecting an already selected role', () => {
-        participant.score('Mobber');
+        player.score('Mobber');
 
-        participant.selectRole('Mobber');
+        player.selectRole('Mobber');
 
-        expect(participant.pointsFor('Mobber')).toEqual(1);
+        expect(player.pointsFor('Mobber')).toEqual(1);
     });
 
     it('cannot select a level 2 role without gaining a level 1 Badge', () => {
-        const act = () => participant.selectRole('Researcher');
+        const act = () => player.selectRole('Researcher');
 
         expect(act).toThrow();
-        participant.score('Researcher');
-        expect(participant.pointsFor('Researcher')).toEqual(0);
+        player.score('Researcher');
+        expect(player.pointsFor('Researcher')).toEqual(0);
     });
-    
+
     it('cannot select a level 3 role without gaining a level 2 Badge', () => {
-        participant.scoreTimes('Mobber', 3);
-        
-        const act = () => participant.selectRole('Automationist');
-        
+        player.scoreTimes('Mobber', 3);
+
+        const act = () => player.selectRole('Automationist');
+
         expect(act).toThrow();
     });
-    
+
     it('reaches level 2 and 3', () => {
-        participant.scoreTimes('Mobber', 3);
-        participant.selectRole('Researcher');
-        participant.scoreTimes('Researcher', 3);
-        expect(participant.level()).toBe(2);
-        expect(participant.canSelectRole()).toBeTruthy();
-        participant.selectRole('Nose');
-        participant.scoreTimes('Nose', 3);
-        expect(participant.level()).toBe(3);
+        player.scoreTimes('Mobber', 3);
+        player.selectRole('Researcher');
+        player.scoreTimes('Researcher', 3);
+        expect(player.level()).toBe(2);
+        player.selectRole('Nose');
+        player.scoreTimes('Nose', 3);
+        expect(player.level()).toBe(3);
     });
 })

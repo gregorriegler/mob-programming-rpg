@@ -59,11 +59,12 @@ const PlayerDisplay = (props) => {
         {playerState.player.roles().map(role => {
             return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
         })}
-        {playerState.player.canSelectRole() &&
+        {playerState.player.selectableRoles().length > 0 &&
           <form onSubmit={selectRole}>
             <label>Available Roles
               <select name="role">
-                <option value="Researcher">Researcher</option>
+                  {playerState.player.selectableRoles()
+                      .map(role => <option key={role} value={role}>{role}</option>)})
               </select>
             </label>
             <button type="submit">Select</button>
