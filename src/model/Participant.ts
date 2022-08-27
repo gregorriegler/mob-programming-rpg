@@ -72,7 +72,7 @@ export class Participant {
     }
 
     selectRole(role: Role) {
-        if (this._points.has(role)) {
+        if (this.hasRole(role)) {
             return;
         }
         if (!this.canSelectRoleFor(levelOf(role))) {
@@ -104,7 +104,7 @@ export class Participant {
     }
 
     score(role: Role) {
-        if (!this._points.has(role)) {
+        if (!this.hasRole(role)) {
             return;
         }
         this.increasePointsFor(role);
@@ -118,10 +118,13 @@ export class Participant {
     }
 
     pointsFor(role: Role) {
-        if (!this._points.has(role)) {
+        if (!this.hasRole(role)) {
             return 0;
         }
         return this._points.get(role);
     }
 
+    private hasRole(role: Role) {
+        return this._points.has(role);
+    }
 }
