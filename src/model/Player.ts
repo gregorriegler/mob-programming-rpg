@@ -38,7 +38,7 @@ function levelOf(role: Role) {
     }
 }
 
-export class Participant {
+export class Player {
     private readonly _name: string;
     private readonly _points = new Map<Role, number>(levels[0].map(role => [role, 0]));
     private readonly _badges = new Set<string>();

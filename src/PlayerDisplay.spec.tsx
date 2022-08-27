@@ -1,9 +1,9 @@
-import Player from "./Player";
+import PlayerDisplay from "./PlayerDisplay";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 
-describe('Player', () => {
+describe('PlayerDisplay', () => {
     class PlayerComponent {
         addPointsButton(role) {
             return screen.getByRole('button', {name: new RegExp(`Add ${role} Points`)});
@@ -31,16 +31,15 @@ describe('Player', () => {
         }
     }
 
-
     const player = new PlayerComponent();
 
-    it('shows their name', () => {
-        render(<Player playerName={"Roger"}/>);
+    it('shows the players name', () => {
+        render(<PlayerDisplay playerName={"Roger"}/>);
         expect(screen.getByRole('listitem')).toHaveTextContent("Roger");
     });
 
-    it('shows initial points', () => {
-        render(<Player playerName={"Roger"}/>);
+    it('shows the initial points', () => {
+        render(<PlayerDisplay playerName={"Roger"}/>);
 
         function roleInitialized(role: string) {
             const driverPoints = screen.getByLabelText(role);
@@ -54,7 +53,7 @@ describe('Player', () => {
     });
 
     it('adds driver points', () => {
-        render(<Player playerName={"Roger"}/>);
+        render(<PlayerDisplay playerName={"Roger"}/>);
         player.clickAddPoints('Driver');
         expect(player.addPointsInput()).toBeInTheDocument();
         expect(player.addPointsInput()).toHaveValue("0");
@@ -64,7 +63,7 @@ describe('Player', () => {
     });
 
     it('adds up points', () => {
-        render(<Player playerName={"Roger"}/>);
+        render(<PlayerDisplay playerName={"Roger"}/>);
         player.clickAddPoints('Driver');
         player.enterAddPointsForm("1");
         expect(player.pointsDisplay('Driver')).toHaveValue("1");
@@ -72,20 +71,18 @@ describe('Player', () => {
         player.clickAddPoints('Driver');
         player.enterAddPointsForm("2");
 
-
         expect(player.pointsDisplay('Driver')).toHaveValue("3");
-
         expect(screen.getByText('Driver Badge')).toBeInTheDocument();
     });
 
     it('cannot select a new role before having a badge', () => {
-        render(<Player playerName={"Roger"}/>);
+        render(<PlayerDisplay playerName={"Roger"}/>);
         
         expect(player.selectNextRole()).not.toBeInTheDocument()
     });
 
     it('can select a new role after earning a badge', () => {
-        render(<Player playerName={"Roger"}/>);
+        render(<PlayerDisplay playerName={"Roger"}/>);
         player.clickAddPoints("Navigator");
         player.enterAddPointsForm("3");
 

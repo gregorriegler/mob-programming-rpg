@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Participant, Role } from "./model/Participant";
+import { Player, Role } from "./model/Player";
 
 
 function RolePoints(props) {
@@ -36,10 +36,10 @@ function RolePoints(props) {
     </>
 }
 
-const Player = (props) => {
+const PlayerDisplay = (props) => {
 
     const [playerState, setPlayerState] = useState({
-        player: new Participant(props.playerName),
+        player: new Player(props.playerName),
         addingPointsFor: []
     })
 
@@ -72,4 +72,4 @@ const Player = (props) => {
     </li>
 }
 
-export default Player;
+export default PlayerDisplay;

@@ -1,11 +1,11 @@
-import { Participant } from "./Participant";
+import { Player } from "./Player";
 
 describe('Participant', () => {
 
     let participant;
 
     beforeEach(() => {
-        participant = new Participant('Gregor');
+        participant = new Player('Gregor');
     })
 
     it('starts with no badges and no points', () => {

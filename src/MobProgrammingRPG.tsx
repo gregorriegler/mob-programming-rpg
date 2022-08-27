@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Player from "./Player";
+import PlayerDisplay from "./PlayerDisplay";
 
 const MobProgrammingRPG = ({startingPlayers = []}) => {
 
@@ -23,7 +23,7 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
         <>
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List">
-                {gameState.players.map((player) => <Player playerName={player} key={player}/>)}
+                {gameState.players.map((player) => <PlayerDisplay playerName={player} key={player}/>)}
             </ul>
             <button onClick={() => showSettings()}>Settings</button>
             {gameState.showSettings &&
