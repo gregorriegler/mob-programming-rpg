@@ -1,6 +1,7 @@
 import Player from "./Player";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
+import userEvent from "@testing-library/user-event";
 
 describe('Player', () => {
     class PlayerComponent {
@@ -21,8 +22,8 @@ describe('Player', () => {
             fireEvent.click(screen.getByText('Add'));
         }
 
-        pointsDisplay(driver: string) {
-            return screen.getByLabelText(driver);
+        pointsDisplay(role: string) {
+            return screen.getByLabelText(role);
         }
 
         selectNextRoleButton() {
@@ -31,9 +32,7 @@ describe('Player', () => {
         }
     }
 
-
     const player = new PlayerComponent();
-
 
     it('shows their name', () => {
         render(<Player playerName={"Roger"}/>);
@@ -91,7 +90,18 @@ describe('Player', () => {
 
         expect(screen.getByText('Navigator Badge')).toBeInTheDocument();
         expect(screen.getByRole('listitem', {name: /Roger/i})).toBeInTheDocument();
-        expect(player.selectNextRoleButton()).toBeInTheDocument();
+
+        fireEvent.click(player.selectNextRoleButton());
+        const availableRoles = screen.getByLabelText(/available roles/i);
+        expect(availableRoles).toBeInTheDocument()
+        const researcherOption = within(availableRoles).getByRole('option',{name: /researcher/i});
+        fireEvent.select(researcherOption)
+        userEvent.selectOptions(
+            availableRoles,
+            researcherOption
+        )
+        fireEvent.click(screen.getByText("Select"));
+        expect(player.pointsDisplay("Researcher")).toBeInTheDocument();
     });
 
 })

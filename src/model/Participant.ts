@@ -1,4 +1,4 @@
-type Role = "Driver"
+export type Role = "Driver"
     | "Navigator"
     | "Mobber"
     | "Archivist"

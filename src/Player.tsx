@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Participant } from "./model/Participant";
+import { Participant, Role } from "./model/Participant";
 
 
 function RolePoints(props) {
@@ -43,12 +43,31 @@ const Player = (props) => {
         addingPointsFor: []
     })
 
+    function selectRole(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const role = formData.get("role") as Role;
+        playerState.player.selectRole(role)
+        props.setPlayerState({
+            player: Object.create(props.playerState.player),
+            addingPointsFor: props.playerState.addingPointsFor
+        });
+    }
+
     return <li aria-label={playerState.player.name()}>
         {props.playerName}<br/>
         <RolePoints role="Driver" playerState={playerState} setPlayerState={setPlayerState}/>
         <RolePoints role="Navigator" playerState={playerState} setPlayerState={setPlayerState}/>
         <RolePoints role="Mobber" playerState={playerState} setPlayerState={setPlayerState}/>
-        {playerState.player.canSelectRole() && <button>select next role</button>}   
+        {playerState.player.canSelectRole() && <button>select next role</button>}
+        <form onSubmit={selectRole}>
+            <label>Available Roles
+                <select name="roles">
+                    <option value="Researcher">Researcher</option>
+                </select>
+            </label>
+            <button type="submit">Select</button>
+        </form>
     </li>
 }
 
