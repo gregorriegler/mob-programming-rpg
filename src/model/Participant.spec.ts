@@ -92,13 +92,20 @@ describe('Participant', () => {
         expect(participant.pointsFor('Mobber')).toEqual(1);
     });
 
-
     it('cannot select a level 2 role without gaining a level 1 Badge', () => {
         const act = () => participant.selectRole('Researcher');
 
         expect(act).toThrow();
         participant.score('Researcher');
         expect(participant.pointsFor('Researcher')).toEqual(0);
+    });
+    
+    it('cannot select a level 3 role without gaining a level 2 Badge', () => {
+        participant.scoreTimes('Mobber', 3);
+        
+        const act = () => participant.selectRole('Automationist');
+        
+        expect(act).toThrow();
     });
     
     it('reaches level 2 and 3', () => {

@@ -30,6 +30,14 @@ const levels: Role[][] = [
     ]
 ];
 
+function levelOf(role: Role) {
+    for (let level = 0; level < levels.length; level++) {
+        if(levels[level].includes(role)){
+            return level;
+        }
+    }
+}
+
 export class Participant {
     private readonly _name: string;
     private readonly _points = new Map<Role, number>(levels[0].map(role => [role, 0]));
@@ -59,13 +67,22 @@ export class Participant {
     }
 
     canSelectRole() {
-        return this.canSelectRoleForLevel(1)
-            || this.canSelectRoleForLevel(2)
-
+        return Array.from(levels.keys())
+            .some(level => this.canSelectRoleFor(level+1))
     }
 
-    private canSelectRoleForLevel(level: number) {
-        return this.hasCompleted(level - 1) && !this.hasRoleForLevel(level);
+    selectRole(role: Role) {
+        if (this._points.has(role)) {
+            return;
+        }
+        if (!this.canSelectRoleFor(levelOf(role))) {
+            throw Error("Need to complete the current Roles first");
+        }
+        this._points.set(role, 0);
+    }
+
+    private canSelectRoleFor(level) {
+        return this.hasCompleted(level-1) && !this.hasRoleForLevel(level);
     }
 
     private hasRoleForLevel(level: number) {
@@ -74,16 +91,6 @@ export class Participant {
 
     roles() {
         return Array.from(this._points.keys());
-    }
-
-    selectRole(role: Role) {
-        if (this._points.has(role)) {
-            return;
-        }
-        if (this._badges.size === 0) {
-            throw Error("Need a level 1 Badge first.");
-        }
-        this._points.set(role, 0);
     }
 
     hasBadge(role: Role) {
