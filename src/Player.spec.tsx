@@ -25,12 +25,12 @@ describe('Player', () => {
         pointsDisplay(role: string) {
             return screen.getByLabelText(role);
         }
-
-        selectNextRoleButton() {
-            return within(screen.getByRole('listitem', {name: /Roger/i}))
-                .queryByRole('button', {name: /select next role/i});
+        
+        selectNextRole() {
+            return screen.queryByRole(/available roles/i);
         }
     }
+
 
     const player = new PlayerComponent();
 
@@ -80,7 +80,8 @@ describe('Player', () => {
 
     it('cannot select a new role before having a badge', () => {
         render(<Player playerName={"Roger"}/>);
-        expect(player.selectNextRoleButton()).not.toBeInTheDocument();
+        
+        expect(player.selectNextRole()).not.toBeInTheDocument()
     });
 
     it('can select a new role after earning a badge', () => {
@@ -91,10 +92,9 @@ describe('Player', () => {
         expect(screen.getByText('Navigator Badge')).toBeInTheDocument();
         expect(screen.getByRole('listitem', {name: /Roger/i})).toBeInTheDocument();
 
-        fireEvent.click(player.selectNextRoleButton());
         const availableRoles = screen.getByLabelText(/available roles/i);
         expect(availableRoles).toBeInTheDocument()
-        const researcherOption = within(availableRoles).getByRole('option',{name: /researcher/i});
+        const researcherOption = within(availableRoles).getByRole('option', {name: /researcher/i});
         fireEvent.select(researcherOption)
         userEvent.selectOptions(
             availableRoles,
@@ -102,6 +102,7 @@ describe('Player', () => {
         )
         fireEvent.click(screen.getByText("Select"));
         expect(player.pointsDisplay("Researcher")).toBeInTheDocument();
+        expect(player.selectNextRole()).not.toBeInTheDocument()
     });
 
 })

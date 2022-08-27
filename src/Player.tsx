@@ -59,15 +59,16 @@ const Player = (props) => {
         {playerState.player.roles().map(role => {
             return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
         })}
-        {playerState.player.canSelectRole() && <button>select next role</button>}
-        <form onSubmit={selectRole}>
+        {playerState.player.canSelectRole() &&
+          <form onSubmit={selectRole}>
             <label>Available Roles
-                <select name="role">
-                    <option value="Researcher">Researcher</option>
-                </select>
+              <select name="role">
+                <option value="Researcher">Researcher</option>
+              </select>
             </label>
             <button type="submit">Select</button>
-        </form>
+          </form>
+        }
     </li>
 }
 

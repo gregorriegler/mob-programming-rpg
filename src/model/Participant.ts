@@ -66,7 +66,7 @@ export class Participant {
     }
 
     canSelectRole() {
-        return this.badges().length !== 0 && this._points.size === 3;
+        return this.badges().length !== 0 && this.roles().length === 3;
     }
 
     selectRole(role: Role) {
