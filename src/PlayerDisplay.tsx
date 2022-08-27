@@ -23,16 +23,16 @@ function RolePoints(props) {
         });
     }
 
-    return <>
-        <label>{props.role}<input disabled={true} value={props.playerState.player.pointsFor(props.role)}/></label>
+    return <div className="role">
+        <label className="role-label">{props.role}<input disabled={true} value={props.playerState.player.pointsFor(props.role)}/></label>
         <button onClick={showRolePointsForm(props.role)}>Add {props.role} Points</button>
         {props.playerState.addingPointsFor.includes(props.role) &&
-          <form onSubmit={addDriverPoints}><label>Add Points<input type="text" name="amount" defaultValue="0"/></label>
+          <form className="add-points-form" onSubmit={addDriverPoints}><label>Add Points<input type="text" name="amount" defaultValue="0"/></label>
             <button type="submit">Add</button>
           </form>
         }
         {props.playerState.player.hasBadge(props.role) && <span>{props.role} Badge</span>}
-    </>
+    </div>
 }
 
 const PlayerDisplay = (props) => {
@@ -53,7 +53,7 @@ const PlayerDisplay = (props) => {
     }
 
     return <li key={playerState.player.name()} aria-label={playerState.player.name()}>
-        {props.playerName}<br/>
+        <h2>{props.playerName}</h2>
         {playerState.player.roles().map(role => {
             return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
         })}
