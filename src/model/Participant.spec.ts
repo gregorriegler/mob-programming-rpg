@@ -10,6 +10,7 @@ describe('Participant', () => {
 
     it('starts with no badges and no points', () => {
         expect(participant.name()).toBe('Gregor');
+        expect(participant.level()).toBe(0);
         expect(participant.badges()).toEqual([]);
         expect(participant.roles()).toEqual([
             'Driver',
@@ -25,6 +26,7 @@ describe('Participant', () => {
         participant.score('Driver');
 
         expect(participant.badges()).toEqual([]);
+        expect(participant.level()).toBe(0);
         expect(participant.pointsFor('Driver')).toEqual(1);
         expect(participant.pointsFor('Navigator')).toEqual(0);
         expect(participant.pointsFor('Mobber')).toEqual(0);
@@ -46,6 +48,7 @@ describe('Participant', () => {
 
         expect(participant.hasBadge('Mobber')).toBeTruthy();
         expect(participant.badges()).toEqual(['Mobber']);
+        expect(participant.level()).toBe(1);
         expect(participant.pointsFor('Driver')).toEqual(0);
         expect(participant.pointsFor('Navigator')).toEqual(0);
         expect(participant.pointsFor('Mobber')).toEqual(3);
@@ -97,5 +100,15 @@ describe('Participant', () => {
         participant.score('Researcher');
         expect(participant.pointsFor('Researcher')).toEqual(0);
     });
-
+    
+    it('reaches level 2 and 3', () => {
+        participant.scoreTimes('Mobber', 3);
+        participant.selectRole('Researcher');
+        participant.scoreTimes('Researcher', 3);
+        expect(participant.level()).toBe(2);
+        expect(participant.canSelectRole()).toBeTruthy();
+        participant.selectRole('Nose');
+        participant.scoreTimes('Nose', 3);
+        expect(participant.level()).toBe(3);
+    });
 })
