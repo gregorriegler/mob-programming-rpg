@@ -29,14 +29,15 @@ describe('Mob Programming RPG', () => {
         const playersTextarea = screen.getByLabelText('Change Players');
         expect(playersTextarea).toBeInTheDocument();
 
-        fireEvent.change(playersTextarea, {target: {value: 'Gregor,Max'}});
+        fireEvent.change(playersTextarea, {target: {value: 'Gregor,Max,Rita'}});
         fireEvent.click(screen.getByText("Save"));
 
         const playerList = screen.getByRole('list', {name: /Player List/});
         const items = within(playerList).getAllByRole("listitem");
-        expect(items.length).toBe(2);
+        expect(items.length).toBe(3);
         expect(items[0]).toHaveTextContent('Gregor');
         expect(items[1]).toHaveTextContent('Max');
+        expect(items[2]).toHaveTextContent('Rita');
     })
     
     it('shows playing players in settings', () => {
