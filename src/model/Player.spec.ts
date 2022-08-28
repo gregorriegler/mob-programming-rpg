@@ -1,6 +1,6 @@
 import { Player } from "./Player";
 
-describe('Participant', () => {
+describe('Player', () => {
 
     let player;
 
@@ -12,14 +12,11 @@ describe('Participant', () => {
         expect(player.name()).toBe('Gregor');
         expect(player.level()).toBe(0);
         expect(player.badges()).toEqual([]);
-        expect(player.roles()).toEqual([
-            'Driver',
-            'Navigator',
-            'Mobber',
+        expectPoints([
+            ['Driver', 0],
+            ['Navigator', 0],
+            ['Mobber', 0],
         ]);
-        expect(player.pointsFor('Driver')).toEqual(0);
-        expect(player.pointsFor('Navigator')).toEqual(0);
-        expect(player.pointsFor('Mobber')).toEqual(0);
     });
 
     it('scores as Driver', () => {
@@ -27,18 +24,22 @@ describe('Participant', () => {
 
         expect(player.badges()).toEqual([]);
         expect(player.level()).toBe(0);
-        expect(player.pointsFor('Driver')).toEqual(1);
-        expect(player.pointsFor('Navigator')).toEqual(0);
-        expect(player.pointsFor('Mobber')).toEqual(0);
+        expectPoints([
+            ['Driver', 1],
+            ['Navigator', 0],
+            ['Mobber', 0],
+        ]);
     });
 
     it('scores two times as Navigator', () => {
         player.scoreTimes('Navigator', 2);
 
         expect(player.badges()).toEqual([]);
-        expect(player.pointsFor('Driver')).toEqual(0);
-        expect(player.pointsFor('Navigator')).toEqual(2);
-        expect(player.pointsFor('Mobber')).toEqual(0);
+        expectPoints([
+            ['Driver', 0],
+            ['Navigator', 2],
+            ['Mobber', 0],
+        ]);
     });
 
     it('earns Mobber Badge', () => {
@@ -49,9 +50,11 @@ describe('Participant', () => {
         expect(player.hasBadge('Mobber')).toBeTruthy();
         expect(player.badges()).toEqual(['Mobber']);
         expect(player.level()).toBe(1);
-        expect(player.pointsFor('Driver')).toEqual(0);
-        expect(player.pointsFor('Navigator')).toEqual(0);
-        expect(player.pointsFor('Mobber')).toEqual(3);
+        expectPoints([
+            ['Driver', 0],
+            ['Navigator', 0],
+            ['Mobber', 3],
+        ]);
     });
 
     it('earns all level 1 Badges', () => {
@@ -60,9 +63,11 @@ describe('Participant', () => {
         player.scoreTimes('Navigator', 3);
 
         expect(player.badges()).toEqual(expect.arrayContaining(['Mobber', 'Driver', 'Navigator']));
-        expect(player.pointsFor('Driver')).toEqual(3);
-        expect(player.pointsFor('Navigator')).toEqual(3);
-        expect(player.pointsFor('Mobber')).toEqual(3);
+        expectPoints([
+            ['Driver', 3],
+            ['Navigator', 3],
+            ['Mobber', 3],
+        ]);
     });
 
     it('cannot score for a Role that is not yet selected', () => {
@@ -121,4 +126,13 @@ describe('Participant', () => {
         player.scoreTimes('Nose', 3);
         expect(player.level()).toBe(3);
     });
+
+    function expectPoints(points) {
+        expect(player.roles()).toEqual(points.map(it => it[0]));
+        points.forEach(expectOneRolesPoints);
+    }
+
+    function expectOneRolesPoints(points) {
+        expect(player.pointsFor(points[0])).toEqual(points[1]);
+    }
 })
