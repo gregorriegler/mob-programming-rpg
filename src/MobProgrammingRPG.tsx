@@ -11,8 +11,7 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
 
     function changePlayers(event): void {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const players = formData.get("change-players") as String;
+        const players = new FormData(event.target).get("change-players") as String;
         const playerArray = players.split(',')
             .map(player => player.trim())
             .filter(it => it !== "");
@@ -40,4 +39,3 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
 };
 
 export default MobProgrammingRPG;
-

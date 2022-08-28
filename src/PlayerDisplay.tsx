@@ -24,14 +24,25 @@ function RolePoints(props) {
     }
 
     return <div className="role">
-        <label className="role-label">{props.role}<input disabled={true} value={props.playerState.player.pointsFor(props.role)}/></label>
-        <button onClick={showRolePointsForm(props.role)}>Add {props.role} Points</button>
+        <label className="role-label">
+            {props.role}
+            <input disabled={true} value={props.playerState.player.pointsFor(props.role)}/>
+        </label>
+        <button onClick={showRolePointsForm(props.role)}>
+            Add {props.role} Points
+        </button>
         {props.playerState.addingPointsFor.includes(props.role) &&
-          <form className="add-points-form" onSubmit={addDriverPoints}><label>Add Points<input type="text" name="amount" defaultValue="0"/></label>
+          <form className="add-points-form" onSubmit={addDriverPoints}>
+            <label>
+              Add Points
+              <input type="text" name="amount" defaultValue="0"/>
+            </label>
             <button type="submit">Add</button>
           </form>
         }
-        {props.playerState.player.hasBadge(props.role) && <span>{props.role} Badge</span>}
+        {props.playerState.player.hasBadge(props.role) &&
+          <span>{props.role} Badge</span>
+        }
     </div>
 }
 
@@ -59,10 +70,12 @@ const PlayerDisplay = (props) => {
         })}
         {playerState.player.selectableRoles().length > 0 &&
           <form onSubmit={selectRole}>
-            <label>Available Roles
+            <label>
+              Available Roles
               <select name="role">
-                  {playerState.player.selectableRoles()
-                      .map(role => <option key={role} value={role}>{role}</option>)})
+                  {playerState.player.selectableRoles().map(role =>
+                      <option key={role} value={role}>{role}</option>)
+                  }
               </select>
             </label>
             <button type="submit">Select</button>
