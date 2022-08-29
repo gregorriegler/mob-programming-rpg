@@ -1,6 +1,6 @@
 - Localstorage
 - Show Roles Todos
-- Timer
 - Beautiful Badges
+- Timer
 - Proper Styling
 - Network
