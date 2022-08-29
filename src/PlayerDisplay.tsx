@@ -20,7 +20,7 @@ const PlayerDisplay = (props) => {
     }
 
     return <li key={playerState.player.name()} aria-label={playerState.player.name()}>
-        <h2>{props.playerName}</h2>
+        <h2>{props.playerName} ({props.role})</h2>
         {playerState.player.roles().map(role => {
             return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
         })}

@@ -48,7 +48,7 @@ describe('Mob Programming RPG', () => {
         expect(playersTextarea).toHaveTextContent("Gregor, Peter");
     })
     
-    xit('shows players roles', () => {
+    it('shows players roles', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
         
         const playerList = screen.getByRole('list', {name: /Player List/});

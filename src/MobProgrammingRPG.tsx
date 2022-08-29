@@ -5,6 +5,7 @@ import { Game } from "./model/Game";
 const MobProgrammingRPG = ({startingPlayers = []}) => {
     const game = new Game();
     game.setPlayers(startingPlayers);
+    // TODO: separate ui from game state?
     const [gameState, setGameState] = useState({game: game, showSettings: false})
 
     function showSettings() {
@@ -22,7 +23,7 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
         <>
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List">
-                {gameState.game.players().map((player) => <PlayerDisplay playerName={player} key={player}/>)}
+                {gameState.game.players().map((player) => <PlayerDisplay playerName={player} role={game.roleOf(player)} key={player}/>)}
             </ul>
             <button onClick={() => showSettings()}>Settings</button>
             {gameState.showSettings &&

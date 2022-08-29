@@ -17,23 +17,30 @@ export class Game {
     }
 
     driver() {
-        return this.roleOf(RoleIndex.Driver);
+        return this.whoIs(RoleIndex.Driver);
     }
 
     navigator() {
-        return this.roleOf(RoleIndex.Navigator);
+        return this.whoIs(RoleIndex.Navigator);
     }
 
     next() {
-        return this.roleOf(RoleIndex.Next);
+        return this.whoIs(RoleIndex.Next);
     }
 
-    private roleOf(index: RoleIndex) {
+    private whoIs(index: RoleIndex) {
         return this._players[(index + this._rotations) % this._players.length];
     }
 
     rotate() {
         this._rotations++;
+    }
+
+    roleOf(player: string) {
+        if(this.driver()===player) return 'Driver';
+        if(this.navigator()===player) return 'Navigator';
+        if(this.next()===player) return 'Next';
+        return undefined;
     }
 }
 
