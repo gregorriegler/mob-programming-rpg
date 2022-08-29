@@ -3,10 +3,8 @@ import PlayerDisplay from "./PlayerDisplay";
 import { Game } from "./model/Game";
 
 const MobProgrammingRPG = ({startingPlayers = []}) => {
-    const game = new Game();
-    game.setPlayers(startingPlayers);
     // TODO: separate ui from game state?
-    const [gameState, setGameState] = useState({game: game, showSettings: false})
+    const [gameState, setGameState] = useState({game: new Game(startingPlayers), showSettings: false})
 
     function showSettings() {
         setGameState({...gameState, showSettings: !gameState.showSettings})
@@ -19,13 +17,19 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
         setGameState({...gameState, game: Object.create(gameState.game)})
     }
 
+    function rotate() {
+        gameState.game.rotate();
+        setGameState({...gameState, game: Object.create(gameState.game)})
+    }
+
     return (
         <>
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List">
-                {gameState.game.players().map((player) => <PlayerDisplay playerName={player} role={game.roleOf(player)} key={player}/>)}
+                {gameState.game.players().map((player) => <PlayerDisplay playerName={player} role={gameState.game.roleOf(player)} key={player}/>)}
             </ul>
             <button onClick={() => showSettings()}>Settings</button>
+            <button onClick={() => rotate()}>Rotate</button>
             {gameState.showSettings &&
               <form onSubmit={changePlayers}>
                 <label>Change Players

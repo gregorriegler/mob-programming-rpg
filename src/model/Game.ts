@@ -1,4 +1,8 @@
 export class Game {
+    constructor(players: string[] = []) {
+        this._players = players
+    }
+
     private _players = [];
     private _rotations = 0;
 
@@ -6,14 +10,10 @@ export class Game {
         return this._players;
     }
 
-    setPlayers(players: string | string[]) {
-        if(typeof players === "string"){
-            this._players = players.split(',')
-                .map(player => player.trim())
-                .filter(it => it !== "");
-        } else {
-            this._players = players
-        }
+    setPlayers(players: string) {
+        this._players = players.split(',')
+            .map(player => player.trim())
+            .filter(it => it !== "");
     }
 
     driver() {
@@ -37,9 +37,9 @@ export class Game {
     }
 
     roleOf(player: string) {
-        if(this.driver()===player) return 'Driver';
-        if(this.navigator()===player) return 'Navigator';
-        if(this.next()===player) return 'Next';
+        if (this.driver() === player) return 'Driver';
+        if (this.navigator() === player) return 'Navigator';
+        if (this.next() === player) return 'Next';
         return undefined;
     }
 }

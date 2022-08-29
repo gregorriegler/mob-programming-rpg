@@ -6,6 +6,10 @@ describe('Mob Programming RPG', () => {
     function getSettingsButton() {
         return screen.queryByRole('button', {name: 'Settings'});
     }
+    
+    function getRotateButton() {
+        return screen.queryByRole('button', {name: 'Rotate'});
+    }
 
     it('starts with an empty list of players', () => {
         render(<MobProgrammingRPG/>);
@@ -56,5 +60,17 @@ describe('Mob Programming RPG', () => {
         expect(items[0]).toHaveTextContent('Gregor (Driver)');
         expect(items[1]).toHaveTextContent('Peter (Navigator)');
         expect(items[2]).toHaveTextContent('Rita (Next)');
+    })
+    
+    it('has a rotate button that rotates', () => {
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
+        
+        fireEvent.click(getRotateButton());
+        
+        const playerList = screen.getByRole('list', {name: /Player List/});
+        const items = within(playerList).getAllByRole("listitem");
+        expect(items[0]).toHaveTextContent('Gregor (Next)');
+        expect(items[1]).toHaveTextContent('Peter (Driver)');
+        expect(items[2]).toHaveTextContent('Rita (Navigator)');
     })
 })

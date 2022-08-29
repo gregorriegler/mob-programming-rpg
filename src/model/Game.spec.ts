@@ -23,10 +23,8 @@ describe('Game', () => {
         expect(game.players()).toEqual(['Max', 'Rita', 'Peter']);
     });
 
-    it('can set players by array', () => {
-        const game = new Game();
-
-        game.setPlayers(['Max', 'Rita', 'Peter']);
+    it('can initialize players by array', () => {
+        const game = new Game(['Max', 'Rita', 'Peter']);
 
         expect(game.players()).toEqual(['Max', 'Rita', 'Peter']);
     });
