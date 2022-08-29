@@ -23,6 +23,14 @@ describe('Game', () => {
         expect(game.players()).toEqual(['Max', 'Rita', 'Peter']);
     });
 
+    it('can set players by array', () => {
+        const game = new Game();
+
+        game.setPlayers(['Max', 'Rita', 'Peter']);
+
+        expect(game.players()).toEqual(['Max', 'Rita', 'Peter']);
+    });
+
     it('has the first player starting as a driver', () => {
         const game = new Game();
 

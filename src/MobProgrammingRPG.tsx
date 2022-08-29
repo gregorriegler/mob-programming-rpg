@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import PlayerDisplay from "./PlayerDisplay";
+import { Game } from "./model/Game";
 
 const MobProgrammingRPG = ({startingPlayers = []}) => {
-
-    const [gameState, setGameState] = useState({players: startingPlayers, showSettings: false})
+    const game = new Game();
+    game.setPlayers(startingPlayers);
+    const [gameState, setGameState] = useState({game: game, showSettings: false})
 
     function showSettings() {
         setGameState({...gameState, showSettings: !gameState.showSettings})
@@ -11,25 +13,23 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
 
     function changePlayers(event): void {
         event.preventDefault();
-        const players = new FormData(event.target).get("change-players") as String;
-        const playerArray = players.split(',')
-            .map(player => player.trim())
-            .filter(it => it !== "");
-        setGameState({...gameState, players: playerArray})
+        const players = new FormData(event.target).get("change-players") as string;
+        gameState.game.setPlayers(players);
+        setGameState({...gameState, game: Object.create(gameState.game)})
     }
 
     return (
         <>
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List">
-                {gameState.players.map((player) => <PlayerDisplay playerName={player} key={player}/>)}
+                {gameState.game.players().map((player) => <PlayerDisplay playerName={player} key={player}/>)}
             </ul>
             <button onClick={() => showSettings()}>Settings</button>
             {gameState.showSettings &&
               <form onSubmit={changePlayers}>
                 <label>Change Players
                   <textarea id="change-players" name="change-players"
-                            defaultValue={gameState.players.join(", ")}></textarea>
+                            defaultValue={gameState.game.players().join(", ")}></textarea>
                 </label>
                 <button type="submit">Save</button>
               </form>

@@ -6,10 +6,14 @@ export class Game {
         return this._players;
     }
 
-    setPlayers(players: string) {
-        this._players = players.split(',')
-            .map(player => player.trim())
-            .filter(it => it !== "");
+    setPlayers(players: string | string[]) {
+        if(typeof players === "string"){
+            this._players = players.split(',')
+                .map(player => player.trim())
+                .filter(it => it !== "");
+        } else {
+            this._players = players
+        }
     }
 
     driver() {

@@ -2,6 +2,44 @@ import React, { useState } from "react";
 import { Player, Role } from "./model/Player";
 
 
+const PlayerDisplay = (props) => {
+
+    const [playerState, setPlayerState] = useState({
+        player: new Player(props.playerName),
+        addingPointsFor: []
+    })
+
+    function selectRole(e) {
+        e.preventDefault();
+        const role = new FormData(e.target).get("role") as Role;
+        playerState.player.selectRole(role)
+        setPlayerState({
+            player: Object.create(playerState.player),
+            addingPointsFor: playerState.addingPointsFor
+        });
+    }
+
+    return <li key={playerState.player.name()} aria-label={playerState.player.name()}>
+        <h2>{props.playerName}</h2>
+        {playerState.player.roles().map(role => {
+            return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
+        })}
+        {playerState.player.selectableRoles().length > 0 &&
+          <form onSubmit={selectRole}>
+            <label>
+              Available Roles
+              <select name="role">
+                  {playerState.player.selectableRoles().map(role =>
+                      <option key={role} value={role}>{role}</option>)
+                  }
+              </select>
+            </label>
+            <button type="submit">Select</button>
+          </form>
+        }
+    </li>
+}
+
 function RolePoints(props) {
     function showRolePointsForm(role: string) {
         return () =>
@@ -44,44 +82,6 @@ function RolePoints(props) {
           <span>{props.role} Badge</span>
         }
     </div>
-}
-
-const PlayerDisplay = (props) => {
-
-    const [playerState, setPlayerState] = useState({
-        player: new Player(props.playerName),
-        addingPointsFor: []
-    })
-
-    function selectRole(e) {
-        e.preventDefault();
-        const role = new FormData(e.target).get("role") as Role;
-        playerState.player.selectRole(role)
-        setPlayerState({
-            player: Object.create(playerState.player),
-            addingPointsFor: playerState.addingPointsFor
-        });
-    }
-
-    return <li key={playerState.player.name()} aria-label={playerState.player.name()}>
-        <h2>{props.playerName}</h2>
-        {playerState.player.roles().map(role => {
-            return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
-        })}
-        {playerState.player.selectableRoles().length > 0 &&
-          <form onSubmit={selectRole}>
-            <label>
-              Available Roles
-              <select name="role">
-                  {playerState.player.selectableRoles().map(role =>
-                      <option key={role} value={role}>{role}</option>)
-                  }
-              </select>
-            </label>
-            <button type="submit">Select</button>
-          </form>
-        }
-    </li>
 }
 
 export default PlayerDisplay;

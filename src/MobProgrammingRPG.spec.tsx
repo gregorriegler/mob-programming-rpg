@@ -47,4 +47,14 @@ describe('Mob Programming RPG', () => {
         
         expect(playersTextarea).toHaveTextContent("Gregor, Peter");
     })
+    
+    xit('shows players roles', () => {
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
+        
+        const playerList = screen.getByRole('list', {name: /Player List/});
+        const items = within(playerList).getAllByRole("listitem");
+        expect(items[0]).toHaveTextContent('Gregor (Driver)');
+        expect(items[1]).toHaveTextContent('Peter (Navigator)');
+        expect(items[2]).toHaveTextContent('Rita (Next)');
+    })
 })
