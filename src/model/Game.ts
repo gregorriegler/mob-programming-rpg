@@ -1,3 +1,9 @@
+enum RoleIndex {
+    Driver,
+    Navigator,
+    Next
+}
+
 export class Game {
     constructor(players: string[] = []) {
         this._players = players
@@ -42,10 +48,4 @@ export class Game {
         if (this.next() === player) return 'Next';
         return undefined;
     }
-}
-
-enum RoleIndex {
-    Driver,
-    Navigator,
-    Next
 }
