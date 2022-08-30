@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import PlayerDisplay from "./PlayerDisplay";
 import { Game } from "./model/Game";
+import TimerDisplay from "./TimerDisplay";
+import { RealClock } from "./RealClock";
 
-const MobProgrammingRPG = ({startingPlayers = []}) => {
+const MobProgrammingRPG = ({startingPlayers = [], clock = new RealClock()}) => {
     // TODO: separate ui from game state?
     const [gameState, setGameState] = useState({game: new Game(startingPlayers), showSettings: false})
 
@@ -22,14 +24,23 @@ const MobProgrammingRPG = ({startingPlayers = []}) => {
         setGameState({...gameState, game: Object.create(gameState.game)})
     }
 
+    function start() {
+
+    }
+
     return (
         <>
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List">
-                {gameState.game.players().map((player) => <PlayerDisplay playerName={player} role={gameState.game.roleOf(player)} key={player}/>)}
+                {gameState.game.players().map((player) => <PlayerDisplay playerName={player}
+                                                                         role={gameState.game.roleOf(player)}
+                                                                         key={player}/>)}
             </ul>
             <button onClick={() => showSettings()}>Settings</button>
             <button onClick={() => rotate()}>Rotate</button>
+            
+            <TimerDisplay clock={clock} />
+            
             {gameState.showSettings &&
               <form onSubmit={changePlayers}>
                 <label>Change Players

@@ -12,8 +12,9 @@ describe('Countdown', () => {
     })
     
     it('provides time left', () => {
-        const countdown = new Countdown(3, noOp, clock);
-        expect(countdown.timeLeft()).toBe(3);
+        const countdown = new Countdown(3000, noOp, clock);
+        expect(countdown.timeLeft()).toBe(3000);
+        expect(countdown.timeLeftPretty()).toBe('00:03');
     })
 
     it('does not count when not started', () => {

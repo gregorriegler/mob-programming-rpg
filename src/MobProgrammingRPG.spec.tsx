@@ -1,6 +1,7 @@
 import MobProgrammingRPG from "./MobProgrammingRPG";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
+import { ClockStub } from "./model/Clock";
 
 describe('Mob Programming RPG', () => {
 
@@ -41,7 +42,7 @@ describe('Mob Programming RPG', () => {
 
         fireEvent.change(playersTextarea, {target: {value: 'Gregor,Max,Rita'}});
         fireEvent.click(screen.getByText("Save"));
-        
+
         const items = getPlayerListitems();
         expect(items.length).toBe(3);
         expect(items[0]).toHaveTextContent('Gregor');
@@ -51,7 +52,7 @@ describe('Mob Programming RPG', () => {
 
     it('shows playing players in settings', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter"]}/>);
-        
+
         fireEvent.click(getSettingsButton());
 
         expect(screen.getByLabelText('Change Players')).toHaveTextContent("Gregor, Peter");
@@ -75,5 +76,33 @@ describe('Mob Programming RPG', () => {
         expect(items[0]).toHaveTextContent('Gregor (Next)');
         expect(items[1]).toHaveTextContent('Peter (Driver)');
         expect(items[2]).toHaveTextContent('Rita (Navigator)');
+    })
+
+    it('has a timer', () => {
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
+
+        const startButton = screen.getByRole('button', {name: 'Start'});
+        expect(startButton).toBeInTheDocument();
+        const timer = screen.getByTitle("timer");
+        expect(timer).toBeInTheDocument();
+        expect(timer).toHaveTextContent('04:00');
+    })
+
+    it('plays the timer', () => {
+        jest.useFakeTimers()
+        const clock = new ClockStub();
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock}/>);
+        const timer = screen.getByTitle("timer");
+        expect(timer).toHaveTextContent('04:00');
+
+        const startButton = screen.getByRole('button', {name: 'Start'});
+        fireEvent.click(startButton);
+
+        act(() => {
+            clock.setTime(1000 * 60 * 2)
+            jest.advanceTimersByTime(1000 * 60 * 2);
+        })
+
+        expect(timer).toHaveTextContent('02:00');
     })
 })

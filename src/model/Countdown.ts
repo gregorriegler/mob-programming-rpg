@@ -1,4 +1,4 @@
-import { Clock, MilliSeconds } from "./Clock";
+import { Clock, format, MilliSeconds } from "./Clock";
 
 export class Countdown {
     private readonly _from: MilliSeconds;
@@ -11,11 +11,20 @@ export class Countdown {
         this._clock = clock;
         this._onFinish = onFinish;
     }
+    
+    setOnFinish(callback: () => void) {
+        this._onFinish = callback;
+        
+    }
 
     timeLeft(): MilliSeconds {
         return this._startedAt === undefined
             ? this._from
             : Math.max(0, this._from - this.timePassed());
+    }
+
+    timeLeftPretty() {
+        return format(this.timeLeft());
     }
 
     private timePassed() {
