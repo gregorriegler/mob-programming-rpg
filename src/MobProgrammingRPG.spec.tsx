@@ -3,10 +3,16 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 
 describe('Mob Programming RPG', () => {
+
+    function getPlayerListitems() {
+        const playerList = screen.getByRole('list', {name: /Player List/});
+        return within(playerList).getAllByRole("listitem");
+    }
+
     function getSettingsButton() {
         return screen.queryByRole('button', {name: 'Settings'});
     }
-    
+
     function getRotateButton() {
         return screen.queryByRole('button', {name: 'Rotate'});
     }
@@ -35,40 +41,37 @@ describe('Mob Programming RPG', () => {
 
         fireEvent.change(playersTextarea, {target: {value: 'Gregor,Max,Rita'}});
         fireEvent.click(screen.getByText("Save"));
-
-        const playerList = screen.getByRole('list', {name: /Player List/});
-        const items = within(playerList).getAllByRole("listitem");
+        
+        const items = getPlayerListitems();
         expect(items.length).toBe(3);
         expect(items[0]).toHaveTextContent('Gregor');
         expect(items[1]).toHaveTextContent('Max');
         expect(items[2]).toHaveTextContent('Rita');
     })
-    
+
     it('shows playing players in settings', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter"]}/>);
-        fireEvent.click(getSettingsButton());
-        const playersTextarea = screen.getByLabelText('Change Players');
         
-        expect(playersTextarea).toHaveTextContent("Gregor, Peter");
+        fireEvent.click(getSettingsButton());
+
+        expect(screen.getByLabelText('Change Players')).toHaveTextContent("Gregor, Peter");
     })
-    
+
     it('shows players roles', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
-        
-        const playerList = screen.getByRole('list', {name: /Player List/});
-        const items = within(playerList).getAllByRole("listitem");
+
+        const items = getPlayerListitems();
         expect(items[0]).toHaveTextContent('Gregor (Driver)');
         expect(items[1]).toHaveTextContent('Peter (Navigator)');
         expect(items[2]).toHaveTextContent('Rita (Next)');
     })
-    
-    it('has a rotate button that rotates', () => {
+
+    it('has a rotate button that rotates the players', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
-        
+
         fireEvent.click(getRotateButton());
-        
-        const playerList = screen.getByRole('list', {name: /Player List/});
-        const items = within(playerList).getAllByRole("listitem");
+
+        const items = getPlayerListitems();
         expect(items[0]).toHaveTextContent('Gregor (Next)');
         expect(items[1]).toHaveTextContent('Peter (Driver)');
         expect(items[2]).toHaveTextContent('Rita (Navigator)');
