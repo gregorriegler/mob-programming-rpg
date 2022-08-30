@@ -4,17 +4,15 @@ export class Countdown {
     private readonly _from: MilliSeconds;
     private _startedAt: MilliSeconds;
     private _clock: Clock;
+    private _intervalId;
     private _onFinish: () => void;
+    private _updateTime: (prettyTime: string) => void;
 
-    constructor(from: MilliSeconds, onFinish: () => void, clock: Clock) {
+    constructor(from: MilliSeconds, onFinish: () => void, clock: Clock, updateTime: (prettyTime: string) => void = () => {}) {
         this._from = from;
         this._clock = clock;
         this._onFinish = onFinish;
-    }
-    
-    setOnFinish(callback: () => void) {
-        this._onFinish = callback;
-        
+        this._updateTime = updateTime;
     }
 
     timeLeft(): MilliSeconds {
@@ -33,6 +31,10 @@ export class Countdown {
 
     start() {
         this._startedAt = this._clock.currentTime();
+        const everySecond = () => {
+            this._updateTime(this.timeLeftPretty())
+        };
+        this._intervalId = setInterval(everySecond, 1000);
         setTimeout(() => {
             if (this.timeLeft() === 0) {
                 this._onFinish();

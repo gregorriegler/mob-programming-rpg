@@ -94,7 +94,7 @@ describe('Mob Programming RPG', () => {
         fireEvent.click(screen.getByRole('button', {name: 'Start'}));
 
         act(() => {
-            clock.setTime(1000 * 60 * 4)
+            clock.advanceTime(1000 * 60 * 4)
             jest.advanceTimersByTime(1000 * 60 * 4);
         })
 

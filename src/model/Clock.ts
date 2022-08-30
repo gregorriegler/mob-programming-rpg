@@ -9,8 +9,8 @@ export class ClockStub implements Clock {
         return this._time;
     }
 
-    setTime(time: MilliSeconds) {
-        this._time = time;
+    advanceTime(time: MilliSeconds) {
+        this._time = this._time + time;
     }
 }
 

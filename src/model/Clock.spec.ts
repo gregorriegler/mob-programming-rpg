@@ -13,7 +13,7 @@ describe('ClockStub', () => {
     it('changes time', () => {
         const stub = new ClockStub();
 
-        stub.setTime(100);
+        stub.advanceTime(100);
 
         const millis = stub.currentTime();
         expect(millis).toBe(100);

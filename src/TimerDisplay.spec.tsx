@@ -54,7 +54,7 @@ describe('TimerDisplay', () => {
     })
 
     function advanceTimeBy(time: MilliSeconds) {
-        clock.setTime(time)
+        clock.advanceTime(time);
         jest.advanceTimersByTime(time);
     }
 });

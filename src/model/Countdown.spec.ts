@@ -44,6 +44,19 @@ describe('Countdown', () => {
         
         expect(onFinish).toHaveBeenCalled();
     })
+    
+    it('updates time every second', () => {
+        const updateTime = jest.fn();
+        new Countdown(3000, noOp, clock, updateTime).start();
+        
+        advanceTimeBy(1000);
+        expect(updateTime).toHaveBeenCalledWith("00:02");
+        advanceTimeBy(1000);
+        expect(updateTime).toHaveBeenCalledWith("00:01");
+        advanceTimeBy(1000);
+        expect(updateTime).toHaveBeenCalledWith("00:00");
+        
+    })
 
     it('sends no notification prior to being over', () => {
         const onFinish = jest.fn();
@@ -64,7 +77,7 @@ describe('Countdown', () => {
     })
 
     function advanceTimeBy(time: MilliSeconds) {
-        clock.setTime(time)
+        clock.advanceTime(time);
         jest.advanceTimersByTime(time);
     }
 })
