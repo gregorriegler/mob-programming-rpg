@@ -3,10 +3,18 @@ import { Countdown } from "./model/Countdown";
 import { RealClock } from "./RealClock";
 import { format } from "./model/Clock";
 
-const TimerDisplay = ({rotateAfter= 60*1000*4, clock = new RealClock(), onFinish = () => {}}) => {
+const TimerDisplay = (
+    {
+        rotateAfter = 60 * 1000 * 4,
+        clock = new RealClock(),
+        onFinish = () => {}
+    }
+) => {
     const [timeLeft, setTimeLeft] = useState(format(rotateAfter));
+    const [started, setStarted] = useState(false);
 
     useEffect(() => {
+        const countdown = new Countdown(rotateAfter, rotate, clock);
         const interval = setInterval(() => {
             setTimeLeft(countdown.timeLeftPretty());
         }, 1000);
@@ -17,14 +25,13 @@ const TimerDisplay = ({rotateAfter= 60*1000*4, clock = new RealClock(), onFinish
             onFinish();
         }
 
-        const countdown = new Countdown(rotateAfter, rotate, clock);
-
-        countdown.start();
+        if (started) {
+            countdown.start();
+        }
     })
 
-    // TODO: separate ui from game state?
-
     function start() {
+        setStarted(true);
     }
 
     return (

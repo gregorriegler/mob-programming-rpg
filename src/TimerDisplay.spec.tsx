@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
 import TimerDisplay from "./TimerDisplay";
@@ -30,6 +30,8 @@ describe('TimerDisplay', () => {
     it('plays the time', () => {
         render(<TimerDisplay clock={clock} rotateAfter={3 * 1000}/>);
         const timer = screen.getByTitle("timer");
+        const startButton = screen.getByRole("button", {name: /start/i});
+        fireEvent.click(startButton);
 
         act(() => {
             advanceTimeBy(1000)
@@ -41,6 +43,8 @@ describe('TimerDisplay', () => {
     it('notifies when over', () => {
         const notify = jest.fn();
         render(<TimerDisplay clock={clock} rotateAfter={3 * 1000} onFinish={notify}/>);
+        const startButton = screen.getByRole("button", {name: /start/i});
+        fireEvent.click(startButton);
 
         act(() => {
             advanceTimeBy(3000)
