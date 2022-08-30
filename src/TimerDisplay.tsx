@@ -3,7 +3,7 @@ import { Countdown } from "./model/Countdown";
 import { RealClock } from "./RealClock";
 import { format } from "./model/Clock";
 
-const TimerDisplay = ({rotateAfter= 60*1000*4, clock = new RealClock()}) => {
+const TimerDisplay = ({rotateAfter= 60*1000*4, clock = new RealClock(), onFinish = () => {}}) => {
     const [timeLeft, setTimeLeft] = useState(format(rotateAfter));
 
     useEffect(() => {
@@ -14,9 +14,10 @@ const TimerDisplay = ({rotateAfter= 60*1000*4, clock = new RealClock()}) => {
         function rotate() {
             setTimeLeft(countdown.timeLeftPretty());
             clearInterval(interval);
+            onFinish();
         }
 
-        const countdown = new Countdown(240000, rotate, clock);
+        const countdown = new Countdown(rotateAfter, rotate, clock);
 
         countdown.start();
     })
