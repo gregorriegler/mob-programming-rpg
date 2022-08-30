@@ -6,7 +6,8 @@ import { RealClock } from "./RealClock";
 
 const MobProgrammingRPG = ({startingPlayers = [], clock = new RealClock()}) => {
     // TODO: separate ui from game state?
-    const [gameState, setGameState] = useState({game: new Game(startingPlayers), showSettings: false})
+    const [gameState, setGameState] = useState({game: new Game(startingPlayers), showSettings: false});
+    const [showWhoIsNext, setShowWhoIsNext] = useState(false);
 
     function showSettings() {
         setGameState({...gameState, showSettings: !gameState.showSettings})
@@ -23,9 +24,10 @@ const MobProgrammingRPG = ({startingPlayers = [], clock = new RealClock()}) => {
         gameState.game.rotate();
         setGameState({...gameState, game: Object.create(gameState.game)})
     }
-
-    function start() {
-
+    
+    function explainWhoIsNext() {
+        rotate();
+        setShowWhoIsNext(true);
     }
 
     return (
@@ -39,7 +41,15 @@ const MobProgrammingRPG = ({startingPlayers = [], clock = new RealClock()}) => {
             <button onClick={() => showSettings()}>Settings</button>
             <button onClick={() => rotate()}>Rotate</button>
             
-            <TimerDisplay clock={clock} />
+            <TimerDisplay clock={clock} onFinish={explainWhoIsNext}/>
+
+            {showWhoIsNext && 
+              <div>
+                <span title="Driver">Driver: {gameState.game.driver()}</span>
+                <span title="Navigator">Navigator: {gameState.game.navigator()}</span>
+                <span title="Next">Next: {gameState.game.next()}</span>
+              </div>
+            }
             
             {gameState.showSettings &&
               <form onSubmit={changePlayers}>

@@ -80,29 +80,26 @@ describe('Mob Programming RPG', () => {
 
     it('has a timer', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
-
-        const startButton = screen.getByRole('button', {name: 'Start'});
-        expect(startButton).toBeInTheDocument();
+        
+        expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
         const timer = screen.getByTitle("timer");
         expect(timer).toBeInTheDocument();
         expect(timer).toHaveTextContent('04:00');
     })
 
-    it('plays the timer', () => {
+    it("shows who's next when the time is over", () => {
         jest.useFakeTimers()
         const clock = new ClockStub();
-        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock}/>);
-        const timer = screen.getByTitle("timer");
-        expect(timer).toHaveTextContent('04:00');
-
-        const startButton = screen.getByRole('button', {name: 'Start'});
-        fireEvent.click(startButton);
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock} />);
+        fireEvent.click(screen.getByRole('button', {name: 'Start'}));
 
         act(() => {
-            clock.setTime(1000 * 60 * 2)
-            jest.advanceTimersByTime(1000 * 60 * 2);
+            clock.setTime(1000 * 60 * 4)
+            jest.advanceTimersByTime(1000 * 60 * 4);
         })
 
-        expect(timer).toHaveTextContent('02:00');
+        expect(screen.getByTitle("Driver")).toHaveTextContent("Driver: Peter");
+        expect(screen.getByTitle("Navigator")).toHaveTextContent("Navigator: Rita");
+        expect(screen.getByTitle("Next")).toHaveTextContent("Next: Gregor");
     })
 })
