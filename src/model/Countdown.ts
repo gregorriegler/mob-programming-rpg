@@ -38,6 +38,7 @@ export class Countdown {
         setTimeout(() => {
             if (this.timeLeft() === 0) {
                 this._onFinish();
+                clearInterval(this._intervalId);
             }
         }, this._from);
     }
