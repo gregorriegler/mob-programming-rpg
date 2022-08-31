@@ -5,7 +5,7 @@ import TimerDisplay from "./TimerDisplay";
 import { RealClock } from "./RealClock";
 
 const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = new RealClock()}) => {
-    const [gameState, setGameState] = useState({game: new Game(startingPlayers)});
+    const [game, setGame] = useState(new Game(startingPlayers));
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false});
 
     function showSettings() {
@@ -15,13 +15,13 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = ne
     function changePlayers(event): void {
         event.preventDefault();
         const players = new FormData(event.target).get("change-players") as string;
-        gameState.game.setPlayers(players);
-        setGameState({game: Object.create(gameState.game)})
+        game.setPlayers(players);
+        setGame(Object.create(game))
     }
 
     function rotate() {
-        gameState.game.rotate();
-        setGameState({game: Object.create(gameState.game)})
+        game.rotate();
+        setGame(Object.create(game))
     }
     
     function explainWhoIsNext() {
@@ -33,8 +33,8 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = ne
         <>
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List">
-                {gameState.game.players().map((player) => <PlayerDisplay playerName={player}
-                                                                         role={gameState.game.roleOf(player)}
+                {game.players().map((player) => <PlayerDisplay playerName={player}
+                                                                         role={game.roleOf(player)}
                                                                          key={player}/>)}
             </ul>
             <button onClick={() => showSettings()}>Settings</button>
@@ -44,9 +44,9 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = ne
 
             {uiState.showWhoIsNext && 
               <div>
-                <span title="Driver">Driver: {gameState.game.driver()}</span>
-                <span title="Navigator">Navigator: {gameState.game.navigator()}</span>
-                <span title="Next">Next: {gameState.game.next()}</span>
+                <span title="Driver">Driver: {game.driver()}</span>
+                <span title="Navigator">Navigator: {game.navigator()}</span>
+                <span title="Next">Next: {game.next()}</span>
               </div>
             }
             
@@ -54,7 +54,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = ne
               <form onSubmit={changePlayers}>
                 <label>Change Players
                   <textarea id="change-players" name="change-players"
-                            defaultValue={gameState.game.players().join(", ")}></textarea>
+                            defaultValue={game.players().join(", ")}></textarea>
                 </label>
                 <button type="submit">Save</button>
               </form>
