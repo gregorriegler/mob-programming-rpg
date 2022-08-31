@@ -4,7 +4,7 @@ import { Game } from "./model/Game";
 import TimerDisplay from "./TimerDisplay";
 import { RealClock } from "./RealClock";
 
-const MobProgrammingRPG = ({startingPlayers = [], clock = new RealClock()}) => {
+const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = new RealClock()}) => {
     // TODO: separate ui from game state?
     const [gameState, setGameState] = useState({game: new Game(startingPlayers), showSettings: false});
     const [showWhoIsNext, setShowWhoIsNext] = useState(false);
@@ -41,7 +41,7 @@ const MobProgrammingRPG = ({startingPlayers = [], clock = new RealClock()}) => {
             <button onClick={() => showSettings()}>Settings</button>
             <button onClick={() => rotate()}>Rotate</button>
             
-            <TimerDisplay clock={clock} onFinish={explainWhoIsNext}/>
+            <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}/>
 
             {showWhoIsNext && 
               <div>

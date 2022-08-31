@@ -5,16 +5,16 @@ import { format } from "./model/Clock";
 
 const TimerDisplay = (
     {
-        rotateAfter = 60 * 1000 * 4,
+        rotateAfter = 60 * 4,
         clock = new RealClock(),
         onFinish = () => {}
     }
 ) => {
-    const [timeLeft, setTimeLeft] = useState(format(rotateAfter));
+    const [timeLeft, setTimeLeft] = useState(format(rotateAfter * 1000));
     const [started, setStarted] = useState(false);
 
     useEffect(() => {
-        const countdown = new Countdown(rotateAfter, rotate, clock, setTimeLeft);
+        const countdown = new Countdown(rotateAfter * 1000, rotate, clock, setTimeLeft);
 
         function rotate() {
             setTimeLeft(countdown.timeLeftPretty());

@@ -87,6 +87,15 @@ describe('Mob Programming RPG', () => {
         expect(timer).toHaveTextContent('04:00');
     })
 
+    it('can configure the timer', () => {
+        render(<MobProgrammingRPG rotateAfter={3}/>);
+        
+        expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
+        const timer = screen.getByTitle("timer");
+        expect(timer).toBeInTheDocument();
+        expect(timer).toHaveTextContent('00:03');
+    })
+
     it("shows who's next when the time is over", () => {
         jest.useFakeTimers()
         const clock = new ClockStub();
