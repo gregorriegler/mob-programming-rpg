@@ -53,6 +53,30 @@ describe('TimerDisplay', () => {
         expect(notify).toHaveBeenCalled();
     })
 
+    it('starts the time again', () => {
+        const notify = jest.fn();
+        render(<TimerDisplay clock={clock} rotateAfter={2} onFinish={notify}/>);
+        const timer = screen.getByTitle("timer");
+        const startButton = screen.getByRole("button", {name: /start/i});
+        fireEvent.click(startButton);
+
+        act(() => {
+            advanceTimeBy(2000)
+        })
+        expect(timer).toHaveTextContent('00:02')
+        
+        fireEvent.click(startButton);
+        act(() => {
+            advanceTimeBy(1000)
+        })
+        expect(timer).toHaveTextContent('00:01')
+
+        act(() => {
+            advanceTimeBy(1000)
+        })
+        expect(notify).toHaveBeenCalledTimes(2);
+    })
+
     function advanceTimeBy(time: MilliSeconds) {
         clock.advanceTime(time);
         jest.advanceTimersByTime(time);

@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <MobProgrammingRPG />
+      <MobProgrammingRPG rotateAfter={3} />
     </>
   );
 }

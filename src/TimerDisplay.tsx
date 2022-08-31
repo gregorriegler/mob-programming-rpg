@@ -14,11 +14,18 @@ const TimerDisplay = (
     const [started, setStarted] = useState(false);
 
     useEffect(() => {
-        const countdown = new Countdown(rotateAfter * 1000, rotate, clock, setTimeLeft);
+        function createCountdown() {
+            return new Countdown(rotateAfter * 1000, rotate, clock, setTimeLeft);
+        }
+
+        let countdown = createCountdown();
 
         function rotate() {
+            let countdown = createCountdown();
             setTimeLeft(countdown.timeLeftPretty());
+            setStarted(false);
             onFinish();
+            
         }
 
         if (started) {
