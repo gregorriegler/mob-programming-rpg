@@ -3,6 +3,8 @@ import { Countdown } from "./model/Countdown";
 import { RealClock } from "./RealClock";
 import { format } from "./model/Clock";
 
+let countdown;
+
 const TimerDisplay = (
     {
         rotateAfter = 60 * 4,
@@ -11,36 +13,24 @@ const TimerDisplay = (
     }
 ) => {
     const [timeLeft, setTimeLeft] = useState(format(rotateAfter * 1000));
-    const [started, setStarted] = useState(false);
 
-    useEffect(() => {
-        function createCountdown() {
-            return new Countdown(rotateAfter * 1000, rotate, clock, setTimeLeft);
-        }
-
-        let countdown = createCountdown();
-
-        function rotate() {
-            let countdown = createCountdown();
-            setTimeLeft(countdown.timeLeftPretty());
-            setStarted(false);
-            onFinish();
-            
-        }
-
-        if (started) {
-            countdown.start();
-        }
-    },[started]);
-
-    function start() {
-        setStarted(true);
+    function createCountdown() {
+        return new Countdown(rotateAfter * 1000, rotate, clock, setTimeLeft);
     }
+
+    function rotate() {
+        countdown = createCountdown()
+        onFinish();
+    }
+    
+    useEffect(() => {
+        countdown = createCountdown();
+    },[]);
 
     return (
         <div className="timer" title="timer">
             <span className="time-display">{timeLeft}</span>
-            <button onClick={() => start()}>Start</button>
+            <button onClick={() => countdown.start()}>Start</button>
         </div>
     );
 };
