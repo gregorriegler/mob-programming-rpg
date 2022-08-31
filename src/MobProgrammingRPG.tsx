@@ -5,29 +5,28 @@ import TimerDisplay from "./TimerDisplay";
 import { RealClock } from "./RealClock";
 
 const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = new RealClock()}) => {
-    // TODO: separate ui from game state?
-    const [gameState, setGameState] = useState({game: new Game(startingPlayers), showSettings: false});
-    const [showWhoIsNext, setShowWhoIsNext] = useState(false);
+    const [gameState, setGameState] = useState({game: new Game(startingPlayers)});
+    const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false});
 
     function showSettings() {
-        setGameState({...gameState, showSettings: !gameState.showSettings})
+        setUiState({...uiState, showSettings:  !uiState.showSettings});
     }
 
     function changePlayers(event): void {
         event.preventDefault();
         const players = new FormData(event.target).get("change-players") as string;
         gameState.game.setPlayers(players);
-        setGameState({...gameState, game: Object.create(gameState.game)})
+        setGameState({game: Object.create(gameState.game)})
     }
 
     function rotate() {
         gameState.game.rotate();
-        setGameState({...gameState, game: Object.create(gameState.game)})
+        setGameState({game: Object.create(gameState.game)})
     }
     
     function explainWhoIsNext() {
         rotate();
-        setShowWhoIsNext(true);
+        setUiState({...uiState, showWhoIsNext: true});
     }
 
     return (
@@ -43,7 +42,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = ne
             
             <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}/>
 
-            {showWhoIsNext && 
+            {uiState.showWhoIsNext && 
               <div>
                 <span title="Driver">Driver: {gameState.game.driver()}</span>
                 <span title="Navigator">Navigator: {gameState.game.navigator()}</span>
@@ -51,7 +50,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60*4, clock = ne
               </div>
             }
             
-            {gameState.showSettings &&
+            {uiState.showSettings &&
               <form onSubmit={changePlayers}>
                 <label>Change Players
                   <textarea id="change-players" name="change-players"
