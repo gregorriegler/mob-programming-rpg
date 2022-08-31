@@ -4,32 +4,28 @@ import { Player, Role } from "./model/Player";
 
 const PlayerDisplay = (props) => {
 
-    const [playerState, setPlayerState] = useState({
-        player: new Player(props.playerName),
-        addingPointsFor: []
-    })
+    const [player, setPlayer] = useState(new Player(props.playerName))
+    const [uiState, setUiState] = useState({addingPointsFor: []})
 
     function selectRole(e) {
         e.preventDefault();
         const role = new FormData(e.target).get("role") as Role;
-        playerState.player.selectRole(role)
-        setPlayerState({
-            player: Object.create(playerState.player),
-            addingPointsFor: playerState.addingPointsFor
-        });
+        player.selectRole(role);
+        setPlayer(Object.create(player))
     }
 
-    return <li key={playerState.player.name()} aria-label={playerState.player.name()}>
+    return <li key={player.name()} aria-label={player.name()}>
         <h2>{props.playerName} ({props.role})</h2>
-        {playerState.player.roles().map(role => {
-            return <RolePoints key={role} role={role} playerState={playerState} setPlayerState={setPlayerState}/>
+        {player.roles().map(role => {
+            return <RolePoints key={role} role={role} player={player} setPlayer={setPlayer} uiState={uiState}
+                               setUiState={setUiState}/>
         })}
-        {playerState.player.selectableRoles().length > 0 &&
+        {player.selectableRoles().length > 0 &&
           <form onSubmit={selectRole}>
             <label>
               Available Roles
               <select name="role">
-                  {playerState.player.selectableRoles().map(role =>
+                  {player.selectableRoles().map(role =>
                       <option key={role} value={role}>{role}</option>)
                   }
               </select>
@@ -43,33 +39,30 @@ const PlayerDisplay = (props) => {
 function RolePoints(props) {
     function showRolePointsForm(role: string) {
         return () =>
-            props.setPlayerState({
-                ...props.playerState,
-                addingPointsFor: [...props.playerState.addingPointsFor, role]
+            props.setUiState({
+                addingPointsFor: [...props.uiState.addingPointsFor, role]
             });
     }
 
     function addDriverPoints(e) {
         e.preventDefault();
         const amount = new FormData(e.target).get("amount") as String;
-        props.playerState.player.scoreTimes(props.role, amount);
-        // TODO participant immutable!?
-        // TODO save everything in local storage or its gone after refresh
-        props.setPlayerState({
-            player: Object.create(props.playerState.player),
-            addingPointsFor: props.playerState.addingPointsFor.filter(it => it !== props.role)
+        props.player.scoreTimes(props.role, amount);
+        props.setUiState({
+            addingPointsFor: props.uiState.addingPointsFor.filter(it => it !== props.role)
         });
+        props.setPlayer(Object.create(props.player))
     }
 
     return <div className="role">
         <label className="role-label">
             {props.role}
-            <input disabled={true} value={props.playerState.player.pointsFor(props.role)}/>
+            <input disabled={true} value={props.player.pointsFor(props.role)}/>
         </label>
         <button onClick={showRolePointsForm(props.role)}>
             Add {props.role} Points
         </button>
-        {props.playerState.addingPointsFor.includes(props.role) &&
+        {props.uiState.addingPointsFor.includes(props.role) &&
           <form className="add-points-form" onSubmit={addDriverPoints}>
             <label>
               Add Points
@@ -78,7 +71,7 @@ function RolePoints(props) {
             <button type="submit">Add</button>
           </form>
         }
-        {props.playerState.player.hasBadge(props.role) &&
+        {props.player.hasBadge(props.role) &&
           <span>{props.role} Badge</span>
         }
     </div>
