@@ -29,6 +29,10 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
         setUiState({...uiState, showWhoIsNext: true});
     }
 
+    function continuePlaying() {
+        setUiState({...uiState, showWhoIsNext: false});
+    }
+
     return (
         <div className="rpgui-container framed full">
             <h1>Mob Programming RPG</h1>
@@ -37,7 +41,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
                                                                role={game.roleOf(player)}
                                                                key={player}/>)}
             </ul>
-            <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}/>
+            <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext} continuePlaying={continuePlaying}/>
             <div className="rpgui-container framed-grey buttons">
                 <button className="rpgui-button" onClick={() => showSettings()}>Settings</button>
                 <button className="rpgui-button" onClick={() => rotate()}>Rotate</button>
@@ -52,6 +56,14 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
                 <h3 title="Driver">Driver: {game.driver()}</h3>
                 <h3 title="Navigator">Navigator: {game.navigator()}</h3>
                 <h3 title="Next">Next: {game.next()}</h3>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <button className="rpgui-button golden" onClick={() => continuePlaying()}>
+                  <p>Close</p>
+                </button>
               </div>
             }
 

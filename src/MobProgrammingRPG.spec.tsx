@@ -111,4 +111,19 @@ describe('Mob Programming RPG', () => {
         expect(screen.getByTitle("Navigator")).toHaveTextContent("Navigator: Rita");
         expect(screen.getByTitle("Next")).toHaveTextContent("Next: Gregor");
     })
+    
+    it("can continue after the time is over", () => {
+        jest.useFakeTimers()
+        const clock = new ClockStub();
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock} />);
+        fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+
+        act(() => {
+            clock.advanceTime(1000 * 60 * 4)
+            jest.advanceTimersByTime(1000 * 60 * 4);
+        })
+
+        fireEvent.click(screen.getByRole('button', {name: 'Close'}));
+        expect(screen.queryByText("Time is over")).not.toBeInTheDocument();
+    })
 })

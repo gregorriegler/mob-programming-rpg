@@ -9,7 +9,8 @@ const TimerDisplay = (
     {
         rotateAfter = 60 * 4,
         clock = new RealClock(),
-        onFinish = () => {}
+        onFinish = () => {},
+        continuePlaying = () => {},
     }
 ) => {
     const [timeLeft, setTimeLeft] = useState(format(rotateAfter * 1000));
@@ -23,6 +24,11 @@ const TimerDisplay = (
         onFinish();
     }
     
+    function start(){
+        continuePlaying();
+        countdown.start();
+    }
+    
     useEffect(() => {
         countdown = createCountdown();
     },[]);
@@ -30,7 +36,7 @@ const TimerDisplay = (
     return (
         <div className="rpgui-container framed-golden-2 timer" title="timer">
             <div className="rpgui-container framed-grey"><p className="time">{timeLeft}</p></div>
-            <button className="rpgui-button golden" onClick={() => countdown.start()}><p>Start</p></button>
+            <button className="rpgui-button golden" onClick={() => start()}><p>Start</p></button>
         </div>
     );
 };
