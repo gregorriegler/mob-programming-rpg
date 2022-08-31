@@ -14,7 +14,7 @@ const PlayerDisplay = (props) => {
         setPlayer(Object.create(player))
     }
 
-    return <li key={player.name()} aria-label={player.name()}>
+    return <li className="player rpgui-container framed-golden" key={player.name()} aria-label={player.name()}>
         <h2>{props.playerName} ({props.role})</h2>
         {player.roles().map(role => {
             return <RolePoints key={role} role={role} player={player} setPlayer={setPlayer} uiState={uiState}
@@ -55,20 +55,19 @@ function RolePoints(props) {
     }
 
     return <div className="role">
+        <hr />
         <label className="role-label">
             {props.role}
-            <input disabled={true} value={props.player.pointsFor(props.role)}/>
+            <input disabled={true} className="role-points" value={props.player.pointsFor(props.role)}/>
         </label>
-        <button onClick={showRolePointsForm(props.role)}>
-            Add {props.role} Points
-        </button>
+        <button onClick={showRolePointsForm(props.role)} className="rpgui-button add-points-button" aria-label={"Add " + props.role + " Points"}><p>Earn</p></button>
         {props.uiState.addingPointsFor.includes(props.role) &&
           <form className="add-points-form" onSubmit={addDriverPoints}>
             <label>
               Add Points
-              <input type="text" name="amount" defaultValue="0"/>
+              <input className="add-points-input" type="text" name="amount" defaultValue="0"/>
             </label>
-            <button type="submit">Add</button>
+            <button className="rpgui-button" type="submit"><p>Add</p></button>
           </form>
         }
         {props.player.hasBadge(props.role) &&

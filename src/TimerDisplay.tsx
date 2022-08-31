@@ -28,9 +28,9 @@ const TimerDisplay = (
     },[]);
 
     return (
-        <div className="timer" title="timer">
-            <span className="time-display">{timeLeft}</span>
-            <button onClick={() => countdown.start()}>Start</button>
+        <div className="rpgui-container framed-golden-2 timer" title="timer">
+            <div className="rpgui-container framed-grey"><p className="time">{timeLeft}</p></div>
+            <button className="rpgui-button golden" onClick={() => countdown.start()}><p>Start</p></button>
         </div>
     );
 };

@@ -1,73 +1,78 @@
 body {
+    background-color: #222222;
+}
+
+ul {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    padding: 0;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.full {
+    width: 100%;
+    height: 100%;
 }
 
-li{
-    clear: both;
+.buttons {
+    position: absolute !important;
+    bottom: 20px;
 }
 
-h2{
-    margin-bottom: 5px;
-}
-input {
-    height: 16px;
-    line-height: 16px;
-    display: inline-block;
+.timer {
+    position: absolute;
+    width: fit-content;
+    right: 20px;
+    bottom: 20px;
 }
 
-button{
-    display: inline-block;
+.time {
+    margin: 0;
+    text-align: center;
+}
+
+.player {
+    list-style: none;
+    position: relative;
+    margin: 20px !important;
+    width: 30%;
+    float: left;
 }
 
 .role {
-    width: 400px;
-    display: block;
     position: relative;
-    border-bottom: 1px solid black;
-    clear: both;
-    min-height: 21px;
-}
-
-.role > button {
-    float: right;
 }
 
 .role-label {
-    width: 200px;
-    float: left;
-    clear: left;
-    display: block;
-    position: relative;
+    display: inline-block !important;
+    height: 40px;
+    font-size: 15px;
+    margin-top: 18px;
 }
 
-.role-label > input {
-    width: 40px;
-    text-align: right;
-    right: 0;
-    margin-right: 0;
+.role-points {
+    width: 40px !important;
+    margin-left: 10px;
     position: absolute;
+    left: 120px;
+    top: 26px
 }
 
-.add-points-form {
-    clear: both;
-    font-size: 9pt;
-    margin-left: 155px;
+.add-points-button {
+    position: absolute;
+    left: 170px;
+    margin-left: 10px;
+    padding: 4px !important;
 }
 
-.add-points-form input {
-    width: 40px;
-    text-align: right;
-    height: 15px;
-    margin-left: 4px;
+.add-points-input {
+    width: 40px !important;
+    margin-left: 1px;
+    margin-right: 10px;
 }
 
+.time-over-overlay {
+    left: 50%;
+    margin-left: -25%;
+    width: 50%;
+    height: 400px;
+    text-align: center;
+}

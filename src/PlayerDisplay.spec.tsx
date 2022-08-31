@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 describe('PlayerDisplay', () => {
     class PlayerComponent {
         addPointsButton(role) {
-            return screen.getByRole('button', {name: new RegExp(`Add ${role} Points`)});
+            return screen.getByLabelText(`Add ${role} Points`);
         }
 
         clickAddPoints(role: string) {

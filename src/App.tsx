@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <MobProgrammingRPG rotateAfter={3} />
+      <MobProgrammingRPG rotateAfter={3} startingPlayers={["Gregor", "Rita", "Peter"]}/>
     </>
   );
 }
