@@ -127,6 +127,52 @@ describe('Player', () => {
         expect(player.level()).toBe(3);
     });
 
+    it('serializes', () => {
+        player.scoreTimes('Mobber', 3);
+        player.selectRole('Researcher');
+
+        const json = player.toJSON();
+
+        expect(JSON.parse(json)).toEqual(
+            {
+                name: 'Gregor',
+                roles: {
+                    "Mobber": 3,
+                    "Driver": 0,
+                    "Navigator": 0,
+                    "Researcher": 0
+                },
+                badges: ["Mobber"]
+            }
+        );
+    });
+    
+    it('deserializes', () => {
+        const player = Player.fromJSON(
+            {
+                name: 'Gregor',
+                roles: {
+                    "Mobber": 3,
+                    "Driver": 0,
+                    "Navigator": 0,
+                    "Researcher": 0
+                },
+                badges: ["Mobber"]
+            }
+        );
+        
+        expect(player.name()).toEqual('Gregor');
+        expect(player.roles()).toEqual([
+            "Mobber",
+            "Driver",
+            "Navigator",
+            "Researcher"
+        ])
+        expect(player.pointsFor("Mobber")).toEqual(3)
+        expect(player.pointsFor("Researcher")).toEqual(0)
+        expect(player.badges()).toEqual(["Mobber"]);
+    });
+
     function expectPoints(points) {
         expect(player.roles()).toEqual(points.map(it => it[0]));
         points.forEach(expectOneRolesPoints);

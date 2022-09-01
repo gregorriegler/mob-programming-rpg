@@ -32,7 +32,7 @@ const levels: Role[][] = [
 
 function levelOf(role: Role) {
     for (let level = 0; level < levels.length; level++) {
-        if(levels[level].includes(role)){
+        if (levels[level].includes(role)) {
             return level;
         }
     }
@@ -40,11 +40,25 @@ function levelOf(role: Role) {
 
 export class Player {
     private readonly _name: string;
-    private readonly _points = new Map<Role, number>(levels[0].map(role => [role, 0]));
-    private readonly _badges = new Set<string>();
+    private readonly _points: Map<Role, number>;
+    private readonly _badges = new Set<Role>();
 
-    constructor(name: string) {
+    static fromJSON(json: { badges: Role[]; roles: {[key in Role]?: number}; name: string }): Player {
+        const roles = new Map<Role,number>();
+        for (let role in json.roles) {
+            roles.set(role as Role, json.roles[role]);
+        }
+        return new Player(json.name, roles, json.badges);
+    }
+
+    constructor(
+        name: string, 
+        points: Map<Role, number> = new Map<Role, number>(levels[0].map(role => [role, 0])),
+        badges: Role[] = []
+    ) {
         this._name = name;
+        this._points = points
+        this._badges = new Set<Role>(badges);
     }
 
     name() {
@@ -61,10 +75,10 @@ export class Player {
     badges() {
         return Array.from(this._badges);
     }
-    
+
     selectableRoles() {
         for (let nextLevel = 1; nextLevel <= Array.from(levels.keys()).length; nextLevel++) {
-            if(this.canSelectRoleFor(nextLevel)){
+            if (this.canSelectRoleFor(nextLevel)) {
                 return levels[nextLevel];
             }
         }
@@ -112,6 +126,14 @@ export class Player {
         return this._points.get(role);
     }
 
+    toJSON() {
+        return JSON.stringify({
+            "name": this._name,
+            "roles": Object.fromEntries(this._points.entries()),
+            "badges": Array.from(this._badges)
+        })
+    }
+
     private hasCompleted(level: number) {
         return levels[level].some(it => this.hasBadge(it));
     }
@@ -121,7 +143,7 @@ export class Player {
     }
 
     private canSelectRoleFor(level) {
-        return this.hasCompleted(level-1) && !this.hasRoleForLevel(level);
+        return this.hasCompleted(level - 1) && !this.hasRoleForLevel(level);
     }
 
     private hasRoleForLevel(level: number) {
