@@ -17,6 +17,10 @@ describe('Mob Programming RPG', () => {
     function getRotateButton() {
         return screen.queryByRole('button', {name: 'Rotate'});
     }
+    
+    beforeEach(() => {
+        localStorage.clear();
+    })
 
     it('starts with an empty list of players', () => {
         render(<MobProgrammingRPG/>);

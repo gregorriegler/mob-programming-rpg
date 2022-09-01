@@ -4,7 +4,7 @@ describe('Game', () => {
     it('starts with an empty list of players', () => {
         const game = new Game();
 
-        expect(game.players()).toEqual([]);
+        expect(game.getPlayers()).toEqual([]);
     });
 
     it('can add a player', () => {
@@ -12,7 +12,7 @@ describe('Game', () => {
 
         game.setPlayers('Max');
 
-        expect(game.players()).toEqual(['Max']);
+        expect(game.getPlayers()).toEqual(['Max']);
     });
 
     it('can many players, even with dirty whitespace', () => {
@@ -20,13 +20,13 @@ describe('Game', () => {
 
         game.setPlayers('Max,Rita,  Peter');
 
-        expect(game.players()).toEqual(['Max', 'Rita', 'Peter']);
+        expect(game.getPlayers()).toEqual(['Max', 'Rita', 'Peter']);
     });
 
     it('can initialize players by array', () => {
         const game = new Game(['Max', 'Rita', 'Peter']);
 
-        expect(game.players()).toEqual(['Max', 'Rita', 'Peter']);
+        expect(game.getPlayers()).toEqual(['Max', 'Rita', 'Peter']);
     });
 
     it('has the first player starting as a driver', () => {

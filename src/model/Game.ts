@@ -6,18 +6,18 @@ enum RoleIndex {
 
 export class Game {
     constructor(players: string[] = []) {
-        this._players = players
+        this.players = players
     }
 
-    private _players = [];
-    private _rotations = 0;
+    private players = [];
+    private rotations = 0;
 
-    players() {
-        return this._players;
+    getPlayers() {
+        return this.players;
     }
 
     setPlayers(players: string) {
-        this._players = players.split(',')
+        this.players = players.split(',')
             .map(player => player.trim())
             .filter(it => it !== "");
     }
@@ -35,11 +35,11 @@ export class Game {
     }
 
     private whoIs(index: RoleIndex) {
-        return this._players[(index + this._rotations) % this._players.length];
+        return this.players[(index + this.rotations) % this.players.length];
     }
 
     rotate() {
-        this._rotations++;
+        this.rotations++;
     }
 
     roleOf(player: string) {
