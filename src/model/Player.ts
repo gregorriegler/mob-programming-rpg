@@ -61,11 +61,6 @@ export class Player {
     badges() {
         return Array.from(this._badges);
     }
-
-    canSelectRole() {
-        return Array.from(levels.keys())
-            .some(level => this.canSelectRoleFor(level+1))
-    }
     
     selectableRoles() {
         for (let nextLevel = 1; nextLevel <= Array.from(levels.keys()).length; nextLevel++) {
