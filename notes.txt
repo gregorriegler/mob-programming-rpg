@@ -1,5 +1,7 @@
+- host it
+- timer to 4 min
+- time updates every 100ms
+- timer changeable
 - Reordering looses Points
 - Show Roles Todos
-- Beautiful Badges
-- When you achieve Traffic Cop it breaks
 - Network
