@@ -56,9 +56,10 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
         <div className="rpgui-container framed full">
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List" className="rpgui-container-framed">
-                {game.getPlayers().map((player) => <PlayerDisplay playerName={player}
-                                                               role={game.roleOf(player)}
-                                                               key={player}/>)}
+                {game.players().map((player) => <PlayerDisplay player={player} 
+                                                               playerName={player.name()}
+                                                               role={game.roleOf(player.name())}
+                                                               key={player.name()}/>)}
             </ul>
             <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}
                           continuePlaying={continuePlaying}/>
