@@ -1,4 +1,5 @@
-- Localstorage
+- Too many Drivers on rotation
+- Reordering looses Points
 - Show Roles Todos
 - Beautiful Badges
 - Timer

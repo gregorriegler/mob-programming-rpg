@@ -16,6 +16,9 @@ const PlayerDisplay = ({player, updateGame = ()=> {}, role = "Driver"}) => {
 
     return <li className="player rpgui-container framed-golden" key={player.name()} aria-label={player.name()}>
         <h2>{player.name()} ({role})</h2>
+        {player.badges().map(badge => {
+            return <p>{badge} Badge</p>
+        })}
         {player.roles().map(role => {
             return <RolePoints key={role} role={role} player={player} updateGame={updateGame} uiState={uiState}
                                setUiState={setUiState}/>
@@ -71,9 +74,9 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
             <button className="rpgui-button" type="submit"><p>Add</p></button>
           </form>
         }
-        {player.hasBadge(role) &&
-          <span>{role} Badge</span>
-        }
+        {/*{player.hasBadge(role) &&*/}
+        {/*  <span>{role} Badge</span>*/}
+        {/*}*/}
     </div>
 }
 

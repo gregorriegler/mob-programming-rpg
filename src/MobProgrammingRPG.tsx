@@ -10,12 +10,11 @@ const useLocalStorageGame = (defaultGame) => {
 
     useEffect(() => {
         const json = localStorage.getItem("game");
-        if(json === null) return;
+        if (json === null) return;
         setGame(Game.fromJSON(json));
     }, []);
 
     useEffect(() => {
-        debugger
         localStorage.setItem("game", game.toJSON());
     }, [game]);
 
@@ -40,9 +39,9 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
 
     function rotate() {
         game.rotate();
-        updateGame(); 
+        updateGame();
     }
-    
+
     function updateGame() {
         setGame(cloneInstance(game))
     }
@@ -60,16 +59,16 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
         <div className="rpgui-container framed full">
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List" className="rpgui-container-framed">
-                {game.players().map((player) => <PlayerDisplay player={player} 
+                {game.players().map((player) => <PlayerDisplay player={player}
                                                                role={game.roleOf(player.name())}
                                                                updateGame={updateGame}
                                                                key={player.name()}/>)}
             </ul>
-            <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}
-                          continuePlaying={continuePlaying}/>
             <div className="rpgui-container framed-grey buttons">
-                <button className="rpgui-button" onClick={() => showSettings()}>Settings</button>
-                <button className="rpgui-button" onClick={() => rotate()}>Rotate</button>
+                <button className="rpgui-button" onClick={() => showSettings()}><p>Settings</p></button>
+                <button className="rpgui-button" onClick={() => rotate()}><p>Rotate</p></button>
+                <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}
+                              continuePlaying={continuePlaying}/>
             </div>
             {uiState.showWhoIsNext &&
               <div className="time-over-overlay rpgui-container framed-golden-2">
@@ -90,13 +89,14 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
             }
 
             {uiState.showSettings &&
-              <div className="rpgui-container framed-golden">
+              <div className="rpgui-container framed-golden settings">
                 <form onSubmit={changePlayers}>
                   <label>Change Players
                     <textarea id="change-players" name="change-players"
-                              defaultValue={game.players().map(it=> it.name()).join(", ")}></textarea>
+                              defaultValue={game.players().map(it => it.name()).join(", ")}></textarea>
                   </label>
-                  <button type="submit">Save</button>
+                  <button type="submit" className="rpgui-button"><p>Save</p></button>
+                  <button className="rpgui-button" onClick={showSettings}><p>Close</p></button>
                 </form>
               </div>
             }

@@ -38,6 +38,17 @@ describe('Mob Programming RPG', () => {
         expect(playersTextarea).toBeNull();
     });
 
+    it('closes the settings', () => {
+        render(<MobProgrammingRPG/>);
+        const settingsButton = getSettingsButton();
+        fireEvent.click(settingsButton);
+        
+        fireEvent.click(screen.getByText("Close"));
+
+        const playersTextarea = screen.queryByText('Change Players');
+        expect(playersTextarea).toBeNull();
+    });
+
     it('changes players', () => {
         render(<MobProgrammingRPG/>);
         fireEvent.click(getSettingsButton());

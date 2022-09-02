@@ -10,11 +10,14 @@ ul {
 .full {
     width: 100%;
     height: 100%;
+    overflow: auto;
 }
 
 .buttons {
-    position: absolute !important;
-    bottom: 20px;
+    position: fixed !important;
+    left: 13px;
+    bottom: 13px;
+    right: 32px;
 }
 
 .timer {
@@ -29,11 +32,17 @@ ul {
     text-align: center;
 }
 
+.settings {
+    position: fixed;
+    bottom: 100px
+}
+
 .player {
     list-style: none;
     position: relative;
     margin: 20px !important;
-    width: 30%;
+    min-width: 380px;
+    width: 20%;
     float: left;
 }
 
