@@ -2,6 +2,7 @@ import PlayerDisplay from "./PlayerDisplay";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
+import { Player } from "./model/Player";
 
 describe('PlayerDisplay', () => {
     class PlayerComponent {
@@ -34,12 +35,12 @@ describe('PlayerDisplay', () => {
     const player = new PlayerComponent();
 
     it('shows the players name', () => {
-        render(<PlayerDisplay playerName={"Roger"}/>);
+        render(<PlayerDisplay player={new Player("Roger")}/>);
         expect(screen.getByRole('listitem')).toHaveTextContent("Roger");
     });
 
     it('shows the initial points', () => {
-        render(<PlayerDisplay playerName={"Roger"}/>);
+        render(<PlayerDisplay player={new Player("Roger")}/>);
 
         function roleInitialized(role: string) {
             const driverPoints = screen.getByLabelText(role);
@@ -53,7 +54,7 @@ describe('PlayerDisplay', () => {
     });
 
     it('adds driver points', () => {
-        render(<PlayerDisplay playerName={"Roger"}/>);
+        render(<PlayerDisplay player={new Player("Roger")}/>);
         player.clickAddPoints('Driver');
         expect(player.addPointsInput()).toBeInTheDocument();
         expect(player.addPointsInput()).toHaveValue("0");
@@ -63,7 +64,7 @@ describe('PlayerDisplay', () => {
     });
 
     it('adds up points', () => {
-        render(<PlayerDisplay playerName={"Roger"}/>);
+        render(<PlayerDisplay player={new Player("Roger")}/>);
         player.clickAddPoints('Driver');
         player.enterAddPointsForm("1");
         expect(player.pointsDisplay('Driver')).toHaveValue("1");
@@ -76,13 +77,13 @@ describe('PlayerDisplay', () => {
     });
 
     it('cannot select a new role before having a badge', () => {
-        render(<PlayerDisplay playerName={"Roger"}/>);
+        render(<PlayerDisplay player={new Player("Roger")}/>);
         
         expect(player.selectNextRole()).not.toBeInTheDocument()
     });
 
     it('can select a new role after earning a badge', () => {
-        render(<PlayerDisplay playerName={"Roger"}/>);
+        render(<PlayerDisplay player={new Player("Roger")}/>);
         player.clickAddPoints("Navigator");
         player.enterAddPointsForm("3");
 

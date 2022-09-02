@@ -20,29 +20,22 @@ export class Game {
     }
 
     constructor(players: Player[] = [], rotations: number = 0) {
-        this._players = players.map(it => it.name());
-        this._playersNew = players;
+        this._players = players;
         this._rotations = rotations;
     }
-    private _players: string[];
 
-    private _playersNew: Player[];
+    private _players: Player[];
 
     private _rotations;
-
-    getPlayers() {
-        return this._players;
-    }
-
+    
     players() {
-        return this._playersNew;
+        return this._players;
     }
 
     setPlayers(players: string) {
         this._players = players.split(',')
             .map(player => player.trim())
-            .filter(it => it !== "");
-        this._playersNew = this._players.map(it => new Player(it));
+            .filter(it => it !== "").map(it => new Player(it));
     }
 
     driver() {
@@ -58,7 +51,7 @@ export class Game {
     }
 
     private whoIs(index: RoleIndex) {
-        return this._players[(index + this._rotations) % this._players.length];
+        return this._players[(index + this._rotations) % this._players.length].name();
     }
 
     rotate() {
@@ -78,7 +71,7 @@ export class Game {
 
     toJSON() {
         return JSON.stringify({
-            players: this._playersNew.map(it => it.toObject()),
+            players: this._players.map(it => it.toObject()),
             rotations: this._rotations,
         })
     }

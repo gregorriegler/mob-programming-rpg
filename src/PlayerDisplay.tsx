@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { Player, Role } from "./model/Player";
+import { Role } from "./model/Player";
 
 
-const PlayerDisplay = (props) => {
+const PlayerDisplay = ({player, updateGame = ()=> {}, role = "Driver"}) => {
 
-    const [player, setPlayer] = useState(new Player(props.playerName))
     const [uiState, setUiState] = useState({addingPointsFor: []})
 
     function selectRole(e) {
         e.preventDefault();
         const role = new FormData(e.target).get("role") as Role;
         player.selectRole(role);
-        setPlayer(Object.create(player))
+        updateGame();
+        setUiState({addingPointsFor: []});
     }
 
     return <li className="player rpgui-container framed-golden" key={player.name()} aria-label={player.name()}>
-        <h2>{props.playerName} ({props.role})</h2>
+        <h2>{player.name()} ({role})</h2>
         {player.roles().map(role => {
-            return <RolePoints key={role} role={role} player={player} setPlayer={setPlayer} uiState={uiState}
+            return <RolePoints key={role} role={role} player={player} updateGame={updateGame} uiState={uiState}
                                setUiState={setUiState}/>
         })}
         {player.selectableRoles().length > 0 &&
@@ -36,32 +36,33 @@ const PlayerDisplay = (props) => {
     </li>
 }
 
-function RolePoints(props) {
+function RolePoints({player, role, setUiState, uiState, updateGame}) {
     function showRolePointsForm(role: string) {
         return () =>
-            props.setUiState({
-                addingPointsFor: [...props.uiState.addingPointsFor, role]
+            setUiState({
+                addingPointsFor: [...uiState.addingPointsFor, role]
             });
     }
 
     function addDriverPoints(e) {
         e.preventDefault();
         const amount = new FormData(e.target).get("amount") as String;
-        props.player.scoreTimes(props.role, amount);
-        props.setUiState({
-            addingPointsFor: props.uiState.addingPointsFor.filter(it => it !== props.role)
+        player.scoreTimes(role, amount);
+        setUiState({
+            addingPointsFor: uiState.addingPointsFor.filter(it => it !== role)
         });
-        props.setPlayer(Object.create(props.player))
+        updateGame();
     }
 
     return <div className="role">
-        <hr />
+        <hr/>
         <label className="role-label">
-            {props.role}
-            <input disabled={true} className="role-points" value={props.player.pointsFor(props.role)}/>
+            {role}
+            <input disabled={true} className="role-points" value={player.pointsFor(role)}/>
         </label>
-        <button onClick={showRolePointsForm(props.role)} className="rpgui-button add-points-button" aria-label={"Add " + props.role + " Points"}><p>Earn</p></button>
-        {props.uiState.addingPointsFor.includes(props.role) &&
+        <button onClick={showRolePointsForm(role)} className="rpgui-button add-points-button"
+                aria-label={"Add " + role + " Points"}><p>Earn</p></button>
+        {uiState.addingPointsFor.includes(role) &&
           <form className="add-points-form" onSubmit={addDriverPoints}>
             <label>
               Add Points
@@ -70,8 +71,8 @@ function RolePoints(props) {
             <button className="rpgui-button" type="submit"><p>Add</p></button>
           </form>
         }
-        {props.player.hasBadge(props.role) &&
-          <span>{props.role} Badge</span>
+        {player.hasBadge(role) &&
+          <span>{role} Badge</span>
         }
     </div>
 }

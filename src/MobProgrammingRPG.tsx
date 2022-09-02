@@ -35,11 +35,15 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
         event.preventDefault();
         const players = new FormData(event.target).get("change-players") as string;
         game.setPlayers(players);
-        setGame(cloneInstance(game))
+        updateGame();
     }
 
     function rotate() {
         game.rotate();
+        updateGame(); 
+    }
+    
+    function updateGame() {
         setGame(cloneInstance(game))
     }
 
@@ -57,8 +61,8 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
             <h1>Mob Programming RPG</h1>
             <ul aria-label="Player List" className="rpgui-container-framed">
                 {game.players().map((player) => <PlayerDisplay player={player} 
-                                                               playerName={player.name()}
                                                                role={game.roleOf(player.name())}
+                                                               updateGame={updateGame}
                                                                key={player.name()}/>)}
             </ul>
             <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}
@@ -90,7 +94,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
                 <form onSubmit={changePlayers}>
                   <label>Change Players
                     <textarea id="change-players" name="change-players"
-                              defaultValue={game.getPlayers().join(", ")}></textarea>
+                              defaultValue={game.players().map(it=> it.name()).join(", ")}></textarea>
                   </label>
                   <button type="submit">Save</button>
                 </form>

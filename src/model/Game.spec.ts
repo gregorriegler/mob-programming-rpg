@@ -5,7 +5,7 @@ describe('Game', () => {
     it('starts with an empty list of players', () => {
         const game = new Game();
 
-        expect(game.getPlayers()).toEqual([]);
+        expect(game.players()).toEqual([]);
     });
 
     it('can add a player', () => {
