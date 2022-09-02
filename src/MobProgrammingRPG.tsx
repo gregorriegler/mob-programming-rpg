@@ -9,14 +9,14 @@ const useLocalStorageGame = (defaultGame) => {
     const [game, setGame] = useState(defaultGame);
 
     useEffect(() => {
-        const storedValue = JSON.parse(localStorage.getItem("game"));
-        const storedInstance = Object.assign(new Game(), storedValue);
-        if (storedValue !== null) setGame(storedInstance);
+        const json = localStorage.getItem("game");
+        if(json === null) return;
+        setGame(Game.fromJSON(json));
     }, []);
 
     useEffect(() => {
-        const gameAsJson = JSON.stringify(game);
-        localStorage.setItem("game", gameAsJson);
+        debugger
+        localStorage.setItem("game", game.toJSON());
     }, [game]);
 
     return [game, setGame];
