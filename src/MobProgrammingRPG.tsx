@@ -24,7 +24,7 @@ const useLocalStorageGame = (defaultGame) => {
 
 
 const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = new RealClock()}) => {
-    const [game, setGame] = useLocalStorageGame(new Game(startingPlayers));
+    const [game, setGame] = useLocalStorageGame(Game.withPlayers(startingPlayers));
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false});
 
     function showSettings() {

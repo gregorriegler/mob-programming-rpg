@@ -24,7 +24,7 @@ describe('Game', () => {
     });
 
     it('can initialize players by array', () => {
-        const game = new Game(['Max', 'Rita', 'Peter']);
+        const game = Game.withPlayers(['Max', 'Rita', 'Peter']);
 
         expect(game.getPlayers()).toEqual(['Max', 'Rita', 'Peter']);
     });
@@ -68,4 +68,45 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Sam');
         expect(game.next()).toEqual('Max');
     });
+    
+    it('serializes to json', () => {
+        const game = new Game();
+        game.setPlayers('Max,Rita');
+        game.rotate();
+        
+        const json = game.toJSON();
+        
+        const result = JSON.parse(json);
+        
+        expect(result.players.length).toEqual(2);
+        expect(result.players[0].name).toEqual('Max');
+        expect(result.players[1].name).toEqual('Rita');
+        expect(result.rotations).toEqual(1);
+    })
+    
+    it('deserializes from json', () => {
+        const game = Game.fromJSON(`
+        {
+          "players": [
+            {
+              "name": "Gregor",
+              "roles": {
+                "Mobber": 3,
+                "Driver": 0,
+                "Navigator": 0,
+                "Researcher": 0
+              },
+              "badges": ["Mobber"]
+            }
+          ],
+          "rotations": 1
+        }
+        `);
+        
+        expect(game.players().length).toEqual(1);
+        expect(game.players()[0].name()).toEqual("Gregor");
+        expect(game.players()[0].badges()).toEqual(["Mobber"]);
+        expect(game.rotations()).toEqual(1);
+        
+    })
 });

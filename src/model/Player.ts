@@ -43,7 +43,7 @@ export class Player {
     private readonly _points: Map<Role, number>;
     private readonly _badges = new Set<Role>();
 
-    static fromJSON(json: { badges: Role[]; roles: {[key in Role]?: number}; name: string }): Player {
+    static fromObject(json: { badges: Role[]; roles: {[key in Role]?: number}; name: string }): Player {
         const roles = new Map<Role,number>();
         for (let role in json.roles) {
             roles.set(role as Role, json.roles[role]);
@@ -126,12 +126,12 @@ export class Player {
         return this._points.get(role);
     }
 
-    toJSON() {
-        return JSON.stringify({
+    toObject() {
+        return {
             "name": this._name,
             "roles": Object.fromEntries(this._points.entries()),
             "badges": Array.from(this._badges)
-        })
+        };
     }
 
     private hasCompleted(level: number) {

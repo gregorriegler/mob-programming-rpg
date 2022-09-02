@@ -1,3 +1,5 @@
+import { Player } from "./Player";
+
 enum RoleIndex {
     Driver,
     Navigator,
@@ -5,21 +7,42 @@ enum RoleIndex {
 }
 
 export class Game {
-    constructor(players: string[] = []) {
-        this.players = players
+    static fromJSON(json: string) {
+        const parsedObject = JSON.parse(json);
+        return new Game(
+            parsedObject.players.map(it => Player.fromObject(it)),
+            parsedObject.rotations
+        );
     }
 
-    private players = [];
-    private rotations = 0;
+    static withPlayers(players: string[]) {
+        return new Game(players.map(name => new Player(name)));
+    }
+
+    constructor(players: Player[] = [], rotations: number = 0) {
+        this._players = players.map(it => it.name());
+        this._playersNew = players;
+        this._rotations = rotations;
+    }
+    private _players: string[];
+
+    private _playersNew: Player[];
+
+    private _rotations;
 
     getPlayers() {
-        return this.players;
+        return this._players;
+    }
+
+    players() {
+        return this._playersNew;
     }
 
     setPlayers(players: string) {
-        this.players = players.split(',')
+        this._players = players.split(',')
             .map(player => player.trim())
             .filter(it => it !== "");
+        this._playersNew = this._players.map(it => new Player(it));
     }
 
     driver() {
@@ -35,11 +58,15 @@ export class Game {
     }
 
     private whoIs(index: RoleIndex) {
-        return this.players[(index + this.rotations) % this.players.length];
+        return this._players[(index + this._rotations) % this._players.length];
     }
 
     rotate() {
-        this.rotations++;
+        this._rotations++;
+    }
+    
+    rotations() {
+        return this._rotations;
     }
 
     roleOf(player: string) {
@@ -47,5 +74,12 @@ export class Game {
         if (this.navigator() === player) return 'Navigator';
         if (this.next() === player) return 'Next';
         return undefined;
+    }
+
+    toJSON() {
+        return JSON.stringify({
+            players: this._playersNew.map(it => it.toObject()),
+            rotations: this._rotations,
+        })
     }
 }

@@ -2,7 +2,7 @@ import { Player } from "./Player";
 
 describe('Player', () => {
 
-    let player;
+    let player: Player;
 
     beforeEach(() => {
         player = new Player('Gregor');
@@ -127,13 +127,13 @@ describe('Player', () => {
         expect(player.level()).toBe(3);
     });
 
-    it('serializes', () => {
+    it('converts to object', () => {
         player.scoreTimes('Mobber', 3);
         player.selectRole('Researcher');
 
-        const json = player.toJSON();
+        const json = player.toObject();
 
-        expect(JSON.parse(json)).toEqual(
+        expect(json).toEqual(
             {
                 name: 'Gregor',
                 roles: {
@@ -146,9 +146,9 @@ describe('Player', () => {
             }
         );
     });
-    
-    it('deserializes', () => {
-        const player = Player.fromJSON(
+
+    it('initializes from object', () => {
+        const player = Player.fromObject(
             {
                 name: 'Gregor',
                 roles: {
@@ -160,7 +160,7 @@ describe('Player', () => {
                 badges: ["Mobber"]
             }
         );
-        
+
         expect(player.name()).toEqual('Gregor');
         expect(player.roles()).toEqual([
             "Mobber",
