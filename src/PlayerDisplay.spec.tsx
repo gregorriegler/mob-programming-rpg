@@ -73,7 +73,7 @@ describe('PlayerDisplay', () => {
         player.enterAddPointsForm("2");
 
         expect(player.pointsDisplay('Driver')).toHaveValue("3");
-        expect(screen.getByText('Driver Badge')).toBeInTheDocument();
+        expect(screen.getByAltText('Driver Badge')).toBeInTheDocument();
     });
 
     it('cannot select a new role before having a badge', () => {
@@ -87,7 +87,7 @@ describe('PlayerDisplay', () => {
         player.clickAddPoints("Navigator");
         player.enterAddPointsForm("3");
 
-        expect(screen.getByText('Navigator Badge')).toBeInTheDocument();
+        expect(screen.getByAltText('Navigator Badge')).toBeInTheDocument();
         expect(screen.getByRole('listitem', {name: /Roger/i})).toBeInTheDocument();
 
         const availableRoles = screen.getByLabelText(/available roles/i);

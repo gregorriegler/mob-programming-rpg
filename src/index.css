@@ -85,3 +85,13 @@ ul {
     height: 400px;
     text-align: center;
 }
+
+.rpgui-icon {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.rpgui-icon img {
+    width: 100%;
+    height: 100%;
+}

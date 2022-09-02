@@ -27,7 +27,8 @@ const levels: Role[][] = [
     ],
     [
         "Traffic Cop"
-    ]
+    ],
+    []
 ];
 
 function levelOf(role: Role) {
@@ -43,8 +44,8 @@ export class Player {
     private readonly _points: Map<Role, number>;
     private readonly _badges = new Set<Role>();
 
-    static fromObject(json: { badges: Role[]; roles: {[key in Role]?: number}; name: string }): Player {
-        const roles = new Map<Role,number>();
+    static fromObject(json: { badges: Role[]; roles: { [key in Role]?: number }; name: string }): Player {
+        const roles = new Map<Role, number>();
         for (let role in json.roles) {
             roles.set(role as Role, json.roles[role]);
         }
@@ -52,7 +53,7 @@ export class Player {
     }
 
     constructor(
-        name: string, 
+        name: string,
         points: Map<Role, number> = new Map<Role, number>(levels[0].map(role => [role, 0])),
         badges: Role[] = []
     ) {

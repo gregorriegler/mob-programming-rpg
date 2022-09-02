@@ -2,24 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Role } from "./model/Player";
 
 
-function SelectRole({player}) {
-    useEffect(() => {
-        // @ts-ignore
-        if(window.RPGUI !== undefined) {
-            console.log("make dropdown")
-            // @ts-ignore
-            window.RPGUI.create(document.getElementById(player.name() + "-role-select"), "dropdown")
-        }
-    }, [player]);
-    return <>
-              <select name="role" id={player.name() + "-role-select"} className="rpgui-dropdown">
-                  {player.selectableRoles().map(role =>
-                      <option key={role} value={role}>{role}</option>)
-                  }
-              </select>
-        </>
-}
-
 const PlayerDisplay = ({player, updateGame = () => {}, role = "Mobber"}) => {
 
     const [uiState, setUiState] = useState({addingPointsFor: []})
@@ -32,12 +14,13 @@ const PlayerDisplay = ({player, updateGame = () => {}, role = "Mobber"}) => {
         setUiState({addingPointsFor: []});
     }
 
-
     return <li className="player rpgui-container framed-golden" aria-label={player.name()}>
         <h2>{player.name()} ({role})</h2>
-        {player.badges().map(badge => {
-            return <p key={badge}>{badge} Badge</p>
+        {player.badges().map(role => {
+            return <Badge key={role} role={role}/>
         })}
+        {player.badges().length < 4 && Array.from(Array(4-player.badges().length).keys())
+            .map((item, index) => <div key={index} className="rpgui-icon magic-slot"/>)}
         {player.roles().map(role => {
             return <RolePoints key={role} role={role} player={player} updateGame={updateGame} uiState={uiState}
                                setUiState={setUiState}/>
@@ -46,12 +29,35 @@ const PlayerDisplay = ({player, updateGame = () => {}, role = "Mobber"}) => {
           <form onSubmit={selectRole}>
             <label>
               Available Roles
-              <SelectRole player={player} />
+              <SelectRole player={player}/>
             </label>
             <button className="rpgui-button" type="submit"><p>Select</p></button>
           </form>
         }
     </li>
+}
+
+const Badge = ({role}) => {
+    function badgeSource(role: Role) {
+        const images = {
+            "Driver": "driver-badge.png",
+            "Navigator": "navigator-badge.png",
+            "Mobber": "mobber-badge.png",
+            "Researcher": "researcher-badge.png",
+            "Sponsor": "sponsor-badge.png",
+            "Rear Admiral": "rear-admiral-badge.png",
+            "Automationist": "automationist-badge.png",
+            "Nose": "nose-badge.png",
+            "Archivist": "archivist-badge.png",
+            "Traffic Cop": "traffic-cop-badge.png",
+        }
+        return "/img/icons/" + images[role];
+    }
+
+    return <div className="rpgui-icon magic-slot">
+        {role !== undefined &&
+          <img src={badgeSource(role)} alt={role + " Badge"} aria-label={role + " Badge"}/>}
+    </div>
 }
 
 function RolePoints({player, role, setUiState, uiState, updateGame}) {
@@ -90,6 +96,24 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
           </form>
         }
     </div>
+}
+
+function SelectRole({player}) {
+    useEffect(() => {
+        // @ts-ignore
+        if (window.RPGUI !== undefined) {
+            console.log("make dropdown")
+            // @ts-ignore
+            window.RPGUI.create(document.getElementById(player.name() + "-role-select"), "dropdown")
+        }
+    }, [player]);
+    return <>
+        <select name="role" id={player.name() + "-role-select"} className="rpgui-dropdown">
+            {player.selectableRoles().map(role =>
+                <option key={role} value={role}>{role}</option>)
+            }
+        </select>
+    </>
 }
 
 export default PlayerDisplay;
