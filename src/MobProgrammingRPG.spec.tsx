@@ -74,12 +74,13 @@ describe('Mob Programming RPG', () => {
     })
 
     it('shows players roles', () => {
-        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita", "Ben"]}/>);
 
         const items = getPlayerListitems();
         expect(items[0]).toHaveTextContent('Gregor (Driver)');
         expect(items[1]).toHaveTextContent('Peter (Navigator)');
-        expect(items[2]).toHaveTextContent('Rita (Next)');
+        expect(items[2]).toHaveTextContent('Rita (Mobber)');
+        expect(items[3]).toHaveTextContent('Ben (Mobber)');
     })
 
     it('has a rotate button that rotates the players', () => {
@@ -88,7 +89,7 @@ describe('Mob Programming RPG', () => {
         fireEvent.click(getRotateButton());
 
         const items = getPlayerListitems();
-        expect(items[0]).toHaveTextContent('Gregor (Next)');
+        expect(items[0]).toHaveTextContent('Gregor (Mobber)');
         expect(items[1]).toHaveTextContent('Peter (Driver)');
         expect(items[2]).toHaveTextContent('Rita (Navigator)');
     })

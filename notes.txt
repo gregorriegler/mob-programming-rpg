@@ -1,7 +1,5 @@
-- Too many Drivers on rotation
 - Reordering looses Points
 - Show Roles Todos
 - Beautiful Badges
-- Timer
-- Proper Styling
+- When you achieve Traffic Cop it breaks
 - Network

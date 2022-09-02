@@ -1,8 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Role } from "./model/Player";
 
 
-const PlayerDisplay = ({player, updateGame = ()=> {}, role = "Driver"}) => {
+function SelectRole({player}) {
+    useEffect(() => {
+        // @ts-ignore
+        if(window.RPGUI !== undefined) {
+            console.log("make dropdown")
+            // @ts-ignore
+            window.RPGUI.create(document.getElementById(player.name() + "-role-select"), "dropdown")
+        }
+    }, [player]);
+    return <>
+              <select name="role" id={player.name() + "-role-select"} className="rpgui-dropdown">
+                  {player.selectableRoles().map(role =>
+                      <option key={role} value={role}>{role}</option>)
+                  }
+              </select>
+        </>
+}
+
+const PlayerDisplay = ({player, updateGame = () => {}, role = "Mobber"}) => {
 
     const [uiState, setUiState] = useState({addingPointsFor: []})
 
@@ -14,10 +32,11 @@ const PlayerDisplay = ({player, updateGame = ()=> {}, role = "Driver"}) => {
         setUiState({addingPointsFor: []});
     }
 
-    return <li className="player rpgui-container framed-golden" key={player.name()} aria-label={player.name()}>
+
+    return <li className="player rpgui-container framed-golden" aria-label={player.name()}>
         <h2>{player.name()} ({role})</h2>
         {player.badges().map(badge => {
-            return <p>{badge} Badge</p>
+            return <p key={badge}>{badge} Badge</p>
         })}
         {player.roles().map(role => {
             return <RolePoints key={role} role={role} player={player} updateGame={updateGame} uiState={uiState}
@@ -27,13 +46,9 @@ const PlayerDisplay = ({player, updateGame = ()=> {}, role = "Driver"}) => {
           <form onSubmit={selectRole}>
             <label>
               Available Roles
-              <select name="role">
-                  {player.selectableRoles().map(role =>
-                      <option key={role} value={role}>{role}</option>)
-                  }
-              </select>
+              <SelectRole player={player} />
             </label>
-            <button type="submit">Select</button>
+            <button className="rpgui-button" type="submit"><p>Select</p></button>
           </form>
         }
     </li>
@@ -74,9 +89,6 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
             <button className="rpgui-button" type="submit"><p>Add</p></button>
           </form>
         }
-        {/*{player.hasBadge(role) &&*/}
-        {/*  <span>{role} Badge</span>*/}
-        {/*}*/}
     </div>
 }
 

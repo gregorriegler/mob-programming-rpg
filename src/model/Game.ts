@@ -2,8 +2,7 @@ import { Player } from "./Player";
 
 enum RoleIndex {
     Driver,
-    Navigator,
-    Next
+    Navigator
 }
 
 export class Game {
@@ -45,13 +44,17 @@ export class Game {
     navigator() {
         return this.whoIs(RoleIndex.Navigator);
     }
-
+    
     next() {
-        return this.whoIs(RoleIndex.Next);
+        return this.getPlayer(RoleIndex.Navigator + 1).name();
     }
 
     private whoIs(index: RoleIndex) {
-        return this._players[(index + this._rotations) % this._players.length].name();
+        return this.getPlayer(index).name();
+    }
+
+    private getPlayer(index: number) {
+        return this._players[(index + this._rotations) % this._players.length];
     }
 
     rotate() {
@@ -65,8 +68,7 @@ export class Game {
     roleOf(player: string) {
         if (this.driver() === player) return 'Driver';
         if (this.navigator() === player) return 'Navigator';
-        if (this.next() === player) return 'Next';
-        return undefined;
+        return 'Mobber';
     }
 
     toJSON() {

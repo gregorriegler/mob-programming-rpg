@@ -48,7 +48,7 @@ describe('Game', () => {
         expect(game.next()).toEqual('Peter');
         expect(game.roleOf('Max')).toEqual('Driver');
         expect(game.roleOf('Rita')).toEqual('Navigator');
-        expect(game.roleOf('Peter')).toEqual('Next');
+        expect(game.roleOf('Peter')).toEqual('Mobber');
     });
 
     it('rotates', () => {
@@ -59,11 +59,10 @@ describe('Game', () => {
 
         expect(game.driver()).toEqual('Rita');
         expect(game.navigator()).toEqual('Peter');
-        expect(game.next()).toEqual('Sam');
         expect(game.roleOf('Rita')).toEqual('Driver');
         expect(game.roleOf('Peter')).toEqual('Navigator');
-        expect(game.roleOf('Sam')).toEqual('Next');
-        expect(game.roleOf('Max')).toBeUndefined();
+        expect(game.roleOf('Sam')).toEqual('Mobber');
+        expect(game.roleOf('Max')).toEqual('Mobber');
     });
 
     it('rotates around', () => {
@@ -75,7 +74,6 @@ describe('Game', () => {
 
         expect(game.driver()).toEqual('Peter');
         expect(game.navigator()).toEqual('Sam');
-        expect(game.next()).toEqual('Max');
     });
     
     it('serializes to json', () => {
