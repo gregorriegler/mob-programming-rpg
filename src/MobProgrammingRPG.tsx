@@ -3,7 +3,6 @@ import PlayerDisplay from "./PlayerDisplay";
 import { Game } from "./model/Game";
 import TimerDisplay from "./TimerDisplay";
 import { RealClock } from "./RealClock";
-import { cloneInstance } from "./util/ClassUtil";
 
 const useLocalStorageGame = (defaultGame) => {
     const [game, setGame] = useState(defaultGame);
@@ -43,7 +42,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
     }
 
     function updateGame() {
-        setGame(cloneInstance(game))
+        setGame(game.clone());
     }
 
     function explainWhoIsNext() {

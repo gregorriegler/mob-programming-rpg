@@ -77,4 +77,8 @@ export class Game {
             rotations: this._rotations,
         })
     }
+
+    clone() {
+        return Object.assign(Object.create(Object.getPrototypeOf(this)), this);
+    }
 }
