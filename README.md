@@ -2,6 +2,10 @@
 
 Web app for the [Mob Programming RPG](https://github.com/willemlarsen/mobprogrammingrpg).
 
+## Try it
+
+[Play the Mob Programming RPG](http://gregorriegler.com/mob-programming-rpg/)
+
 ## Start it
 
 `npm start`
