@@ -13,7 +13,6 @@ export class Countdown {
         this._clock = clock;
         this._onFinish = onFinish;
         this._updateTime = updateTime;
-        updateTime(this.timeLeftPretty());
     }
 
     timeLeft(): MilliSeconds {

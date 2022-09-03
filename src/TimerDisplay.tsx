@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { Countdown } from "./model/Countdown";
 import { RealClock } from "./RealClock";
-import { format } from "./model/Clock";
 
-let countdown;
+function useForceUpdate() {
+    const [, updateState] = useState();
+    // @ts-ignore
+    return useCallback(() => updateState({}), []);
+}
 
 const TimerDisplay = (
     {
@@ -13,31 +16,29 @@ const TimerDisplay = (
         continuePlaying = () => {},
     }
 ) => {
-    const [timeLeft, setTimeLeft] = useState(format(rotateAfter * 1000));
+    const forceUpdate = useForceUpdate();
 
     function createCountdown() {
-        return new Countdown(rotateAfter * 1000, rotate, clock, setTimeLeft);
+        return new Countdown(rotateAfter * 1000, rotate, clock, forceUpdate);
     }
 
+    const countdown = useRef(createCountdown());
+
     function rotate() {
-        countdown = createCountdown()
+        countdown.current = createCountdown();
         onFinish();
     }
-    
-    function start(){
+
+    function start() {
         continuePlaying();
-        countdown.start();
+        countdown.current.start();
     }
-    
-    useEffect(() => {
-        countdown = createCountdown();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[onFinish]);
 
     return (
         <div className="rpgui-container framed-golden-2 timer" title="timer">
-            <div className="rpgui-container framed-grey"><p className="time">{timeLeft}</p></div>
-            <button className="rpgui-button golden" onClick={() => start()}><p>Start</p></button>
+            <div className="rpgui-container framed-grey"><p className="time">{countdown.current.timeLeftPretty()}</p>
+            </div>
+            <button className="rpgui-button golden" onClick={start}><p>Start</p></button>
         </div>
     );
 };
