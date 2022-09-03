@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import MobProgrammingRPG from "./MobProgrammingRPG";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App/>
+    <MobProgrammingRPG rotateAfter={4*60}/>
 );
 
