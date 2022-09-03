@@ -18,10 +18,10 @@ ul {
 }
 
 .logo {
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
     vertical-align: baseline;
-    margin: 5px 9px -3px;
+    margin: 1px 25px -20px;
 }
 
 .buttons {
