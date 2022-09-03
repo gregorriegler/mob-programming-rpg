@@ -32,7 +32,7 @@ const TimerDisplay = (
     useEffect(() => {
         countdown = createCountdown();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    },[onFinish]);
 
     return (
         <div className="rpgui-container framed-golden-2 timer" title="timer">

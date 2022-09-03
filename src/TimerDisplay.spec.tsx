@@ -37,7 +37,7 @@ describe('TimerDisplay', () => {
             advanceTimeBy(1000)
         })
 
-        expect(timer).toHaveTextContent('00:02');
+        expect(timer).toHaveTextContent('00:03');
     })
 
     it('notifies when over', () => {
