@@ -13,6 +13,13 @@ ul {
     overflow: auto;
 }
 
+.logo {
+    width: 32px;
+    height: 32px;
+    vertical-align: baseline;
+    margin: 5px 9px -3px;
+}
+
 .buttons {
     position: fixed !important;
     left: 13px;

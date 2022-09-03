@@ -56,7 +56,10 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
 
     return (
         <div className="rpgui-container framed full">
-            <h1>Mob Programming RPG</h1>
+            <h1>
+                Mob Programming RPG
+                <img className="logo" src={process.env.PUBLIC_URL + "/favicon.png"}/>
+            </h1>
             <ul aria-label="Player List" className="rpgui-container-framed">
                 {game.players().map((player) => <PlayerDisplay player={player}
                                                                role={game.roleOf(player.name())}

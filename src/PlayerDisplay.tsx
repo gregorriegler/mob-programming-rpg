@@ -51,7 +51,7 @@ const Badge = ({role}) => {
             "Archivist": "archivist-badge.png",
             "Traffic Cop": "traffic-cop-badge.png",
         }
-        return "/img/icons/" + images[role];
+        return process.env.PUBLIC_URL + "/img/icons/" + images[role];
     }
 
     return <div className="rpgui-icon magic-slot">
