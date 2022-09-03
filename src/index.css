@@ -11,6 +11,10 @@ ul {
     width: 100%;
     height: 100%;
     overflow: auto;
+    background-image: url("../public/img/sea-waves-bg.png") !important;
+    background-repeat: no-repeat !important;
+    background-position: bottom !important;
+    background-size: contain !important;
 }
 
 .logo {
@@ -24,7 +28,7 @@ ul {
     position: fixed !important;
     left: 13px;
     bottom: 13px;
-    right: 32px;
+    right: 13px;
 }
 
 .timer {
