@@ -48,8 +48,7 @@ ul {
     list-style: none;
     position: relative;
     margin: 20px !important;
-    min-width: 380px;
-    width: 20%;
+    width: 380px;
     float: left;
 }
 
