@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Role } from "./model/Player";
 
 
-const PlayerDisplay = ({player, updateGame = () => {}, role = "Mobber"}) => {
+const PlayerDisplay = ({player, updateGameState = () => {}, role = "Mobber"}) => {
 
     const [uiState, setUiState] = useState({addingPointsFor: []})
 
-    function selectRole(e) {
-        e.preventDefault();
-        const role = new FormData(e.target).get("role") as Role;
+    function selectRole(event) {
+        const role = new FormData(event.target).get("role") as Role;
         player.selectRole(role);
-        updateGame();
+        updateGameState();
         setUiState({addingPointsFor: []});
+        event.preventDefault();
     }
 
     return <li className="player rpgui-container framed-golden" aria-label={player.name()}>
@@ -19,10 +19,10 @@ const PlayerDisplay = ({player, updateGame = () => {}, role = "Mobber"}) => {
         {player.badges().map(role => {
             return <Badge key={role} role={role}/>
         })}
-        {player.badges().length < 4 && Array.from(Array(4-player.badges().length).keys())
+        {player.badges().length < 4 && Array.from(Array(4 - player.badges().length).keys())
             .map((item, index) => <div key={index} className="rpgui-icon magic-slot"/>)}
         {player.roles().map(role => {
-            return <RolePoints key={role} role={role} player={player} updateGame={updateGame} uiState={uiState}
+            return <RolePoints key={role} role={role} player={player} updateGame={updateGameState} uiState={uiState}
                                setUiState={setUiState}/>
         })}
         {player.selectableRoles().length > 0 &&
@@ -84,8 +84,13 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
             {role}
             <input disabled={true} className="role-points" value={player.pointsFor(role)}/>
         </label>
-        <button onClick={showRolePointsForm(role)} className="rpgui-button add-points-button"
-                aria-label={"Add " + role + " Points"}><p>Earn</p></button>
+        <button
+            onClick={showRolePointsForm(role)}
+            className="rpgui-button add-points-button"
+            aria-label={"Add " + role + " Points"}
+        >
+            <p>Earn</p>
+        </button>
         {uiState.addingPointsFor.includes(role) &&
           <form className="add-points-form" onSubmit={addDriverPoints}>
             <label>
@@ -102,11 +107,11 @@ function SelectRole({player}) {
     useEffect(() => {
         // @ts-ignore
         if (window.RPGUI !== undefined) {
-            console.log("make dropdown")
             // @ts-ignore
             window.RPGUI.create(document.getElementById(player.name() + "-role-select"), "dropdown")
         }
     }, [player]);
+
     return <>
         <select name="role" id={player.name() + "-role-select"} className="rpgui-dropdown">
             {player.selectableRoles().map(role =>

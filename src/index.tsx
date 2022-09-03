@@ -5,6 +5,8 @@ import MobProgrammingRPG from "./MobProgrammingRPG";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <MobProgrammingRPG rotateAfter={4*60}/>
+    <React.StrictMode>
+        <MobProgrammingRPG rotateAfter={4}/>
+    </React.StrictMode>
 );
 

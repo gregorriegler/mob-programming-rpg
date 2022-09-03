@@ -4,14 +4,17 @@ import { Game } from "./model/Game";
 import TimerDisplay from "./TimerDisplay";
 import { RealClock } from "./RealClock";
 
-const useLocalStorageGame = (defaultGame) => {
-    const [game, setGame] = useState(defaultGame);
-
-    useEffect(() => {
+const useLocalStorageGame: (defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (defaultGame) => {
+    function initialState() {
         const json = localStorage.getItem("game");
-        if (json === null) return;
-        setGame(Game.fromJSON(json));
-    }, []);
+        if (json !== null) {
+            return Game.fromJSON(json);
+        } else {
+            return defaultGame;
+        }
+    }
+
+    const [game, setGame] = useState(initialState());
 
     useEffect(() => {
         localStorage.setItem("game", game.toJSON());
@@ -21,32 +24,42 @@ const useLocalStorageGame = (defaultGame) => {
 };
 
 
-const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = new RealClock()}) => {
+const MobProgrammingRPG = (
+    {
+        startingPlayers = [],
+        rotateAfter = 60 * 4,
+        clock = new RealClock()
+    }
+) => {
     const [game, setGame] = useLocalStorageGame(Game.withPlayers(startingPlayers));
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false});
 
-    function showSettings() {
+    function toggleSettings() {
         setUiState({...uiState, showSettings: !uiState.showSettings});
     }
 
     function changePlayers(event): void {
-        event.preventDefault();
         const players = new FormData(event.target).get("change-players") as string;
         game.setPlayers(players);
-        updateGame();
+        updateGameState();
+        event.preventDefault();
     }
 
     function rotate() {
         game.rotate();
-        updateGame();
+        updateGameState();
     }
 
-    function updateGame() {
+    function updateGameState() {
         setGame(game.clone());
     }
 
-    function explainWhoIsNext() {
+    function timeOver() {
         rotate();
+        explainWhoIsNext();
+    }
+
+    function explainWhoIsNext() {
         setUiState({...uiState, showWhoIsNext: true});
     }
 
@@ -61,16 +74,24 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
                 <img className="logo" alt="logo" src={process.env.PUBLIC_URL + "/favicon.png"}/>
             </h1>
             <ul aria-label="Player List" className="rpgui-container-framed">
-                {game.players().map((player) => <PlayerDisplay player={player}
-                                                               role={game.roleOf(player.name())}
-                                                               updateGame={updateGame}
-                                                               key={player.name()}/>)}
+                {game.players().map((player) =>
+                    <PlayerDisplay
+                        player={player}
+                        role={game.roleOf(player.name())}
+                        updateGameState={updateGameState}
+                        key={player.name()}
+                    />
+                )}
             </ul>
             <div className="rpgui-container framed-grey buttons">
-                <button className="rpgui-button" onClick={() => showSettings()}><p>Settings</p></button>
-                <button className="rpgui-button" onClick={() => rotate()}><p>Rotate</p></button>
-                <TimerDisplay rotateAfter={rotateAfter} clock={clock} onFinish={explainWhoIsNext}
-                              continuePlaying={continuePlaying}/>
+                <button className="rpgui-button" onClick={toggleSettings}><p>Settings</p></button>
+                <button className="rpgui-button" onClick={rotate}><p>Rotate</p></button>
+                <TimerDisplay
+                    rotateAfter={rotateAfter}
+                    clock={clock}
+                    onFinish={timeOver}
+                    continuePlaying={continuePlaying}
+                />
             </div>
             {uiState.showWhoIsNext &&
               <div className="time-over-overlay rpgui-container framed-golden-2">
@@ -84,7 +105,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
                 <br/>
                 <br/>
                 <br/>
-                <button className="rpgui-button golden" onClick={() => continuePlaying()}>
+                <button className="rpgui-button golden" onClick={continuePlaying}>
                   <p>Close</p>
                 </button>
               </div>
@@ -98,7 +119,7 @@ const MobProgrammingRPG = ({startingPlayers = [], rotateAfter = 60 * 4, clock = 
                               defaultValue={game.players().map(it => it.name()).join(", ")}></textarea>
                   </label>
                   <button type="submit" className="rpgui-button"><p>Save</p></button>
-                  <button className="rpgui-button" onClick={showSettings}><p>Close</p></button>
+                  <button className="rpgui-button" onClick={toggleSettings}><p>Close</p></button>
                 </form>
               </div>
             }
