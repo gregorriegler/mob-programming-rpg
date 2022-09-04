@@ -17,7 +17,7 @@ describe('Mob Programming RPG', () => {
     function getRotateButton() {
         return screen.queryByRole('button', {name: 'Rotate'});
     }
-    
+
     beforeEach(() => {
         localStorage.clear();
     })
@@ -42,7 +42,7 @@ describe('Mob Programming RPG', () => {
         render(<MobProgrammingRPG/>);
         const settingsButton = getSettingsButton();
         fireEvent.click(settingsButton);
-        
+
         fireEvent.click(screen.getByText("Close"));
 
         const playersTextarea = screen.queryByText('Change Players');
@@ -96,7 +96,7 @@ describe('Mob Programming RPG', () => {
 
     it('has a timer', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
-        
+
         expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
         const timer = screen.getByTitle("timer");
         expect(timer).toBeInTheDocument();
@@ -105,7 +105,7 @@ describe('Mob Programming RPG', () => {
 
     it('can configure the timer', () => {
         render(<MobProgrammingRPG rotateAfter={3}/>);
-        
+
         expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
         const timer = screen.getByTitle("timer");
         expect(timer).toBeInTheDocument();
@@ -115,7 +115,7 @@ describe('Mob Programming RPG', () => {
     it("shows who's next when the time is over", () => {
         jest.useFakeTimers()
         const clock = new ClockStub();
-        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock} />);
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock}/>);
         fireEvent.click(screen.getByRole('button', {name: 'Start'}));
 
         act(() => {
@@ -123,15 +123,16 @@ describe('Mob Programming RPG', () => {
             jest.advanceTimersByTime(1000 * 60 * 4);
         })
 
-        expect(screen.getByTitle("Driver")).toHaveTextContent("Driver: Peter");
-        expect(screen.getByTitle("Navigator")).toHaveTextContent("Navigator: Rita");
-        expect(screen.getByTitle("Next")).toHaveTextContent("Next: Gregor");
+        expect(screen.getByTitle("Driver")).toHaveTextContent("Peter");
+        expect(screen.getByTitle("Driver")).toHaveTextContent("Driver");
+        expect(screen.getByTitle("Navigator")).toHaveTextContent("Rita");
+        expect(screen.getByTitle("Navigator")).toHaveTextContent("Navigator");
     })
-    
+
     it("can continue after the time is over", () => {
         jest.useFakeTimers()
         const clock = new ClockStub();
-        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock} />);
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock}/>);
         fireEvent.click(screen.getByRole('button', {name: 'Start'}));
 
         act(() => {
@@ -141,5 +142,13 @@ describe('Mob Programming RPG', () => {
 
         fireEvent.click(screen.getByRole('button', {name: 'Close'}));
         expect(screen.queryByText("Time is over")).not.toBeInTheDocument();
+    })
+
+    it("clicking help shows what I should do", () => {
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
+
+        const helpButton = screen.getByRole('button', {name: 'Help'});
+        expect(helpButton).toBeInTheDocument();
+        fireEvent.click(helpButton);
     })
 })

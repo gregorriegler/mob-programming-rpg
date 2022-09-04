@@ -32,7 +32,7 @@ const MobProgrammingRPG = (
     }
 ) => {
     const [game, setGame] = useLocalStorageGame(Game.withPlayers(startingPlayers));
-    const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false});
+    const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     function toggleSettings() {
         setUiState({...uiState, showSettings: !uiState.showSettings});
@@ -60,7 +60,11 @@ const MobProgrammingRPG = (
     }
 
     function explainWhoIsNext() {
-        setUiState({...uiState, showWhoIsNext: true});
+        setUiState({...uiState, showWhoIsNext: true, timeIsOver: true});
+    }
+
+    function toggleHelp() {
+        setUiState({...uiState, showWhoIsNext: !uiState.showWhoIsNext, timeIsOver: false});
     }
 
     function continuePlaying() {
@@ -85,6 +89,7 @@ const MobProgrammingRPG = (
             </ul>
             <div className="rpgui-container framed-grey buttons">
                 <button className="rpgui-button" onClick={toggleSettings}><p>Settings</p></button>
+                <button className="rpgui-button" onClick={toggleHelp}><p>Help</p></button>
                 <button className="rpgui-button" onClick={rotate}><p>Rotate</p></button>
                 <TimerDisplay
                     rotateAfter={rotateAfter}
@@ -94,18 +99,70 @@ const MobProgrammingRPG = (
                 />
             </div>
             {uiState.showWhoIsNext &&
-              <div className="time-over-overlay rpgui-container framed-golden-2">
-                <h2>Time is over</h2>
-                <br/>
-                <p>Next up</p>
-                <h3 title="Driver">Driver: {game.driver()}</h3>
-                <h3 title="Navigator">Navigator: {game.navigator()}</h3>
-                <h3 title="Next">Next: {game.next()}</h3>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <button className="rpgui-button golden" onClick={continuePlaying}>
+              <div className="help-overlay rpgui-container framed-golden-2">
+                  {uiState.timeIsOver &&
+                    <>
+                      <h2>Time is over</h2>
+                      <h3>Next up</h3>
+                    </>
+                  }
+                  {!uiState.timeIsOver &&
+                    <>
+                      <h2>This is how you gain XP:</h2>
+                    </>
+                  }
+                <section className="role-description rpgui-container framed-golden">
+                  <h4 title="Driver"><span className="yellow">{game.driver()}</span>, you're the Driver</h4>
+                  <p>
+                    A master of your tools, and a quiet professional, you're here to get the team rapidly through every red, green, and refactoring.
+                  </p>
+
+                  <p>
+                    Mark XP Whenever you...
+                  </p>
+                  <ul>
+                    <li>Ask a clarifying question about what to type</li>
+                    <li>Type something you disagree with</li>
+                    <li>Use a new keyboard shortcut</li>
+                    <li>Learn something new about tooling</li>
+                    <li>Ignore a direct instruction from someone who isn't the Navigator</li>
+                  </ul>
+                </section>
+                <section className="role-description rpgui-container framed-golden">
+                  <h4 title="Navigator"><span className="yellow">{game.navigator()}</span>, you're the Navigator</h4>
+                  <p>
+                    Brick by brick you build in the darkness. Every step you take brings you closer, as you sift the wisdom of the mob.
+                  </p>
+
+                  <p>
+                    Mark XP Whenever you...
+                  </p>
+                  <ul>
+                    <li>Ask for ideas</li>
+                    <li>Filter the mob's ideas then tell the Driver what to type</li>
+                    <li>Tell the Driver only your high-level intent and have them implement the details</li>
+                    <li>Create a failing test. Make it pass. Refactor.</li>
+                  </ul>
+                </section>
+                <section className="role-description rpgui-container framed-golden">
+                  <h4 title="Mobber"><span className="yellow">Everyone else</span>, you're Mobbers</h4>
+                  <p>
+                    Shoulder to shoulder with the best, your relaxed manner belies what you know to be true: nothing can stop this mob to set sail
+                  </p>
+
+                  <p>
+                    Mark XP Whenever you...
+                  </p>
+                  <ul>
+                    <li>Yield to the less privileged voice</li>
+                    <li>Contribute an idea</li>
+                    <li>Ask questions till you understand</li>
+                    <li>Listen on the edge of your seat</li>
+                  </ul>
+                </section>
+                
+                <br className="clear-left"/>
+                <button className="rpgui-button golden close-button" onClick={continuePlaying}>
                   <p>Close</p>
                 </button>
               </div>
