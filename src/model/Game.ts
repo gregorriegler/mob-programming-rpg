@@ -50,7 +50,9 @@ export class Game {
     }
 
     private whoIs(index: RoleIndex) {
-        return this.getPlayer(index).name();
+        const player = this.getPlayer(index);
+        if(!player) return "???"
+        return player.name();
     }
 
     private getPlayer(index: number) {
