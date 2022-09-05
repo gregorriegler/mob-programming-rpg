@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PlayerDisplay from "./PlayerDisplay";
 import { Game } from "./model/Game";
 import TimerDisplay from "./TimerDisplay";
@@ -32,26 +32,31 @@ const MobProgrammingRPG = (
     }
 ) => {
     const [game, setGame] = useLocalStorageGame(Game.withPlayers(startingPlayers));
+    const gameRef = useRef(game);
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
+    useEffect(() => {
+        gameRef.current = game;
+    },[game]);
+    
     function toggleSettings() {
         setUiState({...uiState, showSettings: !uiState.showSettings});
     }
-
+    
     function changePlayers(event): void {
         const players = new FormData(event.target).get("change-players") as string;
         game.setPlayers(players);
         updateGameState();
         event.preventDefault();
     }
-
+    
     function rotate() {
         game.rotate();
         updateGameState();
     }
 
     function updateGameState() {
-        setGame(game.clone());
+        setGame(gameRef.current.clone());
     }
 
     function timeOver() {
@@ -111,10 +116,12 @@ const MobProgrammingRPG = (
                       <h2>This is how you gain XP:</h2>
                     </>
                   }
+                  {/*TODO: Extract sections*/}
                 <section className="role-description rpgui-container framed-golden">
                   <h4 title="Driver"><span className="yellow">{game.driver()}</span>, you're the Driver</h4>
                   <p>
-                    A master of your tools, and a quiet professional, you're here to get the team rapidly through every red, green, and refactoring.
+                    A master of your tools, and a quiet professional, you're here to get the team rapidly through every
+                    red, green, and refactoring.
                   </p>
 
                   <p>
@@ -131,7 +138,8 @@ const MobProgrammingRPG = (
                 <section className="role-description rpgui-container framed-golden">
                   <h4 title="Navigator"><span className="yellow">{game.navigator()}</span>, you're the Navigator</h4>
                   <p>
-                    Brick by brick you build in the darkness. Every step you take brings you closer, as you sift the wisdom of the mob.
+                    Brick by brick you build in the darkness. Every step you take brings you closer, as you sift the
+                    wisdom of the mob.
                   </p>
 
                   <p>
@@ -147,7 +155,8 @@ const MobProgrammingRPG = (
                 <section className="role-description rpgui-container framed-golden">
                   <h4 title="Mobber"><span className="yellow">Everyone else</span>, you're Mobbers</h4>
                   <p>
-                    Shoulder to shoulder with the best, your relaxed manner belies what you know to be true: nothing can stop this mob to set sail
+                    Shoulder to shoulder with the best, your relaxed manner belies what you know to be true: nothing can
+                    stop this mob to set sail
                   </p>
 
                   <p>
@@ -160,7 +169,7 @@ const MobProgrammingRPG = (
                     <li>Listen on the edge of your seat</li>
                   </ul>
                 </section>
-                
+
                 <br className="clear-left"/>
                 <button className="rpgui-button golden close-button" onClick={continuePlaying}>
                   <p>Close</p>
@@ -173,7 +182,7 @@ const MobProgrammingRPG = (
                 <form onSubmit={changePlayers}>
                   <label>Change Players
                     <textarea id="change-players" name="change-players"
-                              defaultValue={game.players().map(it => it.name()).join(", ")}></textarea>
+                              defaultValue={game.playerNames()}></textarea>
                   </label>
                   <button type="submit" className="rpgui-button"><p>Save</p></button>
                   <button className="rpgui-button" onClick={toggleSettings}><p>Close</p></button>

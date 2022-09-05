@@ -18,6 +18,13 @@ describe('Mob Programming RPG', () => {
         return screen.queryByRole('button', {name: 'Rotate'});
     }
 
+    function changePlayers(players: string) {
+        fireEvent.click(getSettingsButton());
+        fireEvent.change(screen.getByLabelText('Change Players'), {target: {value: players}});
+        fireEvent.click(screen.getByText("Save"));
+        fireEvent.click(screen.getByText("Close"));
+    }
+
     beforeEach(() => {
         localStorage.clear();
     })
@@ -63,6 +70,27 @@ describe('Mob Programming RPG', () => {
         expect(items[0]).toHaveTextContent('Gregor');
         expect(items[1]).toHaveTextContent('Max');
         expect(items[2]).toHaveTextContent('Rita');
+    })
+
+    fit('changed players remain until after countdown', () => {
+        jest.useFakeTimers()
+        const clock = new ClockStub();
+        render(<MobProgrammingRPG rotateAfter={1}/>);
+        
+        changePlayers('1,2,3');
+        changePlayers('2,3');
+        
+        fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+        act(() => {
+            clock.advanceTime(1000)
+            jest.advanceTimersByTime(1000);
+        })
+        
+        const items = getPlayerListitems();
+        expect(items.length).toBe(2);
+        expect(items[0]).toHaveTextContent('2');
+        expect(items[1]).toHaveTextContent('3');
+        
     })
 
     it('shows playing players in settings', () => {

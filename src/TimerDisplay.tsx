@@ -25,8 +25,8 @@ const TimerDisplay = (
     const countdown = useRef(createCountdown());
 
     function rotate() {
-        countdown.current = createCountdown();
         onFinish();
+        countdown.current = createCountdown();
     }
 
     function start() {
@@ -36,7 +36,8 @@ const TimerDisplay = (
 
     return (
         <div className="rpgui-container framed-golden-2 timer" title="timer">
-            <div className="rpgui-container framed-grey"><p className="time">{countdown.current.timeLeftPretty()}</p>
+            <div className="rpgui-container framed-grey">
+                <p className="time">{countdown.current.timeLeftPretty()}</p>
             </div>
             <button className="rpgui-button golden" onClick={start}><p>Start</p></button>
         </div>

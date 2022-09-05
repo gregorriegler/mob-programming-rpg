@@ -30,6 +30,10 @@ export class Game {
     players() {
         return this._players;
     }
+    
+    playerNames() {
+        return this._players.map(player => player.name()).join(", ")
+    }
 
     setPlayers(players: string) {
         this._players = players.split(',')

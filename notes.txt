@@ -1,4 +1,8 @@
-- host it
+- persist points when changing player
+- grey color is not easy to see
+- Summary for all cards
+- Nose should be level 2
+- ui jumping when adding points
 - timer changeable
 - Reordering looses Points
 - Show Roles Todos
