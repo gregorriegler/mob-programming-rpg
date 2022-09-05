@@ -1,4 +1,5 @@
 - persist points when changing player
+- add new roles
 - grey color is not easy to see
 - Summary for all cards
 - Nose should be level 2

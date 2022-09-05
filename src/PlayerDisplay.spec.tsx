@@ -15,9 +15,8 @@ describe('PlayerDisplay', () => {
         }
 
         addPointsInput() {
-            return screen.queryByLabelText('Add Points');
+            return screen.getByLabelText('Add Points');
         }
-
         enterAddPointsForm(value: string) {
             fireEvent.change(this.addPointsInput(), {target: {value: value}})
             fireEvent.click(screen.getByText('Add'));
@@ -60,7 +59,7 @@ describe('PlayerDisplay', () => {
         expect(player.addPointsInput()).toHaveValue("0");
         player.enterAddPointsForm("2");
         expect(player.pointsDisplay('Driver')).toHaveValue("2");
-        expect(player.addPointsInput()).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('Add Points')).toBeNull();
     });
 
     it('adds up points', () => {

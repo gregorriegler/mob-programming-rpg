@@ -115,7 +115,7 @@ export class Player {
             return;
         }
         this.increasePointsFor(role);
-        if (this._points.get(role) >= 3) {
+        if (this._points.get(role)!! >= 3) {
             this._badges.add(role);
         }
     }
@@ -140,7 +140,7 @@ export class Player {
     }
 
     private increasePointsFor(role: Role) {
-        this._points.set(role, this._points.get(role) + 1);
+        this._points.set(role, this._points.get(role)!! + 1);
     }
 
     private canSelectRoleFor(level) {

@@ -3,6 +3,9 @@ import PlayerDisplay from "./PlayerDisplay";
 import { Game } from "./model/Game";
 import TimerDisplay from "./TimerDisplay";
 import { RealClock } from "./RealClock";
+import { roles } from "./model/Roles";
+import RoleDescriptionView from "./RoleDescriptionView";
+import { Clock } from "./model/Clock";
 
 const useLocalStorageGame: (defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (defaultGame) => {
     function initialState() {
@@ -23,13 +26,18 @@ const useLocalStorageGame: (defaultGame) => [Game, React.Dispatch<React.SetState
     return [game, setGame];
 };
 
+type MobProgrammingRPGProps = {
+    startingPlayers?: string[];
+    rotateAfter?: number;
+    clock?: Clock
+}
 
 const MobProgrammingRPG = (
     {
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock()
-    }
+    }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(Game.withPlayers(startingPlayers));
     const gameRef = useRef(game);
@@ -37,19 +45,19 @@ const MobProgrammingRPG = (
 
     useEffect(() => {
         gameRef.current = game;
-    },[game]);
-    
+    }, [game]);
+
     function toggleSettings() {
         setUiState({...uiState, showSettings: !uiState.showSettings});
     }
-    
+
     function changePlayers(event): void {
         const players = new FormData(event.target).get("change-players") as string;
         game.setPlayers(players);
         updateGameState();
         event.preventDefault();
     }
-    
+
     function rotate() {
         game.rotate();
         updateGameState();
@@ -108,7 +116,8 @@ const MobProgrammingRPG = (
                   {uiState.timeIsOver &&
                     <>
                       <h2>Time is over</h2>
-                      <h3>Next up</h3>
+                      <h3 title="Next Driver"><span className="yellow">{game.driver()}</span>, you're the next Driver</h3>
+                      <h3 title="Next Navigator"><span className="yellow">{game.navigator()}</span>, you're the next Navigator</h3>
                     </>
                   }
                   {!uiState.timeIsOver &&
@@ -116,60 +125,8 @@ const MobProgrammingRPG = (
                       <h2>This is how you gain XP:</h2>
                     </>
                   }
-                  {/*TODO: Extract sections*/}
-                <section className="role-description rpgui-container framed-golden">
-                  <h4 title="Driver"><span className="yellow">{game.driver()}</span>, you're the Driver</h4>
-                  <p>
-                    A master of your tools, and a quiet professional, you're here to get the team rapidly through every
-                    red, green, and refactoring.
-                  </p>
-
-                  <p>
-                    Mark XP Whenever you...
-                  </p>
-                  <ul>
-                    <li>Ask a clarifying question about what to type</li>
-                    <li>Type something you disagree with</li>
-                    <li>Use a new keyboard shortcut</li>
-                    <li>Learn something new about tooling</li>
-                    <li>Ignore a direct instruction from someone who isn't the Navigator</li>
-                  </ul>
-                </section>
-                <section className="role-description rpgui-container framed-golden">
-                  <h4 title="Navigator"><span className="yellow">{game.navigator()}</span>, you're the Navigator</h4>
-                  <p>
-                    Brick by brick you build in the darkness. Every step you take brings you closer, as you sift the
-                    wisdom of the mob.
-                  </p>
-
-                  <p>
-                    Mark XP Whenever you...
-                  </p>
-                  <ul>
-                    <li>Ask for ideas</li>
-                    <li>Filter the mob's ideas then tell the Driver what to type</li>
-                    <li>Tell the Driver only your high-level intent and have them implement the details</li>
-                    <li>Create a failing test. Make it pass. Refactor.</li>
-                  </ul>
-                </section>
-                <section className="role-description rpgui-container framed-golden">
-                  <h4 title="Mobber"><span className="yellow">Everyone else</span>, you're Mobbers</h4>
-                  <p>
-                    Shoulder to shoulder with the best, your relaxed manner belies what you know to be true: nothing can
-                    stop this mob to set sail
-                  </p>
-
-                  <p>
-                    Mark XP Whenever you...
-                  </p>
-                  <ul>
-                    <li>Yield to the less privileged voice</li>
-                    <li>Contribute an idea</li>
-                    <li>Ask questions till you understand</li>
-                    <li>Listen on the edge of your seat</li>
-                  </ul>
-                </section>
-
+                  {Object.entries(roles).map(it => <RoleDescriptionView key={it[0]} roleDetails={it[1]}/>)}
+                
                 <br className="clear-left"/>
                 <button className="rpgui-button golden close-button" onClick={continuePlaying}>
                   <p>Close</p>

@@ -11,11 +11,11 @@ describe('Mob Programming RPG', () => {
     }
 
     function getSettingsButton() {
-        return screen.queryByRole('button', {name: 'Settings'});
+        return screen.getByRole('button', {name: 'Settings'});
     }
 
     function getRotateButton() {
-        return screen.queryByRole('button', {name: 'Rotate'});
+        return screen.getByRole('button', {name: 'Rotate'});
     }
 
     function changePlayers(players: string) {
@@ -72,7 +72,7 @@ describe('Mob Programming RPG', () => {
         expect(items[2]).toHaveTextContent('Rita');
     })
 
-    fit('changed players remain until after countdown', () => {
+    it('changed players remain until after countdown', () => {
         jest.useFakeTimers()
         const clock = new ClockStub();
         render(<MobProgrammingRPG rotateAfter={1}/>);
@@ -141,7 +141,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it("shows who's next when the time is over", () => {
-        jest.useFakeTimers()
+        jest.useFakeTimers();
         const clock = new ClockStub();
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} clock={clock}/>);
         fireEvent.click(screen.getByRole('button', {name: 'Start'}));
@@ -151,10 +151,10 @@ describe('Mob Programming RPG', () => {
             jest.advanceTimersByTime(1000 * 60 * 4);
         })
 
-        expect(screen.getByTitle("Driver")).toHaveTextContent("Peter");
-        expect(screen.getByTitle("Driver")).toHaveTextContent("Driver");
-        expect(screen.getByTitle("Navigator")).toHaveTextContent("Rita");
-        expect(screen.getByTitle("Navigator")).toHaveTextContent("Navigator");
+        expect(screen.getByTitle("Next Driver")).toHaveTextContent("Peter");
+        expect(screen.getByTitle("Next Driver")).toHaveTextContent("Driver");
+        expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Rita");
+        expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Navigator");
     })
 
     it("can continue after the time is over", () => {
