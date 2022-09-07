@@ -71,7 +71,7 @@ describe('Mob Programming RPG', () => {
 
     describe('has settings', () => {
 
-        it('shows playing players in settings', () => {
+        it('that shows the players', () => {
             render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter"]}/>);
 
             fireEvent.click(getSettingsButton());
@@ -79,7 +79,7 @@ describe('Mob Programming RPG', () => {
             expect(screen.getByLabelText('Change Players')).toHaveTextContent("Gregor, Peter");
         })
 
-        it('toggles the settings when you keep pressing the settings button', () => {
+        it('that toggle when you keep pressing the settings button', () => {
             render(<MobProgrammingRPG/>);
             const settingsButton = getSettingsButton();
 
@@ -90,7 +90,7 @@ describe('Mob Programming RPG', () => {
             expect(screen.queryByText('Change Players')).toBeNull();
         });
 
-        it('changes players', () => {
+        it('that allow to change players', () => {
             render(<MobProgrammingRPG/>);
             fireEvent.click(getSettingsButton());
 
@@ -106,7 +106,7 @@ describe('Mob Programming RPG', () => {
             expect(items[2]).toHaveTextContent('Rita');
         })
 
-        it('closes the settings', () => {
+        it('close', () => {
             render(<MobProgrammingRPG/>);
             fireEvent.click(getSettingsButton());
 
@@ -132,7 +132,7 @@ describe('Mob Programming RPG', () => {
             clock = new ClockStub();
         });
 
-        it('has a timer', () => {
+        it('that shows the time left', () => {
             render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
 
             expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
@@ -141,7 +141,7 @@ describe('Mob Programming RPG', () => {
             expect(timer).toHaveTextContent('04:00');
         })
 
-        it('can configure the timer', () => {
+        it('that is configurable', () => {
             render(<MobProgrammingRPG rotateAfter={3}/>);
 
             expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
@@ -150,7 +150,7 @@ describe('Mob Programming RPG', () => {
             expect(timer).toHaveTextContent('00:03');
         })
 
-        it("can continue after the time is over", () => {
+        it("that shows who's next when the time is over", () => {
             render(<MobProgrammingRPG rotateAfter={60 * 4}
                                       startingPlayers={["Gregor", "Peter", "Rita"]}
                                       clock={clock}/>);
@@ -158,22 +158,26 @@ describe('Mob Programming RPG', () => {
 
             advanceTimeBy(1000 * 60 * 4)
 
-            fireEvent.click(screen.getByRole('button', {name: 'Close'}));
-            expect(screen.queryByText("Time is over")).not.toBeInTheDocument();
-        })
-
-        it("shows who's next when the time is over", () => {
-            render(<MobProgrammingRPG rotateAfter={60 * 4}
-                                      startingPlayers={["Gregor", "Peter", "Rita"]}
-                                      clock={clock}/>);
-            fireEvent.click(screen.getByRole('button', {name: 'Start'}));
-
-            advanceTimeBy(1000 * 60 * 4)
-
+            expect(screen.getByText("Time is over")).toBeInTheDocument();
             expect(screen.getByTitle("Next Driver")).toHaveTextContent("Peter");
             expect(screen.getByTitle("Next Driver")).toHaveTextContent("Driver");
             expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Rita");
             expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Navigator");
+        })
+
+        it("that allows to continue after the time is over", () => {
+            render(<MobProgrammingRPG rotateAfter={60 * 4}
+                                      startingPlayers={["Gregor", "Peter", "Rita"]}
+                                      clock={clock}/>);
+            fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+            advanceTimeBy(1000 * 60 * 4)
+            fireEvent.click(screen.getByRole('button', {name: 'Close'}));
+            expect(screen.queryByText("Time is over")).not.toBeInTheDocument();
+            
+            fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+            advanceTimeBy(1000 * 60)
+            
+            expect(screen.getByTitle("timer")).toHaveTextContent('03:00');
         })
 
         it('changed players remain until after countdown', () => {
