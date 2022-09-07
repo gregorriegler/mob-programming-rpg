@@ -3,7 +3,7 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
 
-function getPlayerListitems() {
+function getPlayerListItems() {
     const playerList = screen.getByRole('list', {name: /Player List/});
     return within(playerList).getAllByRole("listitem");
 }
@@ -43,7 +43,7 @@ describe('Mob Programming RPG', () => {
     it('shows players roles', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita", "Ben"]}/>);
 
-        const items = getPlayerListitems();
+        const items = getPlayerListItems();
         expect(items[0]).toHaveTextContent('Gregor (Driver)');
         expect(items[1]).toHaveTextContent('Peter (Navigator)');
         expect(items[2]).toHaveTextContent('Rita (Mobber)');
@@ -55,7 +55,7 @@ describe('Mob Programming RPG', () => {
 
         fireEvent.click(getRotateButton());
 
-        const items = getPlayerListitems();
+        const items = getPlayerListItems();
         expect(items[0]).toHaveTextContent('Gregor (Mobber)');
         expect(items[1]).toHaveTextContent('Peter (Driver)');
         expect(items[2]).toHaveTextContent('Rita (Navigator)');
@@ -99,7 +99,7 @@ describe('Mob Programming RPG', () => {
             fireEvent.change(getPlayersTextarea(), {target: {value: 'Gregor,Max,Rita'}});
             fireEvent.click(screen.getByText("Save"));
 
-            const items = getPlayerListitems();
+            const items = getPlayerListItems();
             expect(items.length).toBe(3);
             expect(items[0]).toHaveTextContent('Gregor');
             expect(items[1]).toHaveTextContent('Max');
@@ -188,7 +188,7 @@ describe('Mob Programming RPG', () => {
             fireEvent.click(screen.getByRole('button', {name: 'Start'}));
             advanceTimeBy(1000);
 
-            const items = getPlayerListitems();
+            const items = getPlayerListItems();
             expect(items.length).toBe(2);
             expect(items[0]).toHaveTextContent('2');
             expect(items[1]).toHaveTextContent('3');

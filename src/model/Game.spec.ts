@@ -16,7 +16,7 @@ describe('Game', () => {
         expect(game.players()).toEqual([new Player('Max')]);
     });
 
-    it('can many players, even with dirty whitespace', () => {
+    it('can add many players, even with dirty whitespace', () => {
         const game = new Game();
 
         game.setPlayers('Max,Rita,  Peter');
@@ -26,6 +26,17 @@ describe('Game', () => {
             new Player('Rita'),
             new Player('Peter')
         ]);
+    });
+
+    it('changing players order does not delete their points', () => {
+        const game = Game.withPlayers(['1', '2']);
+        const player1 = game.players()[0];
+        const player2 = game.players()[1];
+        
+        player1.score("Driver")
+        game.setPlayers('2,1');
+
+        expect(game.players()).toEqual([player2, player1]);
     });
 
     it('can initialize players by array', () => {
@@ -114,6 +125,5 @@ describe('Game', () => {
         expect(game.players()[0].name()).toEqual("Gregor");
         expect(game.players()[0].badges()).toEqual(["Mobber"]);
         expect(game.rotations()).toEqual(1);
-        
     })
 });

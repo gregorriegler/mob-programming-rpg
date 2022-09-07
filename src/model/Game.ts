@@ -18,14 +18,14 @@ export class Game {
         return new Game(players.map(name => new Player(name)));
     }
 
+    private _players: Player[];
+
+    private _rotations;
+
     constructor(players: Player[] = [], rotations: number = 0) {
         this._players = players;
         this._rotations = rotations;
     }
-
-    private _players: Player[];
-
-    private _rotations;
     
     players() {
         return this._players;
@@ -38,9 +38,10 @@ export class Game {
     setPlayers(players: string) {
         this._players = players.split(',')
             .map(player => player.trim())
-            .filter(it => it !== "").map(it => new Player(it));
+            .filter(it => it !== "")
+            .map(it => this.findPlayerByName(it) || new Player(it));
     }
-
+    
     driver() {
         return this.whoIs(RoleIndex.Driver);
     }
@@ -48,25 +49,15 @@ export class Game {
     navigator() {
         return this.whoIs(RoleIndex.Navigator);
     }
-    
+
     next() {
         return this.getPlayer(RoleIndex.Navigator + 1).name();
-    }
-
-    private whoIs(index: RoleIndex) {
-        const player = this.getPlayer(index);
-        if(!player) return "???"
-        return player.name();
-    }
-
-    private getPlayer(index: number) {
-        return this._players[(index + this._rotations) % this._players.length];
     }
 
     rotate() {
         this._rotations++;
     }
-    
+
     rotations() {
         return this._rotations;
     }
@@ -86,5 +77,19 @@ export class Game {
 
     clone() {
         return Object.assign(Object.create(Object.getPrototypeOf(this)), this);
+    }
+
+    private findPlayerByName(name: string) {
+        return this._players.find(it => it.name() === name)
+    }
+
+    private whoIs(index: RoleIndex) {
+        const player = this.getPlayer(index);
+        if(!player) return "???"
+        return player.name();
+    }
+
+    private getPlayer(index: number) {
+        return this._players[(index + this._rotations) % this._players.length];
     }
 }
