@@ -81,11 +81,7 @@ describe('Player', () => {
         expect(player.selectableRoles()).toEqual([]);
         player.scoreTimes('Mobber', 3);
 
-        expect(player.selectableRoles()).toEqual([
-            "Rear Admiral",
-            "Researcher",
-            "Sponsor",
-        ]);
+        expect(player.selectableRoles()).toContain("Researcher");
         player.selectRole('Researcher');
         player.score('Researcher');
         expect(player.selectableRoles()).toEqual([]);

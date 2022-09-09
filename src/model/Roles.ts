@@ -1,4 +1,45 @@
-import { Role } from "./Player";
+export type Role = "Driver"
+    | "Navigator"
+    | "Mobber"
+    | "Archivist"
+    | "Automationist"
+    | "Nose"
+    | "Disciplinarian"
+    | "Rear Admiral"
+    | "Researcher"
+    | "Sponsor"
+    | "Traffic Cop";
+
+export const levels: Role[][] = [
+    [
+        "Driver",
+        "Navigator",
+        "Mobber",
+    ],
+    [
+        "Researcher",
+        "Sponsor",
+        "Archivist",
+        "Traffic Cop"
+    ],
+    [
+        "Disciplinarian",
+        "Nose",
+        "Rear Admiral",
+    ],
+    [
+        "Automationist",
+    ],
+    []
+];
+
+export function levelOf(role: Role) {
+    for (let level = 0; level < levels.length; level++) {
+        if (levels[level].includes(role)) {
+            return level;
+        }
+    }
+}
 
 export interface RoleDetails {
     name: Role,
@@ -8,7 +49,6 @@ export interface RoleDetails {
 type AllRoleDetails = {
     [key in Role]: RoleDetails;
 };
-
 export const roles: AllRoleDetails = {
     Driver: {
         name: "Driver",
@@ -49,6 +89,8 @@ export const roles: AllRoleDetails = {
     "Traffic Cop": {
         name: "Traffic Cop",
         todos: [
+            "Make sure the team has a shared goal and follows it",
+            "Point out when the direction is inappropriately changed after a rotation",
             "Suggest a relevant new process or working agreement",
             "Point out when the team violates a process or working agreement",
             "Suggest a way to help the team remember to follow a process or working agreement",
@@ -58,10 +100,11 @@ export const roles: AllRoleDetails = {
     Archivist: {
         name: "Archivist",
         todos: [
+            "Make sure everybody is on the same page by sketching proper examples",
+            "Capture design decisions and other technical details for the team",
             "Record solution alternatives on a big visible chart or whiteboard so they’re not forgotten",
             "Express an idea as it is taking shape on a big visible chart or whiteboard",
             "Articulate the current task at hand and make it visible to the entire mob",
-            "Capture design decisions and other technical details for the team*"
         ]
     },
     Automationist: {
@@ -79,8 +122,17 @@ export const roles: AllRoleDetails = {
             "Point out a long line of code",
             "Point out a complex conditional",
             "Point out duplication",
-            "Point out an unnamed variable or method",
+            "Point out a poorly named variable or method",
             "Propose an action for deodorizing the code"
+        ]
+    },
+    Disciplinarian: {
+        name: "Disciplinarian",
+        todos: [
+            "Remind the group to check if the tests pass.",
+            "Remind the group to write a test before writing code.",
+            "Remind the group to not refactor if the tests are red.",
+            "Remind the group to refactor when the bar is green.",
         ]
     },
     Researcher: {
@@ -95,8 +147,10 @@ export const roles: AllRoleDetails = {
         name: "Sponsor",
         todos: [
             "Amplify the unheard voice",
+            "Make sure the current Navigator is heard and gets their fair chance.",
             "Pick the mobber with the least privilege and support their contributions",
-            "Celebrate moments of excellence"
+            "Celebrate moments of excellence",
+            "Cheer up the mob in times of struggle"
         ]
     }
 };

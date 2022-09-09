@@ -1,43 +1,4 @@
-export type Role = "Driver"
-    | "Navigator"
-    | "Mobber"
-    | "Archivist"
-    | "Automationist"
-    | "Nose"
-    | "Rear Admiral"
-    | "Researcher"
-    | "Sponsor"
-    | "Traffic Cop";
-
-const levels: Role[][] = [
-    [
-        "Driver",
-        "Navigator",
-        "Mobber",
-    ],
-    [
-        "Rear Admiral",
-        "Researcher",
-        "Sponsor",
-    ],
-    [
-        "Archivist",
-        "Automationist",
-        "Nose",
-    ],
-    [
-        "Traffic Cop"
-    ],
-    []
-];
-
-function levelOf(role: Role) {
-    for (let level = 0; level < levels.length; level++) {
-        if (levels[level].includes(role)) {
-            return level;
-        }
-    }
-}
+import { levelOf, levels, Role } from "./Roles";
 
 export class Player {
     private readonly _name: string;

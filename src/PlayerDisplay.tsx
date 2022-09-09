@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Role } from "./model/Player";
+import { Role } from "./model/Roles";
 
 
 const PlayerDisplay = ({player, updateGameState = () => {}, role = "Mobber"}) => {
