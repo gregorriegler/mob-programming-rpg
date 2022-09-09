@@ -107,8 +107,10 @@ function SelectRole({player}) {
     useEffect(() => {
         // @ts-ignore
         if (window.RPGUI !== undefined) {
+            const selectElement = document.getElementById(player.name() + "-role-select");
+            if (selectElement!!.getAttribute("data-rpguitype") === "dropdown") return
             // @ts-ignore
-            window.RPGUI.create(document.getElementById(player.name() + "-role-select"), "dropdown")
+            window.RPGUI.create(selectElement, "dropdown")
         }
     }, [player]);
 
