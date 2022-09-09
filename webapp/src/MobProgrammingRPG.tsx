@@ -59,6 +59,7 @@ const MobProgrammingRPG = (
             const url = path() + '/' + game.id();
             window.history.pushState('id', 'Title', url);
         }
+        // eslint-disable-next-line
     }, [])
 
     function toggleSettings() {
