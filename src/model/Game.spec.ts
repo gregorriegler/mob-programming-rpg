@@ -1,15 +1,32 @@
 import { Game } from "./Game";
 import { Player } from "./Player";
 
+function createGame() {
+    return new Game("gameId");
+}
+
 describe('Game', () => {
+    it('has an id', () => {
+        const game = createGame();
+
+        expect(game.id()).toEqual("gameId");
+    });
+    
+    it('creates a new id every time', () => {
+        const game1 = Game.withPlayers([]);
+        const game2 = Game.withPlayers([]);
+
+        expect(game1.id()).not.toEqual(game2.id());
+    });
+
     it('starts with an empty list of players', () => {
-        const game = new Game();
+        const game = createGame();
 
         expect(game.players()).toEqual([]);
     });
 
     it('can add a player', () => {
-        const game = new Game();
+        const game = createGame();
 
         game.setPlayers('Max');
 
@@ -17,7 +34,7 @@ describe('Game', () => {
     });
 
     it('can add many players, even with dirty whitespace', () => {
-        const game = new Game();
+        const game = createGame();
 
         game.setPlayers('Max,Rita,  Peter');
 
@@ -50,7 +67,7 @@ describe('Game', () => {
     });
 
     it('has the first player starting as a driver', () => {
-        const game = new Game();
+        const game = createGame();
 
         game.setPlayers('Max,Rita,  Peter');
 
@@ -63,7 +80,7 @@ describe('Game', () => {
     });
 
     it('rotates', () => {
-        const game = new Game();
+        const game = createGame();
         game.setPlayers('Max,Rita,Peter,Sam');
 
         game.rotate();
@@ -77,7 +94,7 @@ describe('Game', () => {
     });
 
     it('rotates around', () => {
-        const game = new Game();
+        const game = createGame();
         game.setPlayers('Max,Rita,Peter,Sam');
 
         game.rotate();
@@ -88,7 +105,7 @@ describe('Game', () => {
     });
     
     it('serializes to json', () => {
-        const game = new Game();
+        const game = createGame();
         game.setPlayers('Max,Rita');
         game.rotate();
         
@@ -125,5 +142,14 @@ describe('Game', () => {
         expect(game.players()[0].name()).toEqual("Gregor");
         expect(game.players()[0].badges()).toEqual(["Mobber"]);
         expect(game.rotations()).toEqual(1);
+    })
+    
+    it('is equal to its deserialized form', () => {
+        const game = createGame();
+        game.setPlayers('Max,Rita');
+        const deserializedGame = Game.fromJSON(game.toJSON());
+        
+        expect(game).toEqual(deserializedGame);
+        expect(game.id()).toEqual(deserializedGame.id());
     })
 });

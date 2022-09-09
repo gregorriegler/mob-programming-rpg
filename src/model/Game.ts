@@ -5,32 +5,44 @@ enum RoleIndex {
     Navigator
 }
 
+export type GameId = string;
+
+function generateId() {
+    return Math.random().toString(36).replace('0.', '');
+}
+
 export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
         return new Game(
+            parsedObject.id,
             parsedObject.players.map(it => Player.fromObject(it)),
             parsedObject.rotations
         );
     }
 
     static withPlayers(players: string[]) {
-        return new Game(players.map(name => new Player(name)));
+        return new Game(generateId(), players.map(name => new Player(name)));
     }
 
+    private readonly _id: GameId;
     private _players: Player[];
-
     private _rotations;
 
-    constructor(players: Player[] = [], rotations: number = 0) {
+    constructor(id: GameId, players: Player[] = [], rotations: number = 0) {
+        this._id = id;
         this._players = players;
         this._rotations = rotations;
     }
-    
+
+    id() {
+        return this._id;
+    }
+
     players() {
         return this._players;
     }
-    
+
     playerNames() {
         return this._players.map(player => player.name()).join(", ")
     }
@@ -41,7 +53,7 @@ export class Game {
             .filter(it => it !== "")
             .map(it => this.findPlayerByName(it) || new Player(it));
     }
-    
+
     driver() {
         return this.whoIs(RoleIndex.Driver);
     }
@@ -70,6 +82,7 @@ export class Game {
 
     toJSON() {
         return JSON.stringify({
+            id: this._id,
             players: this._players.map(it => it.toObject()),
             rotations: this._rotations,
         })
