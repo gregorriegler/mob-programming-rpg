@@ -26,26 +26,46 @@ const useLocalStorageGame: (defaultGame) => [Game, React.Dispatch<React.SetState
     return [game, setGame];
 };
 
+type GameId = string;
+
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
     rotateAfter?: number;
-    clock?: Clock
+    clock?: Clock;
+    generateId?: () => GameId;
+}
+
+function generateId2() {
+    return "id";
 }
 
 const MobProgrammingRPG = (
     {
         startingPlayers = [],
         rotateAfter = 60 * 4,
-        clock = new RealClock()
+        clock = new RealClock(),
+        generateId = generateId2
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(Game.withPlayers(startingPlayers));
     const gameRef = useRef(game);
-    const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
+    const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
+    
     useEffect(() => {
         gameRef.current = game;
     }, [game]);
+
+    useEffect(() => {
+        function path() {
+            return window.location.pathname.replace(/\/+$/, '');
+        }
+
+        if (path() === process.env.PUBLIC_URL) {
+            const url = path() + '/' + generateId();
+            window.history.pushState('id', 'Title', url);
+        }
+    }, [])
 
     function toggleSettings() {
         setUiState({...uiState, showSettings: !uiState.showSettings});
@@ -116,8 +136,10 @@ const MobProgrammingRPG = (
                   {uiState.timeIsOver &&
                     <>
                       <h2>Time is over</h2>
-                      <h3 title="Next Driver"><span className="yellow">{game.driver()}</span>, you're the next Driver</h3>
-                      <h3 title="Next Navigator"><span className="yellow">{game.navigator()}</span>, you're the next Navigator</h3>
+                      <h3 title="Next Driver"><span className="yellow">{game.driver()}</span>, you're the next Driver
+                      </h3>
+                      <h3 title="Next Navigator"><span className="yellow">{game.navigator()}</span>, you're the next
+                        Navigator</h3>
                     </>
                   }
                   {!uiState.timeIsOver &&
@@ -126,7 +148,7 @@ const MobProgrammingRPG = (
                     </>
                   }
                   {Object.entries(roles).map(it => <RoleDescriptionView key={it[0]} roleDetails={it[1]}/>)}
-                
+
                 <br className="clear-left"/>
                 <button className="rpgui-button golden close-button" onClick={continuePlaying}>
                   <p>Close</p>

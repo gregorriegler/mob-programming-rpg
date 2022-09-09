@@ -1,5 +1,5 @@
 import MobProgrammingRPG from "./MobProgrammingRPG";
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
 
@@ -31,13 +31,28 @@ function changePlayers(players: string) {
 describe('Mob Programming RPG', () => {
     beforeEach(() => {
         localStorage.clear();
-
     })
 
     it('starts with an empty list of players', () => {
         render(<MobProgrammingRPG/>);
         const playerList = screen.getByRole('list', {name: /Player List/});
         expect(playerList).toBeEmptyDOMElement();
+    });
+
+    it('generates a unique game id', () => {
+        window.history.pushState({}, "GameId", "/")
+        
+        render(<MobProgrammingRPG generateId={() => "id_from_injected_generator"}/>);
+
+        expect(global.window.location.pathname).toEqual("/id_from_injected_generator")
+    });
+
+    it('does not change a given id', () => {
+        window.history.pushState({}, "GameId", "/existingId")
+        
+        render(<MobProgrammingRPG/>);
+        
+        expect(global.window.location.pathname).toEqual("/existingId")
     });
 
     it('shows players roles', () => {
