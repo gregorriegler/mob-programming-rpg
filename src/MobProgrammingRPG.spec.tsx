@@ -2,6 +2,7 @@ import MobProgrammingRPG from "./MobProgrammingRPG";
 import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
+import { Game } from "./model/Game";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', {name: /Player List/});
@@ -30,6 +31,7 @@ function changePlayers(players: string) {
 
 describe('Mob Programming RPG', () => {
     beforeEach(() => {
+        window.history.pushState({}, "GameId", "/")
         localStorage.clear();
     })
 
@@ -39,19 +41,39 @@ describe('Mob Programming RPG', () => {
         expect(playerList).toBeEmptyDOMElement();
     });
 
-    it('generates a unique game id', () => {
-        window.history.pushState({}, "GameId", "/")
+    it('continues a game', () => {
+        localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
+        window.history.pushState({}, "GameId", "/continueId")
+        render(<MobProgrammingRPG/>);
         
-        render(<MobProgrammingRPG generateId={() => "id_from_injected_generator"}/>);
+        const items = getPlayerListItems();
+        expect(items).toHaveLength(1);
+        expect(items[0]).toHaveTextContent('1');
+    });
 
-        expect(global.window.location.pathname).toEqual("/id_from_injected_generator")
+    it('creates a new game despite given localStorage', () => {
+        localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
+        window.history.pushState({}, "GameId", "/")
+        render(<MobProgrammingRPG/>);
+
+        const playerList = screen.getByRole('list', {name: /Player List/});
+        expect(playerList).toBeEmptyDOMElement();
+    });
+    
+    it('changes url for the created game id', () => {
+        window.history.pushState({}, "GameId", "/")
+
+        render(<MobProgrammingRPG/>);
+
+        expect(global.window.location.pathname).toMatch(/\/[a-zA-Z0-9]+/);
+        expect(global.window.location.pathname).not.toEqual("/undefined");
     });
 
     it('does not change a given id', () => {
         window.history.pushState({}, "GameId", "/existingId")
-        
+
         render(<MobProgrammingRPG/>);
-        
+
         expect(global.window.location.pathname).toEqual("/existingId")
     });
 
@@ -188,10 +210,10 @@ describe('Mob Programming RPG', () => {
             advanceTimeBy(1000 * 60 * 4)
             fireEvent.click(screen.getByRole('button', {name: 'Close'}));
             expect(screen.queryByText("Time is over")).not.toBeInTheDocument();
-            
+
             fireEvent.click(screen.getByRole('button', {name: 'Start'}));
             advanceTimeBy(1000 * 60)
-            
+
             expect(screen.getByTitle("timer")).toHaveTextContent('03:00');
         })
 

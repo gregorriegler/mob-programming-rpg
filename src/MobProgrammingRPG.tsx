@@ -6,10 +6,12 @@ import { RealClock } from "./RealClock";
 import { roles } from "./model/Roles";
 import RoleDescriptionView from "./RoleDescriptionView";
 import { Clock } from "./model/Clock";
+import { gameIdFromUrl } from "./GameIdFromUrl";
 
-const useLocalStorageGame: (defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (defaultGame) => {
+const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (gameId, defaultGame) => {
     function initialState() {
-        const json = localStorage.getItem("game");
+        if(gameId === undefined) return defaultGame;
+        const json = localStorage.getItem(gameId);
         if (json !== null) {
             return Game.fromJSON(json);
         } else {
@@ -20,23 +22,16 @@ const useLocalStorageGame: (defaultGame) => [Game, React.Dispatch<React.SetState
     const [game, setGame] = useState(initialState());
 
     useEffect(() => {
-        localStorage.setItem("game", game.toJSON());
+        localStorage.setItem(game.id(), game.toJSON());
     }, [game]);
 
     return [game, setGame];
 };
 
-type GameId = string;
-
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
     rotateAfter?: number;
     clock?: Clock;
-    generateId?: () => GameId;
-}
-
-function generateId2() {
-    return "id";
 }
 
 const MobProgrammingRPG = (
@@ -44,14 +39,13 @@ const MobProgrammingRPG = (
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock(),
-        generateId = generateId2
     }: MobProgrammingRPGProps
 ) => {
-    const [game, setGame] = useLocalStorageGame(Game.withPlayers(startingPlayers));
+    const [game, setGame] = useLocalStorageGame(gameIdFromUrl(), Game.withPlayers(startingPlayers));
     const gameRef = useRef(game);
 
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
-    
+
     useEffect(() => {
         gameRef.current = game;
     }, [game]);
@@ -62,7 +56,7 @@ const MobProgrammingRPG = (
         }
 
         if (path() === process.env.PUBLIC_URL) {
-            const url = path() + '/' + generateId();
+            const url = path() + '/' + game.id();
             window.history.pushState('id', 'Title', url);
         }
     }, [])
