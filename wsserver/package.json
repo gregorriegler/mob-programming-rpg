@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "ts-node main.ts",
+    "start": "npx ts-node main.ts",
     "test": "jest --watch"
   },
   "dependencies": {
