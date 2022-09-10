@@ -50,7 +50,7 @@ const MobProgrammingRPG = (
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     useEffect(() => {
-        ws.current = new WebSocket('ws://localhost:8080');
+        ws.current = new WebSocket('ws://mob-programming-rpg-server.herokuapp.com/');
         ws.current.onopen = async () => {
             // await (ws.current?.readyState === OPEN)
             ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
