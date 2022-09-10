@@ -7,7 +7,6 @@ import { roles } from "./model/Roles";
 import RoleDescriptionView from "./RoleDescriptionView";
 import { Clock } from "./model/Clock";
 import { gameIdFromUrl } from "./GameIdFromUrl";
-import { OPEN } from "ws";
 
 const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (gameId, defaultGame) => {
 
@@ -55,7 +54,6 @@ const MobProgrammingRPG = (
     useEffect(() => {
         ws.current = new WebSocket(wsServer);
         ws.current.onopen = async () => {
-            // await (ws.current?.readyState === OPEN)
             ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
         }
         ws.current.onmessage = e => {
@@ -100,7 +98,7 @@ const MobProgrammingRPG = (
     }
 
     async function sendGameState() {
-        if (ws.current?.readyState !== OPEN) return;
+        if (ws.current?.readyState !== 1) return;
         const parse = JSON.parse(gameRef.current.toJSON());
         const message = {
             command: "save",
