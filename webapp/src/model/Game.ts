@@ -21,8 +21,8 @@ export class Game {
         );
     }
 
-    static withPlayers(players: string[]) {
-        return new Game(generateId(), players.map(name => new Player(name)));
+    static withPlayers(players: string[], id: GameId = generateId()) {
+        return new Game(id, players.map(name => new Player(name)));
     }
 
     private readonly _id: GameId;

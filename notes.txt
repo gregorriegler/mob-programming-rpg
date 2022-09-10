@@ -1,3 +1,5 @@
+- Network
+- Timer does not sync via ws
 - grey color is not easy to see
 - Summary for all cards
 - Nose should be level 2
@@ -5,4 +7,8 @@
 - timer changeable
 - Reordering looses Points
 - Show Roles Todos
-- Network
+
+- help a person understand what they don't
+- admit a thing you didn't understand
+- write down a thing, so we remember to do it later
+- make sure we write a thing down we want to do later

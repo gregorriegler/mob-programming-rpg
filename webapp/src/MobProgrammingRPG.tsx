@@ -9,8 +9,9 @@ import { Clock } from "./model/Clock";
 import { gameIdFromUrl } from "./GameIdFromUrl";
 
 const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (gameId, defaultGame) => {
+
     function initialState() {
-        if(gameId === undefined) return defaultGame;
+        if (gameId === undefined) return defaultGame;
         const json = localStorage.getItem(gameId);
         if (json !== null) {
             return Game.fromJSON(json);
@@ -41,13 +42,43 @@ const MobProgrammingRPG = (
         clock = new RealClock(),
     }: MobProgrammingRPGProps
 ) => {
-    const [game, setGame] = useLocalStorageGame(gameIdFromUrl(), Game.withPlayers(startingPlayers));
+    const [game, setGame] = useLocalStorageGame(gameIdFromUrl(), Game.withPlayers(startingPlayers, gameIdFromUrl()));
     const gameRef = useRef(game);
+    const ws = useRef(null as WebSocket | null);
 
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     useEffect(() => {
+        ws.current = new WebSocket('ws://localhost:8080');
+        ws.current.onopen = () => {
+            console.log("ws opened");
+            ws.current!!.send(JSON.stringify({"command": "load", "id": gameRef.current.id()}));
+        }
+        ws.current.onclose = () => console.log("ws closed");
+        ws.current.onmessage = e => {
+            console.log("received", e.data);
+            gameRef.current = Game.fromJSON(e.data)
+            updateGameState();
+        };
+        const wsCurrent = ws.current;
+        
+        return () => {
+            wsCurrent.close();
+        };
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
         gameRef.current = game;
+        if (ws.current?.readyState === ws.current?.OPEN) {
+            console.log("sending", gameRef.current.toJSON());
+            const parse = JSON.parse(gameRef.current.toJSON());
+            const message = {
+                command: "save",
+                game: parse
+            }
+            ws.current?.send(JSON.stringify(message));
+        }
     }, [game]);
 
     useEffect(() => {
