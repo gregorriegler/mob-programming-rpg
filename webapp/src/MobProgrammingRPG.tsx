@@ -7,6 +7,7 @@ import { roles } from "./model/Roles";
 import RoleDescriptionView from "./RoleDescriptionView";
 import { Clock } from "./model/Clock";
 import { gameIdFromUrl } from "./GameIdFromUrl";
+import { OPEN } from "ws";
 
 const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (gameId, defaultGame) => {
 
@@ -33,6 +34,7 @@ type MobProgrammingRPGProps = {
     startingPlayers?: string[];
     rotateAfter?: number;
     clock?: Clock;
+    wsServer?: string
 }
 
 
@@ -41,6 +43,7 @@ const MobProgrammingRPG = (
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock(),
+        wsServer = 'ws://mob-programming-rpg-server.herokuapp.com/'
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(gameIdFromUrl(), Game.withPlayers(startingPlayers, gameIdFromUrl()));
@@ -50,7 +53,7 @@ const MobProgrammingRPG = (
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     useEffect(() => {
-        ws.current = new WebSocket('ws://mob-programming-rpg-server.herokuapp.com/');
+        ws.current = new WebSocket(wsServer);
         ws.current.onopen = async () => {
             // await (ws.current?.readyState === OPEN)
             ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
@@ -97,11 +100,13 @@ const MobProgrammingRPG = (
     }
 
     async function sendGameState() {
+        if (ws.current?.readyState !== OPEN) return;
         const parse = JSON.parse(gameRef.current.toJSON());
         const message = {
             command: "save",
             game: parse
         }
+
         ws.current?.send(JSON.stringify(message));
     }
 
