@@ -4,7 +4,7 @@ type GameId = string;
 type ClientId = string;
 
 interface Message {
-    command: "save" | "load"
+    command: "save" | "subscribe"
     game?: any
     id?: any
 }
@@ -26,17 +26,12 @@ function saveGame(clientId: string, message: Message, game: any) {
         return;
     }
     saveGames.set(game.id, game);
-    // if (!gameClients.has(message.game.id)) {
-    //     console.log("does not have set yet")
-    //     gameClients.set(message.game.id, new Set())
-    // }
-    // console.log("clients", clients)
-    // clients.add(clientId);
 
     gameClients.get(game.id)!!.forEach(c => {
         if (clientId === c) return;
         if (!allClients.has(c)) {
             gameClients.get(game.id)!!.delete(c)
+            return;
         }
         const webSocket = allClients.get(c);
         webSocket!!.send(JSON.stringify(game));
@@ -51,8 +46,8 @@ wss.on("connection", ws => {
     ws.on("message", data => {
         const message: Message = JSON.parse(data.toString());
         console.log("received message from", clientId, message);
-        if (message.command === "load") {
-            console.log("loading", message.id);
+        if (message.command === "subscribe") {
+            console.log("subscribing", message.id);
             if (!gameClients.has(message.id)) {
                 console.log("does not have set yet")
                 gameClients.set(message.id, new Set())
@@ -66,12 +61,6 @@ wss.on("connection", ws => {
             }
         } else if (message.command === "save") {
             saveGame(clientId, message, message.game);
-
-            // gameClients.get(message.game.id)!!.forEach(c => {
-            //   if (clientId === c) return;
-            //   clients.get(c)!!.send(saveGames.get(message.game.id));
-            //   console.log("sending updates");
-            // });
 
             console.log("gameClients", gameClients.get(message.game.id))
             console.log("allClients", allClients.keys())

@@ -1,8 +1,9 @@
 import MobProgrammingRPG from "./MobProgrammingRPG";
-import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
 import { Game } from "./model/Game";
+import WS from "jest-websocket-mock";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', {name: /Player List/});
@@ -30,10 +31,18 @@ function changePlayers(players: string) {
 
 
 describe('Mob Programming RPG', () => {
+
+    let server;
+
     beforeEach(() => {
         window.history.pushState({}, "GameId", "/")
+        server = new WS("ws://localhost:8080");
         localStorage.clear();
     })
+
+    afterEach(() => {
+        WS.clean();
+    });
 
     it('starts with an empty list of players', () => {
         render(<MobProgrammingRPG/>);
@@ -45,7 +54,7 @@ describe('Mob Programming RPG', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/continueId")
         render(<MobProgrammingRPG/>);
-        
+
         const items = getPlayerListItems();
         expect(items).toHaveLength(1);
         expect(items[0]).toHaveTextContent('1');
@@ -59,7 +68,7 @@ describe('Mob Programming RPG', () => {
         const playerList = screen.getByRole('list', {name: /Player List/});
         expect(playerList).toBeEmptyDOMElement();
     });
-    
+
     it('changes url for the created game id', () => {
         window.history.pushState({}, "GameId", "/")
 
@@ -169,6 +178,10 @@ describe('Mob Programming RPG', () => {
             clock = new ClockStub();
         });
 
+        afterEach(() => {
+            jest.useRealTimers();
+        })
+
         it('that shows the time left', () => {
             render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
 
@@ -230,5 +243,43 @@ describe('Mob Programming RPG', () => {
             expect(items[0]).toHaveTextContent('2');
             expect(items[1]).toHaveTextContent('3');
         })
+
     })
+
+    describe('uses websockets', () => {
+
+        it('initially subscribes the server', async () => {
+            window.history.pushState({}, "GameId", "/gameId")
+
+            render(<MobProgrammingRPG/>);
+
+            await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
+        })
+
+        it('handles a server notification', () => {
+            window.history.pushState({}, "GameId", "/gameId")
+            render(<MobProgrammingRPG/>);
+
+            server.send(Game.withPlayers(["1"], "gameId").toJSON())
+
+            const items = getPlayerListItems();
+            expect(items.length).toBe(1);
+            expect(items[0]).toHaveTextContent('1');
+        })
+
+        it('updates the server', async () => {
+            window.history.pushState({}, "GameId", "/gameId")
+            render(<MobProgrammingRPG/>);
+
+            changePlayers('2,3');
+
+            await expect(server).toReceiveMessage(
+                JSON.stringify(
+                    {
+                        "command": "save",
+                        "game": JSON.parse(Game.withPlayers(['2', '3'], 'gameId').toJSON())
+                    }
+                ));
+        })
+    });
 })

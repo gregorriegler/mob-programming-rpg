@@ -1,12 +1,10 @@
 - Network
 - Timer does not sync via ws
+- gameId should be given as a prop to the component, the component should not read it from the url itself?
 - grey color is not easy to see
-- Summary for all cards
 - Nose should be level 2
 - ui jumping when adding points
 - timer changeable
-- Reordering looses Points
-- Show Roles Todos
 
 - help a person understand what they don't
 - admit a thing you didn't understand
