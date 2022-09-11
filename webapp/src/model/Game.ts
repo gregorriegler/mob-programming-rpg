@@ -7,9 +7,12 @@ enum RoleIndex {
 
 export type GameId = string;
 
+type Seconds = number;
+
 function generateId() {
     return Math.random().toString(36).replace('0.', '');
 }
+
 
 export class Game {
     static fromJSON(json: string) {
@@ -27,12 +30,15 @@ export class Game {
 
     private readonly _id: GameId;
     private _players: Player[];
+    private _timer: Seconds;
     private _rotations;
 
-    constructor(id: GameId, players: Player[] = [], rotations: number = 0) {
+
+    constructor(id: GameId, players: Player[] = [], rotations: number = 0, timer: Seconds = 4 * 60) {
         this._id = id;
         this._players = players;
         this._rotations = rotations;
+        this._timer = timer;
     }
 
     id() {
@@ -45,6 +51,10 @@ export class Game {
 
     playerNames() {
         return this._players.map(player => player.name()).join(", ")
+    }
+
+    timer() {
+        return this._timer;
     }
 
     setPlayers(players: string) {
@@ -98,7 +108,7 @@ export class Game {
 
     private whoIs(index: RoleIndex) {
         const player = this.getPlayer(index);
-        if(!player) return "???"
+        if (!player) return "???"
         return player.name();
     }
 

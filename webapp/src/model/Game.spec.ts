@@ -14,7 +14,7 @@ describe('Game', () => {
     
     it('creates a new id every time', () => {
         const game1 = Game.withPlayers([]);
-        const game2 = Game.withPlayers([]);
+        const game2 = Game.withPlayers([], undefined);
 
         expect(game1.id()).not.toEqual(game2.id());
     });
@@ -23,6 +23,12 @@ describe('Game', () => {
         const game = createGame();
 
         expect(game.players()).toEqual([]);
+    });
+
+    it('starts with a 4 minute timer', () => {
+        const game = createGame();
+
+        expect(game.timer()).toEqual(4*60);
     });
 
     it('can add a player', () => {
