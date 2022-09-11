@@ -22,12 +22,14 @@ export class Game {
         return new Game(
             parsedObject.id,
             parsedObject.players.map(it => Player.fromObject(it)),
-            parsedObject.rotations
+            parsedObject.rotations,
+            parsedObject.timer
         );
     }
 
+    //todo swap arguments
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
-        return new Game(id, players.map(name => new Player(name)));
+        return new Game(id, players.map(name => new Player(name)),0, timer);
     }
 
     private readonly _id: GameId;
@@ -35,7 +37,7 @@ export class Game {
     private _timer: Seconds;
     private _rotations;
 
-
+    // todo timer should be the third argument
     constructor(id: GameId, players: Player[] = [], rotations: number = 0, timer: Seconds = DEFAULT_TIMER) {
         this._id = id;
         this._players = players;
@@ -96,6 +98,7 @@ export class Game {
         return JSON.stringify({
             id: this._id,
             players: this._players.map(it => it.toObject()),
+            timer: this._timer,
             rotations: this._rotations,
         })
     }

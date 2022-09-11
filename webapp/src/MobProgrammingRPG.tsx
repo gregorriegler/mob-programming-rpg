@@ -154,7 +154,7 @@ const MobProgrammingRPG = (
                 <button className="rpgui-button" onClick={toggleHelp}><p>Help</p></button>
                 <button className="rpgui-button" onClick={rotate}><p>Rotate</p></button>
                 <TimerDisplay
-                    rotateAfter={rotateAfter}
+                    rotateAfter={game.timer()}
                     clock={clock}
                     onFinish={timeOver}
                     continuePlaying={continuePlaying}

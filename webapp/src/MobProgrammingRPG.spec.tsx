@@ -192,6 +192,15 @@ describe('Mob Programming RPG', () => {
             expect(timer).toBeInTheDocument();
             expect(timer).toHaveTextContent('04:00');
         })
+        
+        it('that shows the timer as was set in localStorage', () => {
+            localStorage.setItem("continueId", Game.withPlayers([], 60, "continueId").toJSON())
+            window.history.pushState({}, "GameId", "/continueId")
+            
+            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+
+            expect(screen.getByTitle("timer")).toHaveTextContent('01:00');
+        })
 
         it('that is configurable', () => {
             render(<MobProgrammingRPG rotateAfter={3} wsServer={wsServerUrl}/>);

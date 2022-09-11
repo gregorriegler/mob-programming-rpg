@@ -122,6 +122,7 @@ describe('Game', () => {
         expect(result.players.length).toEqual(2);
         expect(result.players[0].name).toEqual('Max');
         expect(result.players[1].name).toEqual('Rita');
+        expect(result.timer).toEqual(4*60);
         expect(result.rotations).toEqual(1);
     })
     
@@ -140,6 +141,7 @@ describe('Game', () => {
               "badges": ["Mobber"]
             }
           ],
+          "timer": 240,
           "rotations": 1
         }
         `);
@@ -147,6 +149,7 @@ describe('Game', () => {
         expect(game.players().length).toEqual(1);
         expect(game.players()[0].name()).toEqual("Gregor");
         expect(game.players()[0].badges()).toEqual(["Mobber"]);
+        expect(game.timer()).toEqual(240);
         expect(game.rotations()).toEqual(1);
     })
     
