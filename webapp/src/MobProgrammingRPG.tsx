@@ -45,7 +45,10 @@ const MobProgrammingRPG = (
         wsServer = 'ws://mob-programming-rpg-server.herokuapp.com/'
     }: MobProgrammingRPGProps
 ) => {
-    const [game, setGame] = useLocalStorageGame(gameIdFromUrl(), Game.withPlayers(startingPlayers, gameIdFromUrl()));
+    const [game, setGame] = useLocalStorageGame(
+        gameIdFromUrl(), 
+        Game.withPlayers(startingPlayers, gameIdFromUrl())
+    );
     const gameRef = useRef(game);
     const ws = useRef(null as WebSocket | null);
 
