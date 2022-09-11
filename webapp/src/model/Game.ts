@@ -9,6 +9,8 @@ export type GameId = string;
 
 type Seconds = number;
 
+type TimerStatus = "STOPPED";
+
 function generateId() {
     return Math.random().toString(36).replace('0.', '');
 }
@@ -29,9 +31,15 @@ export class Game {
     private readonly _id: GameId;
     private _players: Player[];
     private _timer: Seconds;
+    private _stopped: TimerStatus = "STOPPED";
     private _rotations;
 
-    constructor(id: GameId, players: Player[] = [], timer: Seconds = DEFAULT_TIMER, rotations: number = 0) {
+    constructor(
+        id: GameId,
+        players: Player[] = [],
+        timer: Seconds = DEFAULT_TIMER,
+        rotations: number = 0
+    ) {
         this._id = id;
         this._players = players;
         this._rotations = rotations;
@@ -52,6 +60,10 @@ export class Game {
 
     timer() {
         return this._timer;
+    }
+
+    timerStatus() {
+        return this._stopped;
     }
 
     setPlayers(players: string) {

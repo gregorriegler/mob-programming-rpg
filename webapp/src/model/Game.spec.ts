@@ -31,6 +31,12 @@ describe('Game', () => {
         expect(game.timer()).toEqual(4*60);
     });
 
+    it('starts with the timer stopped', () => {
+        const game = createGame();
+
+        expect(game.timerStatus()).toEqual("STOPPED");
+    });
+
     it('can add a player', () => {
         const game = createGame();
 
