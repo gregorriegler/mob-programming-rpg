@@ -1,5 +1,4 @@
-- Network
-- Timer does not sync via ws
+- env.PROD for heroku url
 - gameId should be given as a prop to the component, the component should not read it from the url itself?
 - grey color is not easy to see
 - Nose should be level 2

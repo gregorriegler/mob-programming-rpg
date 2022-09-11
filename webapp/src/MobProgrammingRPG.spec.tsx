@@ -55,6 +55,7 @@ describe('Mob Programming RPG', () => {
     it('continues a game', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/continueId")
+        
         render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
 
         const items = getPlayerListItems();

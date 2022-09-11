@@ -42,7 +42,7 @@ const MobProgrammingRPG = (
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock(),
-        wsServer = 'ws://localhost:8080'
+        wsServer = 'ws://mob-programming-rpg-server.herokuapp.com/'
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(
