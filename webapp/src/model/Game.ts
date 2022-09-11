@@ -6,22 +6,25 @@ enum RoleIndex {
 }
 
 export type GameId = string;
-
 type Seconds = number;
-
 type TimerStatus = "STOPPED";
+
+export const DEFAULT_TIMER = 4 * 60;
 
 function generateId() {
     return Math.random().toString(36).replace('0.', '');
 }
 
-
-export const DEFAULT_TIMER = 4 * 60;
-
 export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
-        return new Game(parsedObject.id, parsedObject.players.map(it => Player.fromObject(it)), parsedObject.timer, parsedObject.rotations);
+        return new Game(
+            parsedObject.id,
+            parsedObject.players.map(it => Player.fromObject(it)),
+            parsedObject.timer.value,
+            parsedObject.timer.status,
+            parsedObject.rotations
+        );
     }
 
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
@@ -31,19 +34,21 @@ export class Game {
     private readonly _id: GameId;
     private _players: Player[];
     private _timer: Seconds;
-    private _stopped: TimerStatus = "STOPPED";
+    private _timerStatus: TimerStatus;
     private _rotations;
 
     constructor(
         id: GameId,
         players: Player[] = [],
         timer: Seconds = DEFAULT_TIMER,
+        timerStatus: TimerStatus = "STOPPED",
         rotations: number = 0
     ) {
         this._id = id;
         this._players = players;
-        this._rotations = rotations;
         this._timer = timer;
+        this._timerStatus = timerStatus;
+        this._rotations = rotations;
     }
 
     id() {
@@ -63,7 +68,7 @@ export class Game {
     }
 
     timerStatus() {
-        return this._stopped;
+        return this._timerStatus;
     }
 
     setPlayers(players: string) {
@@ -103,7 +108,10 @@ export class Game {
         return JSON.stringify({
             id: this._id,
             players: this._players.map(it => it.toObject()),
-            timer: this._timer,
+            timer: {
+                value: this._timer,
+                status: this._timerStatus
+            },
             rotations: this._rotations,
         })
     }
