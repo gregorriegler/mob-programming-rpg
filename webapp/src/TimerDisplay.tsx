@@ -14,7 +14,7 @@ const TimerDisplay = (
         status = "STOPPED",
         clock = new RealClock(),
         onFinish = () => {},
-        continuePlaying = () => {},
+        onStart = () => {},
     }
 ) => {
     const forceUpdate = useForceUpdate();
@@ -25,12 +25,12 @@ const TimerDisplay = (
 
     const countdown = useRef(createCountdown());
     
-    
+    // todo there is no test synchronizing the start of the timers via ws
     useEffect(() => {
         if (countdown.current.status() === "STOPPED" && status === "STARTED") {
             start();
         }
-    }, [])
+    })
 
     function rotate() {
         onFinish();
@@ -38,7 +38,7 @@ const TimerDisplay = (
     }
 
     function start() {
-        continuePlaying();
+        onStart();
         countdown.current.start();
     }
 

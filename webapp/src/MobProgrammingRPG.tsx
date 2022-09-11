@@ -42,7 +42,7 @@ const MobProgrammingRPG = (
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock(),
-        wsServer = 'ws://mob-programming-rpg-server.herokuapp.com/'
+        wsServer = 'ws://localhost:8080'
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(
@@ -131,6 +131,8 @@ const MobProgrammingRPG = (
 
     function continuePlaying() {
         setUiState({...uiState, showWhoIsNext: false});
+        gameRef.current.startTimer();
+        updateGameState();
     }
 
     return (
@@ -158,7 +160,7 @@ const MobProgrammingRPG = (
                     status={game.timerStatus()}
                     clock={clock}
                     onFinish={timeOver}
-                    continuePlaying={continuePlaying}
+                    onStart={continuePlaying}
                 />
             </div>
             {uiState.showWhoIsNext &&

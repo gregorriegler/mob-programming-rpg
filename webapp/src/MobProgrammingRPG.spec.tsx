@@ -61,6 +61,19 @@ describe('Mob Programming RPG', () => {
         expect(items).toHaveLength(1);
         expect(items[0]).toHaveTextContent('1');
     });
+    
+    it('stores its state to localStorage', () => {
+        render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+        
+        fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+        changePlayers('1,2')
+
+        // @ts-ignore
+        const gameFromLocalStorage = localStorage.getItem(window.location.pathname.split('/').pop());
+        const savedGame = Game.fromJSON(gameFromLocalStorage!!);
+        expect(savedGame.playerNames()).toEqual('1, 2');
+        expect(savedGame.timerStatus()).toEqual('STARTED');
+    });
 
     it('creates a new game despite given localStorage', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())

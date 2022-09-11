@@ -25,18 +25,6 @@ describe('Game', () => {
         expect(game.players()).toEqual([]);
     });
 
-    it('starts with a 4 minute timer', () => {
-        const game = createGame();
-
-        expect(game.timer()).toEqual(4*60);
-    });
-
-    it('starts with the timer stopped', () => {
-        const game = createGame();
-
-        expect(game.timerStatus()).toEqual("STOPPED");
-    });
-
     it('can add a player', () => {
         const game = createGame();
 
@@ -89,6 +77,26 @@ describe('Game', () => {
         expect(game.roleOf('Max')).toEqual('Driver');
         expect(game.roleOf('Rita')).toEqual('Navigator');
         expect(game.roleOf('Peter')).toEqual('Mobber');
+    });
+
+    it('initialized with a 4 minute timer', () => {
+        const game = createGame();
+
+        expect(game.timer()).toEqual(4*60);
+    });
+
+    it('initializes with the timer stopped', () => {
+        const game = createGame();
+
+        expect(game.timerStatus()).toEqual("STOPPED");
+    });
+
+    it('starts the timer', () => {
+        const game = createGame();
+        
+        game.startTimer()
+
+        expect(game.timerStatus()).toEqual("STARTED");
     });
 
     it('rotates', () => {
