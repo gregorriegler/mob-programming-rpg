@@ -14,7 +14,7 @@ describe('Game', () => {
     
     it('creates a new id every time', () => {
         const game1 = Game.withPlayers([]);
-        const game2 = Game.withPlayers([], undefined);
+        const game2 = Game.withPlayers([]);
 
         expect(game1.id()).not.toEqual(game2.id());
     });

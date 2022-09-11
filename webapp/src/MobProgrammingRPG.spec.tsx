@@ -2,7 +2,7 @@ import MobProgrammingRPG from "./MobProgrammingRPG";
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
-import { Game } from "./model/Game";
+import { DEFAULT_TIMER, Game } from "./model/Game";
 import WS from "jest-websocket-mock";
 
 function getPlayerListItems() {
@@ -264,7 +264,7 @@ describe('Mob Programming RPG', () => {
             window.history.pushState({}, "GameId", "/gameId")
             render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
 
-            server.send(Game.withPlayers(["1"], "gameId").toJSON())
+            server.send(Game.withPlayers(["1"], DEFAULT_TIMER, "gameId").toJSON())
 
             const items = getPlayerListItems();
             expect(items.length).toBe(1);
@@ -283,7 +283,7 @@ describe('Mob Programming RPG', () => {
                 JSON.stringify(
                     {
                         "command": "save",
-                        "game": JSON.parse(Game.withPlayers(['2', '3'], 'gameId').toJSON())
+                        "game": JSON.parse(Game.withPlayers(['2', '3'], DEFAULT_TIMER, 'gameId').toJSON())
                     }
                 ));
         })

@@ -47,7 +47,7 @@ const MobProgrammingRPG = (
 ) => {
     const [game, setGame] = useLocalStorageGame(
         gameIdFromUrl(), 
-        Game.withPlayers(startingPlayers, gameIdFromUrl())
+        Game.withPlayers(startingPlayers, rotateAfter, gameIdFromUrl())
     );
     const gameRef = useRef(game);
     const ws = useRef(null as WebSocket | null);

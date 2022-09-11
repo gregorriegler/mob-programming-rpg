@@ -14,6 +14,8 @@ function generateId() {
 }
 
 
+export const DEFAULT_TIMER = 4 * 60;
+
 export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
@@ -24,7 +26,7 @@ export class Game {
         );
     }
 
-    static withPlayers(players: string[], id: GameId = generateId()) {
+    static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
         return new Game(id, players.map(name => new Player(name)));
     }
 
@@ -34,7 +36,7 @@ export class Game {
     private _rotations;
 
 
-    constructor(id: GameId, players: Player[] = [], rotations: number = 0, timer: Seconds = 4 * 60) {
+    constructor(id: GameId, players: Player[] = [], rotations: number = 0, timer: Seconds = DEFAULT_TIMER) {
         this._id = id;
         this._players = players;
         this._rotations = rotations;
