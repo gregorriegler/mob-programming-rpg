@@ -34,7 +34,7 @@ describe('Mob Programming RPG', () => {
 
     const wsServerUrl = "ws://localhost:8080";
     let server;
-    
+
 
     beforeEach(() => {
         window.history.pushState({}, "GameId", "/")
@@ -193,13 +193,41 @@ describe('Mob Programming RPG', () => {
             expect(timer).toHaveTextContent('04:00');
         })
         
+        it('that keeps the timer stopped unless somebody starts it', () => {
+            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+
+            advanceTimeBy(4000);
+            
+            const timer = screen.getByTitle("timer");
+            expect(timer).toBeInTheDocument();
+            expect(timer).toHaveTextContent('04:00');
+        })
+
         it('that shows the timer as was set in localStorage', () => {
             localStorage.setItem("continueId", Game.withPlayers([], 60, "continueId").toJSON())
             window.history.pushState({}, "GameId", "/continueId")
-            
+
             render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
 
             expect(screen.getByTitle("timer")).toHaveTextContent('01:00');
+        })
+
+        it('that starts if games timer was started', () => {
+            localStorage.setItem(
+                "continueId",
+                new Game(
+                    "continueId",
+                    [],
+                    2,
+                    "STARTED"
+                ).toJSON()
+            )
+            window.history.pushState({}, "GameId", "/continueId")
+            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+
+            advanceTimeBy(1000)
+
+            expect(screen.getByTitle("timer")).toHaveTextContent('00:01');
         })
 
         it('that is configurable', () => {
@@ -285,7 +313,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
 
             await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
-            
+
             changePlayers('2,3');
 
             await expect(server).toReceiveMessage(

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Countdown } from "./model/Countdown";
 import { RealClock } from "./RealClock";
 
@@ -11,6 +11,7 @@ function useForceUpdate() {
 const TimerDisplay = (
     {
         rotateAfter = 60 * 4,
+        status = "STOPPED",
         clock = new RealClock(),
         onFinish = () => {},
         continuePlaying = () => {},
@@ -23,6 +24,13 @@ const TimerDisplay = (
     }
 
     const countdown = useRef(createCountdown());
+    
+    
+    useEffect(() => {
+        if (countdown.current.status() === "STOPPED" && status === "STARTED") {
+            start();
+        }
+    }, [])
 
     function rotate() {
         onFinish();

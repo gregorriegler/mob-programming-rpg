@@ -1,5 +1,6 @@
 import { ClockStub, MilliSeconds } from "./Clock";
 import { Countdown } from "./Countdown";
+import exp from "constants";
 
 describe('Countdown', () => {
     
@@ -21,6 +22,7 @@ describe('Countdown', () => {
         const countdown = new Countdown(3, noOp, clock);
         advanceTimeBy(123)
         expect(countdown.timeLeft()).toBe(3);
+        expect(countdown.status()).toBe("STOPPED");
     })
     
     it.each([
@@ -36,13 +38,24 @@ describe('Countdown', () => {
         expect(countdown.timeLeft()).toBe(expectedLeft);
     })
     
+    it('changes status to RUNNING', () => {
+        const onFinish = jest.fn();
+        const countdown = new Countdown(300, onFinish, clock);
+        
+        countdown.start();
+
+        expect(countdown.status()).toBe("RUNNING");
+    })
+    
     it('notifies when its over', () => {
         const onFinish = jest.fn();
-        new Countdown(300, onFinish, clock).start();
+        const countdown = new Countdown(300, onFinish, clock);
+        countdown.start();
         
         advanceTimeBy(300);
         
         expect(onFinish).toHaveBeenCalled();
+        expect(countdown.status()).toBe("STOPPED");
     })
     
     it('updates time every second', () => {

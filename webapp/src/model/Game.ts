@@ -7,7 +7,7 @@ enum RoleIndex {
 
 export type GameId = string;
 type Seconds = number;
-type TimerStatus = "STOPPED";
+export type TimerStatus = "STOPPED" | "STARTED";
 
 export const DEFAULT_TIMER = 4 * 60;
 
