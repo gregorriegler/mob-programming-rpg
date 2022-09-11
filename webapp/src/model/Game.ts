@@ -19,17 +19,11 @@ export const DEFAULT_TIMER = 4 * 60;
 export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
-        return new Game(
-            parsedObject.id,
-            parsedObject.players.map(it => Player.fromObject(it)),
-            parsedObject.rotations,
-            parsedObject.timer
-        );
+        return new Game(parsedObject.id, parsedObject.players.map(it => Player.fromObject(it)), parsedObject.timer, parsedObject.rotations);
     }
 
-    //todo swap arguments
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
-        return new Game(id, players.map(name => new Player(name)),0, timer);
+        return new Game(id, players.map(name => new Player(name)), timer);
     }
 
     private readonly _id: GameId;
@@ -37,8 +31,7 @@ export class Game {
     private _timer: Seconds;
     private _rotations;
 
-    // todo timer should be the third argument
-    constructor(id: GameId, players: Player[] = [], rotations: number = 0, timer: Seconds = DEFAULT_TIMER) {
+    constructor(id: GameId, players: Player[] = [], timer: Seconds = DEFAULT_TIMER, rotations: number = 0) {
         this._id = id;
         this._players = players;
         this._rotations = rotations;
