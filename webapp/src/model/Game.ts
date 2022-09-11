@@ -75,6 +75,10 @@ export class Game {
         this._timerStatus = "STARTED";
     }
 
+    stopTimer() {
+        this._timerStatus = "STOPPED";
+    }
+
     setPlayers(players: string) {
         this._players = players.split(',')
             .map(player => player.trim())

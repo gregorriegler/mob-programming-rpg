@@ -117,6 +117,7 @@ const MobProgrammingRPG = (
     }
 
     function timeOver() {
+        gameRef.current.stopTimer();
         rotate();
         explainWhoIsNext();
     }
@@ -128,9 +129,13 @@ const MobProgrammingRPG = (
     function toggleHelp() {
         setUiState({...uiState, showWhoIsNext: !uiState.showWhoIsNext, timeIsOver: false});
     }
+    
+    function closeWhoIsNext() {
+        setUiState({...uiState, showWhoIsNext: false});
+    }
 
     function continuePlaying() {
-        setUiState({...uiState, showWhoIsNext: false});
+        closeWhoIsNext()
         gameRef.current.startTimer();
         updateGameState();
     }
@@ -157,7 +162,7 @@ const MobProgrammingRPG = (
                 <button className="rpgui-button" onClick={rotate}><p>Rotate</p></button>
                 <TimerDisplay
                     rotateAfter={game.timer()}
-                    status={game.timerStatus()}
+                    status={gameRef.current.timerStatus()}
                     clock={clock}
                     onFinish={timeOver}
                     onStart={continuePlaying}
@@ -182,7 +187,7 @@ const MobProgrammingRPG = (
                   {Object.entries(roles).map(it => <RoleDescriptionView key={it[0]} roleDetails={it[1]}/>)}
 
                 <br className="clear-left"/>
-                <button className="rpgui-button golden close-button" onClick={continuePlaying}>
+                <button className="rpgui-button golden close-button" onClick={closeWhoIsNext}>
                   <p>Close</p>
                 </button>
               </div>

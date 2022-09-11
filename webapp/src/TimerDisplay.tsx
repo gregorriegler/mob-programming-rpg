@@ -1,11 +1,20 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Countdown } from "./model/Countdown";
 import { RealClock } from "./RealClock";
+import { Clock } from "./model/Clock";
 
 function useForceUpdate() {
     const [, updateState] = useState();
     // @ts-ignore
     return useCallback(() => updateState({}), []);
+}
+
+type TimerDisplayProps = {
+    rotateAfter?: number;
+    status?: string
+    clock?: Clock;
+    onFinish?: () => void;
+    onStart?: () => void;
 }
 
 const TimerDisplay = (
@@ -15,7 +24,7 @@ const TimerDisplay = (
         clock = new RealClock(),
         onFinish = () => {},
         onStart = () => {},
-    }
+    }: TimerDisplayProps
 ) => {
     const forceUpdate = useForceUpdate();
 
@@ -24,8 +33,8 @@ const TimerDisplay = (
     }
 
     const countdown = useRef(createCountdown());
-    
-    // todo there is no test synchronizing the start of the timers via ws
+
+    //todo there is no test synchronizing the start of the timers via ws
     useEffect(() => {
         if (countdown.current.status() === "STOPPED" && status === "STARTED") {
             start();

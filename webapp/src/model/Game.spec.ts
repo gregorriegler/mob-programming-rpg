@@ -99,6 +99,15 @@ describe('Game', () => {
         expect(game.timerStatus()).toEqual("STARTED");
     });
 
+    it('stops the timer', () => {
+        const game = createGame();
+        game.startTimer()
+        
+        game.stopTimer()
+
+        expect(game.timerStatus()).toEqual("STOPPED");
+    });
+
     it('rotates', () => {
         const game = createGame();
         game.setPlayers('Max,Rita,Peter,Sam');
