@@ -46,7 +46,7 @@ const MobProgrammingRPG = (
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(
-        gameIdFromUrl(), 
+        gameIdFromUrl(),
         Game.withPlayers(startingPlayers, rotateAfter, gameIdFromUrl())
     );
     const gameRef = useRef(game);
@@ -129,7 +129,7 @@ const MobProgrammingRPG = (
     function toggleHelp() {
         setUiState({...uiState, showWhoIsNext: !uiState.showWhoIsNext, timeIsOver: false});
     }
-    
+
     function closeWhoIsNext() {
         setUiState({...uiState, showWhoIsNext: false});
     }
@@ -146,7 +146,7 @@ const MobProgrammingRPG = (
                 Mob Programming RPG
                 <img className="logo" alt="logo" src={process.env.PUBLIC_URL + "/favicon.png"}/>
             </h1>
-            <ul aria-label="Player List" className="rpgui-container-framed">
+            <ul aria-label="Player List" className="rpgui-container-framed flex-box">
                 {game.players().map((player) =>
                     <PlayerDisplay
                         player={player}
@@ -184,7 +184,9 @@ const MobProgrammingRPG = (
                       <h2>This is how you gain XP:</h2>
                     </>
                   }
-                  {Object.entries(roles).map(it => <RoleDescriptionView key={it[0]} roleDetails={it[1]}/>)}
+                <div className="flex-box">
+                    {Object.entries(roles).map(it => <RoleDescriptionView key={it[0]} roleDetails={it[1]}/>)}
+                </div>
 
                 <br className="clear-left"/>
                 <button className="rpgui-button golden close-button" onClick={closeWhoIsNext}>

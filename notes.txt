@@ -1,9 +1,13 @@
+- do we have too many ws interactions?
+- what about clearing old localStorage
+- actually synchronizing the time
 - env.PROD for heroku url
+- notifications on timer end
+- timer configurable in settings
 - gameId should be given as a prop to the component, the component should not read it from the url itself?
 - grey color is not easy to see
 - Nose should be level 2
 - ui jumping when adding points
-- timer changeable
 
 - help a person understand what they don't
 - admit a thing you didn't understand

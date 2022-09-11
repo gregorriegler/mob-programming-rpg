@@ -53,7 +53,6 @@ ul {
     position: relative;
     margin: 20px !important;
     width: 380px;
-    float: left;
 }
 
 .role {
@@ -100,12 +99,20 @@ ul {
 
 .help-overlay {
     position: absolute;
+    text-align: center;
     left: 10px;
     right: 10px;
-    text-align: center;
-    clear: left;
 }
 
+.flex-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: stretch;
+    
+}
 .role-description {
     position: relative;
     display: inline-block;
@@ -114,7 +121,6 @@ ul {
     min-height: 360px;
     margin-bottom: 20px;
     margin-right: 20px;
-    float: left;
 }
 
 .role-description h4 {
