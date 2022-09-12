@@ -1,4 +1,5 @@
 import { WebSocket, WebSocketServer } from "ws";
+import process from 'node:process';
 
 type GameId = string;
 type ClientId = string;
@@ -18,6 +19,14 @@ export class WSServer {
         wss.on("connection", ws => {
             this.registerClient(ws);
         });
+        function gracefulWsShutdown() {
+            console.log("gracefully shutting down ws");
+            wss.clients.forEach((socket) => {
+                socket.close();
+            });
+        }
+        process.on('SIGINT', gracefulWsShutdown); 
+        process.on('SIGTERM', gracefulWsShutdown); 
     }
 
     private registerClient(ws: WebSocket) {
@@ -28,6 +37,7 @@ export class WSServer {
             this.handleMessage(clientId, JSON.parse(data.toString()));
         });
         ws.on("close", () => {
+            console.log(">close", clientId)
             this.allClients.delete(clientId);
         });
         ws.onerror = e => {
