@@ -36,7 +36,6 @@ type MobProgrammingRPGProps = {
     wsServer: string
 }
 
-
 const MobProgrammingRPG = (
     {
         startingPlayers = [],
@@ -55,6 +54,7 @@ const MobProgrammingRPG = (
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     useEffect(() => {
+        if(ws.current) return;
         ws.current = new WebSocket(wsServer);
         ws.current.onopen = async () => {
             ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
@@ -64,11 +64,6 @@ const MobProgrammingRPG = (
             updateGameState();
         };
         ws.current.onerror = (error) => console.log("ws error", error);
-        const wsCurrent = ws.current;
-
-        return () => {
-            wsCurrent.close();
-        };
         // eslint-disable-next-line
     }, []);
 
