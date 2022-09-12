@@ -54,14 +54,14 @@ const MobProgrammingRPG = (
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     useEffect(() => {
-        if(ws.current) return;
+        if (ws.current) return;
         ws.current = new WebSocket(wsServer);
         ws.current.onopen = async () => {
             ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
         }
         ws.current.onmessage = e => {
             gameRef.current = Game.fromJSON(e.data)
-            updateGameState();
+            setGame(gameRef.current);
         };
         ws.current.onerror = (error) => console.log("ws error", error);
         // eslint-disable-next-line

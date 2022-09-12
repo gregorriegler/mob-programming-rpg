@@ -1,8 +1,8 @@
+- client onClose try and reconnect
 - show timer in title
 - make driver,navigator configurable
 - undo if wrong role selected
 - timer isnot synched correctly
-- do we have too many ws interactions?
 - what about clearing old localStorage
 - actually synchronizing the time
 - notifications on timer end
