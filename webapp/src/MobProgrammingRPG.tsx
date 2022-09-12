@@ -33,7 +33,7 @@ type MobProgrammingRPGProps = {
     startingPlayers?: string[];
     rotateAfter?: number;
     clock?: Clock;
-    wsServer?: string
+    wsServer: string
 }
 
 
@@ -42,7 +42,7 @@ const MobProgrammingRPG = (
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock(),
-        wsServer = 'ws://mob-programming-rpg-server.herokuapp.com/'
+        wsServer
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(
