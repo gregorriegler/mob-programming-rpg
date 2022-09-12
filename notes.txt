@@ -1,4 +1,3 @@
-- client onClose try and reconnect
 - show timer in title
 - make driver,navigator configurable
 - undo if wrong role selected
