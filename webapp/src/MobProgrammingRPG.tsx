@@ -50,20 +50,35 @@ const MobProgrammingRPG = (
     );
     const gameRef = useRef(game);
     const ws = useRef(null as WebSocket | null);
+    const wsReconnectIntervalId = useRef(null as NodeJS.Timer | null);
 
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     useEffect(() => {
-        if (ws.current) return;
-        ws.current = new WebSocket(wsServer);
-        ws.current.onopen = async () => {
-            ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
+        function connectWs() {
+            if (ws.current) return;
+            ws.current = new WebSocket(wsServer);
+            ws.current.onopen = async () => {
+                if (wsReconnectIntervalId.current !== null) {
+                    clearInterval(wsReconnectIntervalId.current!!);
+                    wsReconnectIntervalId.current = null;
+                }
+                ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
+            }
+            ws.current.onmessage = e => {
+                gameRef.current = Game.fromJSON(e.data)
+                setGame(gameRef.current);
+            };
+            ws.current.onerror = (error) => console.log("ws error", error);
+            ws.current.onclose = e => {
+                if (wsReconnectIntervalId.current === null) {
+                    wsReconnectIntervalId.current = setInterval(connectWs, 1000);
+                }
+                ws.current = null;
+            };
         }
-        ws.current.onmessage = e => {
-            gameRef.current = Game.fromJSON(e.data)
-            setGame(gameRef.current);
-        };
-        ws.current.onerror = (error) => console.log("ws error", error);
+
+        connectWs();
         // eslint-disable-next-line
     }, []);
 
