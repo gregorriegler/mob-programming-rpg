@@ -8,7 +8,7 @@ describe('WSServer', () => {
     let sut: WSServer;
 
     beforeEach(() => {
-        new Promise((resolve, reject) => {
+        new Promise((resolve) => {
             wss = new WebSocket.Server({port}, () => {
                 resolve(true);
             });

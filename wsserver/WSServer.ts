@@ -24,7 +24,8 @@ export class WSServer {
         const clientId = this.generateId();
         this.allClients.set(clientId, ws);
         ws.on("message", data => {
-            this.handleMessage(clientId, JSON.parse(data.toString()), ws);
+            console.log(">receive", clientId, data.toString())
+            this.handleMessage(clientId, JSON.parse(data.toString()));
         });
         ws.on("close", () => {
             this.allClients.delete(clientId);
@@ -38,7 +39,7 @@ export class WSServer {
         return Math.random().toString(36).replace('0.', '');
     }
 
-    private handleMessage(clientId: string, message: Message, ws: WebSocket) {
+    private handleMessage(clientId: string, message: Message) {
         if (message.command === "subscribe") {
             this.handleSubscribe(message, clientId);
         } else if (message.command === "save") {
@@ -87,6 +88,7 @@ export class WSServer {
 
     private sendToClient(clientId: string, game: string) {
         const socket = this.allClients.get(clientId);
+        console.log(">send", clientId, game);
         if (socket) socket.send(game);
     }
 
