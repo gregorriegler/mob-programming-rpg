@@ -44,6 +44,11 @@ const MobProgrammingRPG = (
         wsServer
     }: MobProgrammingRPGProps
 ) => {
+    console.log('localStorage', localStorage)
+    console.log('wsServer',wsServer)
+    console.log('gameIdFromUrl',gameIdFromUrl())
+    console.log('PUBLIC_URL',process.env.PUBLIC_URL)
+    console.log('href',window.location.href)
     const [game, setGame] = useLocalStorageGame(
         gameIdFromUrl(),
         Game.withPlayers(startingPlayers, rotateAfter, gameIdFromUrl())
@@ -72,7 +77,7 @@ const MobProgrammingRPG = (
                 setGame(gameRef.current);
             };
             ws.current.onerror = (error) => console.log("ws error", error);
-            ws.current.onclose = e => {
+            ws.current.onclose = _ => {
                 if (wsReconnectIntervalId.current === null) {
                     wsReconnectIntervalId.current = setInterval(connectWs, 1000);
                 }
