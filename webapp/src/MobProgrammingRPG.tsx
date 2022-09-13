@@ -34,7 +34,7 @@ type MobProgrammingRPGProps = {
     rotateAfter?: number;
     clock?: Clock;
     wsServer: string,
-    wsReconnect: boolean
+    wsReconnect?: boolean
 }
 
 const MobProgrammingRPG = (
