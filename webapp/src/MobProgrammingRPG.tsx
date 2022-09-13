@@ -63,7 +63,9 @@ const MobProgrammingRPG = (
                     clearInterval(wsReconnectIntervalId.current!!);
                     wsReconnectIntervalId.current = null;
                 }
-                ws.current!!.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
+                if (ws.current) {
+                    ws.current.send(JSON.stringify({"command": "subscribe", "id": gameRef.current.id()}));
+                }
             }
             ws.current.onmessage = e => {
                 gameRef.current = Game.fromJSON(e.data)
