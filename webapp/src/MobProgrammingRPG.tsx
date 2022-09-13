@@ -44,11 +44,6 @@ const MobProgrammingRPG = (
         wsServer
     }: MobProgrammingRPGProps
 ) => {
-    console.log('localStorage', localStorage)
-    console.log('wsServer',wsServer)
-    console.log('gameIdFromUrl',gameIdFromUrl())
-    console.log('PUBLIC_URL',process.env.PUBLIC_URL)
-    console.log('href',window.location.href)
     const [game, setGame] = useLocalStorageGame(
         gameIdFromUrl(),
         Game.withPlayers(startingPlayers, rotateAfter, gameIdFromUrl())

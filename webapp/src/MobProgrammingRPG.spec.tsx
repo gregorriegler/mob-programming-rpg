@@ -303,8 +303,8 @@ describe('Mob Programming RPG', () => {
 
     describe('uses websockets', () => {
 
-        afterEach(() => {
-            WS.clean();
+        beforeEach(() => {
+            // WS.clean();
         });
 
         it('initially subscribes the server', async () => {
@@ -312,6 +312,7 @@ describe('Mob Programming RPG', () => {
 
             render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
 
+            console.log(server.messages)
             await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
         })
 
