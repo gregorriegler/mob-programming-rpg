@@ -4,7 +4,7 @@ module.exports = function override(config) {
     zlib: false,
     http: false,
     https: false,
-    crypto: false,
+    crypto: require.resolve("crypto-browserify"),
     stream: false
   };
   return config;
