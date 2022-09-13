@@ -66,14 +66,16 @@ export const roles: AllRoleDetails = {
             "Ask for ideas",
             "Filter the mob's ideas then tell the Driver exactly what to type",
             "Tell the Driver only your high-level intent and have them implement the details",
-            "Create a failing test. Make it pass. Refactor."
+            "Create a failing test", 
+            "Make it pass as simple as possible",
+            "Do a refactoring while staying in the green"
         ]
     },
     Mobber: {
         name: "Mobber",
         todos: [
-            "Yield to the less privileged voice",
             "Contribute an idea",
+            "Admit a thing you didn't understand",
             "Ask questions till you understand",
             "Listen on the edge of your seat"
         ]
@@ -81,9 +83,9 @@ export const roles: AllRoleDetails = {
     "Rear Admiral": {
         name: "Rear Admiral",
         todos: [
-            "Quietly speak into the navigators ear",
+            "Quietly speak into the Navigators ear",
             "Give the smallest cue necessary to move the Navigator forward through the problem",
-            "Navigate the navigator at the highest level of abstraction they can successfully implement"
+            "Navigate the Navigator at the highest level of abstraction they can successfully implement"
         ]
     },
     "Traffic Cop": {
@@ -100,9 +102,11 @@ export const roles: AllRoleDetails = {
     Archivist: {
         name: "Archivist",
         todos: [
-            "Make sure everybody is on the same page by sketching proper examples",
-            "Capture design decisions and other technical details for the team",
-            "Record solution alternatives on a big visible chart or whiteboard so they’re not forgotten",
+            "Help a person understand and use a drawing/sketch if feasible",
+            "Make sure everybody is on the same page by sketching comprehensible examples ",
+            "Remind the team to write down the thing they want to do later",
+            "Capture/discuss advantages/disadvantages of a design decision for the team",
+            "Record solution alternatives visibly for the team so they’re not forgotten",
             "Express an idea as it is taking shape on a big visible chart or whiteboard",
             "Articulate the current task at hand and make it visible to the entire mob",
         ]
@@ -129,10 +133,10 @@ export const roles: AllRoleDetails = {
     Disciplinarian: {
         name: "Disciplinarian",
         todos: [
-            "Remind the group to check if the tests pass.",
-            "Remind the group to write a test before writing code.",
-            "Remind the group to not refactor if the tests are red.",
-            "Remind the group to refactor when the bar is green.",
+            "Remind the team to check if the tests pass.",
+            "Remind the navigator to write a failing test first.",
+            "Make sure we do not refactor while the tests are failing.",
+            "Remind the group to refactor when in the green.",
         ]
     },
     Researcher: {
@@ -147,8 +151,7 @@ export const roles: AllRoleDetails = {
         name: "Sponsor",
         todos: [
             "Amplify the unheard voice",
-            "Make sure the current Navigator is heard and gets their fair chance.",
-            "Pick the mobber with the least privilege and support their contributions",
+            "Make sure the current Navigator is not overruled and gets their fair chance.",
             "Celebrate moments of excellence",
             "Cheer up the mob in times of struggle"
         ]

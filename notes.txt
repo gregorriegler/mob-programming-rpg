@@ -12,23 +12,14 @@
 - drag and drop order of players
 
 # Roles and points
-- Write a failing test gets a point
-- and make it pass gets a point
-- Yield to the least active ... voice
-- help a person understand what they don't
-- admit a thing you didn't understand
-- write down a thing, so we remember to do it later
-- make sure we write a thing down we want to do later
-- Navigator point : Adjust your directions to the driver based on their ability.
-  Start at the high level intent and work your way down as necessary.
 - everytime you get 3 points on a level 1 role where you have a badge you can grab a level 2 point
-- Do a refactoring while staying in the green -> point
 
-# usability
+# Usability
 - when clicking earn, show the possibilities with checkboxes next to rules
 - undo if wrong role selected
 - grey color is not easy to see
 
-# tech
+# Tech
+- cant simply stop wsserver (needs termination)
 - what about clearing old localStorage
 - gameId should be given as a prop to the component, the component should not read it from the url itself?
