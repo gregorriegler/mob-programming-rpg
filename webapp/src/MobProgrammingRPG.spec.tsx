@@ -47,7 +47,7 @@ describe('Mob Programming RPG', () => {
     });
 
     it('starts with an empty list of players', () => {
-        render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
         const playerList = screen.getByRole('list', {name: /Player List/});
         expect(playerList).toBeEmptyDOMElement();
     });
@@ -56,7 +56,7 @@ describe('Mob Programming RPG', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/continueId")
         
-        render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
         const items = getPlayerListItems();
         expect(items).toHaveLength(1);
@@ -64,7 +64,7 @@ describe('Mob Programming RPG', () => {
     });
     
     it('stores its state to localStorage', () => {
-        render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
         
         fireEvent.click(screen.getByRole('button', {name: 'Start'}));
         changePlayers('1,2')
@@ -79,7 +79,7 @@ describe('Mob Programming RPG', () => {
     it('creates a new game despite given localStorage', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/")
-        render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
         const playerList = screen.getByRole('list', {name: /Player List/});
         expect(playerList).toBeEmptyDOMElement();
@@ -88,7 +88,7 @@ describe('Mob Programming RPG', () => {
     it('changes url for the created game id', () => {
         window.history.pushState({}, "GameId", "/")
 
-        render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
         expect(global.window.location.pathname).toMatch(/\/[a-zA-Z0-9]+/);
         expect(global.window.location.pathname).not.toEqual("/undefined");
@@ -97,13 +97,13 @@ describe('Mob Programming RPG', () => {
     it('does not change a given id', () => {
         window.history.pushState({}, "GameId", "/existingId")
 
-        render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
         expect(global.window.location.pathname).toEqual("/existingId")
     });
 
     it('shows players roles', () => {
-        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita", "Ben"]} wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita", "Ben"]} wsServer={wsServerUrl} wsReconnect={false}/>);
 
         const items = getPlayerListItems();
         expect(items[0]).toHaveTextContent('Gregor (Driver)');
@@ -113,7 +113,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it('has a rotate button that rotates the players', () => {
-        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} wsServer={wsServerUrl} wsReconnect={false}/>);
 
         fireEvent.click(getRotateButton());
 
@@ -124,7 +124,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it("has a help button once clicked shows what a player should do", () => {
-        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} wsServer={wsServerUrl}/>);
+        render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} wsServer={wsServerUrl} wsReconnect={false}/>);
 
         const helpButton = screen.getByRole('button', {name: 'Help'});
         expect(helpButton).toBeInTheDocument();
@@ -134,7 +134,7 @@ describe('Mob Programming RPG', () => {
     describe('has settings', () => {
 
         it('that shows the players', () => {
-            render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter"]} wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter"]} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             fireEvent.click(getSettingsButton());
 
@@ -142,7 +142,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that toggle when you keep pressing the settings button', () => {
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
             const settingsButton = getSettingsButton();
 
             fireEvent.click(settingsButton);
@@ -153,7 +153,7 @@ describe('Mob Programming RPG', () => {
         });
 
         it('that allow to change players', () => {
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
             fireEvent.click(getSettingsButton());
 
             expect(getPlayersTextarea()).toBeInTheDocument();
@@ -169,7 +169,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('close', () => {
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
             fireEvent.click(getSettingsButton());
 
             fireEvent.click(screen.getByText("Close"));
@@ -199,7 +199,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that shows the time left', () => {
-            render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
@@ -208,7 +208,7 @@ describe('Mob Programming RPG', () => {
         })
         
         it('that keeps the timer stopped unless somebody starts it', () => {
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
             advanceTimeBy(4000);
             
@@ -221,7 +221,7 @@ describe('Mob Programming RPG', () => {
             localStorage.setItem("continueId", Game.withPlayers([], 60, "continueId").toJSON())
             window.history.pushState({}, "GameId", "/continueId")
 
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
             expect(screen.getByTitle("timer")).toHaveTextContent('01:00');
         })
@@ -237,7 +237,7 @@ describe('Mob Programming RPG', () => {
                 ).toJSON()
             )
             window.history.pushState({}, "GameId", "/continueId")
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
             advanceTimeBy(1000)
 
@@ -245,7 +245,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that is configurable', () => {
-            render(<MobProgrammingRPG rotateAfter={3} wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG rotateAfter={3} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
@@ -257,7 +257,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG rotateAfter={60 * 4}
                                       startingPlayers={["Gregor", "Peter", "Rita"]}
                                       clock={clock}
-                                      wsServer={wsServerUrl}/>);
+                                      wsServer={wsServerUrl} wsReconnect={false}/>);
             fireEvent.click(screen.getByRole('button', {name: 'Start'}));
 
             advanceTimeBy(1000 * 60 * 4)
@@ -273,7 +273,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG rotateAfter={60 * 4}
                                       startingPlayers={["Gregor", "Peter", "Rita"]}
                                       clock={clock}
-                                      wsServer={wsServerUrl}/>);
+                                      wsServer={wsServerUrl} wsReconnect={false}/>);
             fireEvent.click(screen.getByRole('button', {name: 'Start'}));
             advanceTimeBy(1000 * 60 * 4)
             fireEvent.click(screen.getByRole('button', {name: 'Close'}));
@@ -286,7 +286,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('changed players remain until after countdown', () => {
-            render(<MobProgrammingRPG rotateAfter={1} wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG rotateAfter={1} wsServer={wsServerUrl} wsReconnect={false}/>);
             changePlayers('1,2,3');
             changePlayers('2,3');
 
@@ -303,22 +303,17 @@ describe('Mob Programming RPG', () => {
 
     describe('uses websockets', () => {
 
-        beforeEach(() => {
-            // WS.clean();
-        });
-
         it('initially subscribes the server', async () => {
             window.history.pushState({}, "GameId", "/gameId")
 
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
-            console.log(server.messages)
             await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
         })
 
         it('handles a server notification', () => {
             window.history.pushState({}, "GameId", "/gameId")
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
             server.send(Game.withPlayers(["1"], DEFAULT_TIMER, "gameId").toJSON())
 
@@ -329,7 +324,7 @@ describe('Mob Programming RPG', () => {
 
         it('updates the server', async () => {
             window.history.pushState({}, "GameId", "/gameId")
-            render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
 
             await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
 

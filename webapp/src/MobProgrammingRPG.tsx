@@ -33,7 +33,8 @@ type MobProgrammingRPGProps = {
     startingPlayers?: string[];
     rotateAfter?: number;
     clock?: Clock;
-    wsServer: string
+    wsServer: string,
+    wsReconnect: boolean
 }
 
 const MobProgrammingRPG = (
@@ -41,7 +42,8 @@ const MobProgrammingRPG = (
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock(),
-        wsServer
+        wsServer,
+        wsReconnect = true
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(
@@ -73,7 +75,8 @@ const MobProgrammingRPG = (
             };
             ws.current.onerror = (error) => console.log("ws error", error);
             ws.current.onclose = _ => {
-                if (wsReconnectIntervalId.current === null) {
+                if (wsReconnectIntervalId.current === null && wsReconnect) {
+                    console.log("start reconnect interval")
                     wsReconnectIntervalId.current = setInterval(connectWs, 1000);
                 }
                 ws.current = null;
