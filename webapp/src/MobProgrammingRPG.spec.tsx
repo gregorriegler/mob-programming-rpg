@@ -303,6 +303,10 @@ describe('Mob Programming RPG', () => {
 
     describe('uses websockets', () => {
 
+        afterEach(() => {
+            WS.clean();
+        });
+
         it('initially subscribes the server', async () => {
             window.history.pushState({}, "GameId", "/gameId")
 
