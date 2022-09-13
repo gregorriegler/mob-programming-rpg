@@ -303,7 +303,7 @@ describe('Mob Programming RPG', () => {
 
     describe('uses websockets', () => {
 
-        fit('initially subscribes the server', async () => {
+        it('initially subscribes the server', async () => {
             window.history.pushState({}, "GameId", "/gameId")
 
             render(<MobProgrammingRPG wsServer={wsServerUrl}/>);
