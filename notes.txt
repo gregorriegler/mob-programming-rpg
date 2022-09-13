@@ -1,26 +1,34 @@
+# Timer
 - show timer in title
-- make driver,navigator configurable
-- undo if wrong role selected
-- timer isnot synched correctly
-- what about clearing old localStorage
 - actually synchronizing the time
 - notifications on timer end
-- timer configurable in settings
-- gameId should be given as a prop to the component, the component should not read it from the url itself?
-- grey color is not easy to see
-- Nose should be level 2
-- ui jumping when adding points
 - timer sound
-- Do a refactoring while staying in the green -> point
+
+# Settings
+- make driver,navigator configurable
+- timer configurable in settings
+- add player button next to last player
+- remove player button on each player
+- drag and drop order of players
+
+# Roles and points
 - Write a failing test gets a point
 - and make it pass gets a point
-- Navigator point : Adjust your directions to the driver based on their ability.
-  Start at the high level intent and work your way down as necessary.
 - Yield to the least active ... voice
 - help a person understand what they don't
 - admit a thing you didn't understand
 - write down a thing, so we remember to do it later
 - make sure we write a thing down we want to do later
+- Navigator point : Adjust your directions to the driver based on their ability.
+  Start at the high level intent and work your way down as necessary.
 - everytime you get 3 points on a level 1 role where you have a badge you can grab a level 2 point
-- when clicking earn, show the possibilities.
-     - checkboxes next to rules
+- Do a refactoring while staying in the green -> point
+
+# usability
+- when clicking earn, show the possibilities with checkboxes next to rules
+- undo if wrong role selected
+- grey color is not easy to see
+
+# tech
+- what about clearing old localStorage
+- gameId should be given as a prop to the component, the component should not read it from the url itself?
