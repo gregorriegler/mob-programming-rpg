@@ -10,6 +10,7 @@ root.render(
         <MobProgrammingRPG 
             rotateAfter={parseInt(process.env.REACT_APP_ROTATE_AFTER!!)} 
             wsServer={process.env.REACT_APP_WS_URL!!}
+            wsReconnect={true}
             gameId={gameIdFromUrl()}
         />
     </React.StrictMode>

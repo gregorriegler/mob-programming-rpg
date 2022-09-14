@@ -32,7 +32,7 @@ type MobProgrammingRPGProps = {
     startingPlayers?: string[];
     rotateAfter?: number;
     clock?: Clock;
-    wsServer: string,
+    wsServer?: string,
     wsReconnect?: boolean,
     gameId?: string
 }
@@ -42,8 +42,8 @@ const MobProgrammingRPG = (
         startingPlayers = [],
         rotateAfter = 60 * 4,
         clock = new RealClock(),
-        wsServer,
-        wsReconnect = true,
+        wsServer = "ws://localhost:8080",
+        wsReconnect = false,
         gameId
     }: MobProgrammingRPGProps
 ) => {
