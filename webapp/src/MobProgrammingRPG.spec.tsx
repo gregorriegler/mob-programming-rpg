@@ -56,7 +56,7 @@ describe('Mob Programming RPG', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/continueId")
         
-        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
+        render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false} gameId="continueId"/>);
 
         const items = getPlayerListItems();
         expect(items).toHaveLength(1);
@@ -199,7 +199,10 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that shows the time left', () => {
-            render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]} wsServer={wsServerUrl} wsReconnect={false}/>);
+            render(<MobProgrammingRPG 
+                startingPlayers={["Gregor", "Peter", "Rita"]} 
+                wsServer={wsServerUrl} 
+                wsReconnect={false}/>);
 
             expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
@@ -219,9 +222,8 @@ describe('Mob Programming RPG', () => {
 
         it('that shows the timer as was set in localStorage', () => {
             localStorage.setItem("continueId", Game.withPlayers([], 60, "continueId").toJSON())
-            window.history.pushState({}, "GameId", "/continueId")
 
-            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
+            render(<MobProgrammingRPG gameId={"continueId"} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             expect(screen.getByTitle("timer")).toHaveTextContent('01:00');
         })
@@ -236,8 +238,7 @@ describe('Mob Programming RPG', () => {
                     "STARTED"
                 ).toJSON()
             )
-            window.history.pushState({}, "GameId", "/continueId")
-            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
+            render(<MobProgrammingRPG gameId={"continueId"} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             advanceTimeBy(1000)
 
@@ -304,16 +305,13 @@ describe('Mob Programming RPG', () => {
     describe('uses websockets', () => {
 
         it('initially subscribes the server', async () => {
-            window.history.pushState({}, "GameId", "/gameId")
-
-            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
+            render(<MobProgrammingRPG gameId={"gameId"} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
         })
 
         it('handles a server notification', () => {
-            window.history.pushState({}, "GameId", "/gameId")
-            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
+            render(<MobProgrammingRPG gameId={"gameId"} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             server.send(Game.withPlayers(["1"], DEFAULT_TIMER, "gameId").toJSON())
 
@@ -323,8 +321,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('updates the server', async () => {
-            window.history.pushState({}, "GameId", "/gameId")
-            render(<MobProgrammingRPG wsServer={wsServerUrl} wsReconnect={false}/>);
+            render(<MobProgrammingRPG gameId={"gameId"} wsServer={wsServerUrl} wsReconnect={false}/>);
 
             await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
 

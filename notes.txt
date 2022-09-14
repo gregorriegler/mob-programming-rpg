@@ -21,4 +21,3 @@
 
 # Tech
 - what about clearing old localStorage
-- gameId should be given as a prop to the component, the component should not read it from the url itself?

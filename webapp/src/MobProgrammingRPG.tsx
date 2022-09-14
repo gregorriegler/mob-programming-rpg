@@ -6,7 +6,6 @@ import { RealClock } from "./RealClock";
 import { roles } from "./model/Roles";
 import RoleDescriptionView from "./RoleDescriptionView";
 import { Clock } from "./model/Clock";
-import { gameIdFromUrl } from "./GameIdFromUrl";
 
 const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (gameId, defaultGame) => {
 
@@ -34,7 +33,8 @@ type MobProgrammingRPGProps = {
     rotateAfter?: number;
     clock?: Clock;
     wsServer: string,
-    wsReconnect?: boolean
+    wsReconnect?: boolean,
+    gameId?: string
 }
 
 const MobProgrammingRPG = (
@@ -43,12 +43,13 @@ const MobProgrammingRPG = (
         rotateAfter = 60 * 4,
         clock = new RealClock(),
         wsServer,
-        wsReconnect = true
+        wsReconnect = true,
+        gameId
     }: MobProgrammingRPGProps
 ) => {
     const [game, setGame] = useLocalStorageGame(
-        gameIdFromUrl(),
-        Game.withPlayers(startingPlayers, rotateAfter, gameIdFromUrl())
+        gameId,
+        Game.withPlayers(startingPlayers, rotateAfter, gameId)
     );
     const gameRef = useRef(game);
     const ws = useRef(null as WebSocket | null);
