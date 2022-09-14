@@ -59,7 +59,23 @@ const useWsGame = ([game, setGame], wsServer, wsReconnect) => {
         connectWs();
         // eslint-disable-next-line
     }, []);
-    return [game, setGame, gameRef, ws, wsReconnectIntervalId];
+
+    async function sendGameState() {
+        if (ws.current?.readyState !== 1) return;
+        const parse = JSON.parse(gameRef.current.toJSON());
+        const message = {
+            command: "save",
+            game: parse
+        }
+
+        ws.current?.send(JSON.stringify(message));
+    }
+
+    const setAndSendGame = function (game) {
+        setGame(game);
+        sendGameState().then(_ => {});
+    }
+    return [game, setAndSendGame, gameRef];
 }
 
 type MobProgrammingRPGProps = {
@@ -81,13 +97,12 @@ const MobProgrammingRPG = (
         gameId
     }: MobProgrammingRPGProps
 ) => {
-    const [game, setGame, gameRef, ws] = useWsGame(useLocalStorageGame(
+    const [game, setGame, gameRef] = useWsGame(useLocalStorageGame(
         gameId,
         Game.withPlayers(startingPlayers, rotateAfter, gameId)
     ), wsServer, wsReconnect);
 
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
-
 
     // todo refactor
     useEffect(() => {
@@ -118,20 +133,8 @@ const MobProgrammingRPG = (
         updateGameState();
     }
 
-    async function sendGameState() {
-        if (ws.current?.readyState !== 1) return;
-        const parse = JSON.parse(gameRef.current.toJSON());
-        const message = {
-            command: "save",
-            game: parse
-        }
-
-        ws.current?.send(JSON.stringify(message));
-    }
-
     function updateGameState() {
         setGame(gameRef.current.clone());
-        sendGameState().then(_ => {});
     }
 
     function timeOver() {
