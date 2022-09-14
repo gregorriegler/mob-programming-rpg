@@ -12,11 +12,7 @@ const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.
     function initialState() {
         if (gameId === undefined) return defaultGame;
         const json = localStorage.getItem(gameId);
-        if (json !== null) {
-            return Game.fromJSON(json);
-        } else {
-            return defaultGame;
-        }
+        return json !== null ? Game.fromJSON(json) : defaultGame;
     }
 
     const [game, setGame] = useState(initialState());
@@ -27,6 +23,14 @@ const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.
 
     return [game, setGame];
 };
+
+const useWsGame = ([game, setGame]) => {
+    const gameRef = useRef(game);
+    const ws = useRef(null as WebSocket | null);
+    const wsReconnectIntervalId = useRef(null as NodeJS.Timer | null);
+    
+    return [game, setGame, gameRef, ws, wsReconnectIntervalId];
+}
 
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
@@ -47,13 +51,10 @@ const MobProgrammingRPG = (
         gameId
     }: MobProgrammingRPGProps
 ) => {
-    const [game, setGame] = useLocalStorageGame(
+    const [game, setGame, gameRef, ws, wsReconnectIntervalId] = useWsGame(useLocalStorageGame(
         gameId,
         Game.withPlayers(startingPlayers, rotateAfter, gameId)
-    );
-    const gameRef = useRef(game);
-    const ws = useRef(null as WebSocket | null);
-    const wsReconnectIntervalId = useRef(null as NodeJS.Timer | null);
+    ));
 
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
