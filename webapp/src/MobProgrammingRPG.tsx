@@ -8,6 +8,7 @@ import RoleDescriptionView from "./RoleDescriptionView";
 import { Clock } from "./model/Clock";
 import { useLocalStorageGame } from "./infrastructure/UseLocalStorageGame";
 import { useWsGame } from "./infrastructure/UseWsGame";
+import { addGameIdToUrl, noGameIdInUrl } from "./infrastructure/GameIdFromUrl";
 
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
@@ -35,15 +36,9 @@ const MobProgrammingRPG = (
 
     const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
-    // todo refactor
     useEffect(() => {
-        function path() {
-            return window.location.pathname.replace(/\/+$/, '');
-        }
-
-        if (path() === process.env.PUBLIC_URL) {
-            const url = path() + '/' + game.id();
-            window.history.pushState('id', 'Title', url);
+        if (noGameIdInUrl()) {
+            addGameIdToUrl(game.id());
         }
         // eslint-disable-next-line
     }, [])
