@@ -24,6 +24,7 @@ export class WSServer {
             wss.clients.forEach((socket) => {
                 socket.close();
             });
+            wss.close();
         }
         process.on('SIGINT', gracefulWsShutdown); 
         process.on('SIGTERM', gracefulWsShutdown); 
