@@ -1,5 +1,5 @@
 # Timer
-- actually synchronizing the time
+- if you refresh in the middle of a running timer you are behind
 - notifications on timer end
 - timer sound
 - pause
