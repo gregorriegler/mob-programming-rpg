@@ -33,6 +33,7 @@ const TimerDisplay = (
     }
 
     const countdown = useRef(createCountdown());
+    document.title = countdown.current.timeLeftPretty();
 
     //todo there is no test synchronizing the start of the timers via ws
     useEffect(() => {

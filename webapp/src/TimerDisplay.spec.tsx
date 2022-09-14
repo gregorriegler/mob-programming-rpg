@@ -18,6 +18,7 @@ describe('TimerDisplay', () => {
         const timer = screen.getByTitle("timer");
         expect(timer).toBeInTheDocument();
         expect(timer).toHaveTextContent('04:00');
+        expect(global.document.title).toEqual('04:00');
     })
 
     it('shows the chosen time', () => {
@@ -37,6 +38,7 @@ describe('TimerDisplay', () => {
             advanceTimeBy(1000)
         })
 
+        expect(global.document.title).toEqual('00:02');
         expect(timer).toHaveTextContent('00:02');
     })
 

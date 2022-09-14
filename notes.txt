@@ -1,5 +1,4 @@
 # Timer
-- show timer in title
 - actually synchronizing the time
 - notifications on timer end
 - timer sound
