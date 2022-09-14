@@ -24,39 +24,10 @@ const useLocalStorageGame: (gameId, defaultGame) => [Game, React.Dispatch<React.
     return [game, setGame];
 };
 
-const useWsGame = ([game, setGame]) => {
+const useWsGame = ([game, setGame], wsServer, wsReconnect) => {
     const gameRef = useRef(game);
     const ws = useRef(null as WebSocket | null);
     const wsReconnectIntervalId = useRef(null as NodeJS.Timer | null);
-    
-    return [game, setGame, gameRef, ws, wsReconnectIntervalId];
-}
-
-type MobProgrammingRPGProps = {
-    startingPlayers?: string[];
-    rotateAfter?: number;
-    clock?: Clock;
-    wsServer?: string,
-    wsReconnect?: boolean,
-    gameId?: string
-}
-
-const MobProgrammingRPG = (
-    {
-        startingPlayers = [],
-        rotateAfter = 60 * 4,
-        clock = new RealClock(),
-        wsServer = "ws://localhost:8080",
-        wsReconnect = false,
-        gameId
-    }: MobProgrammingRPGProps
-) => {
-    const [game, setGame, gameRef, ws, wsReconnectIntervalId] = useWsGame(useLocalStorageGame(
-        gameId,
-        Game.withPlayers(startingPlayers, rotateAfter, gameId)
-    ));
-
-    const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
 
     useEffect(() => {
         function connectWs() {
@@ -88,7 +59,37 @@ const MobProgrammingRPG = (
         connectWs();
         // eslint-disable-next-line
     }, []);
+    return [game, setGame, gameRef, ws, wsReconnectIntervalId];
+}
 
+type MobProgrammingRPGProps = {
+    startingPlayers?: string[];
+    rotateAfter?: number;
+    clock?: Clock;
+    wsServer?: string,
+    wsReconnect?: boolean,
+    gameId?: string
+}
+
+const MobProgrammingRPG = (
+    {
+        startingPlayers = [],
+        rotateAfter = 60 * 4,
+        clock = new RealClock(),
+        wsServer = "ws://localhost:8080",
+        wsReconnect = false,
+        gameId
+    }: MobProgrammingRPGProps
+) => {
+    const [game, setGame, gameRef, ws] = useWsGame(useLocalStorageGame(
+        gameId,
+        Game.withPlayers(startingPlayers, rotateAfter, gameId)
+    ), wsServer, wsReconnect);
+
+    const [uiState, setUiState] = useState({showSettings: false, showWhoIsNext: false, timeIsOver: false});
+
+
+    // todo refactor
     useEffect(() => {
         function path() {
             return window.location.pathname.replace(/\/+$/, '');
