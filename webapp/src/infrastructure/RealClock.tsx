@@ -1,4 +1,4 @@
-import { Clock, MilliSeconds } from "./model/Clock";
+import { Clock, MilliSeconds } from "../model/Clock";
 
 export class RealClock implements Clock {
     currentTime(): MilliSeconds {

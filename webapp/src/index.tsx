@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import MobProgrammingRPG from "./MobProgrammingRPG";
-import { gameIdFromUrl } from "./GameIdFromUrl";
+import { gameIdFromUrl } from "./infrastructure/GameIdFromUrl";
 
 const root = ReactDOM.createRoot(document.getElementById('root')!!);
 root.render(

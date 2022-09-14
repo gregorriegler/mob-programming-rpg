@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Countdown } from "./model/Countdown";
-import { RealClock } from "./RealClock";
+import { RealClock } from "./infrastructure/RealClock";
 import { Clock } from "./model/Clock";
 
 function useForceUpdate() {
