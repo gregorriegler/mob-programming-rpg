@@ -11,7 +11,7 @@ describe('Game', () => {
 
         expect(game.id()).toEqual("gameId");
     });
-    
+
     it('creates a new id every time', () => {
         const game1 = Game.withPlayers([]);
         const game2 = Game.withPlayers([]);
@@ -25,7 +25,7 @@ describe('Game', () => {
         expect(game.players()).toEqual([]);
     });
 
-    it('can add a player', () => {
+    it('can set a player', () => {
         const game = createGame();
 
         game.setPlayers('Max');
@@ -33,7 +33,27 @@ describe('Game', () => {
         expect(game.players()).toEqual([new Player('Max')]);
     });
 
-    it('can add many players, even with dirty whitespace', () => {
+    it('can add a player to an empty game', () => {
+        const game = createGame();
+
+        game.addPlayer('Max');
+
+        expect(game.players()).toEqual([new Player('Max')]);
+    });
+
+    it('adds players to the end of the player list', () => {
+        const game = Game.withPlayers(["1", "2"]);
+
+        game.addPlayer('3');
+
+        expect(game.players()).toEqual([
+            new Player('1'),
+            new Player('2'),
+            new Player('3')
+        ]);
+    });
+
+    it('can set many players, even with dirty whitespace', () => {
         const game = createGame();
 
         game.setPlayers('Max,Rita,  Peter');
@@ -49,7 +69,7 @@ describe('Game', () => {
         const game = Game.withPlayers(['1', '2']);
         const player1 = game.players()[0];
         const player2 = game.players()[1];
-        
+
         player1.score("Driver")
         game.setPlayers('2,1');
 
@@ -82,7 +102,7 @@ describe('Game', () => {
     it('initialized with a 4 minute timer', () => {
         const game = createGame();
 
-        expect(game.timer()).toEqual(4*60);
+        expect(game.timer()).toEqual(4 * 60);
     });
 
     it('initializes with the timer stopped', () => {
@@ -93,7 +113,7 @@ describe('Game', () => {
 
     it('starts the timer', () => {
         const game = createGame();
-        
+
         game.startTimer()
 
         expect(game.timerStatus()).toEqual("STARTED");
@@ -102,7 +122,7 @@ describe('Game', () => {
     it('stops the timer', () => {
         const game = createGame();
         game.startTimer()
-        
+
         game.stopTimer()
 
         expect(game.timerStatus()).toEqual("STOPPED");
@@ -132,24 +152,24 @@ describe('Game', () => {
         expect(game.driver()).toEqual('Peter');
         expect(game.navigator()).toEqual('Sam');
     });
-    
+
     it('serializes to json', () => {
         const game = createGame();
         game.setPlayers('Max,Rita');
         game.rotate();
-        
+
         const json = game.toJSON();
-        
+
         const result = JSON.parse(json);
-        
+
         expect(result.players.length).toEqual(2);
         expect(result.players[0].name).toEqual('Max');
         expect(result.players[1].name).toEqual('Rita');
-        expect(result.timer.value).toEqual(4*60);
+        expect(result.timer.value).toEqual(4 * 60);
         expect(result.timer.status).toEqual("STOPPED");
         expect(result.rotations).toEqual(1);
     })
-    
+
     it('deserializes from json', () => {
         const game = Game.fromJSON(`
         {
@@ -172,7 +192,7 @@ describe('Game', () => {
           "rotations": 1
         }
         `);
-        
+
         expect(game.players().length).toEqual(1);
         expect(game.players()[0].name()).toEqual("Gregor");
         expect(game.players()[0].badges()).toEqual(["Mobber"]);
@@ -180,12 +200,12 @@ describe('Game', () => {
         expect(game.timerStatus()).toEqual("STOPPED");
         expect(game.rotations()).toEqual(1);
     })
-    
+
     it('is equal to its deserialized form', () => {
         const game = createGame();
         game.setPlayers('Max,Rita');
         const deserializedGame = Game.fromJSON(game.toJSON());
-        
+
         expect(game).toEqual(deserializedGame);
         expect(game.id()).toEqual(deserializedGame.id());
     })

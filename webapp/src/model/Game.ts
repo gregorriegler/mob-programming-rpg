@@ -86,6 +86,10 @@ export class Game {
             .map(it => this.findPlayerByName(it) || new Player(it));
     }
 
+    addPlayer(name: string) {
+        this._players.push(new Player(name))
+    }
+
     driver() {
         return this.whoIs(RoleIndex.Driver);
     }
