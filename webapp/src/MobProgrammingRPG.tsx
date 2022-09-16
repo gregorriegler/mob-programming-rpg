@@ -141,7 +141,8 @@ const MobProgrammingRPG = (
                   <button className="rpgui-button golden" onClick={hideAddPlayerForm}><p>Cancel</p></button>
                 </form>
               </div>
-                ||
+            }
+            {!uiState.showAddPlayerForm &&
               <button className="rpgui-button add-player-button" onClick={showAddPlayerForm}><p>Add Player</p></button>
             }
             <div className="rpgui-container framed-grey buttons">

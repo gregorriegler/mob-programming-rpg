@@ -20,4 +20,5 @@
 - grey color is not easy to see
 
 # Tech
+- Linter strikes only on build, too late.
 - what about clearing old localStorage
