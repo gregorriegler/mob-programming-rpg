@@ -124,6 +124,24 @@ ul {
     margin-right: 20px;
 }
 
+.add-player-button {
+    margin-left: 20px;
+}
+
+.add-player-form {
+    position: absolute;
+    max-width: 500px;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-player-form button {
+    margin-right: 40px;
+}
+
 .role-description h4 {
     text-align: left;
     margin-left: 0;

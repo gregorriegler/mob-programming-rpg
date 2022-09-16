@@ -111,6 +111,35 @@ describe('Mob Programming RPG', () => {
         expect(items[3]).toHaveTextContent('Ben (Mobber)');
     })
 
+    it('has a button to add a new player', () => {
+        render(<MobProgrammingRPG/>);
+
+        fireEvent.click(screen.getByText("Add Player"));
+
+        expect(screen.getByPlaceholderText(/Player Name/i)).toBeInTheDocument();
+        expect(screen.getByText(/Add/i)).toBeInTheDocument();
+    })
+
+    it('adds a single player', () => {
+        render(<MobProgrammingRPG/>);
+        fireEvent.click(screen.getByText("Add Player"));
+
+        fireEvent.change(screen.getByPlaceholderText(/Player Name/i), {target: {value: "1"}});
+        fireEvent.click(screen.getByText(/Add/i));
+
+        expect((getPlayerListItems())[0]).toHaveTextContent('1 (Driver)');
+        expect(screen.queryByPlaceholderText(/Player Name/i)).toBeNull();
+    })
+
+    it('cancels adding a single player', () => {
+        render(<MobProgrammingRPG/>);
+        fireEvent.click(screen.getByText("Add Player"));
+
+        fireEvent.click(screen.getByText(/Cancel/i));
+
+        expect(screen.queryByPlaceholderText(/Player Name/i)).toBeNull();
+    })
+
     it('has a rotate button that rotates the players', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
 
@@ -201,7 +230,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG
                 startingPlayers={["Gregor", "Peter", "Rita"]}
                 wsServer={wsServerUrl}
-               />);
+            />);
 
             expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
@@ -257,7 +286,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG rotateAfter={60 * 4}
                                       startingPlayers={["Gregor", "Peter", "Rita"]}
                                       clock={clock}
-                                     />);
+            />);
             fireEvent.click(screen.getByRole('button', {name: 'Start'}));
 
             advanceTimeBy(1000 * 60 * 4)
@@ -273,7 +302,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG rotateAfter={60 * 4}
                                       startingPlayers={["Gregor", "Peter", "Rita"]}
                                       clock={clock}
-                                     />);
+            />);
             fireEvent.click(screen.getByRole('button', {name: 'Start'}));
             advanceTimeBy(1000 * 60 * 4)
             fireEvent.click(screen.getByRole('button', {name: 'Close'}));

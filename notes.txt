@@ -5,7 +5,6 @@
 - pause
 
 # Settings
-- add player button next to last player
 - choose avatar
 - make driver,navigator configurable
 - timer configurable in settings

@@ -35,10 +35,11 @@ const MobProgrammingRPG = (
     ), wsServer, wsReconnect);
 
     const [uiState, setUiState] = useState({
+        showAddPlayerForm: false,
         showSettings: false,
         showWhoIsNext: false,
         showAbout: false,
-        timeIsOver: false
+        timeIsOver: false,
     });
 
     useEffect(() => {
@@ -72,6 +73,22 @@ const MobProgrammingRPG = (
         gameRef.current.stopTimer();
         rotate();
         explainWhoIsNext();
+    }
+
+    function showAddPlayerForm() {
+        setUiState({...uiState, showAddPlayerForm: true});
+    }
+
+    function hideAddPlayerForm() {
+        setUiState({...uiState, showAddPlayerForm: false});
+    }
+
+    function submitAddPlayerForm(e) {
+        const playerName = new FormData(e.target).get("name") as string;
+        gameRef.current.addPlayer(playerName);
+        updateGameState();
+        hideAddPlayerForm();
+        e.preventDefault();
     }
 
     function explainWhoIsNext() {
@@ -116,6 +133,17 @@ const MobProgrammingRPG = (
                     />
                 )}
             </ul>
+            {uiState.showAddPlayerForm &&
+              <div className="add-player-form rpgui-container framed-golden-2">
+                <form onSubmit={submitAddPlayerForm}>
+                  <input placeholder={"Player Name"} name="name"/>
+                  <button type="submit" className="rpgui-button golden"><p>Add</p></button>
+                  <button className="rpgui-button golden" onClick={hideAddPlayerForm}><p>Cancel</p></button>
+                </form>
+              </div>
+                ||
+              <button className="rpgui-button add-player-button" onClick={showAddPlayerForm}><p>Add Player</p></button>
+            }
             <div className="rpgui-container framed-grey buttons">
                 <button className="rpgui-button" onClick={toggleSettings}><p>Settings</p></button>
                 <button className="rpgui-button" onClick={toggleHelp}><p>Help</p></button>
