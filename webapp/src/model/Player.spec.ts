@@ -12,12 +12,19 @@ describe('Player', () => {
         expect(player.name()).toBe('Gregor');
         expect(player.level()).toBe(0);
         expect(player.badges()).toEqual([]);
+        expect(player.avatar()).toEqual('dodo');
         expectPoints([
             ['Driver', 0],
             ['Navigator', 0],
             ['Mobber', 0],
         ]);
     });
+    
+    it('can choose an avatar', () => {
+        player.changeAvatar('mut');
+
+        expect(player.avatar()).toEqual('mut');
+    })
 
     it('scores as Driver', () => {
         player.score('Driver');
@@ -126,12 +133,14 @@ describe('Player', () => {
     it('converts to object', () => {
         player.scoreTimes('Mobber', 3);
         player.selectRole('Researcher');
+        player.changeAvatar('dev');
 
         const json = player.toObject();
 
         expect(json).toEqual(
             {
                 name: 'Gregor',
+                avatar: 'dev',
                 roles: {
                     "Mobber": 3,
                     "Driver": 0,
@@ -147,6 +156,7 @@ describe('Player', () => {
         const player = Player.fromObject(
             {
                 name: 'Gregor',
+                avatar: 'dev',
                 roles: {
                     "Mobber": 3,
                     "Driver": 0,
@@ -158,6 +168,7 @@ describe('Player', () => {
         );
 
         expect(player.name()).toEqual('Gregor');
+        expect(player.avatar()).toEqual('dev');
         expect(player.roles()).toEqual([
             "Mobber",
             "Driver",

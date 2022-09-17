@@ -1,4 +1,4 @@
-import { Player } from "./Player";
+import { Avatar, Player } from "./Player";
 
 enum RoleIndex {
     Driver,
@@ -86,8 +86,8 @@ export class Game {
             .map(it => this.findPlayerByName(it) || new Player(it));
     }
 
-    addPlayer(name: string) {
-        this._players.push(new Player(name))
+    addPlayer(name: string, avatar: Avatar) {
+        this._players.push(new Player(name, avatar))
     }
 
     driver() {

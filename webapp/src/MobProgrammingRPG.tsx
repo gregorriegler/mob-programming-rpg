@@ -9,6 +9,7 @@ import { Clock } from "./model/Clock";
 import { useLocalStorageGame } from "./infrastructure/UseLocalStorageGame";
 import { useWsGame } from "./infrastructure/UseWsGame";
 import { addGameIdToUrl, noGameIdInUrl } from "./infrastructure/GameIdFromUrl";
+import { avatars } from "./model/Player";
 
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
@@ -84,8 +85,10 @@ const MobProgrammingRPG = (
     }
 
     function submitAddPlayerForm(e) {
-        const playerName = new FormData(e.target).get("name") as string;
-        gameRef.current.addPlayer(playerName);
+        const formData = new FormData(e.target);
+        const playerName = formData.get("name") as string;
+        const avatar = formData.get("avatar") as string;
+        gameRef.current.addPlayer(playerName, avatar);
         updateGameState();
         hideAddPlayerForm();
         e.preventDefault();
@@ -137,6 +140,22 @@ const MobProgrammingRPG = (
               <div className="add-player-form rpgui-container framed-golden-2">
                 <form onSubmit={submitAddPlayerForm}>
                   <input placeholder={"Player Name"} name="name"/>
+
+                  <div className="avatar-select">
+                    <input type="hidden" id="avatar-input" value={avatars[0]} name="avatar"/>
+                      {avatars.map((avatar) =>
+                          <div className="avatar-option" id={`avatar-option-${avatar}`} key={avatar} onClick={() => {
+                              document.getElementById('avatar-input')!!.setAttribute('value', avatar)
+                              Array.from(document.getElementsByClassName('avatar-option')).forEach((element) => {
+                                  element.setAttribute('class', 'avatar-option');
+                              })
+                              document.getElementById('avatar-option-' + avatar)!!.setAttribute('class', 'avatar-option selected');
+                          }}>
+                              <img src={`${process.env.PUBLIC_URL}/img/avatars/${avatar}.png`} alt={avatar}/>
+                          </div>
+                      )}
+                  </div>
+
                   <button type="submit" className="rpgui-button golden"><p>Add</p></button>
                   <button className="rpgui-button golden" onClick={hideAddPlayerForm}><p>Cancel</p></button>
                 </form>

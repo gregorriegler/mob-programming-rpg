@@ -36,15 +36,15 @@ describe('Game', () => {
     it('can add a player to an empty game', () => {
         const game = createGame();
 
-        game.addPlayer('Max');
+        game.addPlayer('Max', 'dev');
 
-        expect(game.players()).toEqual([new Player('Max')]);
+        expect(game.players()).toEqual([new Player('Max', 'dev')]);
     });
 
     it('adds players to the end of the player list', () => {
         const game = Game.withPlayers(["1", "2"]);
 
-        game.addPlayer('3');
+        game.addPlayer('3', 'dodo');
 
         expect(game.players()).toEqual([
             new Player('1'),

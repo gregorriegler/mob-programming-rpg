@@ -55,6 +55,12 @@ ul {
     width: 380px;
 }
 
+.avatar {
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
 .role {
     position: relative;
 }
@@ -154,4 +160,12 @@ ul {
 .yellow {
     font-weight: bold;
     color: yellow !important;
+}
+
+.avatar-option {
+    float: left;
+}
+
+.avatar-option.selected {
+    background-color: #4e4a4e;
 }

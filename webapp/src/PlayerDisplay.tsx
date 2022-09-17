@@ -14,8 +14,9 @@ const PlayerDisplay = ({player, updateGameState = () => {}, role = "Mobber"}) =>
         event.preventDefault();
     }
 
-    return <li className="player rpgui-container framed-golden" aria-label={player.name()}>
-        <h2>{player.name()} ({role})</h2>
+    return <li className='player rpgui-container framed-golden' aria-label={player.name()}>
+        <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar()}.png`} alt={player.avatar()}/>{player.name()} ({role})</h2>
+        
         {player.badges().map(role => {
             return <Badge key={role} role={role}/>
         })}

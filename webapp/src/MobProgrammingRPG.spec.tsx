@@ -125,9 +125,11 @@ describe('Mob Programming RPG', () => {
         fireEvent.click(screen.getByText("Add Player"));
 
         fireEvent.change(screen.getByPlaceholderText(/Player Name/i), {target: {value: "1"}});
+        fireEvent.click(screen.getByAltText(/dev/i));
         fireEvent.click(screen.getByText(/Add/i));
 
         expect((getPlayerListItems())[0]).toHaveTextContent('1 (Driver)');
+        expect((getPlayerListItems())[0]).toContainElement(screen.getByAltText('dev'));
         expect(screen.queryByPlaceholderText(/Player Name/i)).toBeNull();
     })
 
