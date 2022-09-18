@@ -37,6 +37,11 @@ describe('PlayerDisplay', () => {
         render(<PlayerDisplay player={new Player("Roger")}/>);
         expect(screen.getByRole('listitem')).toHaveTextContent("Roger");
     });
+    
+    it('shows the players role', () => {
+        render(<PlayerDisplay player={new Player("Roger")}/>);
+        expect(screen.getByRole('listitem')).toHaveTextContent("Driver");
+    });
 
     it('shows the initial points', () => {
         render(<PlayerDisplay player={new Player("Roger")}/>);

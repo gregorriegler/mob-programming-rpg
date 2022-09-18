@@ -15,17 +15,19 @@ const PlayerDisplay = ({player, updateGameState = () => {}, role = "Mobber"}) =>
     }
 
     return <li className='player rpgui-container framed-golden' aria-label={player.name()}>
-        <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar()}.png`} alt={player.avatar()}/>{player.name()} ({role})</h2>
-        
-        {player.badges().map(role => {
-            return <Badge key={role} role={role}/>
-        })}
+        <h2>{role}</h2>
+        <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar()}.png`}
+                 alt={player.avatar()}/>{player.name()}</h2>
+
+        {player.badges().map(role => <Badge key={role} role={role}/>)}
         {player.badges().length < 4 && Array.from(Array(4 - player.badges().length).keys())
             .map((item, index) => <div key={index} className="rpgui-icon magic-slot"/>)}
-        {player.roles().map(role => {
-            return <RolePoints key={role} role={role} player={player} updateGame={updateGameState} uiState={uiState}
-                               setUiState={setUiState}/>
-        })}
+        {player.roles().map(role => <RolePoints key={role}
+                                                role={role}
+                                                player={player}
+                                                updateGame={updateGameState}
+                                                uiState={uiState}
+                                                setUiState={setUiState}/>)}
         {player.selectableRoles().length > 0 &&
           <form onSubmit={selectRole}>
             <label>

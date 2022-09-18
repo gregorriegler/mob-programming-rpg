@@ -44,7 +44,7 @@ describe('Game', () => {
     it('adds players to the end of the player list', () => {
         const game = Game.withPlayers(["1", "2"]);
 
-        game.addPlayer('3', 'dodo');
+        game.addPlayer('  3', 'dodo');
 
         expect(game.players()).toEqual([
             new Player('1'),

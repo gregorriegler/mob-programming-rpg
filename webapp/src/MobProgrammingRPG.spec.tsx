@@ -7,7 +7,7 @@ import WS from "jest-websocket-mock";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', {name: /Player List/});
-    return within(playerList).getAllByRole("listitem");
+    return within(playerList).queryAllByRole("listitem");
 }
 
 function getSettingsButton() {
@@ -48,7 +48,8 @@ describe('Mob Programming RPG', () => {
     it('starts with an empty list of players', () => {
         render(<MobProgrammingRPG/>);
         const playerList = screen.getByRole('list', {name: /Player List/});
-        expect(playerList).toBeEmptyDOMElement();
+        expect(playerList.childElementCount).toEqual(1);
+        expect(playerList).toHaveTextContent('Add Player');
     });
 
     it('continues a game', () => {
@@ -81,7 +82,8 @@ describe('Mob Programming RPG', () => {
         render(<MobProgrammingRPG/>);
 
         const playerList = screen.getByRole('list', {name: /Player List/});
-        expect(playerList).toBeEmptyDOMElement();
+        expect(playerList.childElementCount).toEqual(1);
+        expect(playerList).toHaveTextContent('Add Player');
     });
 
     it('changes url for the created game id', () => {
@@ -105,10 +107,10 @@ describe('Mob Programming RPG', () => {
         render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita", "Ben"]}/>);
 
         const items = getPlayerListItems();
-        expect(items[0]).toHaveTextContent('Gregor (Driver)');
-        expect(items[1]).toHaveTextContent('Peter (Navigator)');
-        expect(items[2]).toHaveTextContent('Rita (Mobber)');
-        expect(items[3]).toHaveTextContent('Ben (Mobber)');
+        expect(items[0]).toHaveTextContent('Gregor');
+        expect(items[1]).toHaveTextContent('Peter');
+        expect(items[2]).toHaveTextContent('Rita');
+        expect(items[3]).toHaveTextContent('Ben');
     })
 
     it('has a button to add a new player', () => {
@@ -117,7 +119,7 @@ describe('Mob Programming RPG', () => {
         fireEvent.click(screen.getByText("Add Player"));
 
         expect(screen.getByPlaceholderText(/Player Name/i)).toBeInTheDocument();
-        expect(screen.getByText(/Add/i)).toBeInTheDocument();
+        expect(screen.getByText('Add')).toBeInTheDocument();
     })
 
     it('adds a single player', () => {
@@ -126,11 +128,24 @@ describe('Mob Programming RPG', () => {
 
         fireEvent.change(screen.getByPlaceholderText(/Player Name/i), {target: {value: "1"}});
         fireEvent.click(screen.getByAltText(/dev/i));
-        fireEvent.click(screen.getByText(/Add/i));
+        fireEvent.click(screen.getByText('Add'));
 
-        expect((getPlayerListItems())[0]).toHaveTextContent('1 (Driver)');
+        expect((getPlayerListItems())[0]).toHaveTextContent('1');
         expect((getPlayerListItems())[0]).toContainElement(screen.getByAltText('dev'));
         expect(screen.queryByPlaceholderText(/Player Name/i)).toBeNull();
+    })
+    
+    it('does not add a player that has no name', () => {
+        render(<MobProgrammingRPG/>);
+        fireEvent.click(screen.getByText("Add Player"));
+
+        fireEvent.change(screen.getByPlaceholderText(/Player Name/i), {target: {value: "    "}});
+        fireEvent.click(screen.getByAltText(/dev/i));
+        fireEvent.click(screen.getByText('Add'));
+
+        expect((getPlayerListItems())).toHaveLength(0)
+        expect(screen.getByPlaceholderText(/Player Name/i)).toBeInTheDocument();
+        expect(screen.getByText('Add')).toBeInTheDocument();
     })
 
     it('cancels adding a single player', () => {
@@ -148,9 +163,9 @@ describe('Mob Programming RPG', () => {
         fireEvent.click(getRotateButton());
 
         const items = getPlayerListItems();
-        expect(items[0]).toHaveTextContent('Gregor (Mobber)');
-        expect(items[1]).toHaveTextContent('Peter (Driver)');
-        expect(items[2]).toHaveTextContent('Rita (Navigator)');
+        expect(items[0]).toHaveTextContent('Mobber');
+        expect(items[1]).toHaveTextContent('Driver');
+        expect(items[2]).toHaveTextContent('Navigator');
     })
 
     it("has a help button once clicked shows what a player should do", () => {

@@ -9,7 +9,7 @@ import { Clock } from "./model/Clock";
 import { useLocalStorageGame } from "./infrastructure/UseLocalStorageGame";
 import { useWsGame } from "./infrastructure/UseWsGame";
 import { addGameIdToUrl, noGameIdInUrl } from "./infrastructure/GameIdFromUrl";
-import { avatars } from "./model/Player";
+import { AvatarSelect } from "./AvatarSelect";
 
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
@@ -30,6 +30,7 @@ const MobProgrammingRPG = (
         gameId
     }: MobProgrammingRPGProps
 ) => {
+
     const [game, setGame, gameRef] = useWsGame(useLocalStorageGame(
         gameId,
         Game.withPlayers(startingPlayers, rotateAfter, gameId)
@@ -85,13 +86,14 @@ const MobProgrammingRPG = (
     }
 
     function submitAddPlayerForm(e) {
+        e.preventDefault();
         const formData = new FormData(e.target);
         const playerName = formData.get("name") as string;
+        if(playerName.trim() === "") return;
         const avatar = formData.get("avatar") as string;
         gameRef.current.addPlayer(playerName, avatar);
         updateGameState();
         hideAddPlayerForm();
-        e.preventDefault();
     }
 
     function explainWhoIsNext() {
@@ -135,34 +137,22 @@ const MobProgrammingRPG = (
                         key={player.name()}
                     />
                 )}
+                {!uiState.showAddPlayerForm &&
+                  <button className="rpgui-button add-player-button" onClick={showAddPlayerForm}>
+                    <p>Add Player</p>
+                  </button>
+                }
             </ul>
             {uiState.showAddPlayerForm &&
               <div className="add-player-form rpgui-container framed-golden-2">
                 <form onSubmit={submitAddPlayerForm}>
+                  <h2>Add new Player</h2>
                   <input placeholder={"Player Name"} name="name"/>
-
-                  <div className="avatar-select">
-                    <input type="hidden" id="avatar-input" value={avatars[0]} name="avatar"/>
-                      {avatars.map((avatar) =>
-                          <div className="avatar-option" id={`avatar-option-${avatar}`} key={avatar} onClick={() => {
-                              document.getElementById('avatar-input')!!.setAttribute('value', avatar)
-                              Array.from(document.getElementsByClassName('avatar-option')).forEach((element) => {
-                                  element.setAttribute('class', 'avatar-option');
-                              })
-                              document.getElementById('avatar-option-' + avatar)!!.setAttribute('class', 'avatar-option selected');
-                          }}>
-                              <img src={`${process.env.PUBLIC_URL}/img/avatars/${avatar}.png`} alt={avatar}/>
-                          </div>
-                      )}
-                  </div>
-
+                  <AvatarSelect/>
                   <button type="submit" className="rpgui-button golden"><p>Add</p></button>
                   <button className="rpgui-button golden" onClick={hideAddPlayerForm}><p>Cancel</p></button>
                 </form>
               </div>
-            }
-            {!uiState.showAddPlayerForm &&
-              <button className="rpgui-button add-player-button" onClick={showAddPlayerForm}><p>Add Player</p></button>
             }
             <div className="rpgui-container framed-grey buttons">
                 <button className="rpgui-button" onClick={toggleSettings}><p>Settings</p></button>

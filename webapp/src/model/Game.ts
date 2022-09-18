@@ -87,7 +87,7 @@ export class Game {
     }
 
     addPlayer(name: string, avatar: Avatar) {
-        this._players.push(new Player(name, avatar))
+        this._players.push(new Player(name.trim(), avatar))
     }
 
     driver() {
