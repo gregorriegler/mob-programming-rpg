@@ -9,7 +9,7 @@ import { Clock } from "./model/Clock";
 import { useLocalStorageGame } from "./infrastructure/UseLocalStorageGame";
 import { useWsGame } from "./infrastructure/UseWsGame";
 import { addGameIdToUrl, noGameIdInUrl } from "./infrastructure/GameIdFromUrl";
-import { AvatarSelect } from "./AvatarSelect";
+import { AddPlayerForm } from "./AddPlayerForm";
 
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
@@ -76,24 +76,8 @@ const MobProgrammingRPG = (
         rotate();
         explainWhoIsNext();
     }
-
     function showAddPlayerForm() {
         setUiState({...uiState, showAddPlayerForm: true});
-    }
-
-    function hideAddPlayerForm() {
-        setUiState({...uiState, showAddPlayerForm: false});
-    }
-
-    function submitAddPlayerForm(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const playerName = formData.get("name") as string;
-        if(playerName.trim() === "") return;
-        const avatar = formData.get("avatar") as string;
-        gameRef.current.addPlayer(playerName, avatar);
-        updateGameState();
-        hideAddPlayerForm();
     }
 
     function explainWhoIsNext() {
@@ -122,6 +106,16 @@ const MobProgrammingRPG = (
         updateGameState();
     }
 
+    function addPlayer(playerName: string, avatar: string) {
+        gameRef.current.addPlayer(playerName, avatar);
+        updateGameState();
+        hideAddPlayerForm();
+    }
+    
+    function hideAddPlayerForm() {
+        setUiState({...uiState, showAddPlayerForm: false});
+    }
+
     return (
         <div className="rpgui-container framed full">
             <h1>
@@ -143,17 +137,8 @@ const MobProgrammingRPG = (
                   </button>
                 }
             </ul>
-            {uiState.showAddPlayerForm &&
-              <div className="add-player-form rpgui-container framed-golden-2">
-                <form onSubmit={submitAddPlayerForm}>
-                  <h2>Add new Player</h2>
-                  <input placeholder={"Player Name"} name="name"/>
-                  <AvatarSelect/>
-                  <button type="submit" className="rpgui-button golden"><p>Add</p></button>
-                  <button className="rpgui-button golden" onClick={hideAddPlayerForm}><p>Cancel</p></button>
-                </form>
-              </div>
-            }
+            {uiState.showAddPlayerForm && <AddPlayerForm onSubmit={addPlayer} onCancel={hideAddPlayerForm} />}
+            
             <div className="rpgui-container framed-grey buttons">
                 <button className="rpgui-button" onClick={toggleSettings}><p>Settings</p></button>
                 <button className="rpgui-button" onClick={toggleHelp}><p>Help</p></button>

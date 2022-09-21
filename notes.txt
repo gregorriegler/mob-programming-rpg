@@ -5,7 +5,6 @@
 - pause
 
 # Settings
-- choose avatar
 - make driver,navigator configurable
 - timer configurable in settings
 - remove player button on each player
