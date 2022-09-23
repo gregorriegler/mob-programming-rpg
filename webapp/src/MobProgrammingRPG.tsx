@@ -40,7 +40,7 @@ const MobProgrammingRPG = (
     const [uiState, setUiState] = useState({
         showAddPlayerForm: false,
         showSettings: false,
-        showWhoIsNext: false,
+        showHelp: false,
         showAbout: false,
         timeIsOver: false,
     });
@@ -81,7 +81,7 @@ const MobProgrammingRPG = (
     };
 
     const continuePlaying = () => {
-        closeWhoIsNext()
+        closeHelp()
         gameRef.current.startTimer();
         updateGameState();
     };
@@ -95,11 +95,11 @@ const MobProgrammingRPG = (
     }
 
     function explainWhoIsNext() {
-        setUiState({...uiState, showWhoIsNext: true, timeIsOver: true});
+        setUiState({...uiState, showHelp: true, timeIsOver: true});
     }
 
     function toggleHelp() {
-        setUiState({...uiState, showWhoIsNext: !uiState.showWhoIsNext, timeIsOver: false});
+        setUiState({...uiState, showHelp: !uiState.showHelp, timeIsOver: false});
     }
 
     function toggleAbout() {
@@ -110,8 +110,8 @@ const MobProgrammingRPG = (
         setUiState({...uiState, showAbout: false});
     }
 
-    function closeWhoIsNext() {
-        setUiState({...uiState, showWhoIsNext: false});
+    function closeHelp() {
+        setUiState({...uiState, showHelp: false});
     }
     
     function hideAddPlayerForm() {
@@ -154,7 +154,8 @@ const MobProgrammingRPG = (
                     onStart={continuePlaying}
                 />
             </div>
-            {uiState.showWhoIsNext &&
+            
+            {uiState.showHelp &&
               <div className="help-overlay rpgui-container framed-golden-2">
                   {uiState.timeIsOver &&
                     <>
@@ -175,7 +176,7 @@ const MobProgrammingRPG = (
                 </div>
 
                 <br className="clear-left"/>
-                <button className="rpgui-button golden close-button" onClick={closeWhoIsNext}>
+                <button className="rpgui-button golden close-button" onClick={closeHelp}>
                   <p>Close</p>
                 </button>
               </div>
