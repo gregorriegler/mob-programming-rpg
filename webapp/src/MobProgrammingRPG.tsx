@@ -52,31 +52,44 @@ const MobProgrammingRPG = (
         // eslint-disable-next-line
     }, [])
 
-    function toggleSettings() {
-        setUiState({...uiState, showSettings: !uiState.showSettings});
-    }
+    const updateGameState = () => {
+        setGame(gameRef.current.clone());
+    };
 
-    function changePlayers(event): void {
+    const changePlayers = (event): void => {
         const players = new FormData(event.target).get("change-players") as string;
         gameRef.current.setPlayers(players);
         updateGameState();
         event.preventDefault();
-    }
+    };
 
-    function rotate() {
+    const addPlayer = (playerName: string, avatar: string) => {
+        gameRef.current.addPlayer(playerName, avatar);
+        updateGameState();
+        hideAddPlayerForm();
+    };
+
+    const rotate = () => {
         gameRef.current.rotate();
         updateGameState();
-    }
+    };
 
-    function updateGameState() {
-        setGame(gameRef.current.clone());
-    }
-
-    function timeOver() {
+    const timeOver = () => {
         gameRef.current.stopTimer();
         rotate();
         explainWhoIsNext();
+    };
+
+    const continuePlaying = () => {
+        closeWhoIsNext()
+        gameRef.current.startTimer();
+        updateGameState();
+    };
+
+    function toggleSettings() {
+        setUiState({...uiState, showSettings: !uiState.showSettings});
     }
+
     function showAddPlayerForm() {
         setUiState({...uiState, showAddPlayerForm: true});
     }
@@ -99,18 +112,6 @@ const MobProgrammingRPG = (
 
     function closeWhoIsNext() {
         setUiState({...uiState, showWhoIsNext: false});
-    }
-
-    function continuePlaying() {
-        closeWhoIsNext()
-        gameRef.current.startTimer();
-        updateGameState();
-    }
-
-    function addPlayer(playerName: string, avatar: string) {
-        gameRef.current.addPlayer(playerName, avatar);
-        updateGameState();
-        hideAddPlayerForm();
     }
     
     function hideAddPlayerForm() {

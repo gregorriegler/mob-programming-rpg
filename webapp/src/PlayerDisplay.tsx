@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Role } from "./model/Roles";
+import {noOp} from "./model/Func";
 
 
-const PlayerDisplay = ({player, updateGameState = () => {}, role = "Mobber"}) => {
+const PlayerDisplay = ({player, updateGameState = noOp, role = "Mobber"}) => {
 
     const [uiState, setUiState] = useState({addingPointsFor: []})
 

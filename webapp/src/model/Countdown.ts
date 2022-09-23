@@ -1,4 +1,5 @@
-import { Clock, format, MilliSeconds } from "./Clock";
+import {Clock, format, MilliSeconds} from "./Clock";
+import {F, noOp} from "./Func";
 
 export type CountdownStatus = "STOPPED" | "RUNNING";
 
@@ -11,7 +12,7 @@ export class Countdown {
     private readonly _onFinish: () => void;
     private readonly _updateTime: (prettyTime: string) => void;
 
-    constructor(from: MilliSeconds, onFinish: () => void, clock: Clock, updateTime: (prettyTime: string) => void = () => {}) {
+    constructor(from: MilliSeconds, onFinish: F<void>, updateTime = noOp, clock: Clock) {
         this._from = from;
         this._status = "STOPPED";
         this._clock = clock;
@@ -34,7 +35,7 @@ export class Countdown {
     }
 
     start() {
-        if(this._status === "RUNNING") return;
+        if (this._status === "RUNNING") return;
         this._status = "RUNNING";
         this._startedAt = this._clock.currentTime();
         const atLeastEverySecond = () => {
