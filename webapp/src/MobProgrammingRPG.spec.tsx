@@ -231,7 +231,7 @@ describe('Mob Programming RPG', () => {
 
             fireEvent.change(getTimerInput(), {target: {value: '10'}});
             fireEvent.click(screen.getByText("Save"));
-            
+             
             expect(screen.getByTitle("timer")).toHaveTextContent('10:00');
         })
 
