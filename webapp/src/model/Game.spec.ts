@@ -128,6 +128,15 @@ describe('Game', () => {
         expect(game.timerStatus()).toEqual("STOPPED");
     });
 
+    it('changes the timer', () => {
+        const game = createGame();
+
+        game.
+        changeTimer(10*60)
+
+        expect(game.timer()).toEqual(600);
+    });
+    
     it('rotates', () => {
         const game = createGame();
         game.setPlayers('Max,Rita,Peter,Sam');

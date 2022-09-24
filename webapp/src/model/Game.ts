@@ -1,4 +1,4 @@
-import { Avatar, Player } from "./Player";
+import {Avatar, Player} from "./Player";
 
 enum RoleIndex {
     Driver,
@@ -65,6 +65,10 @@ export class Game {
 
     timer() {
         return this._timer;
+    }
+
+    changeTimer(timer: number) {
+        this._timer = timer;
     }
 
     timerStatus() {
