@@ -67,6 +67,10 @@ export class Game {
         return this._timer;
     }
 
+    timerInMinutes() {
+        return this._timer / 60;
+    }
+
     changeTimer(timer: number) {
         this._timer = timer;
     }

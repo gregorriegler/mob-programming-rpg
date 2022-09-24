@@ -22,14 +22,14 @@ describe('TimerDisplay', () => {
     })
 
     it('shows the chosen time', () => {
-        render(<TimerDisplay clock={clock} rotateAfter={3}/>);
+        render(<TimerDisplay clock={clock} timer={3}/>);
 
         const timer = screen.getByTitle("timer");
         expect(timer).toHaveTextContent('00:03');
     })
 
     it('plays the time', () => {
-        render(<TimerDisplay clock={clock} rotateAfter={3}/>);
+        render(<TimerDisplay clock={clock} timer={3}/>);
         const timer = screen.getByTitle("timer");
         const startButton = screen.getByRole("button", {name: /start/i});
         fireEvent.click(startButton);
@@ -44,7 +44,7 @@ describe('TimerDisplay', () => {
 
     it('notifies when over', () => {
         const notify = jest.fn();
-        render(<TimerDisplay clock={clock} rotateAfter={3} onFinish={notify}/>);
+        render(<TimerDisplay clock={clock} timer={3} onFinish={notify}/>);
         const startButton = screen.getByRole("button", {name: /start/i});
         fireEvent.click(startButton);
 
@@ -57,7 +57,7 @@ describe('TimerDisplay', () => {
 
     it('starts the time again', () => {
         const notify = jest.fn();
-        render(<TimerDisplay clock={clock} rotateAfter={2} onFinish={notify}/>);
+        render(<TimerDisplay clock={clock} timer={2} onFinish={notify}/>);
         const timer = screen.getByTitle("timer");
         const startButton = screen.getByRole("button", {name: /start/i});
         fireEvent.click(startButton);

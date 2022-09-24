@@ -55,9 +55,12 @@ const MobProgrammingRPG = (
         setGame(gameRef.current.clone());
     };
 
-    const changePlayers = (event): void => {
-        const players = new FormData(event.target).get("change-players") as string;
+    const submitSettingsForm = (event): void => {
+        const formData = new FormData(event.target);
+        const players = formData.get("change-players") as string;
+        const timer = formData.get("change-timer") as string;
         gameRef.current.setPlayers(players);
+        gameRef.current.changeTimer(parseInt(timer) * 60);
         updateGameState();
         event.preventDefault();
     };
@@ -146,7 +149,7 @@ const MobProgrammingRPG = (
                 <button className="rpgui-button" onClick={rotate}><p>Rotate</p></button>
                 <button className="rpgui-button" onClick={toggleAbout}><p>About</p></button>
                 <TimerDisplay
-                    rotateAfter={game.timer()}
+                    timer={game.timer()}
                     status={game.timerStatus()}
                     clock={clock}
                     onFinish={timeOver}
@@ -158,10 +161,14 @@ const MobProgrammingRPG = (
 
             {uiState.showSettings &&
                 <div className="rpgui-container framed-golden settings">
-                    <form onSubmit={changePlayers}>
+                    <form onSubmit={submitSettingsForm}>
                         <label>Change Players
                             <textarea id="change-players" name="change-players"
                                       defaultValue={game.playerNames()}></textarea>
+                        </label>
+                        <label>Change Timer (in minutes)
+                            <input id="change-timer" name="change-timer"
+                                      defaultValue={game.timerInMinutes()}></input>
                         </label>
                         <button type="submit" className="rpgui-button"><p>Save</p></button>
                         <button className="rpgui-button" onClick={toggleSettings}><p>Close</p></button>

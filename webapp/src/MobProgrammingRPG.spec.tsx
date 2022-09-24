@@ -18,6 +18,10 @@ function getPlayersTextarea() {
     return screen.getByLabelText('Change Players');
 }
 
+function getTimerInput() {
+    return screen.getByLabelText(/Change Timer/);
+}
+
 function getRotateButton() {
     return screen.getByRole('button', {name: 'Rotate'});
 }
@@ -211,6 +215,24 @@ describe('Mob Programming RPG', () => {
             expect(items[0]).toHaveTextContent('Gregor');
             expect(items[1]).toHaveTextContent('Max');
             expect(items[2]).toHaveTextContent('Rita');
+        })
+        
+        it('that shows the timer in minutes', () => {
+            render(<MobProgrammingRPG/>);
+
+            fireEvent.click(getSettingsButton());
+
+            expect(getTimerInput()).toHaveValue("4");
+        })
+
+        it('that allows to change the timer', () => {
+            render(<MobProgrammingRPG/>);
+            fireEvent.click(getSettingsButton());
+
+            fireEvent.change(getTimerInput(), {target: {value: '10'}});
+            fireEvent.click(screen.getByText("Save"));
+            
+            expect(screen.getByTitle("timer")).toHaveTextContent('10:00');
         })
 
         it('close', () => {

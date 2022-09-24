@@ -12,12 +12,24 @@ export class Countdown {
     private readonly _onFinish: () => void;
     private readonly _updateTime: (prettyTime: string) => void;
 
+    static fromMinutes(from: number, onFinish: F<void>, updateTime = noOp, clock: Clock) {
+        return new Countdown(from * 60000, onFinish, updateTime, clock)
+    }
+
     constructor(from: MilliSeconds, onFinish: F<void>, updateTime = noOp, clock: Clock) {
         this._from = from;
         this._status = "STOPPED";
         this._clock = clock;
         this._onFinish = onFinish;
         this._updateTime = updateTime;
+    }
+
+    from() {
+        return this._from
+    }
+
+    startsFromSeconds(seconds) {
+        return this._from === seconds * 1000
     }
 
     timeLeft(): MilliSeconds {

@@ -11,6 +11,16 @@ describe('Countdown', () => {
         jest.useFakeTimers();
     })
 
+    it('starts from', () => {
+        const countdown = new Countdown(3000, noOp, noOp, clock);
+        expect(countdown.from()).toBe(3000);
+    })
+
+    it('starts from minutes', () => {
+        const countdown = Countdown.fromMinutes(3, noOp, noOp, clock);
+        expect(countdown.from()).toBe(3000 * 60);
+    })
+
     it('provides time left', () => {
         const countdown = new Countdown(3000, noOp, noOp, clock);
         expect(countdown.timeLeft()).toBe(3000);

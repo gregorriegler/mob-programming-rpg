@@ -11,7 +11,7 @@ function useForceUpdate() {
 }
 
 type TimerDisplayProps = {
-    rotateAfter?: number;
+    timer?: number;
     status?: string
     clock?: Clock;
     onFinish?: () => void;
@@ -20,7 +20,7 @@ type TimerDisplayProps = {
 
 const TimerDisplay = (
     {
-        rotateAfter = 60 * 4,
+        timer = 60 * 4,
         status = "STOPPED",
         clock = new RealClock(),
         onFinish = noOp,
@@ -28,13 +28,17 @@ const TimerDisplay = (
     }: TimerDisplayProps
 ) => {
     const forceUpdate = useForceUpdate();
-
+    
     const rotate = () => {
         onFinish();
-        countdown.current = new Countdown(rotateAfter * 1000, rotate, forceUpdate, clock);
+        countdown.current = new Countdown(timer * 1000, rotate, forceUpdate, clock);
     };
 
-    const countdown = useRef(new Countdown(rotateAfter * 1000, rotate, forceUpdate, clock));
+    const countdown = useRef(new Countdown(timer * 1000, rotate, forceUpdate, clock));
+    
+    if (!countdown.current.startsFromSeconds(timer)) {
+        countdown.current = new Countdown(timer * 1000, rotate, forceUpdate, clock);
+    }
 
     document.title = countdown.current.timeLeftPretty();
     //todo there is no test synchronizing the start of the timers via ws

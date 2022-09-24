@@ -103,6 +103,7 @@ describe('Game', () => {
         const game = createGame();
 
         expect(game.timer()).toEqual(4 * 60);
+        expect(game.timerInMinutes()).toEqual(4);
     });
 
     it('initializes with the timer stopped', () => {
