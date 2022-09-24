@@ -10,6 +10,7 @@ import {addGameIdToUrl, noGameIdInUrl} from "./infrastructure/GameIdFromUrl";
 import {AddPlayerForm} from "./AddPlayerForm";
 import {About} from "./About";
 import {Help} from "./Help";
+import {Settings} from "./Settings";
 
 type MobProgrammingRPGProps = {
     startingPlayers?: string[];
@@ -160,21 +161,8 @@ const MobProgrammingRPG = (
             {uiState.showHelp && <Help game={game} timeIsOver={uiState.timeIsOver} onClose={closeHelp}/>}
 
             {uiState.showSettings &&
-                <div className="rpgui-container framed-golden settings">
-                    <form onSubmit={submitSettingsForm}>
-                        <label>Change Players
-                            <textarea id="change-players" name="change-players"
-                                      defaultValue={game.playerNames()}></textarea>
-                        </label>
-                        <label>Change Timer (in minutes)
-                            <input id="change-timer" name="change-timer"
-                                      defaultValue={game.timerInMinutes()}></input>
-                        </label>
-                        <button type="submit" className="rpgui-button"><p>Save</p></button>
-                        <button className="rpgui-button" onClick={toggleSettings}><p>Close</p></button>
-                    </form>
-                </div>
-            }
+                <Settings game={gameRef.current} updateGameState={updateGameState} onClose={toggleSettings}/>}
+
             {uiState.showAbout && <About onClose={closeAbout}/>}
         </div>
     );
