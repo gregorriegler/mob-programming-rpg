@@ -6,7 +6,6 @@
 
 # Settings
 - make driver,navigator configurable
-- timer configurable in settings
 - remove player button on each player
 - drag and drop order of players
 
