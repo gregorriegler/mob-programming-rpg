@@ -56,22 +56,6 @@ const MobProgrammingRPG = (
         setGame(gameRef.current.clone());
     };
 
-    const submitSettingsForm = (event): void => {
-        const formData = new FormData(event.target);
-        const players = formData.get("change-players") as string;
-        const timer = formData.get("change-timer") as string;
-        gameRef.current.setPlayers(players);
-        gameRef.current.changeTimer(parseInt(timer) * 60);
-        updateGameState();
-        event.preventDefault();
-    };
-
-    const addPlayer = (playerName: string, avatar: string) => {
-        gameRef.current.addPlayer(playerName, avatar);
-        updateGameState();
-        hideAddPlayerForm();
-    };
-
     const rotate = () => {
         gameRef.current.rotate();
         updateGameState();
@@ -93,8 +77,12 @@ const MobProgrammingRPG = (
         setUiState({...uiState, showSettings: !uiState.showSettings});
     }
 
-    function showAddPlayerForm() {
+    function openAddPlayerForm() {
         setUiState({...uiState, showAddPlayerForm: true});
+    }
+
+    function closeAddPlayerForm() {
+        setUiState({...uiState, showAddPlayerForm: false});
     }
 
     function explainWhoIsNext() {
@@ -105,20 +93,16 @@ const MobProgrammingRPG = (
         setUiState({...uiState, showHelp: !uiState.showHelp, timeIsOver: false});
     }
 
+    function closeHelp() {
+        setUiState({...uiState, showHelp: false});
+    }
+
     function toggleAbout() {
         setUiState({...uiState, showAbout: !uiState.showAbout, timeIsOver: false});
     }
 
     function closeAbout() {
         setUiState({...uiState, showAbout: false});
-    }
-
-    function closeHelp() {
-        setUiState({...uiState, showHelp: false});
-    }
-
-    function hideAddPlayerForm() {
-        setUiState({...uiState, showAddPlayerForm: false});
     }
 
     return (
@@ -137,12 +121,13 @@ const MobProgrammingRPG = (
                     />
                 )}
                 {!uiState.showAddPlayerForm &&
-                    <button className="rpgui-button add-player-button" onClick={showAddPlayerForm}>
+                    <button className="rpgui-button add-player-button" onClick={openAddPlayerForm}>
                         <p>Add Player</p>
                     </button>
                 }
             </ul>
-            {uiState.showAddPlayerForm && <AddPlayerForm onSubmit={addPlayer} onCancel={hideAddPlayerForm}/>}
+            {uiState.showAddPlayerForm &&
+                <AddPlayerForm game={gameRef.current} updateGameState={updateGameState} close={closeAddPlayerForm}/>}
 
             <div className="rpgui-container framed-grey buttons">
                 <button className="rpgui-button" onClick={toggleSettings}><p>Settings</p></button>
@@ -159,10 +144,8 @@ const MobProgrammingRPG = (
             </div>
 
             {uiState.showHelp && <Help game={game} timeIsOver={uiState.timeIsOver} onClose={closeHelp}/>}
-
             {uiState.showSettings &&
                 <Settings game={gameRef.current} updateGameState={updateGameState} onClose={toggleSettings}/>}
-
             {uiState.showAbout && <About onClose={closeAbout}/>}
         </div>
     );
