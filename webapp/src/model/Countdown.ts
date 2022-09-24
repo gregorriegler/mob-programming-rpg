@@ -28,8 +28,8 @@ export class Countdown {
         return this._from
     }
 
-    startsFromSeconds(seconds) {
-        return this._from === seconds * 1000
+    startsFromMinutes(seconds) {
+        return this._from === seconds * 60000
     }
 
     timeLeft(): MilliSeconds {

@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {Countdown} from "./model/Countdown";
 import {RealClock} from "./infrastructure/RealClock";
-import {Clock} from "./model/Clock";
+import {Clock, Minutes} from "./model/Clock";
 import {noOp} from "./model/Func";
 
 function useForceUpdate() {
@@ -11,7 +11,7 @@ function useForceUpdate() {
 }
 
 type TimerDisplayProps = {
-    timer?: number;
+    timer?: Minutes;
     status?: string
     clock?: Clock;
     onFinish?: () => void;
@@ -20,7 +20,7 @@ type TimerDisplayProps = {
 
 const TimerDisplay = (
     {
-        timer = 60 * 4,
+        timer = 4,
         status = "STOPPED",
         clock = new RealClock(),
         onFinish = noOp,
@@ -28,16 +28,20 @@ const TimerDisplay = (
     }: TimerDisplayProps
 ) => {
     const forceUpdate = useForceUpdate();
-    
+
+    function createCountdown() {
+        return Countdown.fromMinutes(timer, rotate, forceUpdate, clock);
+    }
+
     const rotate = () => {
         onFinish();
-        countdown.current = new Countdown(timer * 1000, rotate, forceUpdate, clock);
+        countdown.current = createCountdown();
     };
 
-    const countdown = useRef(new Countdown(timer * 1000, rotate, forceUpdate, clock));
+    const countdown = useRef(createCountdown());
     
-    if (!countdown.current.startsFromSeconds(timer)) {
-        countdown.current = new Countdown(timer * 1000, rotate, forceUpdate, clock);
+    if (!countdown.current.startsFromMinutes(timer)) {
+        countdown.current = createCountdown();
     }
 
     document.title = countdown.current.timeLeftPretty();

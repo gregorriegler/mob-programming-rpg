@@ -15,6 +15,7 @@ export class ClockStub implements Clock {
 }
 
 export type MilliSeconds = number;
+export type Minutes = number;
 
 export function format(time: MilliSeconds) {
     return new Date(time).toISOString().substr(14, 5);
