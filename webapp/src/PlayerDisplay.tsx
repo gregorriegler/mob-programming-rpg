@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Role } from "./model/Roles";
+import React, {useEffect, useState} from "react";
+import {Role} from "./model/Roles";
 import {noOp} from "./model/Func";
 
 
@@ -30,13 +30,13 @@ const PlayerDisplay = ({player, updateGameState = noOp, role = "Mobber"}) => {
                                                 uiState={uiState}
                                                 setUiState={setUiState}/>)}
         {player.selectableRoles().length > 0 &&
-          <form onSubmit={selectRole}>
-            <label>
-              Available Roles
-              <SelectRole player={player}/>
-            </label>
-            <button className="rpgui-button" type="submit"><p>Select</p></button>
-          </form>
+            <form onSubmit={selectRole}>
+                <label>
+                    Available Roles
+                    <SelectRole player={player}/>
+                </label>
+                <button className="rpgui-button" type="submit"><p>Select</p></button>
+            </form>
         }
     </li>
 }
@@ -60,7 +60,7 @@ const Badge = ({role}) => {
 
     return <div className="rpgui-icon magic-slot">
         {role !== undefined &&
-          <img src={badgeSource(role)} alt={role + " Badge"} aria-label={role + " Badge"}/>}
+            <img src={badgeSource(role)} alt={role + " Badge"} aria-label={role + " Badge"}/>}
     </div>
 }
 
@@ -84,9 +84,17 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
 
     return <div className="role">
         <hr/>
+        
         <label className="role-label">
             {role}
-            <input disabled={true} className="role-points" value={player.pointsFor(role)}/>
+            <div className="rpgui-progress red" data-rpguitype="progress" data-value={0.1}>
+                <div className="rpgui-progress-track">
+                    <div className="rpgui-progress-fill red" style={{left: '0px', width: ''+player.percentageFor(role)+'%'}}></div>
+                </div>
+                <div className=" rpgui-progress-left-edge"></div>
+                <div className=" rpgui-progress-right-edge"></div>
+            </div>
+            <input disabled={true} style={{display: 'none'}} className="role-points" value={player.pointsFor(role)}/>
         </label>
         <button
             onClick={showRolePointsForm(role)}
@@ -96,13 +104,13 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
             <p>Earn</p>
         </button>
         {uiState.addingPointsFor.includes(role) &&
-          <form className="add-points-form" onSubmit={addDriverPoints}>
-            <label>
-              Add Points
-              <input className="add-points-input" type="text" name="amount" defaultValue="0"/>
-            </label>
-            <button className="rpgui-button" type="submit"><p>Add</p></button>
-          </form>
+            <form className="add-points-form" onSubmit={addDriverPoints}>
+                <label>
+                    Add Points
+                    <input className="add-points-input" type="text" name="amount" defaultValue="0"/>
+                </label>
+                <button className="rpgui-button" type="submit"><p>Add</p></button>
+            </form>
         }
     </div>
 }

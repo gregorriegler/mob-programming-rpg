@@ -1,4 +1,4 @@
-import { Player } from "./Player";
+import {Player} from "./Player";
 
 describe('Player', () => {
 
@@ -18,8 +18,13 @@ describe('Player', () => {
             ['Navigator', 0],
             ['Mobber', 0],
         ]);
+        expectPercentage([
+            ['Driver', 0],
+            ['Navigator', 0],
+            ['Mobber', 0],
+        ])
     });
-    
+
     it('can choose an avatar', () => {
         player.changeAvatar('mut');
 
@@ -36,6 +41,11 @@ describe('Player', () => {
             ['Navigator', 0],
             ['Mobber', 0],
         ]);
+        expectPercentage([
+            ['Driver', 33.3],
+            ['Navigator', 0],
+            ['Mobber', 0],
+        ])
     });
 
     it('scores two times as Navigator', () => {
@@ -47,6 +57,11 @@ describe('Player', () => {
             ['Navigator', 2],
             ['Mobber', 0],
         ]);
+        expectPercentage([
+            ['Driver', 0],
+            ['Navigator', 66.6],
+            ['Mobber', 0],
+        ])
     });
 
     it('earns Mobber Badge', () => {
@@ -62,6 +77,11 @@ describe('Player', () => {
             ['Navigator', 0],
             ['Mobber', 3],
         ]);
+        expectPercentage([
+            ['Driver', 0],
+            ['Navigator', 0],
+            ['Mobber', 100],
+        ])
     });
 
     it('earns all level 1 Badges', () => {
@@ -188,4 +208,14 @@ describe('Player', () => {
     function expectOneRolesPoints(points) {
         expect(player.pointsFor(points[0])).toEqual(points[1]);
     }
+
+    function expectPercentage(percentages) {
+        expect(player.roles()).toEqual(percentages.map(it => it[0]));
+        percentages.forEach(expectOneRolesPercentage);
+    }
+
+    function expectOneRolesPercentage(percentage) {
+        expect(player.percentageFor(percentage[0])).toEqual(percentage[1]);
+    }
 })
+

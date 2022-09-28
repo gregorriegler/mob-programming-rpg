@@ -1,4 +1,4 @@
-import { levelOf, levels, Role } from "./Roles";
+import {levelOf, levels, Role} from "./Roles";
 
 export const avatars = [
     "dar1",
@@ -122,11 +122,16 @@ export class Player {
         }
     }
 
-    pointsFor(role: Role) {
+    pointsFor(role: Role): number {
         if (!this.hasRole(role)) {
             return 0;
         }
-        return this._points.get(role);
+        return this._points.get(role)!!;
+    }
+
+    percentageFor(role: Role) {
+        if (this.pointsFor(role) === 3) return 100
+        return (this.pointsFor(role) * 33.3);
     }
 
     private hasCompleted(level: number) {
@@ -157,5 +162,4 @@ export class Player {
             "badges": Array.from(this._badges)
         };
     }
-
 }

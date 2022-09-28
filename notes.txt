@@ -1,8 +1,8 @@
 # Timer
-- if you refresh in the middle of a running timer you are behind
 - notifications on timer end
 - timer sound
 - pause
+- if you refresh in the middle of a running timer you are behind
 
 # Settings
 - make driver,navigator configurable
@@ -14,11 +14,9 @@
 
 # Usability
 - warn about duplicate names
-- bar instead of points
 - when clicking earn, show the possibilities with checkboxes next to rules
 - undo if wrong role selected
 - grey color is not easy to see
 
 # Tech
-- Linter strikes only on build, too late.
 - what about clearing old localStorage

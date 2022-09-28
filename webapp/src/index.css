@@ -76,9 +76,9 @@ ul {
 
 .role-label {
     display: inline-block !important;
-    height: 40px;
+    width: 50%;
+    height: 70px;
     font-size: 15px;
-    margin-top: 18px;
 }
 
 .role-points {
@@ -91,6 +91,7 @@ ul {
 
 .add-points-button {
     position: absolute;
+    top: 26px;
     left: 170px;
     margin-left: 10px;
     padding: 4px !important;
