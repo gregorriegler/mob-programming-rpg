@@ -87,9 +87,9 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
         
         <label className="role-label">
             {role}
-            <div className="rpgui-progress red" data-rpguitype="progress" data-value={0.1}>
+            <div className="rpgui-progress" data-rpguitype="progress" data-value={0.1}>
                 <div className="rpgui-progress-track">
-                    <div className="rpgui-progress-fill red" style={{left: '0px', width: ''+player.percentageFor(role)+'%'}}></div>
+                    <div className="rpgui-progress-fill" style={{left: '0px', width: ''+player.percentageFor(role)+'%'}}></div>
                 </div>
                 <div className=" rpgui-progress-left-edge"></div>
                 <div className=" rpgui-progress-right-edge"></div>
