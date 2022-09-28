@@ -480,18 +480,19 @@ RPGUI.__create_funcs["dropdown"] = function(element)
 	create_dropdown(element);
 };
 
+// warning: this breaks with react
 // init all dropdown elements on page load
-RPGUI.on_load(function()
-{
-	// get all the select elements we need to upgrade
-	var elems = document.getElementsByClassName(_dropdown_class);
-
-	// iterate the selects and upgrade them
-	for (var i = 0; i < elems.length; ++i)
-	{
-		RPGUI.create(elems[i], "dropdown");
-	}
-});
+// RPGUI.on_load(function()
+// {
+// 	// get all the select elements we need to upgrade
+// 	var elems = document.getElementsByClassName(_dropdown_class);
+//
+// 	// iterate the selects and upgrade them
+// 	for (var i = 0; i < elems.length; ++i)
+// 	{
+// 		RPGUI.create(elems[i], "dropdown");
+// 	}
+// });
 
 // upgrade a single "select" element to the beautiful dropdown
 function create_dropdown(elem)
