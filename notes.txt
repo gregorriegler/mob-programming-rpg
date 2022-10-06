@@ -13,6 +13,7 @@
 - everytime you get 3 points on a level 1 role where you have a badge you can grab a level 2 point
 
 # Usability
+- xp bar goes over edges
 - warn about duplicate names
 - when clicking earn, show the possibilities with checkboxes next to rules
 - undo if wrong role selected
