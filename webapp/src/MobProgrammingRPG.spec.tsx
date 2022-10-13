@@ -234,6 +234,13 @@ describe('Mob Programming RPG', () => {
              
             expect(screen.getByTitle("timer")).toHaveTextContent('10:00');
         })
+        
+        it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
+            render(<MobProgrammingRPG/>);
+            fireEvent.click(getSettingsButton());
+            
+            expect(screen.getByRole('button', {name: 'Navigator -> Driver'})).toBeInTheDocument();
+        })
 
         it('close', () => {
             render(<MobProgrammingRPG/>);

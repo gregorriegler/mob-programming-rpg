@@ -10,6 +10,8 @@
 - drag and drop order of players
 
 # Roles and points
+- Not sure if rotation works after full rotation
+  - rotation action is triggered from all clients on end of timer
 - when you complete a badge in a role, you continue and get lvl2 driver, lvl3 driver and so on, final level is jay or kent :) 
   - every new level has a new color and adjective
   - lvl2 driver will start a 'silver' bar and badge turns silver, "silver driver"
@@ -18,6 +20,7 @@
 - plus and minus buttons
 
 # Usability
+- click esc to make the help disappear
 - xp bar goes over edges
 - warn about duplicate names
 - when clicking earn, show the possibilities with checkboxes next to rules

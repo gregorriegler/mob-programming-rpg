@@ -22,6 +22,7 @@ export function Settings({game, updateGameState, onClose}) {
                 <input id="change-timer" name="change-timer"
                        defaultValue={game.timerInMinutes()}></input>
             </label>
+            <button className="rpgui-button"><p>X</p></button>
             <button type="submit" className="rpgui-button"><p>Save</p></button>
             <button className="rpgui-button" onClick={onClose}><p>Close</p></button>
         </form>
