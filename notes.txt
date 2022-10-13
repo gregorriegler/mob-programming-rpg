@@ -10,7 +10,12 @@
 - drag and drop order of players
 
 # Roles and points
-- everytime you get 3 points on a level 1 role where you have a badge you can grab a level 2 point
+- when you complete a badge in a role, you continue and get lvl2 driver, lvl3 driver and so on, final level is jay or kent :) 
+  - every new level has a new color and adjective
+  - lvl2 driver will start a 'silver' bar and badge turns silver, "silver driver"
+  - lvl3 could go golden for example. "great driver"
+- show how many points you have on the bar
+- plus and minus buttons
 
 # Usability
 - xp bar goes over edges
@@ -18,6 +23,9 @@
 - when clicking earn, show the possibilities with checkboxes next to rules
 - undo if wrong role selected
 - grey color is not easy to see
+- when you first open the game, can choose "create game" or "join existing game"
+- disciplinarian icon missing
+
 
 # Tech
 - what about clearing old localStorage
