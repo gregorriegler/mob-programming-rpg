@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import {DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER} from "./model/Roles";
 
 export function Settings({game, updateGameState, onClose}) {
 
@@ -11,6 +12,16 @@ export function Settings({game, updateGameState, onClose}) {
         updateGameState();
         event.preventDefault();
     };
+    
+    const [roles, setRoles] = useState(NAVIGATOR_THEN_DRIVER);
+
+    function onClickRoles() {
+        if (roles === NAVIGATOR_THEN_DRIVER) {
+            setRoles(DRIVER_THEN_NAVIGATOR)
+        } else {
+            setRoles(NAVIGATOR_THEN_DRIVER)
+        }
+    }
 
     return <div className="rpgui-container framed-golden settings">
         <form onSubmit={submitSettings}>
@@ -22,7 +33,7 @@ export function Settings({game, updateGameState, onClose}) {
                 <input id="change-timer" name="change-timer"
                        defaultValue={game.timerInMinutes()}></input>
             </label>
-            <button className="rpgui-button"><p>X</p></button>
+            <button className="rpgui-button" onClick={onClickRoles}><p>{roles}</p></button>
             <button type="submit" className="rpgui-button"><p>Save</p></button>
             <button className="rpgui-button" onClick={onClose}><p>Close</p></button>
         </form>

@@ -4,6 +4,7 @@ import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
 import { DEFAULT_TIMER, Game } from "./model/Game";
 import WS from "jest-websocket-mock";
+import {DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER} from "./model/Roles";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', {name: /Player List/});
@@ -239,7 +240,11 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG/>);
             fireEvent.click(getSettingsButton());
             
-            expect(screen.getByRole('button', {name: 'Navigator -> Driver'})).toBeInTheDocument();
+            fireEvent.click(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER}));
+            expect(screen.getByRole('button', {name: DRIVER_THEN_NAVIGATOR})).toBeInTheDocument();
+
+            fireEvent.click(screen.getByRole('button', {name: DRIVER_THEN_NAVIGATOR}));
+            expect(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER})).toBeInTheDocument();
         })
 
         it('close', () => {
