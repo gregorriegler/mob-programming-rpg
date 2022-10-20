@@ -99,6 +99,21 @@ describe('Game', () => {
         expect(game.roleOf('Peter')).toEqual('Mobber');
     });
 
+    it('changes the direction of roles', () => {
+        const game = createGame();
+
+        game.setPlayers('Max,Rita,Peter');
+
+        game.flipRoleDirection();
+
+        expect(game.driver()).toEqual('Rita');
+        expect(game.navigator()).toEqual('Max');
+        expect(game.next()).toEqual('Peter');
+        expect(game.roleOf('Rita')).toEqual('Driver');
+        expect(game.roleOf('Max')).toEqual('Navigator');
+        expect(game.roleOf('Peter')).toEqual('Mobber');
+    });
+
     it('initialized with a 4 minute timer', () => {
         const game = createGame();
 

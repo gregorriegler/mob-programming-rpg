@@ -1,9 +1,7 @@
 import {Avatar, Player} from "./Player";
 
-enum RoleIndex {
-    Driver,
-    Navigator
-}
+const DRIVER = "Driver";
+const NAVIGATOR = "Navigator";
 
 export type GameId = string;
 type Seconds = number;
@@ -36,6 +34,7 @@ export class Game {
     private _timer: Seconds;
     private _timerStatus: TimerStatus;
     private _rotations;
+    private _roleIndex = [DRIVER, NAVIGATOR];
 
     constructor(
         id: GameId,
@@ -99,15 +98,23 @@ export class Game {
     }
 
     driver() {
-        return this.whoIs(RoleIndex.Driver);
+        return this.whoIs(this.indexOfDriver());
+    }
+
+    private indexOfDriver() {
+        return this._roleIndex.indexOf(DRIVER);
     }
 
     navigator() {
-        return this.whoIs(RoleIndex.Navigator);
+        return this.whoIs(this.indexOfNavigator());
     }
 
     next() {
-        return this.getPlayer(RoleIndex.Navigator + 1).name();
+        return this.getPlayer(2).name();
+    }
+
+    private indexOfNavigator() {
+        return this._roleIndex.indexOf(NAVIGATOR);
     }
 
     rotate() {
@@ -119,8 +126,8 @@ export class Game {
     }
 
     roleOf(player: string) {
-        if (this.driver() === player) return 'Driver';
-        if (this.navigator() === player) return 'Navigator';
+        if (this.driver() === player) return DRIVER;
+        if (this.navigator() === player) return NAVIGATOR;
         return 'Mobber';
     }
 
@@ -144,7 +151,7 @@ export class Game {
         return this._players.find(it => it.name() === name)
     }
 
-    private whoIs(index: RoleIndex) {
+    private whoIs(index: number) {
         const player = this.getPlayer(index);
         if (!player) return "???"
         return player.name();
@@ -152,5 +159,9 @@ export class Game {
 
     private getPlayer(index: number) {
         return this._players[(index + this._rotations) % this._players.length];
+    }
+
+    flipRoleDirection() {
+        this._roleIndex = this._roleIndex.reverse()
     }
 }

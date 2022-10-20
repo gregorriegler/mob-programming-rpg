@@ -3,6 +3,8 @@
 - timer sound
 - pause
 - if you refresh in the middle of a running timer you are behind
+- failed sync of timer
+- given two players, after rotation add player form appears
 
 # Settings
 - make driver,navigator configurable
