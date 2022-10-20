@@ -178,6 +178,21 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Sam');
     });
 
+    it('rotates the other way', () => {
+        const game = createGame();
+        game.setPlayers('Max,Rita,Peter,Sam');
+        game.flipRoleDirection();
+
+        game.rotate();
+
+        expect(game.driver()).toEqual('Peter');
+        expect(game.navigator()).toEqual('Rita');
+        expect(game.roleOf('Peter')).toEqual('Driver');
+        expect(game.roleOf('Rita')).toEqual('Navigator');
+        expect(game.roleOf('Sam')).toEqual('Mobber');
+        expect(game.roleOf('Max')).toEqual('Mobber');
+    });
+
     it('serializes to json', () => {
         const game = createGame();
         game.setPlayers('Max,Rita');
