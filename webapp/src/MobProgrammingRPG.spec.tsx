@@ -247,6 +247,20 @@ describe('Mob Programming RPG', () => {
             expect(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER})).toBeInTheDocument();
         })
 
+        it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
+            render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
+            fireEvent.click(getSettingsButton());
+
+            fireEvent.click(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER}));
+            fireEvent.click(screen.getByText("Save"))
+
+            fail("this always passes regardless of the order")
+            const items = getPlayerListItems();
+            expect(items[0]).toHaveTextContent('Navigator');
+            expect(items[1]).toHaveTextContent('Driver');
+            expect(items[2]).toHaveTextContent('Mobber');
+        })
+
         it('close', () => {
             render(<MobProgrammingRPG/>);
             fireEvent.click(getSettingsButton());
