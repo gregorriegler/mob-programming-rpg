@@ -13,27 +13,23 @@ import {Help} from "./Help";
 import {Settings} from "./Settings";
 
 type MobProgrammingRPGProps = {
-    startingPlayers?: string[];
-    rotateAfter?: number;
+    initGame?: Game;
     clock?: Clock;
     wsServer?: string,
     wsReconnect?: boolean,
-    gameId?: string
 }
 
 const MobProgrammingRPG = (
     {
-        startingPlayers = [],
-        rotateAfter = 60 * 4,
+        initGame = Game.withProps({id: undefined, players: [], timer: 60 * 4}),
         clock = new RealClock(),
         wsServer = "ws://localhost:8080",
         wsReconnect = false,
-        gameId
     }: MobProgrammingRPGProps
 ) => {
 
     const [game, setGame, gameRef] = useWsGame(useLocalStorageGame(
-        Game.withPlayers(startingPlayers, rotateAfter, gameId)
+        initGame
     ), wsServer, wsReconnect);
 
     const [uiState, setUiState] = useState({

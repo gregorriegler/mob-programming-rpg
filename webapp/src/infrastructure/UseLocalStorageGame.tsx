@@ -1,12 +1,12 @@
 import { Game } from "../model/Game";
 import React, { useEffect, useState } from "react";
 
-export const useLocalStorageGame: (defaultGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (defaultGame) => {
+export const useLocalStorageGame: (initGame) => [Game, React.Dispatch<React.SetStateAction<Game>>] = (initGame) => {
 
     function initialState() {
-        if (defaultGame.id() === undefined) return defaultGame;
-        const json = localStorage.getItem(defaultGame.id());
-        return json !== null ? Game.fromJSON(json) : defaultGame;
+        if (initGame.id() === undefined) return initGame;
+        const json = localStorage.getItem(initGame.id());
+        return json !== null ? Game.fromJSON(json) : initGame;
     }
 
     const [game, setGame] = useState(initialState());

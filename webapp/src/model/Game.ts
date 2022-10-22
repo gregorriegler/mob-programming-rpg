@@ -13,6 +13,12 @@ function generateId() {
     return Math.random().toString(36).replace('0.', '');
 }
 
+export type GameProps = {
+    id?: GameId,
+    players?: string[],
+    timer?: Seconds
+}
+
 export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
@@ -23,6 +29,18 @@ export class Game {
             parsedObject.timer.status,
             parsedObject.rotations
         );
+    }
+
+    static withId(id: GameId) {
+        return Game.withProps({id});
+    }
+
+    static withProps({
+                         id = generateId(),
+                         players = [],
+                         timer = DEFAULT_TIMER
+                     }: GameProps) {
+        return new Game(id, players.map(name => new Player(name)), timer)
     }
 
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
