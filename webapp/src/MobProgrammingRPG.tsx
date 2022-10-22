@@ -33,7 +33,6 @@ const MobProgrammingRPG = (
 ) => {
 
     const [game, setGame, gameRef] = useWsGame(useLocalStorageGame(
-        gameId,
         Game.withPlayers(startingPlayers, rotateAfter, gameId)
     ), wsServer, wsReconnect);
 

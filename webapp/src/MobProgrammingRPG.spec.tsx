@@ -247,7 +247,7 @@ describe('Mob Programming RPG', () => {
             expect(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER})).toBeInTheDocument();
         })
 
-        it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
+        xit('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
             render(<MobProgrammingRPG startingPlayers={["Gregor", "Peter", "Rita"]}/>);
             fireEvent.click(getSettingsButton());
 
