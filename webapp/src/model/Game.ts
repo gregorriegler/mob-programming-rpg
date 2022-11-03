@@ -21,6 +21,7 @@ export type GameProps = {
 }
 
 export class Game {
+    
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
         return new Game(
@@ -186,5 +187,9 @@ export class Game {
 
     navigatorThenDriver() {
         this._roleIndex = [NAVIGATOR, DRIVER];
+    }
+
+    driverThenNavigator() {
+        this._roleIndex = [DRIVER, NAVIGATOR];
     }
 }

@@ -127,6 +127,21 @@ describe('Game', () => {
         expect(game.roleOf('Peter')).toEqual('Mobber');
     });
 
+    it('set the direction of roles: Driver, Navigator', () => {
+        const game = createGame();
+        game.setPlayers('Max,Rita,Peter');
+        game.navigatorThenDriver();
+
+        game.driverThenNavigator();
+
+        expect(game.driver()).toEqual('Max');
+        expect(game.navigator()).toEqual('Rita');
+        expect(game.next()).toEqual('Peter');
+        expect(game.roleOf('Max')).toEqual('Driver');
+        expect(game.roleOf('Rita')).toEqual('Navigator');
+        expect(game.roleOf('Peter')).toEqual('Mobber');
+    });
+
     it('initialized with a 4 minute timer', () => {
         const game = createGame();
 
