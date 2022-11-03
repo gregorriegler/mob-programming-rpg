@@ -181,10 +181,6 @@ export class Game {
         return this._players[(index + this._rotations) % this._players.length];
     }
 
-    flipRoleDirection() {
-        this._roleIndex = this._roleIndex.reverse()
-    }
-
     navigatorThenDriver() {
         this._roleIndex = [NAVIGATOR, DRIVER];
     }

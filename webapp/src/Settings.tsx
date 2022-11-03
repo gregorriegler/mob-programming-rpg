@@ -10,7 +10,7 @@ export function Settings({game, updateGameState, onClose} : {game: Game, updateG
         const timer = formData.get("change-timer") as string;
         game.setPlayers(players);
         game.changeTimer(parseInt(timer) * 60);
-        game.flipRoleDirection();
+        game.navigatorThenDriver();
         updateGameState();
         event.preventDefault();
     };

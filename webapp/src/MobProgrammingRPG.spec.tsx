@@ -249,14 +249,14 @@ describe('Mob Programming RPG', () => {
 
         it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
             const game = Game.withPlayers(["Gregor", "Peter", "Rita"]);
-            jest.spyOn(game, 'flipRoleDirection');
+            jest.spyOn(game, "navigatorThenDriver");
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
             fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
             fireEvent.click(screen.getByText("Save"));
 
-            expect(game.flipRoleDirection).toHaveBeenCalled();
+            expect(game.navigatorThenDriver).toHaveBeenCalled();
         })
 
         it('close', () => {
