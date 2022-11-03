@@ -43,3 +43,4 @@ session 11-03
 -linter not telling about missing semicolons: idea: prettier
 -fliprole api should do set instead of flip
 -search for buttons without type (they are submitting)
+- improve the UX - the button label is confusing (showing the changed state, not the current one)
