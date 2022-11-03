@@ -247,7 +247,7 @@ describe('Mob Programming RPG', () => {
             expect(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
         })
 
-        it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
+        it('that allows to change rotation direction to (Navigator,Driver)', () => {
             const game = Game.withPlayers(["Gregor", "Peter", "Rita"]);
             jest.spyOn(game, "navigatorThenDriver");
             render(<MobProgrammingRPG initGame={game} />);
@@ -256,7 +256,22 @@ describe('Mob Programming RPG', () => {
             fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
             fireEvent.click(screen.getByText("Save"));
 
-            expect(game.navigatorThenDriver).toHaveBeenCalled();
+            expect(game.navigatorThenDriver).toHaveBeenCalledTimes(1);
+        })
+
+        it('that allows to change rotation direction back to (Driver,Navigator)', () => {
+            const game = Game.withPlayers(["Gregor", "Peter", "Rita"]);
+            jest.spyOn(game, "navigatorThenDriver");
+            jest.spyOn(game, "driverThenNavigator");
+            render(<MobProgrammingRPG initGame={game} />);
+            fireEvent.click(getSettingsButton());
+
+            fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
+            fireEvent.click(screen.getByRole('button', { name: DRIVER_THEN_NAVIGATOR }));
+            fireEvent.click(screen.getByText("Save"));
+
+            expect(game.navigatorThenDriver).not.toHaveBeenCalled();
+            expect(game.driverThenNavigator).toHaveBeenCalledTimes(1);
         })
 
         it('close', () => {

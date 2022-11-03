@@ -42,3 +42,4 @@ session 11-03
 -make sure ui is rerendered
 -linter not telling about missing semicolons: idea: prettier
 -fliprole api should do set instead of flip
+-search for buttons without type (they are submitting)

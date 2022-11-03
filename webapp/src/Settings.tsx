@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Game } from "./model/Game";
-import {DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER} from "./model/Roles";
+import { DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER } from "./model/Roles";
 
-export function Settings({game, updateGameState, onClose} : {game: Game, updateGameState: () => void, onClose: () => void}) {
+export function Settings({ game, updateGameState, onClose }: { game: Game, updateGameState: () => void, onClose: () => void }) {
 
     const submitSettings = (event): void => {
         const formData = new FormData(event.target);
@@ -10,11 +10,15 @@ export function Settings({game, updateGameState, onClose} : {game: Game, updateG
         const timer = formData.get("change-timer") as string;
         game.setPlayers(players);
         game.changeTimer(parseInt(timer) * 60);
-        game.navigatorThenDriver();
+        if (roles === DRIVER_THEN_NAVIGATOR) {
+            game.navigatorThenDriver();
+        } else {
+            game.driverThenNavigator();
+        }
         updateGameState();
         event.preventDefault();
     };
-    
+
     const [roles, setRoles] = useState(NAVIGATOR_THEN_DRIVER);
 
     function onClickRoles() {
@@ -29,13 +33,13 @@ export function Settings({game, updateGameState, onClose} : {game: Game, updateG
         <form onSubmit={submitSettings}>
             <label>Change Players
                 <textarea id="change-players" name="change-players"
-                          defaultValue={game.playerNames()}></textarea>
+                    defaultValue={game.playerNames()}></textarea>
             </label>
             <label>Change Timer (in minutes)
                 <input id="change-timer" name="change-timer"
-                       defaultValue={game.timerInMinutes()}></input>
+                    defaultValue={game.timerInMinutes()}></input>
             </label>
-            <button className="rpgui-button" onClick={onClickRoles}><p>{roles}</p></button>
+            <button type="button" className="rpgui-button" onClick={onClickRoles}><p>{roles}</p></button>
             <button type="submit" className="rpgui-button"><p>Save</p></button>
             <button className="rpgui-button" onClick={onClose}><p>Close</p></button>
         </form>
