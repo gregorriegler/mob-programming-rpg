@@ -1,4 +1,5 @@
-import {Avatar, Player} from "./Player";
+import { Avatar, Player } from "./Player";
+import { NAVIGATOR_THEN_DRIVER } from "./Roles";
 
 const DRIVER = "Driver";
 const NAVIGATOR = "Navigator";
@@ -32,14 +33,14 @@ export class Game {
     }
 
     static withId(id: GameId) {
-        return Game.withProps({id});
+        return Game.withProps({ id });
     }
 
     static withProps({
-                         id = generateId(),
-                         players = [],
-                         timer = DEFAULT_TIMER
-                     }: GameProps) {
+        id = generateId(),
+        players = [],
+        timer = DEFAULT_TIMER
+    }: GameProps) {
         return new Game(id, players.map(name => new Player(name)), timer)
     }
 
@@ -181,5 +182,9 @@ export class Game {
 
     flipRoleDirection() {
         this._roleIndex = this._roleIndex.reverse()
+    }
+
+    navigatorThenDriver() {
+        this._roleIndex = [NAVIGATOR, DRIVER];
     }
 }
