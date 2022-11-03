@@ -1,18 +1,18 @@
 import MobProgrammingRPG from "./MobProgrammingRPG";
-import {act, fireEvent, render, screen, within} from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
-import {ClockStub, MilliSeconds} from "./model/Clock";
-import {DEFAULT_TIMER, Game} from "./model/Game";
+import { ClockStub, MilliSeconds } from "./model/Clock";
+import { DEFAULT_TIMER, Game } from "./model/Game";
 import WS from "jest-websocket-mock";
-import {DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER} from "./model/Roles";
+import { DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER } from "./model/Roles";
 
 function getPlayerListItems() {
-    const playerList = screen.getByRole('list', {name: /Player List/});
+    const playerList = screen.getByRole('list', { name: /Player List/ });
     return within(playerList).queryAllByRole("listitem");
 }
 
 function getSettingsButton() {
-    return screen.getByRole('button', {name: 'Settings'});
+    return screen.getByRole('button', { name: 'Settings' });
 }
 
 function getPlayersTextarea() {
@@ -24,12 +24,12 @@ function getTimerInput() {
 }
 
 function getRotateButton() {
-    return screen.getByRole('button', {name: 'Rotate'});
+    return screen.getByRole('button', { name: 'Rotate' });
 }
 
 function changePlayers(players: string) {
     fireEvent.click(getSettingsButton());
-    fireEvent.change(screen.getByLabelText('Change Players'), {target: {value: players}});
+    fireEvent.change(screen.getByLabelText('Change Players'), { target: { value: players } });
     fireEvent.click(screen.getByText("Save"));
     fireEvent.click(screen.getByText("Close"));
 }
@@ -51,8 +51,8 @@ describe('Mob Programming RPG', () => {
     });
 
     it('starts with an empty list of players', () => {
-        render(<MobProgrammingRPG/>);
-        const playerList = screen.getByRole('list', {name: /Player List/});
+        render(<MobProgrammingRPG />);
+        const playerList = screen.getByRole('list', { name: /Player List/ });
         expect(playerList.childElementCount).toEqual(1);
         expect(playerList).toHaveTextContent('Add Player');
     });
@@ -61,7 +61,7 @@ describe('Mob Programming RPG', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/continueId")
 
-        render(<MobProgrammingRPG initGame={Game.withId("continueId")}/>);
+        render(<MobProgrammingRPG initGame={Game.withId("continueId")} />);
 
         const items = getPlayerListItems();
         expect(items).toHaveLength(1);
@@ -69,9 +69,9 @@ describe('Mob Programming RPG', () => {
     });
 
     it('stores its state to localStorage', () => {
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
 
-        fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+        fireEvent.click(screen.getByRole('button', { name: 'Start' }));
         changePlayers('1,2')
 
         // @ts-ignore
@@ -84,9 +84,9 @@ describe('Mob Programming RPG', () => {
     it('creates a new game despite given localStorage', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/")
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
 
-        const playerList = screen.getByRole('list', {name: /Player List/});
+        const playerList = screen.getByRole('list', { name: /Player List/ });
         expect(playerList.childElementCount).toEqual(1);
         expect(playerList).toHaveTextContent('Add Player');
     });
@@ -94,7 +94,7 @@ describe('Mob Programming RPG', () => {
     it('changes url for the created game id', () => {
         window.history.pushState({}, "GameId", "/")
 
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
 
         expect(global.window.location.pathname).toMatch(/\/[a-zA-Z0-9]+/);
         expect(global.window.location.pathname).not.toEqual("/undefined");
@@ -103,13 +103,13 @@ describe('Mob Programming RPG', () => {
     it('does not change a given id', () => {
         window.history.pushState({}, "GameId", "/existingId")
 
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
 
         expect(global.window.location.pathname).toEqual("/existingId")
     });
 
     it('shows players roles', () => {
-        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita", "Ben"])}/>);
+        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita", "Ben"])} />);
 
         const items = getPlayerListItems();
         expect(items[0]).toHaveTextContent('Gregor');
@@ -119,7 +119,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it('has a button to add a new player', () => {
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
 
         fireEvent.click(screen.getByText("Add Player"));
 
@@ -128,10 +128,10 @@ describe('Mob Programming RPG', () => {
     })
 
     it('adds a single player', () => {
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
         fireEvent.click(screen.getByText("Add Player"));
 
-        fireEvent.change(screen.getByPlaceholderText(/Player Name/i), {target: {value: "1"}});
+        fireEvent.change(screen.getByPlaceholderText(/Player Name/i), { target: { value: "1" } });
         fireEvent.click(screen.getByAltText(/dev/i));
         fireEvent.click(screen.getByText('Add'));
 
@@ -141,10 +141,10 @@ describe('Mob Programming RPG', () => {
     })
 
     it('does not add a player that has no name', () => {
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
         fireEvent.click(screen.getByText("Add Player"));
 
-        fireEvent.change(screen.getByPlaceholderText(/Player Name/i), {target: {value: "    "}});
+        fireEvent.change(screen.getByPlaceholderText(/Player Name/i), { target: { value: "    " } });
         fireEvent.click(screen.getByAltText(/dev/i));
         fireEvent.click(screen.getByText('Add'));
 
@@ -154,7 +154,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it('cancels adding a single player', () => {
-        render(<MobProgrammingRPG/>);
+        render(<MobProgrammingRPG />);
         fireEvent.click(screen.getByText("Add Player"));
 
         fireEvent.click(screen.getByText(/Cancel/i));
@@ -163,7 +163,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it('has a rotate button that rotates the players', () => {
-        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])}/>);
+        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])} />);
 
         fireEvent.click(getRotateButton());
 
@@ -174,9 +174,9 @@ describe('Mob Programming RPG', () => {
     })
 
     it("has a help button once clicked shows what a player should do", () => {
-        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])}/>);
+        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])} />);
 
-        const helpButton = screen.getByRole('button', {name: 'Help'});
+        const helpButton = screen.getByRole('button', { name: 'Help' });
         expect(helpButton).toBeInTheDocument();
         fireEvent.click(helpButton);
     })
@@ -184,7 +184,7 @@ describe('Mob Programming RPG', () => {
     describe('has settings', () => {
 
         it('that shows the players', () => {
-            render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter"])}/>);
+            render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter"])} />);
 
             fireEvent.click(getSettingsButton());
 
@@ -192,7 +192,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that toggle when you keep pressing the settings button', () => {
-            render(<MobProgrammingRPG/>);
+            render(<MobProgrammingRPG />);
             const settingsButton = getSettingsButton();
 
             fireEvent.click(settingsButton);
@@ -203,12 +203,12 @@ describe('Mob Programming RPG', () => {
         });
 
         it('that allow to change players', () => {
-            render(<MobProgrammingRPG/>);
+            render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
             expect(getPlayersTextarea()).toBeInTheDocument();
 
-            fireEvent.change(getPlayersTextarea(), {target: {value: 'Gregor,Max,Rita'}});
+            fireEvent.change(getPlayersTextarea(), { target: { value: 'Gregor,Max,Rita' } });
             fireEvent.click(screen.getByText("Save"));
 
             const items = getPlayerListItems();
@@ -219,7 +219,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that shows the timer in minutes', () => {
-            render(<MobProgrammingRPG/>);
+            render(<MobProgrammingRPG />);
 
             fireEvent.click(getSettingsButton());
 
@@ -227,42 +227,40 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that allows to change the timer', () => {
-            render(<MobProgrammingRPG/>);
+            render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.change(getTimerInput(), {target: {value: '10'}});
+            fireEvent.change(getTimerInput(), { target: { value: '10' } });
             fireEvent.click(screen.getByText("Save"));
 
             expect(screen.getByTitle("timer")).toHaveTextContent('10:00');
         })
 
         it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
-            render(<MobProgrammingRPG/>);
+            render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER}));
-            expect(screen.getByRole('button', {name: DRIVER_THEN_NAVIGATOR})).toBeInTheDocument();
+            fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
+            expect(screen.getByRole('button', { name: DRIVER_THEN_NAVIGATOR })).toBeInTheDocument();
 
-            fireEvent.click(screen.getByRole('button', {name: DRIVER_THEN_NAVIGATOR}));
-            expect(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER})).toBeInTheDocument();
+            fireEvent.click(screen.getByRole('button', { name: DRIVER_THEN_NAVIGATOR }));
+            expect(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
         })
 
-        xit('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
-            render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])}/>);
+        it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
+            const game = Game.withPlayers(["Gregor", "Peter", "Rita"]);
+            jest.spyOn(game, 'flipRoleDirection');
+            render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', {name: NAVIGATOR_THEN_DRIVER}));
-            fireEvent.click(screen.getByText("Save"))
+            fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
+            fireEvent.click(screen.getByText("Save"));
 
-            fail("this always passes regardless of the order")
-            const items = getPlayerListItems();
-            expect(items[0]).toHaveTextContent('Navigator');
-            expect(items[1]).toHaveTextContent('Driver');
-            expect(items[2]).toHaveTextContent('Mobber');
+            expect(game.flipRoleDirection).toHaveBeenCalled();
         })
 
         it('close', () => {
-            render(<MobProgrammingRPG/>);
+            render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
             fireEvent.click(screen.getByText("Close"));
@@ -297,14 +295,14 @@ describe('Mob Programming RPG', () => {
                 wsServer={wsServerUrl}
             />);
 
-            expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
+            expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
             expect(timer).toBeInTheDocument();
             expect(timer).toHaveTextContent('04:00');
         })
 
         it('that keeps the timer stopped unless somebody starts it', () => {
-            render(<MobProgrammingRPG/>);
+            render(<MobProgrammingRPG />);
 
             advanceTimeBy(4000);
 
@@ -316,7 +314,7 @@ describe('Mob Programming RPG', () => {
         it('that shows the timer as was set in localStorage', () => {
             localStorage.setItem("continueId", Game.withPlayers([], 60, "continueId").toJSON())
 
-            render(<MobProgrammingRPG initGame={Game.withId("continueId")}/>);
+            render(<MobProgrammingRPG initGame={Game.withId("continueId")} />);
 
             expect(screen.getByTitle("timer")).toHaveTextContent('01:00');
         })
@@ -331,7 +329,7 @@ describe('Mob Programming RPG', () => {
                     "STARTED"
                 ).toJSON()
             )
-            render(<MobProgrammingRPG initGame={Game.withId("continueId")}/>);
+            render(<MobProgrammingRPG initGame={Game.withId("continueId")} />);
 
             advanceTimeBy(1000)
 
@@ -339,9 +337,9 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that is configurable', () => {
-            render(<MobProgrammingRPG initGame={Game.withProps({timer: 3})}/>);
+            render(<MobProgrammingRPG initGame={Game.withProps({ timer: 3 })} />);
 
-            expect(screen.getByRole('button', {name: 'Start'})).toBeInTheDocument();
+            expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
             expect(timer).toBeInTheDocument();
             expect(timer).toHaveTextContent('00:03');
@@ -349,10 +347,10 @@ describe('Mob Programming RPG', () => {
 
         it("that shows who's next when the time is over", () => {
             render(<MobProgrammingRPG
-                initGame={Game.withProps({players: ["Gregor", "Peter", "Rita"], timer: 60 * 4})}
+                initGame={Game.withProps({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
                 clock={clock}
             />);
-            fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
 
             advanceTimeBy(1000 * 60 * 4)
 
@@ -365,15 +363,15 @@ describe('Mob Programming RPG', () => {
 
         it("that allows to continue after the time is over", () => {
             render(<MobProgrammingRPG
-                initGame={Game.withProps({players: ["Gregor", "Peter", "Rita"], timer: 60 * 4})}
+                initGame={Game.withProps({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
                 clock={clock}
             />);
-            fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
             advanceTimeBy(1000 * 60 * 4)
-            fireEvent.click(screen.getByRole('button', {name: 'Close'}));
+            fireEvent.click(screen.getByRole('button', { name: 'Close' }));
             expect(screen.queryByText("Time is over")).not.toBeInTheDocument();
 
-            fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
             advanceTimeBy(1000 * 60)
 
             expect(screen.getByTitle("timer")).toHaveTextContent('03:00');
@@ -381,13 +379,13 @@ describe('Mob Programming RPG', () => {
 
         it('changed players remain until after countdown', () => {
             render(<MobProgrammingRPG
-                initGame={Game.withProps({timer: 1})}
+                initGame={Game.withProps({ timer: 1 })}
                 clock={clock}
             />);
             changePlayers('1,2,3');
             changePlayers('2,3');
 
-            fireEvent.click(screen.getByRole('button', {name: 'Start'}));
+            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
             advanceTimeBy(1000);
 
             const items = getPlayerListItems();
@@ -401,13 +399,13 @@ describe('Mob Programming RPG', () => {
     describe('uses websockets', () => {
 
         it('initially subscribes the server', async () => {
-            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl} />);
 
-            await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
+            await expect(server).toReceiveMessage(JSON.stringify({ "command": "subscribe", "id": "gameId" }))
         })
 
         it('handles a server notification', () => {
-            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl} />);
 
             server.send(Game.withPlayers(["1"], DEFAULT_TIMER, "gameId").toJSON())
 
@@ -417,9 +415,9 @@ describe('Mob Programming RPG', () => {
         })
 
         it('updates the server', async () => {
-            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl}/>);
+            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl} />);
 
-            await expect(server).toReceiveMessage(JSON.stringify({"command": "subscribe", "id": "gameId"}))
+            await expect(server).toReceiveMessage(JSON.stringify({ "command": "subscribe", "id": "gameId" }))
 
             changePlayers('2,3');
 

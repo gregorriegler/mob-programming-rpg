@@ -1,7 +1,8 @@
 import React, {useState} from "react";
+import { Game } from "./model/Game";
 import {DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER} from "./model/Roles";
 
-export function Settings({game, updateGameState, onClose}) {
+export function Settings({game, updateGameState, onClose} : {game: Game, updateGameState: () => void, onClose: () => void}) {
 
     const submitSettings = (event): void => {
         const formData = new FormData(event.target);
@@ -9,6 +10,7 @@ export function Settings({game, updateGameState, onClose}) {
         const timer = formData.get("change-timer") as string;
         game.setPlayers(players);
         game.changeTimer(parseInt(timer) * 60);
+        game.flipRoleDirection();
         updateGameState();
         event.preventDefault();
     };
