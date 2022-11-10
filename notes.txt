@@ -44,3 +44,9 @@ session 11-03
 -fliprole api should do set instead of flip
 -search for buttons without type (they are submitting)
 - improve the UX - the button label is confusing (showing the changed state, not the current one)
+
+session 11-10
+-working on rotation bug (all players invoke rotate)
+-integration test with ws to reproduce the bug
+  -start the ws server in before clause and kill in after
+  -we think we need 2 or 3 components with the MobProgrammingRPG
