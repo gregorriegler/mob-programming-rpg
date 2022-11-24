@@ -8,4 +8,4 @@ const wss = new WebSocketServer({
 })
 new WSServer(wss)
 
-console.log("WS Server running");
+console.log("WS Server running on port " + PORT);

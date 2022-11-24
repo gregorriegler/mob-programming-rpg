@@ -32,6 +32,7 @@ export class WSServer {
 
     private registerClient(ws: WebSocket) {
         const clientId = this.generateId();
+        console.log(`registered client with id: ${clientId}`)
         this.allClients.set(clientId, ws);
         ws.on("message", data => {
             console.log(">receive", clientId, data.toString())

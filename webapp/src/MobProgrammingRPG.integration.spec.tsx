@@ -5,7 +5,6 @@ import execa from "execa";
 
 import { ClockStub, MilliSeconds } from "./model/Clock";
 import { DEFAULT_TIMER, Game } from "./model/Game";
-import WS from "jest-websocket-mock";
 import { DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER } from "./model/Roles";
 
 function getPlayerListItems() {
