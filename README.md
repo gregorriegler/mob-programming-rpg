@@ -18,10 +18,12 @@ Web app for the [Mob Programming RPG](https://github.com/willemlarsen/mobprogram
 
 This software is developed in a public remote Mob where everybody is invited to join.
 We meet every Thursday from 17:00 to 20:00 CET to work on it.
-For this we use the Vienna Software Crafters Gather Town:
-
+For this we use the Vienna Software Crafters Gather Town:  
 https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo  
 Password: deliberate
+
+Calendar Invite:  
+https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=dWJ2dXRwcXRlcDAwYTNycXMxbWM0YXZ1b2RfMjAyMjEyMDFUMTYwMDAwWiByaWVnbGVyZzg1QG0&tmsrc=rieglerg85%40gmail.com&scp=ALL
 
 ## Credits
 
