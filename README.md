@@ -24,7 +24,7 @@ https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo
 Password: deliberate
 
 Calendar Invite:  
-https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=dWJ2dXRwcXRlcDAwYTNycXMxbWM0YXZ1b2RfMjAyMjEyMDFUMTYwMDAwWiByaWVnbGVyZzg1QG0&tmsrc=rieglerg85%40gmail.com&scp=ALL
+https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NGdxYm1nNTR0MGp0ZHI2ZDN1NG1zOWNiMWhfMjAyMjEyMDFUMTYwMDAwWiA3Mzk5NWUxZTBiMWM5NDhhOGEwMDIxZWM0YzNjZTcyOTQxZjdiN2FjOTc1NGJjZTNmMGU5ZGRkMDA1MmY4NjQxQGc&tmsrc=73995e1e0b1c948a8a0021ec4c3ce72941f7b7ac9754bce3f0e9ddd0052f8641%40group.calendar.google.com&scp=ALL
 
 ## Credits
 
