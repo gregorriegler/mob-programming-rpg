@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Game } from "../model/Game";
 
 export const useWsGame = ([game, setGame], wsServer, wsReconnect) => {
-    const gameRef = useRef(game);
+    const gameRef = useRef<Game>(game);
     const ws = useRef<WebSocket>();
     const reconnectInterval = useRef<NodeJS.Timer>();
 
@@ -50,5 +50,6 @@ export const useWsGame = ([game, setGame], wsServer, wsReconnect) => {
         setGame(game);
         sendGameState();
     }
-    return [game, setAndSendGame, gameRef];
+    
+    return [game, setAndSendGame, gameRef] as const;
 }
