@@ -36,6 +36,9 @@ function changePlayers(players: string) {
     fireEvent.click(screen.getByText("Close"));
 }
 
+const randomPort = () => {
+    return `${8000 + Math.floor(Math.random()*100)}`;
+}
 
 describe('Mob Programming RPG', () => {
 
@@ -43,9 +46,10 @@ describe('Mob Programming RPG', () => {
         global.IS_REACT_ACT_ENVIRONMENT = false;
     })
 
-    const wsServerUrl = "ws://localhost:8080";
     let server;
     let child;
+    let port;
+
 
     beforeEach(async () => {
         // run an `npm start` in the ws folder
@@ -55,7 +59,8 @@ describe('Mob Programming RPG', () => {
         localStorage.clear();
 
         await execa("/home/gitpod/.nvm/versions/node/v16.18.1/bin/npm", ["install"], { cwd: "../wsserver" });
-        child = execa("/home/gitpod/.nvm/versions/node/v16.18.1/bin/npm", ["start"], { cwd: "../wsserver", all: true });
+        port = randomPort();
+        child = execa("/home/gitpod/.nvm/versions/node/v16.18.1/bin/npm", ["start"], { cwd: "../wsserver", all: true, env: { PORT: port } });
         await new Promise<string>(
             (resolve) => {
                 child.all?.on("data", (d) => {
@@ -89,25 +94,26 @@ describe('Mob Programming RPG', () => {
         const rpg2 = document.getElementById('rpg2')!;
         const playerList1 = within(rpg1).getByRole('list', { name: /Player List/ });
         expect(playerList1.childElementCount).toEqual(5);
-    
+
         const playerList2 = within(rpg2).getByRole('list', { name: /Player List/ });
         expect(playerList2.childElementCount).toEqual(1);
-    
+
         await act(async () => {
             const timerButton = within(rpg1).getByRole("button", { name: /Start/i })
             fireEvent.click(timerButton)
             await new Promise((resolve) => setTimeout(resolve, 1000));
         })
-        
+
         expect(playerList2.childElementCount).toEqual(5);
     });
 
     it('two games with the same init game - same players', async () => {
         const game = Game.withProps({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
+        const URL="ws://localhost:" + port;
         const result = render(
             <>
-                <div id="rpg1"><MobProgrammingRPG initGame={game} /></div>
-                <div id="rpg2"><MobProgrammingRPG initGame={game} /></div>
+                <div id="rpg1"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
+                <div id="rpg2"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
             </>
         );
 
@@ -116,10 +122,10 @@ describe('Mob Programming RPG', () => {
         const rpg2 = document.getElementById('rpg2')!;
         const playerList1 = within(rpg1).getByRole('list', { name: /Player List/ });
         expect(playerList1.childElementCount).toEqual(5);
-    
+
         const playerList2 = within(rpg2).getByRole('list', { name: /Player List/ });
         expect(playerList2.childElementCount).toEqual(5);
-    
+
 
         const players = within(playerList2).queryAllByRole("listitem");
         expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
@@ -131,14 +137,14 @@ describe('Mob Programming RPG', () => {
             const timerButton = within(rpg1).getByRole("button", { name: /Start/i })
             fireEvent.click(timerButton)
         })
-        
-            await new Promise((resolve) => setTimeout(resolve, 2500));
-        
+
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+
 
         // now the role is the following player
         expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber');
         expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
         expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
-        
+
     });
 })
