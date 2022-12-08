@@ -39,6 +39,10 @@ function changePlayers(players: string) {
 
 describe('Mob Programming RPG', () => {
 
+    beforeAll(() => {
+        global.IS_REACT_ACT_ENVIRONMENT = false;
+    })
+
     const wsServerUrl = "ws://localhost:8080";
     let server;
     let child;
