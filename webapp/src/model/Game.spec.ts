@@ -181,6 +181,20 @@ describe('Game', () => {
         expect(game.roleOf('Max')).toEqual('Mobber');
     });
 
+    it('rotates - to specified rotation', () => {
+        const game = createGame();
+        game.setPlayers('Max,Rita,Peter,Sam');
+
+        game.rotateTo(1);
+
+        expect(game.driver()).toEqual('Rita');
+        expect(game.navigator()).toEqual('Peter');
+        expect(game.roleOf('Rita')).toEqual('Driver');
+        expect(game.roleOf('Peter')).toEqual('Navigator');
+        expect(game.roleOf('Sam')).toEqual('Mobber');
+        expect(game.roleOf('Max')).toEqual('Mobber');
+    });
+
     it('rotates around', () => {
         const game = createGame();
         game.setPlayers('Max,Rita,Peter,Sam');
@@ -211,6 +225,7 @@ describe('Game', () => {
         const game = createGame();
         game.setPlayers('Max,Rita');
         game.rotate();
+        game.startTimer();
 
         const json = game.toJSON();
 
@@ -220,8 +235,9 @@ describe('Game', () => {
         expect(result.players[0].name).toEqual('Max');
         expect(result.players[1].name).toEqual('Rita');
         expect(result.timer.value).toEqual(4 * 60);
-        expect(result.timer.status).toEqual("STOPPED");
+        expect(result.timer.status).toEqual("STARTED");
         expect(result.rotations).toEqual(1);
+        expect(result.targetRotation).toEqual(2);
     })
 
     it('deserializes from json', () => {
@@ -243,7 +259,8 @@ describe('Game', () => {
             "value": 240,
             "status": "STOPPED"
           }, 
-          "rotations": 1
+          "rotations": 1,
+          "targetRotation": 7
         }
         `);
 
@@ -253,6 +270,7 @@ describe('Game', () => {
         expect(game.timer()).toEqual(240);
         expect(game.timerStatus()).toEqual("STOPPED");
         expect(game.rotations()).toEqual(1);
+        expect(game.targetRotation()).toEqual(7);
     })
 
     it('is equal to its deserialized form', () => {

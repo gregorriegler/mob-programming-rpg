@@ -20,8 +20,7 @@ export type GameProps = {
     timer?: Seconds
 }
 
-export class Game {
-    
+export class Game {    
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
         return new Game(
@@ -29,7 +28,8 @@ export class Game {
             parsedObject.players.map(it => Player.fromObject(it)),
             parsedObject.timer.value,
             parsedObject.timer.status,
-            parsedObject.rotations
+            parsedObject.rotations,
+            parsedObject.targetRotation
         );
     }
 
@@ -53,6 +53,7 @@ export class Game {
     private _players: Player[];
     private _timer: Seconds;
     private _timerStatus: TimerStatus;
+    private _targetRotation;
     private _rotations;
     private _roleIndex = [DRIVER, NAVIGATOR];
 
@@ -61,13 +62,15 @@ export class Game {
         players: Player[] = [],
         timer: Seconds = DEFAULT_TIMER,
         timerStatus: TimerStatus = "STOPPED",
-        rotations: number = 0
+        rotations: number = 0,
+        targetRotation: number | undefined = undefined
     ) {
         this._id = id;
         this._players = players;
         this._timer = timer;
         this._timerStatus = timerStatus;
         this._rotations = rotations;
+        this._targetRotation = targetRotation;
     }
 
     id() {
@@ -100,6 +103,7 @@ export class Game {
 
     startTimer() {
         this._timerStatus = "STARTED";
+        this._targetRotation = this._rotations + 1;
     }
 
     stopTimer() {
@@ -141,8 +145,16 @@ export class Game {
         this._rotations++;
     }
 
+    rotateTo(rotation) {
+        this._rotations = rotation;
+    }
+
     rotations() {
         return this._rotations;
+    }
+
+    targetRotation(): number | undefined {
+        return this._targetRotation;
     }
 
     roleOf(player: string) {
@@ -160,6 +172,7 @@ export class Game {
                 status: this._timerStatus
             },
             rotations: this._rotations,
+            targetRotation: this._targetRotation,
         })
     }
 

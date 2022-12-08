@@ -53,6 +53,7 @@ const MobProgrammingRPG = (
 
     const rotate = () => {
         gameRef.current.rotate();
+        // gameRef.current.rotateTo(to);
         updateGameState();
     };
 
