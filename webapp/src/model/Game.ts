@@ -149,6 +149,10 @@ export class Game {
         this._rotations = rotation;
     }
 
+    rotateToTarget() {
+        this._rotations = this._targetRotation;
+    }
+
     rotations() {
         return this._rotations;
     }
