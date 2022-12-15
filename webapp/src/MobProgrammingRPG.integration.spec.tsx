@@ -146,5 +146,5 @@ describe('Mob Programming RPG', () => {
         expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
         expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
 
-    });
+    }, 10000);
 })
