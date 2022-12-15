@@ -74,7 +74,7 @@ describe('Mob Programming RPG', () => {
             }
         );
 
-    })
+    }, 1)
 
     afterEach(() => {
         child?.all?.removeAllListeners("data");
