@@ -4,6 +4,7 @@
     - fix failing ci (test)
         - hard-coded path to npm in the test
     - deploy to heroku (automatically)
+- Test: 'two games with the same init game - same players' passes but the process is hanging on CI
 - Game ctor should use props obj iso multi params
 - !! potential bug: rotate button should not use rotateToTarget
 - !! remove old and then unused rotate functions

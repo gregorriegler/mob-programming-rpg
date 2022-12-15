@@ -67,7 +67,7 @@ describe('Mob Programming RPG', () => {
                     console.log("data: " + String(d));
                     if (/WS Server running/.test(String(d))) {
                         child.all?.removeAllListeners("data");
-                        child.all?.on("data", (d) => { console.log("server: " + String(d)); });
+                        // child.all?.on("data", (d) => { console.log("server: " + String(d)); });
                         resolve(String(d));
                     }
                 })
@@ -107,7 +107,7 @@ describe('Mob Programming RPG', () => {
         expect(playerList2.childElementCount).toEqual(5);
     });
 
-    it('two games with the same init game - same players', async () => {
+    xit('two games with the same init game - same players', async () => {
         const game = Game.withProps({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
         const URL="ws://localhost:" + port;
         const result = render(
