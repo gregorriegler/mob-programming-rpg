@@ -58,9 +58,9 @@ describe('Mob Programming RPG', () => {
         window.history.pushState({}, "GameId", "/")
         localStorage.clear();
 
-        await execa("/home/gitpod/.nvm/versions/node/v16.18.1/bin/npm", ["install"], { cwd: "../wsserver" });
+        await execa("npm", ["install"], { cwd: "../wsserver" });
         port = randomPort();
-        child = execa("/home/gitpod/.nvm/versions/node/v16.18.1/bin/npm", ["start"], { cwd: "../wsserver", all: true, env: { PORT: port } });
+        child = execa("npm", ["start"], { cwd: "../wsserver", all: true, env: { PORT: port } });
         await new Promise<string>(
             (resolve) => {
                 child.all?.on("data", (d) => {
