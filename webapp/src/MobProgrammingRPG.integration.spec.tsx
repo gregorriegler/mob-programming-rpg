@@ -78,7 +78,7 @@ describe('Mob Programming RPG', () => {
 
     afterEach(() => {
         child?.all?.removeAllListeners("data");
-        child.kill();
+        child?.kill();
     })
 
     xit('gamestate will be propagated to another instance of MobProgrammingRPG on an update', async () => {
