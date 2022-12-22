@@ -168,9 +168,9 @@ describe('Mob Programming RPG', () => {
         fireEvent.click(getRotateButton());
 
         const items = getPlayerListItems();
-        expect(items[0]).toHaveTextContent('Mobber');
-        expect(items[1]).toHaveTextContent('Driver');
-        expect(items[2]).toHaveTextContent('Navigator');
+        expect(within(items[0]).getAllByRole('heading',{ level: 2 })[0]).toHaveTextContent('Mobber')
+        expect(within(items[1]).getAllByRole('heading',{ level: 2 })[0]).toHaveTextContent('Driver')
+        expect(within(items[2]).getAllByRole('heading',{ level: 2 })[0]).toHaveTextContent('Navigator')
     })
 
     it("has a help button once clicked shows what a player should do", () => {

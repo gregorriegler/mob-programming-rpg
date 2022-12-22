@@ -56,6 +56,11 @@ const MobProgrammingRPG = (
         updateGameState();
     };
 
+    const rotateByButton = () => {
+        gameRef.current.rotate();
+        updateGameState();
+    };
+
     const timeOver = () => {
         gameRef.current.stopTimer();
         rotate();
@@ -127,7 +132,7 @@ const MobProgrammingRPG = (
             <div className="rpgui-container framed-grey buttons">
                 <button className="rpgui-button" onClick={toggleSettings}><p>Settings</p></button>
                 <button className="rpgui-button" onClick={toggleHelp}><p>Help</p></button>
-                <button className="rpgui-button" onClick={rotate}><p>Rotate</p></button>
+                <button className="rpgui-button" onClick={rotateByButton}><p>Rotate</p></button>
                 <button className="rpgui-button" onClick={toggleAbout}><p>About</p></button>
                 <TimerDisplay
                     timer={game.timerInMinutes()}
