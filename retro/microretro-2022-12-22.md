@@ -1,6 +1,9 @@
 # Goal
 
-- !! potential bug: rotate button should not use rotateToTarget
+- [X] !! potential bug: rotate button should not use rotateToTarget
+- [X] !! remove old and then unused rotate functions
+- For next time we could take a look at this one:
+    - Game ctor should use props obj iso multi params
 
 # Retro
 

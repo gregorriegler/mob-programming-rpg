@@ -1,5 +1,4 @@
 import { Avatar, Player } from "./Player";
-import { NAVIGATOR_THEN_DRIVER } from "./Roles";
 
 const DRIVER = "Driver";
 const NAVIGATOR = "Navigator";
@@ -143,10 +142,6 @@ export class Game {
 
     rotate() {
         this._rotations++;
-    }
-
-    rotateTo(rotation) {
-        this._rotations = rotation;
     }
 
     rotateToTarget() {
