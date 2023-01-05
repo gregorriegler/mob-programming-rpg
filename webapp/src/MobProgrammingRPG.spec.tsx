@@ -337,7 +337,7 @@ describe('Mob Programming RPG', () => {
         it('that starts if games timer was started', () => {
             localStorage.setItem(
                 "continueId",
-                Game.withProps(
+                new Game(
                     {
                         id: "continueId",
                         timer: 2,
@@ -353,7 +353,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that is configurable', () => {
-            render(<MobProgrammingRPG initGame={Game.withProps({ timer: 3 })} />);
+            render(<MobProgrammingRPG initGame={new Game({ timer: 3 })} />);
 
             expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
@@ -363,7 +363,7 @@ describe('Mob Programming RPG', () => {
 
         it("that shows who's next when the time is over", () => {
             render(<MobProgrammingRPG
-                initGame={Game.withProps({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
+                initGame={new Game({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
                 clock={clock}
             />);
             fireEvent.click(screen.getByRole('button', { name: 'Start' }));
@@ -379,7 +379,7 @@ describe('Mob Programming RPG', () => {
 
         it("that allows to continue after the time is over", () => {
             render(<MobProgrammingRPG
-                initGame={Game.withProps({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
+                initGame={new Game({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
                 clock={clock}
             />);
             fireEvent.click(screen.getByRole('button', { name: 'Start' }));
@@ -395,7 +395,7 @@ describe('Mob Programming RPG', () => {
 
         it('changed players remain until after countdown', () => {
             render(<MobProgrammingRPG
-                initGame={Game.withProps({ timer: 1 })}
+                initGame={new Game({ timer: 1 })}
                 clock={clock}
             />);
             changePlayers('1,2,3');

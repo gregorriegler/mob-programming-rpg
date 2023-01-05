@@ -27,7 +27,7 @@ export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
 
-        return Game.withProps({
+        return new Game({
             id: parsedObject.id,
             playerObjects: parsedObject.players.map(it => Player.fromObject(it)),
             timer: parsedObject.timer.value,
@@ -38,15 +38,11 @@ export class Game {
     }
 
     static withId(id: GameId) {
-        return Game.withProps({ id });
-    }
-
-    static withProps(props: GameProps) {
-        return new Game(props);
+        return new Game({ id });
     }
 
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
-        return Game.withProps({ players, timer, id })
+        return new Game({ players, timer, id })
     }
 
     private readonly _id: GameId;
@@ -57,7 +53,7 @@ export class Game {
     private _rotations;
     private _roleIndex = [DRIVER, NAVIGATOR];
 
-    private constructor({
+    constructor({
         id = generateId(),
         players = [],
         playerObjects,

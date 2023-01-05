@@ -21,7 +21,7 @@ type MobProgrammingRPGProps = {
 
 const MobProgrammingRPG = (
     {
-        initGame = Game.withProps({id: undefined, players: [], timer: 60 * 4}),
+        initGame = new Game({id: undefined, players: [], timer: 60 * 4}),
         clock = new RealClock(),
         wsServer = "ws://localhost:8080",
         wsReconnect = false,

@@ -84,8 +84,8 @@ describe('Mob Programming RPG', () => {
     xit('gamestate will be propagated to another instance of MobProgrammingRPG on an update', async () => {
         const result = render(
             <>
-                <div id="rpg1"><MobProgrammingRPG initGame={Game.withProps({ id: "gameId", players: ["Gregor", "Peter", "Rita", "Ben"] })} /></div>
-                <div id="rpg2"><MobProgrammingRPG initGame={Game.withProps({ id: "gameId" })} /></div>
+                <div id="rpg1"><MobProgrammingRPG initGame={new Game({ id: "gameId", players: ["Gregor", "Peter", "Rita", "Ben"] })} /></div>
+                <div id="rpg2"><MobProgrammingRPG initGame={new Game({ id: "gameId" })} /></div>
             </>
         );
 
@@ -108,7 +108,7 @@ describe('Mob Programming RPG', () => {
     });
 
     xit('two games with the same init game - same players', async () => {
-        const game = Game.withProps({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
+        const game = new Game({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
         const URL="ws://localhost:" + port;
         const result = render(
             <>

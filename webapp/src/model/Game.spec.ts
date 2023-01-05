@@ -2,12 +2,12 @@ import { Game } from "./Game";
 import { Player } from "./Player";
 
 function createGame() {
-    return Game.withProps({id: "gameId"});
+    return new Game({id: "gameId"});
 }
 
 describe('Game', () => {
     it("contruct using props ctor", () => {
-        const game = Game.withProps({
+        const game = new Game({
             id: "some-id", 
             players: ['Bob'],
             timer: 100,
@@ -25,7 +25,7 @@ describe('Game', () => {
     })
 
     it("contruct using withProps with player objects", () => {
-        const game = Game.withProps({
+        const game = new Game({
             id: "some-id", 
             playerObjects: [new Player("Bob")],
             timer: 100,
