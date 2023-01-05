@@ -2,25 +2,32 @@ import { Game } from "./Game";
 import { Player } from "./Player";
 
 function createGame() {
-    return new Game("gameId");
+    return Game.withProps({id: "gameId"});
 }
 
 describe('Game', () => {
     it("contruct using props ctor", () => {
-
-        // test each one
-
-        // parsedObject.id,
-        // parsedObject.players.map(it => Player.fromObject(it)),
-        // parsedObject.timer.value,
-        // parsedObject.timer.status,
-        // parsedObject.rotations,
-        // parsedObject.targetRotation
-        // const game = new Game("Nitsan rocks id", [], 0, undefined, 0, 1, {id: "some-id"});
-        
         const game = Game.withProps({
             id: "some-id", 
             players: ['Bob'],
+            timer: 100,
+            timerStatus: "STARTED",
+            rotations: 10,
+            targetRotation: 3
+        });
+
+        expect(game.id()).toEqual("some-id");
+        expect(game.playerNames()).toEqual('Bob');
+        expect(game.timer()).toEqual(100);
+        expect(game.timerStatus()).toEqual("STARTED");
+        expect(game.rotations()).toEqual(10);
+        expect(game.targetRotation()).toEqual(3);
+    })
+
+    it("contruct using withProps with player objects", () => {
+        const game = Game.withProps({
+            id: "some-id", 
+            playerObjects: [new Player("Bob")],
             timer: 100,
             timerStatus: "STARTED",
             rotations: 10,

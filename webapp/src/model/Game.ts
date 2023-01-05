@@ -16,6 +16,7 @@ function generateId() {
 export type GameProps = {
     id?: GameId,
     players?: string[],
+    playerObjects?: Player[],
     timer?: Seconds,
     timerStatus?: TimerStatus,
     rotations?: number,
@@ -25,14 +26,15 @@ export type GameProps = {
 export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
-        return new Game(
-            parsedObject.id,
-            parsedObject.players.map(it => Player.fromObject(it)),
-            parsedObject.timer.value,
-            parsedObject.timer.status,
-            parsedObject.rotations,
-            parsedObject.targetRotation
-        );
+        
+        return Game.withProps({
+            id: parsedObject.id,
+            playerObjects: parsedObject.players.map(it => Player.fromObject(it)),
+            timer: parsedObject.timer.value,
+            timerStatus: parsedObject.timer.status,
+            rotations: parsedObject.rotations,
+            targetRotation: parsedObject.targetRotation
+        });
     }
 
     static withId(id: GameId) {
@@ -41,7 +43,8 @@ export class Game {
 
     static withProps({
         id = generateId(),
-        players = ["applesace"],
+        players = [],
+        playerObjects,
         timer = DEFAULT_TIMER,
         timerStatus = "STOPPED",
         rotations = 0,
@@ -49,7 +52,7 @@ export class Game {
     }: GameProps) {
         return new Game(
             id, 
-            players.map(name => new Player(name)), 
+            playerObjects || players.map(name => new Player(name)), 
             timer,
             timerStatus,
             rotations,
@@ -58,7 +61,7 @@ export class Game {
     }
 
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
-        return new Game(id, players.map(name => new Player(name)), timer);
+        return Game.withProps({players, timer, id})
     }
 
     private readonly _id: GameId;
@@ -69,10 +72,7 @@ export class Game {
     private _rotations;
     private _roleIndex = [DRIVER, NAVIGATOR];
 
-
-    // idea - first add the props as optional (with '?')
-
-    constructor(
+    private constructor(
         id: GameId,
         players: Player[] = [],
         timer: Seconds = DEFAULT_TIMER,

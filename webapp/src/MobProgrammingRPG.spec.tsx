@@ -168,9 +168,9 @@ describe('Mob Programming RPG', () => {
         fireEvent.click(getRotateButton());
 
         const items = getPlayerListItems();
-        expect(within(items[0]).getAllByRole('heading',{ level: 2 })[0]).toHaveTextContent('Mobber')
-        expect(within(items[1]).getAllByRole('heading',{ level: 2 })[0]).toHaveTextContent('Driver')
-        expect(within(items[2]).getAllByRole('heading',{ level: 2 })[0]).toHaveTextContent('Navigator')
+        expect(within(items[0]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber')
+        expect(within(items[1]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver')
+        expect(within(items[2]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator')
     })
 
     it("has a help button once clicked shows what a player should do", () => {
@@ -337,11 +337,12 @@ describe('Mob Programming RPG', () => {
         it('that starts if games timer was started', () => {
             localStorage.setItem(
                 "continueId",
-                new Game(
-                    "continueId",
-                    [],
-                    2,
-                    "STARTED"
+                Game.withProps(
+                    {
+                        id: "continueId",
+                        timer: 2,
+                        timerStatus: "STARTED"
+                    }
                 ).toJSON()
             )
             render(<MobProgrammingRPG initGame={Game.withId("continueId")} />);
