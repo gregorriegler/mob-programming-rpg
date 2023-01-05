@@ -26,7 +26,7 @@ export type GameProps = {
 export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
-        
+
         return Game.withProps({
             id: parsedObject.id,
             playerObjects: parsedObject.players.map(it => Player.fromObject(it)),
@@ -41,27 +41,12 @@ export class Game {
         return Game.withProps({ id });
     }
 
-    static withProps({
-        id = generateId(),
-        players = [],
-        playerObjects,
-        timer = DEFAULT_TIMER,
-        timerStatus = "STOPPED",
-        rotations = 0,
-        targetRotation = undefined,
-    }: GameProps) {
-        return new Game(
-            id, 
-            playerObjects || players.map(name => new Player(name)), 
-            timer,
-            timerStatus,
-            rotations,
-            targetRotation
-        )
+    static withProps(props: GameProps) {
+        return new Game(props);
     }
 
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
-        return Game.withProps({players, timer, id})
+        return Game.withProps({ players, timer, id })
     }
 
     private readonly _id: GameId;
@@ -72,17 +57,17 @@ export class Game {
     private _rotations;
     private _roleIndex = [DRIVER, NAVIGATOR];
 
-    private constructor(
-        id: GameId,
-        players: Player[] = [],
-        timer: Seconds = DEFAULT_TIMER,
-        timerStatus: TimerStatus = "STOPPED",
-        rotations: number = 0,
-        targetRotation: number | undefined = undefined,
-        props?: { id: GameId }
-    ) {
-        this._id = props?.id || id;
-        this._players = players;
+    private constructor({
+        id = generateId(),
+        players = [],
+        playerObjects,
+        timer = DEFAULT_TIMER,
+        timerStatus = "STOPPED",
+        rotations = 0,
+        targetRotation = undefined,
+    }: GameProps) {
+        this._id = id;
+        this._players = playerObjects || players.map(name => new Player(name));
         this._timer = timer;
         this._timerStatus = timerStatus;
         this._rotations = rotations;
