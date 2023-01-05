@@ -61,7 +61,7 @@ describe('Mob Programming RPG', () => {
         localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
         window.history.pushState({}, "GameId", "/continueId")
 
-        render(<MobProgrammingRPG initGame={Game.withId("continueId")} />);
+        render(<MobProgrammingRPG initGame={new Game({id: "continueId"})} />);
 
         const items = getPlayerListItems();
         expect(items).toHaveLength(1);
@@ -329,7 +329,7 @@ describe('Mob Programming RPG', () => {
         it('that shows the timer as was set in localStorage', () => {
             localStorage.setItem("continueId", Game.withPlayers([], 60, "continueId").toJSON())
 
-            render(<MobProgrammingRPG initGame={Game.withId("continueId")} />);
+            render(<MobProgrammingRPG initGame={new Game({id: "continueId"})} />);
 
             expect(screen.getByTitle("timer")).toHaveTextContent('01:00');
         })
@@ -345,7 +345,7 @@ describe('Mob Programming RPG', () => {
                     }
                 ).toJSON()
             )
-            render(<MobProgrammingRPG initGame={Game.withId("continueId")} />);
+            render(<MobProgrammingRPG initGame={new Game({id: "continueId"})} />);
 
             advanceTimeBy(1000)
 
@@ -415,13 +415,13 @@ describe('Mob Programming RPG', () => {
     describe('uses websockets', () => {
 
         it('initially subscribes the server', async () => {
-            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl} />);
+            render(<MobProgrammingRPG initGame={new Game({id: "gameId"})} wsServer={wsServerUrl} />);
 
             await expect(server).toReceiveMessage(JSON.stringify({ "command": "subscribe", "id": "gameId" }))
         })
 
         it('handles a server notification', () => {
-            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl} />);
+            render(<MobProgrammingRPG initGame={new Game({id: "gameId"})} wsServer={wsServerUrl} />);
 
             server.send(Game.withPlayers(["1"], DEFAULT_TIMER, "gameId").toJSON())
 
@@ -431,7 +431,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('updates the server', async () => {
-            render(<MobProgrammingRPG initGame={Game.withId("gameId")} wsServer={wsServerUrl} />);
+            render(<MobProgrammingRPG initGame={new Game({id: "gameId"})} wsServer={wsServerUrl} />);
 
             await expect(server).toReceiveMessage(JSON.stringify({ "command": "subscribe", "id": "gameId" }))
 

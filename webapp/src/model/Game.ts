@@ -37,10 +37,6 @@ export class Game {
         });
     }
 
-    static withId(id: GameId) {
-        return new Game({ id });
-    }
-
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
         return new Game({ players, timer, id })
     }
