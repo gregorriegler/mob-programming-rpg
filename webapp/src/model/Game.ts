@@ -16,7 +16,10 @@ function generateId() {
 export type GameProps = {
     id?: GameId,
     players?: string[],
-    timer?: Seconds
+    timer?: Seconds,
+    timerStatus?: TimerStatus,
+    rotations?: number,
+    targetRotation?: number | undefined,
 }
 
 export class Game {
@@ -38,10 +41,20 @@ export class Game {
 
     static withProps({
         id = generateId(),
-        players = [],
-        timer = DEFAULT_TIMER
+        players = ["applesace"],
+        timer = DEFAULT_TIMER,
+        timerStatus = "STOPPED",
+        rotations = 0,
+        targetRotation = undefined,
     }: GameProps) {
-        return new Game(id, players.map(name => new Player(name)), timer)
+        return new Game(
+            id, 
+            players.map(name => new Player(name)), 
+            timer,
+            timerStatus,
+            rotations,
+            targetRotation
+        )
     }
 
     static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
