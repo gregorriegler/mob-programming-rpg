@@ -19,7 +19,7 @@ export type GameProps = {
     timer?: Seconds
 }
 
-export class Game {    
+export class Game {
     static fromJSON(json: string) {
         const parsedObject = JSON.parse(json);
         return new Game(
@@ -56,15 +56,19 @@ export class Game {
     private _rotations;
     private _roleIndex = [DRIVER, NAVIGATOR];
 
+
+    // idea - first add the props as optional (with '?')
+
     constructor(
         id: GameId,
         players: Player[] = [],
         timer: Seconds = DEFAULT_TIMER,
         timerStatus: TimerStatus = "STOPPED",
         rotations: number = 0,
-        targetRotation: number | undefined = undefined
+        targetRotation: number | undefined = undefined,
+        props?: { id: GameId }
     ) {
-        this._id = id;
+        this._id = props?.id || id;
         this._players = players;
         this._timer = timer;
         this._timerStatus = timerStatus;

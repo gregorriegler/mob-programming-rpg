@@ -6,6 +6,19 @@ function createGame() {
 }
 
 describe('Game', () => {
+    it("contruct using props ctor", () => {
+
+        // parsedObject.id,
+        // parsedObject.players.map(it => Player.fromObject(it)),
+        // parsedObject.timer.value,
+        // parsedObject.timer.status,
+        // parsedObject.rotations,
+        // parsedObject.targetRotation
+        const game = new Game("Nitsan rocks id", [], 0, undefined, 0, 1, {id: "some-id"});
+
+        expect(game.id()).toEqual("some-id");
+    })
+
     it('has an id', () => {
         const game = createGame();
 
