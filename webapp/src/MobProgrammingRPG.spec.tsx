@@ -58,7 +58,7 @@ describe('Mob Programming RPG', () => {
     });
 
     it('continues a game', () => {
-        localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
+        localStorage.setItem("continueId", new Game({players:["1"]}).toJSON())
         window.history.pushState({}, "GameId", "/continueId")
 
         render(<MobProgrammingRPG initGame={new Game({id: "continueId"})} />);
@@ -82,7 +82,7 @@ describe('Mob Programming RPG', () => {
     });
 
     it('creates a new game despite given localStorage', () => {
-        localStorage.setItem("continueId", Game.withPlayers(["1"]).toJSON())
+        localStorage.setItem("continueId", new Game({players:["1"]}).toJSON())
         window.history.pushState({}, "GameId", "/")
         render(<MobProgrammingRPG />);
 
@@ -109,7 +109,7 @@ describe('Mob Programming RPG', () => {
     });
 
     it('shows players roles', () => {
-        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita", "Ben"])} />);
+        render(<MobProgrammingRPG initGame={new Game({players:["Gregor", "Peter", "Rita", "Ben"]})} />);
 
         const items = getPlayerListItems();
         expect(items[0]).toHaveTextContent('Gregor');
@@ -163,7 +163,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it('has a rotate button that rotates the players', () => {
-        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])} />);
+        render(<MobProgrammingRPG initGame={new Game({players:["Gregor", "Peter", "Rita"]})} />);
 
         fireEvent.click(getRotateButton());
 
@@ -174,7 +174,7 @@ describe('Mob Programming RPG', () => {
     })
 
     it("has a help button once clicked shows what a player should do", () => {
-        render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])} />);
+        render(<MobProgrammingRPG initGame={new Game({players:["Gregor", "Peter", "Rita"]})} />);
 
         const helpButton = screen.getByRole('button', { name: 'Help' });
         expect(helpButton).toBeInTheDocument();
@@ -184,7 +184,7 @@ describe('Mob Programming RPG', () => {
     describe('has settings', () => {
 
         it('that shows the players', () => {
-            render(<MobProgrammingRPG initGame={Game.withPlayers(["Gregor", "Peter"])} />);
+            render(<MobProgrammingRPG initGame={new Game({players:["Gregor", "Peter"]})} />);
 
             fireEvent.click(getSettingsButton());
 
@@ -248,7 +248,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that allows to change rotation direction to (Navigator,Driver)', () => {
-            const game = Game.withPlayers(["Gregor", "Peter", "Rita"]);
+            const game = new Game({players:["Gregor", "Peter", "Rita"]});
             jest.spyOn(game, "navigatorThenDriver");
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
@@ -260,7 +260,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that allows to change rotation direction back to (Driver,Navigator)', () => {
-            const game = Game.withPlayers(["Gregor", "Peter", "Rita"]);
+            const game = new Game({players:["Gregor", "Peter", "Rita"]});
             jest.spyOn(game, "navigatorThenDriver");
             jest.spyOn(game, "driverThenNavigator");
             render(<MobProgrammingRPG initGame={game} />);
@@ -306,7 +306,7 @@ describe('Mob Programming RPG', () => {
 
         it('that shows the time left', () => {
             render(<MobProgrammingRPG
-                initGame={Game.withPlayers(["Gregor", "Peter", "Rita"])}
+                initGame={new Game({players:["Gregor", "Peter", "Rita"]})}
                 wsServer={wsServerUrl}
             />);
 
@@ -327,7 +327,7 @@ describe('Mob Programming RPG', () => {
         })
 
         it('that shows the timer as was set in localStorage', () => {
-            localStorage.setItem("continueId", Game.withPlayers([], 60, "continueId").toJSON())
+            localStorage.setItem("continueId", new Game({timer: 60, id: "continueId"}).toJSON())
 
             render(<MobProgrammingRPG initGame={new Game({id: "continueId"})} />);
 
@@ -423,7 +423,7 @@ describe('Mob Programming RPG', () => {
         it('handles a server notification', () => {
             render(<MobProgrammingRPG initGame={new Game({id: "gameId"})} wsServer={wsServerUrl} />);
 
-            server.send(Game.withPlayers(["1"], DEFAULT_TIMER, "gameId").toJSON())
+            server.send(new Game({players: ["1"], id: "gameId"}).toJSON())
 
             const items = getPlayerListItems();
             expect(items.length).toBe(1);
@@ -441,7 +441,7 @@ describe('Mob Programming RPG', () => {
                 JSON.stringify(
                     {
                         "command": "save",
-                        "game": JSON.parse(Game.withPlayers(['2', '3'], DEFAULT_TIMER, 'gameId').toJSON())
+                        "game": JSON.parse(new Game({players:['2', '3'],id: 'gameId'}).toJSON())
                     }
                 )
             );

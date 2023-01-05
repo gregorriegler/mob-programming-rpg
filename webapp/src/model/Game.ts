@@ -37,10 +37,6 @@ export class Game {
         });
     }
 
-    static withPlayers(players: string[], timer: Seconds = DEFAULT_TIMER, id: GameId = generateId()) {
-        return new Game({ players, timer, id })
-    }
-
     private readonly _id: GameId;
     private _players: Player[];
     private _timer: Seconds;
@@ -57,7 +53,7 @@ export class Game {
         timerStatus = "STOPPED",
         rotations = 0,
         targetRotation = undefined,
-    }: GameProps) {
+    }: GameProps = {}) {
         this._id = id;
         this._players = playerObjects || players.map(name => new Player(name));
         this._timer = timer;

@@ -2,13 +2,13 @@ import { Game } from "./Game";
 import { Player } from "./Player";
 
 function createGame() {
-    return new Game({id: "gameId"});
+    return new Game({ id: "gameId" });
 }
 
 describe('Game', () => {
     it("contruct using props ctor", () => {
         const game = new Game({
-            id: "some-id", 
+            id: "some-id",
             players: ['Bob'],
             timer: 100,
             timerStatus: "STARTED",
@@ -26,7 +26,7 @@ describe('Game', () => {
 
     it("contruct using withProps with player objects", () => {
         const game = new Game({
-            id: "some-id", 
+            id: "some-id",
             playerObjects: [new Player("Bob")],
             timer: 100,
             timerStatus: "STARTED",
@@ -49,8 +49,8 @@ describe('Game', () => {
     });
 
     it('creates a new id every time', () => {
-        const game1 = Game.withPlayers([]);
-        const game2 = Game.withPlayers([]);
+        const game1 = new Game();
+        const game2 = new Game();
 
         expect(game1.id()).not.toEqual(game2.id());
     });
@@ -78,7 +78,7 @@ describe('Game', () => {
     });
 
     it('adds players to the end of the player list', () => {
-        const game = Game.withPlayers(["1", "2"]);
+        const game = new Game({ players: ["1", "2"] });
 
         game.addPlayer('  3', 'dodo');
 
@@ -102,7 +102,7 @@ describe('Game', () => {
     });
 
     it('changing players order does not delete their points', () => {
-        const game = Game.withPlayers(['1', '2']);
+        const game = new Game({ players: ['1', '2'] });
         const player1 = game.players()[0];
         const player2 = game.players()[1];
 
@@ -113,7 +113,7 @@ describe('Game', () => {
     });
 
     it('can initialize players by array', () => {
-        const game = Game.withPlayers(['Max', 'Rita', 'Peter']);
+        const game = new Game({ players: ['Max', 'Rita', 'Peter'] });
 
         expect(game.players()).toEqual([
             new Player('Max'),
