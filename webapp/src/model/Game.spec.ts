@@ -14,7 +14,8 @@ describe('Game', () => {
         // parsedObject.timer.status,
         // parsedObject.rotations,
         // parsedObject.targetRotation
-        const game = new Game("Nitsan rocks id", [], 0, undefined, 0, 1, {id: "some-id"});
+        // const game = new Game("Nitsan rocks id", [], 0, undefined, 0, 1, {id: "some-id"});
+        const game = Game.withProps({id: "some-id"});
 
         expect(game.id()).toEqual("some-id");
     })
