@@ -5,6 +5,7 @@ import { ClockStub, MilliSeconds } from "./model/Clock";
 import { DEFAULT_TIMER, Game } from "./model/Game";
 import WS from "jest-websocket-mock";
 import { DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER } from "./model/Roles";
+import { gameIdFromUrl } from "./infrastructure/GameIdFromUrl";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', { name: /Player List/ });
@@ -92,18 +93,15 @@ describe('Mob Programming RPG', () => {
     });
 
     it('changes url for the created game id', () => {
-        window.history.pushState({}, "GameId", "/")
+        render(<MobProgrammingRPG initGame={new Game({id: "ab5Cc3"})}/>);
 
-        render(<MobProgrammingRPG />);
-
-        expect(global.window.location.pathname).toMatch(/\/[a-zA-Z0-9]+/);
-        expect(global.window.location.pathname).not.toEqual("/undefined");
+        expect(global.window.location.pathname).toEqual("/ab5Cc3");
     });
 
     it('does not change a given id', () => {
         window.history.pushState({}, "GameId", "/existingId")
 
-        render(<MobProgrammingRPG />);
+        render(<MobProgrammingRPG initGame={new Game({ id: gameIdFromUrl() })}/>);
 
         expect(global.window.location.pathname).toEqual("/existingId")
     });

@@ -13,8 +13,8 @@ function currentPath() {
     return window.location.pathname.replace(/\/+$/, '');
 }
 
-export function noGameIdInUrl() {
-    return currentPath() === process.env.PUBLIC_URL;
+export function noGameIdInUrl(gameId: string) {
+    return !currentPath().includes(gameId)
 }
 
 export function addGameIdToUrl(gameId: string) {

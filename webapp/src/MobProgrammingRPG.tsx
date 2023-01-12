@@ -41,7 +41,7 @@ const MobProgrammingRPG = (
     });
 
     useEffect(() => {
-        if (noGameIdInUrl()) {
+        if (noGameIdInUrl(game.id())) {
             addGameIdToUrl(game.id());
         }
         // eslint-disable-next-line
