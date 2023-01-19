@@ -23,6 +23,7 @@
         - collapse the full bar (slider)
     - or: more levels per role: Driver, Super Driver, Master Driver, indicated with different colors maybe...
 - user checks checkboxes of things they did -> gains points; instead of inputting points directly
+- Disciplinarian badge shows as a broken image
 
 # Retro
 
@@ -32,3 +33,7 @@
 
 ## Idea
 
+Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
+Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
+Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
+Co-Authored-By: Blessed538 <blesseddominic98@gmail.com>

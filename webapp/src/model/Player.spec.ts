@@ -13,7 +13,7 @@ describe('Player', () => {
         expect(player.level()).toBe(0);
         expect(player.badges()).toEqual([]);
         expect(player.avatar()).toEqual('dodo');
-        expectPoints([
+        expectRolesAndPoints([
             ['Driver', 0],
             ['Navigator', 0],
             ['Mobber', 0],
@@ -36,7 +36,7 @@ describe('Player', () => {
 
         expect(player.badges()).toEqual([]);
         expect(player.level()).toBe(0);
-        expectPoints([
+        expectRolesAndPoints([
             ['Driver', 1],
             ['Navigator', 0],
             ['Mobber', 0],
@@ -52,7 +52,7 @@ describe('Player', () => {
         player.scoreTimes('Navigator', 2);
 
         expect(player.badges()).toEqual([]);
-        expectPoints([
+        expectRolesAndPoints([
             ['Driver', 0],
             ['Navigator', 2],
             ['Mobber', 0],
@@ -64,13 +64,18 @@ describe('Player', () => {
         ])
     });
 
+    // should this be on a Role class?
+    // maybe start with the points (at the bottom), go up to roles from there
+    // 'Role' currently has two usages:
+    // 1. the current role in the rotation (Driver, Navigator, )
+    // 2. the skill/experience (XP) that gains points
+    // let's look at Willem's vocab
     it('limit number of points to 3 per role', () => {
         player.scoreTimes("Driver", 4);
-        expectPoints([
-            ['Driver', 3], // we only want this line
-            ['Navigator', 0],
-            ['Mobber', 0],
-        ]);
+        
+        expect(player.pointsFor("Driver")).toEqual(3);
+
+        // player.expectRole()
     });
 
     it('earns Mobber Badge', () => {
@@ -81,7 +86,7 @@ describe('Player', () => {
         expect(player.hasBadge('Mobber')).toBeTruthy();
         expect(player.badges()).toEqual(['Mobber']);
         expect(player.level()).toBe(1);
-        expectPoints([
+        expectRolesAndPoints([
             ['Driver', 0],
             ['Navigator', 0],
             ['Mobber', 3],
@@ -99,7 +104,7 @@ describe('Player', () => {
         player.scoreTimes('Navigator', 3);
 
         expect(player.badges()).toEqual(expect.arrayContaining(['Mobber', 'Driver', 'Navigator']));
-        expectPoints([
+        expectRolesAndPoints([
             ['Driver', 3],
             ['Navigator', 3],
             ['Mobber', 3],
@@ -209,7 +214,7 @@ describe('Player', () => {
         expect(player.badges()).toEqual(["Mobber"]);
     });
 
-    function expectPoints(points) {
+    function expectRolesAndPoints(points) {
         expect(player.roles()).toEqual(points.map(it => it[0]));
         points.forEach(expectOneRolesPoints);
     }
