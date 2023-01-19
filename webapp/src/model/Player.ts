@@ -139,7 +139,7 @@ export class Player {
     }
 
     private increasePointsFor(role: Role) {
-        this._points.set(role, this._points.get(role)!! + 1);
+        this._points.set(role, Math.min(3,this._points.get(role)!! + 1));
     }
 
     private canSelectRoleFor(level) {

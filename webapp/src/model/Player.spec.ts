@@ -64,6 +64,15 @@ describe('Player', () => {
         ])
     });
 
+    it('limit number of points to 3 per role', () => {
+        player.scoreTimes("Driver", 4);
+        expectPoints([
+            ['Driver', 3], // we only want this line
+            ['Navigator', 0],
+            ['Mobber', 0],
+        ]);
+    });
+
     it('earns Mobber Badge', () => {
         expect(player.hasBadge('Mobber')).toBeFalsy();
 

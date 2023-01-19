@@ -1,4 +1,5 @@
 # Goal
+- Limit number of points to 3 per role
 - Exploratory testing
     - A: which part? Q: all the app
     - run the app
@@ -11,7 +12,8 @@
     - 
 
 # Findings 
-- Adding over 3 points causes the slider? showing the number of points to exceed the space allocated for it, but you don't see it clearly until 5 points.
+- Primitive with _points
+    - this._points.set(role, Math.max(3,this._points.get(role)!! + 1)); should be _points.increment or something
 - Refresh after timer starts causes wrong time to be shown (starting over).
 - Allow the roles to be configurable (the ones shown in the "Help" page)
 - What should happen when points are full? (e.g. for Driver role)
