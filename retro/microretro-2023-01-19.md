@@ -77,7 +77,29 @@ The mob is trying to accumulate badges. INDIVIDUALS get badges, but they accrue 
 They can become a badge. Different from "place in rotation".
 Could create more ornate navigator skills. Star pilot.
 RoleName ... how to match to BadgeName. Is it a 1-to-1?
+Looking at game....As driver spot in rotation, but working on research role, can you work on 2 roles at same time?
 
+Some roles are attached to rotation.  Others are not.  Should be allowed to double up.
+
+Role -- Play book.  Like a fighter has a play book.  Things they can do.  Role sheet.  Roles.
+Are independent:
+* Spots in rotation
+* Roles
+
+Disagreed with (Willem)
+* Role is hat you are wearing as a mobber.
+
+* Chair you are sitting in is not a role.
+
+Spot in rotation is like position on sports team.  It may be a helpful model (or not).
+
+Wing man is needed because you only have one crack "at bat".  The 2 hot spots provide limited opportunities to get points.
+
+Nitsan -- another metaphor.  Only one person at the keyboard.  Only one person at the microphone.  Could be 100's of people not in those 2 hot spots.
+
+Only 2 seats in the front of the bus.  Lot's of sheets in the back of the bus.FACILITATOR is game leader (not navigator).
+
+Gregor pulled Willem in as SME.We added Willem as co-author of commit.
 
 It's only team points (We focus on the Team, not the individual)
 
@@ -85,11 +107,16 @@ It's only team points (We focus on the Team, not the individual)
 
 ## How did that feel?
 - awkward -> awesome
-- 
+- Really Fun
+- Interested in the primitive obsession design discussion
+- seeing primitive obsession hurts
+- exciting to be a part of this
+- like the fact that each session we get something done
 
 ## What worked well, we want to do more of it?
 - stop to collab, outside the rotation
 - Making space for collaboration
 - Bringing in Subject Matter Expert Willem Larsen
+- combination of having a good time, learning AND progress (happened many times already) +1
 
 ## Idea
