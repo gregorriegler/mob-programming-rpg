@@ -1,4 +1,4 @@
-import {levelOf, levels, Role} from "./Roles";
+import { levelOf, levels, Role } from "./Roles";
 
 export const avatars = [
     "dar1",
@@ -30,16 +30,25 @@ export const avatars = [
 
 export type Avatar = typeof avatars[number]
 
+export class Point {
+    value: number = 0
+
+    constructor(value: number = 0) {
+        this.value = value
+    }
+}
+
 export class Player {
     private readonly _name: string;
     private _avatar: Avatar;
-    private readonly _points: Map<Role, number>;
+    // does Player needs to know anything about points?
+    private readonly _points: Map<Role, Point>;
     private readonly _badges = new Set<Role>();
 
     static fromObject(json: { badges: Role[]; roles: { [key in Role]?: number }; name: string; avatar: Avatar; }): Player {
-        const roles = new Map<Role, number>();
+        const roles = new Map<Role, Point>();
         for (let role in json.roles) {
-            roles.set(role as Role, json.roles[role]);
+            roles.set(role as Role, new Point(json.roles[role]));
         }
         return new Player(json.name, json.avatar, roles, json.badges);
     }
@@ -47,7 +56,7 @@ export class Player {
     constructor(
         name: string,
         avatar: Avatar = 'dodo',
-        points: Map<Role, number> = new Map<Role, number>(levels[0].map(role => [role, 0])),
+        points: Map<Role, Point> = new Map<Role, Point>(levels[0].map(role => [role, new Point()])),
         badges: Role[] = [],
     ) {
         this._name = name;
@@ -95,7 +104,7 @@ export class Player {
         if (!this.canSelectRoleFor(levelOf(role))) {
             throw Error("Need to complete the current Roles first");
         }
-        this._points.set(role, 0);
+        this._points.set(role, new Point());
     }
 
     roles() {
@@ -117,7 +126,8 @@ export class Player {
             return;
         }
         this.increasePointsFor(role);
-        if (this._points.get(role)!! >= 3) {
+        // limit number of points to 3
+        if (this._points.get(role)?.value!! >= 3) {
             this._badges.add(role);
         }
     }
@@ -126,7 +136,8 @@ export class Player {
         if (!this.hasRole(role)) {
             return 0;
         }
-        return this._points.get(role)!!;
+
+        return this._points.get(role)!.value;
     }
 
     percentageFor(role: Role) {
@@ -139,7 +150,7 @@ export class Player {
     }
 
     private increasePointsFor(role: Role) {
-        this._points.set(role, Math.min(3,this._points.get(role)!! + 1));
+        this._points.set(role, new Point(Math.min(3, this._points.get(role)!.value + 1)));
     }
 
     private canSelectRoleFor(level) {
@@ -158,7 +169,7 @@ export class Player {
         return {
             "name": this._name,
             "avatar": this._avatar,
-            "roles": Object.fromEntries(this._points.entries()),
+            "roles": Object.fromEntries(Array.from(this._points.entries()).map(([role, point]) => ([role, point.value]))),
             "badges": Array.from(this._badges)
         };
     }
