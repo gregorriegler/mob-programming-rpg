@@ -37,7 +37,7 @@ function changePlayers(players: string) {
 }
 
 const randomPort = () => {
-    return `${8000 + Math.floor(Math.random()*100)}`;
+    return `${8000 + Math.floor(Math.random() * 100)}`;
 }
 
 describe('Mob Programming RPG', () => {
@@ -76,11 +76,15 @@ describe('Mob Programming RPG', () => {
 
     }, 30000)
 
+    // todo this is not running. The servers should just die on their own.
     afterEach(() => {
         child?.all?.removeAllListeners("data");
         child?.kill();
+        // this kills all the wsservers:
+        // kill -9 $(ps aux | grep ts-node | grep -Po '    \d{5}')
     })
 
+    const itButNotOnOurCi = process.env.CI ? xit : it;
     xit('gamestate will be propagated to another instance of MobProgrammingRPG on an update', async () => {
         const result = render(
             <>
@@ -107,9 +111,9 @@ describe('Mob Programming RPG', () => {
         expect(playerList2.childElementCount).toEqual(5);
     });
 
-    xit('two games with the same init game - same players', async () => {
+    itButNotOnOurCi('two games with the same init game - same players', async () => {
         const game = new Game({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
-        const URL="ws://localhost:" + port;
+        const URL = "ws://localhost:" + port;
         const result = render(
             <>
                 <div id="rpg1"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
