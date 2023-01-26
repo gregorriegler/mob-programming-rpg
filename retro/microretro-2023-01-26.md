@@ -3,6 +3,7 @@
     - A: which part? Q: all the app
     - run the app
 - altertative impl for 'points'
+    - Add integration test to propagate the changing of point
     - let's do a parallel change - don't break things while you work
     - current impl:
         ```ts
@@ -16,10 +17,9 @@
     - first test: start with value zero
 - Walk over Willems Input and make Tasks out of them?
 
-# Agreements
-- All Findings first?
-
 # Findings 
+- In Integration test afterEach is not always run
+    - Reproducible by running test and keep changing code     
 - Primitive with _points
     - this._points.set(role, Math.max(3,this._points.get(role)!! + 1)); should be _points.increment or something
 - Refresh after timer starts causes wrong time to be shown (starting over).
@@ -115,17 +115,32 @@ It's only team points (We focus on the Team, not the individual)
 # Retro
 
 ## How did that feel?
-- awkward -> awesome
-- Really Fun
-- Interested in the primitive obsession design discussion
-- seeing primitive obsession hurts
-- exciting to be a part of this
-- like the fact that each session we get something done
+- We were kind of dispersed +1
+    - trying to go in many different directions +1
+    - still don't know which one to choose
+    - feel lucky with how we made the introduction of Point (could have gotten worse)
+    - it hindered flow
+- Encouraging
+- good Teamwork, everybody was adding
+- did not understand lots of the cli commands we used
+- should use more ChatGPT for arbitrary tasks
+- happy to see more people join +1
+- happy to see familiar faces again +1
+- surprised and happy to have 4 people again
+- we got something done, but not enough following a single intention through
+- jump a bit between problems
 
 ## What worked well, we want to do more of it?
-- stop to collab, outside the rotation
-- Making space for collaboration
-- Bringing in Subject Matter Expert Willem Larsen
-- combination of having a good time, learning AND progress (happened many times already) +1
+- have an inclusive and welcoming and respectful group
+- having design decisions, and pausing the timer
+    - as we're just talking, it's ok to not have the timer run
+    - timer might put unwanted pressure
+- manual testing - to make sure everything still works
+- renaming the commit message to be more precise - was easy
+- we saved a useful command into the code as comment - so it's available for next times
+    - this is an example of being good with documenting and archiving our intentions
+    - these are like breadcrumbs for us for next sessions
 
 ## Idea
+- Have the mob be the archivist role together (something like 2min code 1min archive)
+- Intention needs to be documented right there, when it happens
