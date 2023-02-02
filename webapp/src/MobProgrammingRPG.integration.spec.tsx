@@ -113,35 +113,48 @@ describe('Mob Programming RPG', () => {
     const itButNotOnOurCi = process.env.CI ? xit : it;
     itButNotOnOurCi('two games with the same init game - same players', async () => {
         const game = new Game({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
-        const URL = "ws://localhost:" + port;
+        const URL = "ws://localhost:" + port; //TODO Move to renderTwoGames?
 
         const [
             rpg1Element,
             rpg2Element
         ] = await renderTwoGames(game, URL);
 
-        const playerList2 = within(rpg2Element).getByRole('list', { name: /Player List/ });      
-        const players = within(playerList2).queryAllByRole("listitem");
-        expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
-        expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
-        expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber');
-        // check role "typist" - who is it?
+        //TODO expect the player positions (not roles) for both games
+        const players = applesauce(rpg2Element);
+        // check player position (not role) "typist" - who is it?
 
         await act(async () => {
             const timerButton = within(rpg1Element).getByRole("button", { name: /Start/i })
             fireEvent.click(timerButton)
         })
 
+        // wait for timer -> rotation
         await new Promise((resolve) => setTimeout(resolve, 2500));
 
 
+        //TODO expect the player positions (not roles) for both games
         // now the role is the following player
         expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber');
         expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
         expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
+// TODO:  Eddie suggested something about returning players vs ???
 
     });
 })
+
+function applesauce(rpg2Element: HTMLElement) {
+    const playerList2 = within(rpg2Element).getByRole('list', { name: /Player List/ });
+    const players = within(playerList2).queryAllByRole("listitem");
+
+    // We would like to get the role of the first player and make sure it is 'Driver'
+    
+    expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
+    expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
+    expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber');
+    
+    return players;
+}
 
 async function renderTwoGames(game: Game, URL: string) {
     render(

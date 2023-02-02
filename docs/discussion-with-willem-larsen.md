@@ -1,4 +1,15 @@
-# Terminology
+# Are ubiquitous language
+
+We derive this from the Conversion with Willem below
+
+## Our agreed terminology
+https://beta.tldraw.com/r/v2_c_Nqp_KRwsJE-kWiSbPVrQo
+
+![](./rpg-terminology.png)
+
+# Conversiation with Willem
+
+## Terminology
 RoleName - Driver, Navigator, Researcher
 Role has points and a RoleName and becomes a Badge (the hat you are wearing)
 Place in the Rotation
