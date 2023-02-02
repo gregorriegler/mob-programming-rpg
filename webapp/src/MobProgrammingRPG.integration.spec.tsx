@@ -84,7 +84,6 @@ describe('Mob Programming RPG', () => {
         // kill -9 $(ps aux | grep ts-node | grep -Po '    \d{5}')
     })
 
-    const itButNotOnOurCi = process.env.CI ? xit : it;
     xit('gamestate will be propagated to another instance of MobProgrammingRPG on an update', async () => {
         const result = render(
             <>
@@ -111,26 +110,17 @@ describe('Mob Programming RPG', () => {
         expect(playerList2.childElementCount).toEqual(5);
     });
 
+    const itButNotOnOurCi = process.env.CI ? xit : it;
     itButNotOnOurCi('two games with the same init game - same players', async () => {
         const game = new Game({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
         const URL = "ws://localhost:" + port;
-        const result = render(
-            <>
-                <div id="rpg1"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
-                <div id="rpg2"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
-            </>
-        );
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        const rpg1 = document.getElementById('rpg1')!;
-        const rpg2 = document.getElementById('rpg2')!;
-        const playerList1 = within(rpg1).getByRole('list', { name: /Player List/ });
-        expect(playerList1.childElementCount).toEqual(5);
+        const [
+            rpg1Element,
+            rpg2Element
+        ] = await renderTwoGames(game, URL);
 
-        const playerList2 = within(rpg2).getByRole('list', { name: /Player List/ });
-        expect(playerList2.childElementCount).toEqual(5);
-
-
+        const playerList2 = within(rpg2Element).getByRole('list', { name: /Player List/ });      
         const players = within(playerList2).queryAllByRole("listitem");
         expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
         expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
@@ -138,7 +128,7 @@ describe('Mob Programming RPG', () => {
         // check role "typist" - who is it?
 
         await act(async () => {
-            const timerButton = within(rpg1).getByRole("button", { name: /Start/i })
+            const timerButton = within(rpg1Element).getByRole("button", { name: /Start/i })
             fireEvent.click(timerButton)
         })
 
@@ -152,3 +142,30 @@ describe('Mob Programming RPG', () => {
 
     });
 })
+
+async function renderTwoGames(game: Game, URL: string) {
+    render(
+        <>
+            <div id="rpg1"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
+            <div id="rpg2"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
+        </>
+    );
+
+    await waitOneSecond();
+
+    const rpg1Element = document.getElementById('rpg1')!
+    const rpg2Element = document.getElementById('rpg1')!
+
+    const playerList1 = within(rpg1Element).getByRole('list', { name: /Player List/ });
+    expect(playerList1.childElementCount).toEqual(5);
+
+    const playerList2 = within(rpg2Element).getByRole('list', { name: /Player List/ });
+    expect(playerList2.childElementCount).toEqual(5);
+
+    return [rpg1Element, rpg2Element];
+}
+
+async function waitOneSecond() {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+}
+
