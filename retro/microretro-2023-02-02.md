@@ -57,14 +57,45 @@ Get "Points" out of `Player`
 - user checks checkboxes of things they did -> gains points; instead of inputting points directly
 - Disciplinarian badge shows as a broken image
 
+## Idea
+- Have the mob be the archivist role together (something like 2min code 1min archive)
+- Intention needs to be documented right there, when it happens
+
 
 
 # Retro
 
 ## How did that feel?
+- Gregor - felt very good, very relaxed, calm, free
+    - feels self-sufficient
+- Like what we did
+    - **invented** remote mob drawing using [tldraw](https://beta.tldraw.com/r/v2_c_Nqp_KRwsJE-kWiSbPVrQo)
+- felt like "Norming"
+- it feels like there is a familiarity with this group
+    - it helps with the flow
+- the thing with the ubiquitous language is very helpful in many respects
+    - cant wait for the code to reflect that
+- really appreciate that time explaining the function reference (how we run a test not on ci)
+- we could have defered the function reference and focused on the function body
+- it was learning
+- how do you sequence the learning? I was overwhelmed
+- were going in one direction, -> had an idea -> going in another direction
+- went from read by refactoring (learning) to picture learning
+- lots of extracting and naming, drives you to domain language
+- liked to put trust in the mob and have the following talker to continue the intent
+- i felt like i just needed to be heard in my rotation as talker
+- in the beginning I had the feeling - if the timer was 1 minute longer we would have more work done
+    - is 2 min too short for this group?
 
 ## What worked well, we want to do more of it?
+- michael stepping up and pointing out that we are shifting directions
+- putting our intentions as comments into the code
+- facilitating from within the mob
+- read by refactoring to get on the same page
+- rotate in the middle of something and have the following talker continue the intent
+- talker becomes typist (makes conversations less awkward)
+- side discussions outside the rotation timer
 
-## Idea
-- Have the mob be the archivist role together (something like 2min code 1min archive)
-- Intention needs to be documented right there, when it happens
+# experiments
+- 3 minute rotations
+- typist becomes talker

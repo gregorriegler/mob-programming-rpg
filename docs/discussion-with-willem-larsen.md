@@ -1,4 +1,4 @@
-# Are ubiquitous language
+# Our Ubiquitous Language
 
 We derive this from the Conversion with Willem below
 
