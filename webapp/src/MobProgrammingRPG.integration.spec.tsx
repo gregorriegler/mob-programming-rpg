@@ -81,7 +81,7 @@ describe('Mob Programming RPG', () => {
         child?.all?.removeAllListeners("data");
         child?.kill();
         // this kills all the wsservers:
-        // kill -9 $(ps aux | grep ts-node | grep -Po '    \d{5}')
+        // kill -9 $(ps aux | grep ts-node | grep -v grep | grep -Po '    \d{5}')
     })
 
     xit('gamestate will be propagated to another instance of MobProgrammingRPG on an update', async () => {
@@ -111,71 +111,75 @@ describe('Mob Programming RPG', () => {
     });
 
     const itButNotOnOurCi = process.env.CI ? xit : it;
+
+    // TODO - are those actually two tests? should we separate them?
     itButNotOnOurCi('two games with the same init game - same players', async () => {
         const game = new Game({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
-        const URL = "ws://localhost:" + port; //TODO Move to renderTwoGames?
 
         const [
-            rpg1Element,
-            rpg2Element
-        ] = await renderTwoGames(game, URL);
+            client1,
+            client2
+        ] = await renderTwoGameClients(game);
 
-        //TODO expect the player positions (not roles) for both games
-        const players = applesauce(rpg2Element);
-        // check player position (not role) "typist" - who is it?
+        expectPlayerPositions(client1, ['Driver', 'Navigator', 'Mobber']);
+        expectPlayerPositions(client2, ['Driver', 'Navigator', 'Mobber']);
 
-        await act(async () => {
-            const timerButton = within(rpg1Element).getByRole("button", { name: /Start/i })
-            fireEvent.click(timerButton)
-        })
+        await startTimer(client1);
 
-        // wait for timer -> rotation
-        await new Promise((resolve) => setTimeout(resolve, 2500));
+        await waitForRotation();
 
-
-        //TODO expect the player positions (not roles) for both games
-        // now the role is the following player
-        expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber');
-        expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
-        expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
-// TODO:  Eddie suggested something about returning players vs ???
-
+        expectPlayerPositions(client1, ['Mobber', 'Driver', 'Navigator']);
+        expectPlayerPositions(client2, ['Mobber', 'Driver', 'Navigator']);
+        // TODO:  Eddie suggested something about returning players vs ???
     });
+
+    async function renderTwoGameClients(game: Game) {
+        const URL = "ws://localhost:" + port;
+        render(
+            <>
+                <div id="rpg1"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
+                <div id="rpg2"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
+            </>
+        );
+
+        await waitOneSecond();
+
+        const client1Element = document.getElementById('rpg1')!
+        const client2Element = document.getElementById('rpg1')!
+
+        const playerList1 = within(client1Element).getByRole('list', { name: /Player List/ });
+        expect(playerList1.childElementCount).toEqual(5);
+
+        const playerList2 = within(client2Element).getByRole('list', { name: /Player List/ });
+        expect(playerList2.childElementCount).toEqual(5);
+
+        return [client1Element, client2Element];
+    }
 })
 
-function applesauce(rpg2Element: HTMLElement) {
-    const playerList2 = within(rpg2Element).getByRole('list', { name: /Player List/ });
-    const players = within(playerList2).queryAllByRole("listitem");
-
-    // We would like to get the role of the first player and make sure it is 'Driver'
-    
-    expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver');
-    expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator');
-    expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber');
-    
-    return players;
+async function waitForRotation() {
+    await new Promise((resolve) => setTimeout(resolve, 2500));
 }
 
-async function renderTwoGames(game: Game, URL: string) {
-    render(
-        <>
-            <div id="rpg1"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
-            <div id="rpg2"><MobProgrammingRPG initGame={game} wsServer={URL} /></div>
-        </>
-    );
+async function startTimer(client1: HTMLElement) {
+    await act(async () => {
+        const timerButton = within(client1).getByRole("button", { name: /Start/i });
+        fireEvent.click(timerButton);
+    });
+}
 
-    await waitOneSecond();
+function expectPlayerPositions(rpg2Element: HTMLElement, expectedPositions) {
+    const cardList = within(rpg2Element).getByRole('list', { name: /Player List/ });
+    const players = within(cardList).queryAllByRole("listitem");
 
-    const rpg1Element = document.getElementById('rpg1')!
-    const rpg2Element = document.getElementById('rpg1')!
+    // We would like to get the role of the first player and make sure it is 'Driver'
 
-    const playerList1 = within(rpg1Element).getByRole('list', { name: /Player List/ });
-    expect(playerList1.childElementCount).toEqual(5);
+    // extract - expectPositions
+    expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent(expectedPositions[0]);
+    expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent(expectedPositions[1]);
+    expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent(expectedPositions[2]);
 
-    const playerList2 = within(rpg2Element).getByRole('list', { name: /Player List/ });
-    expect(playerList2.childElementCount).toEqual(5);
-
-    return [rpg1Element, rpg2Element];
+    return players;
 }
 
 async function waitOneSecond() {
