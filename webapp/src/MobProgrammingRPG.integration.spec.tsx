@@ -167,18 +167,15 @@ async function startTimer(client1: HTMLElement) {
     });
 }
 
-function expectPlayerPositions(rpg2Element: HTMLElement, expectedPositions) {
+function expectPlayerPositions(rpg2Element: HTMLElement, expectedPositions:string[]) {
     const cardList = within(rpg2Element).getByRole('list', { name: /Player List/ });
-    const players = within(cardList).queryAllByRole("listitem");
+    const playerCards = within(cardList).queryAllByRole("listitem");
+    
+    expectedPositions.forEach((position, i) => expect(getPositionFromCard(playerCards[i])).toHaveTextContent(position))
+}
 
-    // We would like to get the role of the first player and make sure it is 'Driver'
-
-    // extract - expectPositions
-    expect(within(players[0]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent(expectedPositions[0]);
-    expect(within(players[1]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent(expectedPositions[1]);
-    expect(within(players[2]).queryAllByRole('heading', { level: 2 })[0]).toHaveTextContent(expectedPositions[2]);
-
-    return players;
+function getPositionFromCard(playerCard): HTMLElement {
+    return within(playerCard).queryAllByRole('heading', { level: 2 })[0];
 }
 
 async function waitOneSecond() {
