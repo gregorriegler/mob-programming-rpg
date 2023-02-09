@@ -46,21 +46,18 @@ describe('Mob Programming RPG', () => {
         global.IS_REACT_ACT_ENVIRONMENT = false;
     })
 
-    let server;
     let child;
     let port;
 
+    const makeGame = () => new Game({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
 
     beforeEach(async () => {
-        // run an `npm start` in the ws folder
-        // execa("npm start", { pwd: "../wsserver" })
-
         window.history.pushState({}, "GameId", "/")
         localStorage.clear();
 
         await execa("npm", ["install"], { cwd: "../wsserver" });
         port = randomPort();
-        child = execa("npm", ["start"], { cwd: "../wsserver", all: true, env: { PORT: port } });
+        child = execa("timeout", ["20", "npm", "start"], { cwd: "../wsserver", all: true, env: { PORT: port } });
         await new Promise<string>(
             (resolve) => {
                 child.all?.on("data", (d) => {
@@ -81,7 +78,7 @@ describe('Mob Programming RPG', () => {
         child?.all?.removeAllListeners("data");
         child?.kill();
         // this kills all the wsservers:
-        // kill -9 $(ps aux | grep ts-node | grep -v grep | grep -Po '    \d{5}')
+        // kill -9 $(ps aux | grep ts-node | grep -v grep | grep -Po '    \d{4}')
     })
 
     xit('gamestate will be propagated to another instance of MobProgrammingRPG on an update', async () => {
@@ -112,25 +109,27 @@ describe('Mob Programming RPG', () => {
 
     const itButNotOnOurCi = process.env.CI ? xit : it;
 
-    // TODO - are those actually two tests? should we separate them?
-    itButNotOnOurCi('two games with the same init game - same players', async () => {
-        const game = new Game({ id: "gameId2", players: ["Gregor", "Peter", "Rita", "Ben"], timer: 1 });
-
+    itButNotOnOurCi('two games with the same init game - same initial player positions', async () => {
         const [
             client1,
             client2
-        ] = await renderTwoGameClients(game);
+        ] = await renderTwoGameClients(makeGame());
 
         expectPlayerPositions(client1, ['Driver', 'Navigator', 'Mobber']);
         expectPlayerPositions(client2, ['Driver', 'Navigator', 'Mobber']);
+    });
+
+    itButNotOnOurCi('two game clients with the same init game - same positions after rotation', async () => {
+        const [
+            client1,
+            client2
+        ] = await renderTwoGameClients(makeGame());
 
         await startTimer(client1);
-
         await waitForRotation();
 
         expectPlayerPositions(client1, ['Mobber', 'Driver', 'Navigator']);
         expectPlayerPositions(client2, ['Mobber', 'Driver', 'Navigator']);
-        // TODO:  Eddie suggested something about returning players vs ???
     });
 
     async function renderTwoGameClients(game: Game) {
