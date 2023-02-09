@@ -144,7 +144,7 @@ describe('Mob Programming RPG', () => {
         await waitOneSecond();
 
         const client1Element = document.getElementById('rpg1')!
-        const client2Element = document.getElementById('rpg1')!
+        const client2Element = document.getElementById('rpg2')!
 
         const playerList1 = within(client1Element).getByRole('list', { name: /Player List/ });
         expect(playerList1.childElementCount).toEqual(5);
