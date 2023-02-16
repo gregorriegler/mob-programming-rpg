@@ -1,30 +1,31 @@
 # Mob Programming RPG
 
-Web app for the [Mob Programming RPG](https://github.com/willemlarsen/mobprogrammingrpg).
+This web app automates a game developed by Willem Larsen.  See the original [Mob Programming RPG](https://github.com/willemlarsen/mobprogrammingrpg).
 
-## Try it
+## Play the game
 
-[Play the Mob Programming RPG](http://gregorriegler.com/mob-programming-rpg/)
+The game [is hosted here](http://gregorriegler.com/mob-programming-rpg/).  You can test it out alone, or play it with a group.
 
-## Start it
-
-`npm start`
-
-## Test it
-
-`npm test`
-
-## Contribute
-
+## Subscribe to weekly events
 This software is developed in a public remote mob where everybody is invited to join.
-We meet every Thursday from 17:00 to 20:00 CET to work on it.
 
-For this we use the Vienna Software Crafters Gather Town:  
-https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo  
-Password: deliberate
+People often do join from all over the world, so we have two "start times".
+  - Session 1 starts at [3 pm (CET)](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=N21ubDl1a2Y4ZDFtc3AyZ2JvY2RpamtpMmtfMjAyMzAyMTZUMTQwMDAwWiA3Mzk5NWUxZTBiMWM5NDhhOGEwMDIxZWM0YzNjZTcyOTQxZjdiN2FjOTc1NGJjZTNmMGU5ZGRkMDA1MmY4NjQxQGc&tmsrc=73995e1e0b1c948a8a0021ec4c3ce72941f7b7ac9754bce3f0e9ddd0052f8641%40group.calendar.google.com&scp=ALL) every Thursday
+  - Session 2 starts at [5 pm (CET)](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NGdxYm1nNTR0MGp0ZHI2ZDN1NG1zOWNiMWhfMjAyMzAyMTZUMTYwMDAwWiA3Mzk5NWUxZTBiMWM5NDhhOGEwMDIxZWM0YzNjZTcyOTQxZjdiN2FjOTc1NGJjZTNmMGU5ZGRkMDA1MmY4NjQxQGc&tmsrc=73995e1e0b1c948a8a0021ec4c3ce72941f7b7ac9754bce3f0e9ddd0052f8641%40group.calendar.google.com&scp=ALL) every Thursday
+  - ... or join at whatever time is convenient to you.
 
-Calendar Invite:  
-https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NGdxYm1nNTR0MGp0ZHI2ZDN1NG1zOWNiMWhfMjAyMjEyMDFUMTYwMDAwWiA3Mzk5NWUxZTBiMWM5NDhhOGEwMDIxZWM0YzNjZTcyOTQxZjdiN2FjOTc1NGJjZTNmMGU5ZGRkMDA1MmY4NjQxQGc&tmsrc=73995e1e0b1c948a8a0021ec4c3ce72941f7b7ac9754bce3f0e9ddd0052f8641%40group.calendar.google.com&scp=ALL
+Subscribe to [our Google Calendar](https://calendar.google.com/calendar/u/0?cid=NzM5OTVlMWUwYjFjOTQ4YThhMDAyMWVjNGMzY2U3Mjk0MWY3YjdhYzk3NTRiY2UzZjBlOWRkZDAwNTJmODY0MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t) so that you don't miss any events.
+
+## Participate in the mobbing sessions
+We use these tools to collaboate:
+- [GatherTown](https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo) for faces and screens. (Password: ```deliberate```)
+- [mobtime](https://mobti.me/mobrpg) for role rotations.
+- [GitHub](https://github.com/gregorriegler/mob-programming-rpg) as code repositiory.
+- [Gitpod](https://gitpod.io/docs) as a shared workspace
+
+During the sessions
+* Start the game: `npm start`
+* Test the game: `npm test`
 
 ## Credits
 
