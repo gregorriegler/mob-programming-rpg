@@ -33,12 +33,18 @@ export type Avatar = typeof avatars[number]
 export class Score {
     points: number = 0
 
+    private readonly MAXIMUM_SCORE = 3;
+
     constructor(value: number = 0) {
         this.points = value
     }
 
     isMaximum(): boolean {
-        return this.points >= 3;
+        return this.points >= this.MAXIMUM_SCORE;
+    }
+
+    increaseScoreUntilMaximum(): Score {
+        return new Score(Math.min(this.MAXIMUM_SCORE, this.points + 1));
     }
 }
 
@@ -154,7 +160,8 @@ export class Player {
     }
 
     private increasePointsFor(role: Role) {
-        this._points.set(role, new Score(Math.min(3, this._points.get(role)!.points + 1)));
+        const oldScore = this._points.get(role);
+        this._points.set(role, oldScore!.increaseScoreUntilMaximum());
     }
 
     private canSelectRoleFor(level) {
