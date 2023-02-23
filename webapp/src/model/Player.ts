@@ -60,6 +60,18 @@ export class Score {
 class RoleSheets {
     public readonly _roleSheets: Map<Role, Score>;
 
+    static empty(): RoleSheets {
+        return new RoleSheets(new Map<Role, Score>(levels[0].map(role => [role, new Score()])));
+    }
+
+    static fromObject(roles: { [key in Role]?: number }): RoleSheets {
+        const _roles = new Map<Role, Score>();
+        for (let role in roles) {
+            _roles.set(role as Role, new Score(roles[role]));
+        }
+        return new RoleSheets(_roles);
+    }
+
     constructor(points: Map<Role, Score>) {
         this._roleSheets = points;
     }
@@ -73,22 +85,18 @@ export class Player {
     private readonly _badges = new Set<Role>();
 
     static fromObject(json: { badges: Role[]; roles: { [key in Role]?: number }; name: string; avatar: Avatar; }): Player {
-        const roles = new Map<Role, Score>();
-        for (let role in json.roles) {
-            roles.set(role as Role, new Score(json.roles[role]));
-        }
-        return new Player(json.name, json.avatar, roles, json.badges);
+        return new Player(json.name, json.avatar, RoleSheets.fromObject(json.roles), json.badges);
     }
 
     constructor(
         name: string,
         avatar: Avatar = 'dodo',
-        points: Map<Role, Score> = new Map<Role, Score>(levels[0].map(role => [role, new Score()])),
+        roleSheets: RoleSheets = RoleSheets.empty(), 
         badges: Role[] = [],
     ) {
         this._name = name;
         this._avatar = avatar;
-        this._roleSheets = new RoleSheets(points);
+        this._roleSheets = roleSheets;
         this._badges = new Set<Role>(badges);
     }
 
