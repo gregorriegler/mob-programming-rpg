@@ -8,6 +8,26 @@ Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 - refactor a test (the integration test)
     - the reason was - we wanted to refactor some primitive obsession
 
+# Michael Notes
+Keeping notes
+
+Nitsan gave overview of test
+
+Eddie noticed it's very big
+s
+Nitsan gave good summary
+
+LEARN
+DECIDE
+
+
+Goal: DO - new integration test
+Goal: DO - Refactor current test
+Goal: LEARN - Learn by refactoring 
+
+
+Goal: LEARN - Logic behind it/xit
+
 # Retro
 
 ## How did that feel?
