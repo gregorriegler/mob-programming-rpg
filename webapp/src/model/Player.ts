@@ -46,6 +46,15 @@ export class Score {
     increaseScoreUntilMaximum(): Score {
         return new Score(Math.min(this.MAXIMUM_SCORE, this.points + 1));
     }
+
+    asPercentage() {
+        if (this.points === this.MAXIMUM_SCORE) return 100
+        return (this.points * this.roundToOneDecimal(100 / this.MAXIMUM_SCORE));
+    }
+
+    private roundToOneDecimal(input: number) {
+        return Math.round(input * 10) / 10
+    }
 }
 
 export class Player {
@@ -151,8 +160,7 @@ export class Player {
     }
 
     percentageFor(role: Role) {
-        if (this.pointsFor(role) === 3) return 100
-        return (this.pointsFor(role) * 33.3);
+        return this._points.get(role)!.asPercentage();
     }
 
     private hasCompleted(level: number) {
