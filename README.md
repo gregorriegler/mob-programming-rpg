@@ -4,7 +4,7 @@ This web app automates a game developed by Willem Larsen.  See the original [Mob
 
 ## Play the game
 
-The game [is hosted here](http://gregorriegler.com/mob-programming-rpg/).  You can test it out alone, or play it with a group.
+The game [is hosted here](https://gregorriegler.com/mob-programming-rpg/).  You can test it out alone, or play it with a group.
 
 ## Subscribe to weekly events
 This software is developed in a public remote mob where everybody is invited to join.
