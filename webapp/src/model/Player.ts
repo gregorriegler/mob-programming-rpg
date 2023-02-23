@@ -98,6 +98,23 @@ class RoleSheets {
         }
         return this._roleSheets.get(role)!.points;
     }
+
+    percentageForRole(role: Role) {
+        return this._roleSheets.get(role)!.asPercentage();
+    }
+
+    increasePointsFor(role: Role) {
+        const oldScore = this._roleSheets.get(role);
+        this._roleSheets.set(role, oldScore!.incrementScoreUntilMaximum());
+    }
+
+    has(role: Role) {
+        return this._roleSheets.has(role);
+    }
+
+    toObject() {
+        return Object.fromEntries(Array.from(this._roleSheets.entries()).map(([role, point]) => ([role, point.points])));
+    }
 }
 
 export class Player {
@@ -156,7 +173,7 @@ export class Player {
     }
 
     selectRole(role: Role) {
-        if (this.hasRole(role)) {
+        if (this._roleSheets.has(role)) {
             return;
         }
         if (!this.canSelectRoleFor(levelOf(role))) {
@@ -180,11 +197,28 @@ export class Player {
     }
 
     doScoreAndAddBadge(role: Role) {
-        if (!this.hasRole(role)) {
+        if (!this._roleSheets.has(role)) {
             return;
         }
-        this.increasePointsFor(role);
+        this._roleSheets.increasePointsFor(role);
         this.addBadgeForMaximumScore(role);
+    }
+
+    pointsFor(role: Role): number {
+        return this._roleSheets.pointsForRole(role);
+    }
+
+    percentageFor(role: Role) {
+        return this._roleSheets.percentageForRole(role);
+    }
+
+    toObject() {
+        return {
+            "name": this._name,
+            "avatar": this._avatar,
+            "roles": this._roleSheets.toObject(),
+            "badges": Array.from(this._badges)
+        };
     }
 
     private addBadgeForMaximumScore(role: Role) {
@@ -193,21 +227,8 @@ export class Player {
         }
     }
 
-    pointsFor(role: Role): number {
-        return this._roleSheets.pointsForRole(role);
-    }
-
-    percentageFor(role: Role) {
-        return this._roleSheets._roleSheets.get(role)!.asPercentage();
-    }
-
     private hasCompleted(level: number) {
         return levels[level].some(it => this.hasBadge(it));
-    }
-
-    private increasePointsFor(role: Role) {
-        const oldScore = this._roleSheets._roleSheets.get(role);
-        this._roleSheets._roleSheets.set(role, oldScore!.incrementScoreUntilMaximum());
     }
 
     private canSelectRoleFor(level) {
@@ -216,18 +237,5 @@ export class Player {
 
     private hasRoleForLevel(level: number) {
         return this.roles().some(it => levels[level].includes(it));
-    }
-
-    private hasRole(role: Role) {
-        return this._roleSheets._roleSheets.has(role);
-    }
-
-    toObject() {
-        return {
-            "name": this._name,
-            "avatar": this._avatar,
-            "roles": Object.fromEntries(Array.from(this._roleSheets._roleSheets.entries()).map(([role, point]) => ([role, point.points]))),
-            "badges": Array.from(this._badges)
-        };
     }
 }
