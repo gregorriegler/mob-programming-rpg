@@ -80,11 +80,24 @@ class RoleSheets {
         this._roleSheets.set(role, new Score());
     }
 
-
     roles() {
         return Array.from(this._roleSheets.keys());
     }
 
+    private scoreForRole(role: Role) {
+        return this._roleSheets.get(role);
+    }
+
+    hasReachedMaximumForRole(role: Role) {
+        return this.scoreForRole(role)?.isMaximum();
+    }
+
+    pointsForRole(role: Role): number {
+        if (!this._roleSheets.has(role)) {
+            return 0;
+        }
+        return this._roleSheets.get(role)!.points;
+    }
 }
 
 export class Player {
@@ -175,18 +188,13 @@ export class Player {
     }
 
     private addBadgeForMaximumScore(role: Role) {
-        const score = this._roleSheets._roleSheets.get(role);
-        if (score?.isMaximum()) {
+        if (this._roleSheets.hasReachedMaximumForRole(role)) {
             this._badges.add(role);
         }
     }
 
     pointsFor(role: Role): number {
-        if (!this.hasRole(role)) {
-            return 0;
-        }
-
-        return this._roleSheets._roleSheets.get(role)!.points;
+        return this._roleSheets.pointsForRole(role);
     }
 
     percentageFor(role: Role) {
