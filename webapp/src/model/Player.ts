@@ -75,6 +75,16 @@ class RoleSheets {
     constructor(points: Map<Role, Score>) {
         this._roleSheets = points;
     }
+
+    add(role: Role) {
+        this._roleSheets.set(role, new Score());
+    }
+
+
+    roles() {
+        return Array.from(this._roleSheets.keys());
+    }
+
 }
 
 export class Player {
@@ -139,11 +149,11 @@ export class Player {
         if (!this.canSelectRoleFor(levelOf(role))) {
             throw Error("Need to complete the current Roles first");
         }
-        this._roleSheets._roleSheets.set(role, new Score());
+        this._roleSheets.add(role);
     }
 
     roles() {
-        return Array.from(this._roleSheets._roleSheets.keys());
+        return this._roleSheets.roles();
     }
 
     hasBadge(role: Role) {
