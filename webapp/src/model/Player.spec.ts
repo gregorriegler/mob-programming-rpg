@@ -32,7 +32,7 @@ describe('Player', () => {
     })
 
     it('scores as Driver', () => {
-        player.score('Driver');
+        player.doScoreAndAddBadge('Driver');
 
         expect(player.badges()).toEqual([]);
         expect(player.level()).toBe(0);
@@ -98,7 +98,7 @@ describe('Player', () => {
     });
 
     it('cannot score for a Role that is not yet selected', () => {
-        player.score('Researcher');
+        player.doScoreAndAddBadge('Researcher');
 
         expect(player.badges()).toEqual([]);
         expect(player.pointsFor('Researcher')).toEqual(0);
@@ -110,14 +110,14 @@ describe('Player', () => {
 
         expect(player.selectableRoles()).toContain("Researcher");
         player.selectRole('Researcher');
-        player.score('Researcher');
+        player.doScoreAndAddBadge('Researcher');
         expect(player.selectableRoles()).toEqual([]);
 
         expect(player.pointsFor('Researcher')).toEqual(1);
     });
 
     it('does not reset points on selecting an already selected role', () => {
-        player.score('Mobber');
+        player.doScoreAndAddBadge('Mobber');
 
         player.selectRole('Mobber');
 
@@ -128,7 +128,7 @@ describe('Player', () => {
         const act = () => player.selectRole('Researcher');
 
         expect(act).toThrow();
-        player.score('Researcher');
+        player.doScoreAndAddBadge('Researcher');
         expect(player.pointsFor('Researcher')).toEqual(0);
     });
 

@@ -57,11 +57,19 @@ export class Score {
     }
 }
 
+class RoleSheets {
+    public readonly _roleSheets: Map<Role, Score>;
+
+    constructor(points: Map<Role, Score>) {
+        this._roleSheets = points;
+    }
+}
+
 export class Player {
     private readonly _name: string;
     private _avatar: Avatar;
     // does Player needs to know anything about points?
-    private readonly _points: Map<Role, Score>;
+    private readonly _roleSheets: RoleSheets;
     private readonly _badges = new Set<Role>();
 
     static fromObject(json: { badges: Role[]; roles: { [key in Role]?: number }; name: string; avatar: Avatar; }): Player {
@@ -80,7 +88,7 @@ export class Player {
     ) {
         this._name = name;
         this._avatar = avatar;
-        this._points = points
+        this._roleSheets = new RoleSheets(points);
         this._badges = new Set<Role>(badges);
     }
 
@@ -123,11 +131,11 @@ export class Player {
         if (!this.canSelectRoleFor(levelOf(role))) {
             throw Error("Need to complete the current Roles first");
         }
-        this._points.set(role, new Score());
+        this._roleSheets._roleSheets.set(role, new Score());
     }
 
     roles() {
-        return Array.from(this._points.keys());
+        return Array.from(this._roleSheets._roleSheets.keys());
     }
 
     hasBadge(role: Role) {
@@ -136,16 +144,20 @@ export class Player {
 
     scoreTimes(role: Role, times) {
         for (let i = 0; i < times; i++) {
-            this.score(role);
+            this.doScoreAndAddBadge(role);
         }
     }
 
-    score(role: Role) {
+    doScoreAndAddBadge(role: Role) {
         if (!this.hasRole(role)) {
             return;
         }
         this.increasePointsFor(role);
-        const score = this._points.get(role);
+        this.addBadgeForMaximumScore(role);
+    }
+
+    private addBadgeForMaximumScore(role: Role) {
+        const score = this._roleSheets._roleSheets.get(role);
         if (score?.isMaximum()) {
             this._badges.add(role);
         }
@@ -156,11 +168,11 @@ export class Player {
             return 0;
         }
 
-        return this._points.get(role)!.points;
+        return this._roleSheets._roleSheets.get(role)!.points;
     }
 
     percentageFor(role: Role) {
-        return this._points.get(role)!.asPercentage();
+        return this._roleSheets._roleSheets.get(role)!.asPercentage();
     }
 
     private hasCompleted(level: number) {
@@ -168,8 +180,8 @@ export class Player {
     }
 
     private increasePointsFor(role: Role) {
-        const oldScore = this._points.get(role);
-        this._points.set(role, oldScore!.incrementScoreUntilMaximum());
+        const oldScore = this._roleSheets._roleSheets.get(role);
+        this._roleSheets._roleSheets.set(role, oldScore!.incrementScoreUntilMaximum());
     }
 
     private canSelectRoleFor(level) {
@@ -181,14 +193,14 @@ export class Player {
     }
 
     private hasRole(role: Role) {
-        return this._points.has(role);
+        return this._roleSheets._roleSheets.has(role);
     }
 
     toObject() {
         return {
             "name": this._name,
             "avatar": this._avatar,
-            "roles": Object.fromEntries(Array.from(this._points.entries()).map(([role, point]) => ([role, point.points]))),
+            "roles": Object.fromEntries(Array.from(this._roleSheets._roleSheets.entries()).map(([role, point]) => ([role, point.points]))),
             "badges": Array.from(this._badges)
         };
     }

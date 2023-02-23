@@ -106,7 +106,7 @@ describe('Game', () => {
         const player1 = game.players()[0];
         const player2 = game.players()[1];
 
-        player1.score("Driver")
+        player1.doScoreAndAddBadge("Driver")
         game.setPlayers('2,1');
 
         expect(game.players()).toEqual([player2, player1]);
