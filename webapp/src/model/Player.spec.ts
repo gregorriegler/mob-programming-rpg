@@ -1,4 +1,4 @@
-import {Player} from "./Player";
+import {Player, Score} from "./Player";
 
 describe('Player', () => {
 
@@ -62,20 +62,6 @@ describe('Player', () => {
             ['Navigator', 66.6],
             ['Mobber', 0],
         ])
-    });
-
-    // should this be on a Role class?
-    // maybe start with the points (at the bottom), go up to roles from there
-    // 'Role' currently has two usages:
-    // 1. the current role in the rotation (Driver, Navigator, )
-    // 2. the skill/experience (XP) that gains points
-    // let's look at Willem's vocab
-    it('limit number of points to 3 per role', () => {
-        player.scoreTimes("Driver", 4);
-        
-        expect(player.pointsFor("Driver")).toEqual(3);
-
-        // player.expectRole()
     });
 
     it('earns Mobber Badge', () => {
@@ -213,6 +199,18 @@ describe('Player', () => {
         expect(player.pointsFor("Researcher")).toEqual(0)
         expect(player.badges()).toEqual(["Mobber"]);
     });
+
+    describe("Score", () => {
+        it('limit number of points to 3', () => {
+            const score = new Score()
+                .incrementScoreUntilMaximum()
+                .incrementScoreUntilMaximum()
+                .incrementScoreUntilMaximum()
+                .incrementScoreUntilMaximum();
+            
+            expect(score.points).toEqual(3);
+        });
+    })
 
     function expectRolesAndPoints(points) {
         expect(player.roles()).toEqual(points.map(it => it[0]));

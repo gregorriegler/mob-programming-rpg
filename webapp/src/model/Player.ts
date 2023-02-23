@@ -43,7 +43,7 @@ export class Score {
         return this.points >= this.MAXIMUM_SCORE;
     }
 
-    increaseScoreUntilMaximum(): Score {
+    incrementScoreUntilMaximum(): Score {
         return new Score(Math.min(this.MAXIMUM_SCORE, this.points + 1));
     }
 
@@ -169,7 +169,7 @@ export class Player {
 
     private increasePointsFor(role: Role) {
         const oldScore = this._points.get(role);
-        this._points.set(role, oldScore!.increaseScoreUntilMaximum());
+        this._points.set(role, oldScore!.incrementScoreUntilMaximum());
     }
 
     private canSelectRoleFor(level) {
