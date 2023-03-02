@@ -50,7 +50,12 @@ Today, we learned...
 
 ### How did that feel?
 
+@MichaelRWolf 
+ - felt happy that @gregorriegler took care of himself by _not_ participating in today's session.
+ - felt proud that @gregorriegler added him as collaborator who can push to origin/main
+ - felt alone and not as productive.  Mobs are fun AND productive.
+
 ### What worked well, we want to do more of it?
 
-### Idea
-- Write your Ideas to the [global backlog](../docs/backlog.md)
+- Taking care of self
+- Using the microretro template file we created recently.
