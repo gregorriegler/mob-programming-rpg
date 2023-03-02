@@ -18,9 +18,9 @@ Bond
  - [DONE] Brief catch up.
 
 Do
- - [>>WIP<<] @gregorriegler - Add @MichaelRWolf as collaborator (not just co-contributer) to repo
+ - [DONE] @gregorriegler - Add @MichaelRWolf as collaborator (not just co-contributer) to repo
  - [DONE] @gregorriegler - Leave meeting to take some "down time" from a busy week.
- - [] Update new (i.e. this) retro file
+ - [DONE] Update new (i.e. this) retro file
  - [] (Re)heck links from recent documentation changes
  - [] (Re)check links from invitaitons (in Google Calendar, and other places???)
  
@@ -29,10 +29,22 @@ Decide
 
 Learn
  - Can repo be modified from _GitHub Codespaces_?
-    - [] Via browser
-    - [] Via JetBrains Gateway (IntelliJ IDE)
-    - [] Via JetBrains Gateway (Visual  IDE)
+    - [YES] Via browser
+    - [No] Via JetBrains Gateway (IntelliJ IDE)
+    - [Yes] Via JetBrains Gateway (Visual Studio Code IDE)
     
+Today, we learned...
+- @MichaelRWolf can be author for changes to commit/push to origin/main.
+- GitHub Code -> Codespaces Tab -> 
+    - Open in Browser -- Works as expected
+    - Open in JetBrains Gateway -- Launches gateway.  Launches codespace.  Downloads IDE (occasionally).  Does NOT start remote IDE backend or connect to Codespace.
+    - Open in Visual Studio Code -- Works as expected.
+- GitHub Code -> Local Tab -> 
+   - Open with GitHub Desktop
+     - Pull Origin -- Worked as expected
+     - Open in your external editor (IntelliJ) -- Worked as expected
+
+
 
 ## Reflect
 
