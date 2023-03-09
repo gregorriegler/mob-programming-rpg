@@ -6,9 +6,12 @@ Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 # Agenda
 
 -   Font change
-    -   First - Where should we make the change in the code?
+    -   1. Where should we make the change in the code?
         -   It's inherited from the [`rpgui.min.css`](../webapp/public/rpgui.min.css) and in [`rpgui.css`](../webapp/public/rpgui.css)
-    -   Second - Family & Size
+    -   2. Refactor to localize font change to one spot (our spot, not RPG-UI's definition spot), extend, not modify (so that we do overriding of the original)
+        -   revert our changes to original font + comment out the courier new change
+        -   if it works -> uncomment
+    -   3. Family & Size (maybe Roboto, or ChatGPT suggestions)
 
 ## Bond
 

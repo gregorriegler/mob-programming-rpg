@@ -24,10 +24,10 @@
     text-decoration: underline;
 }
 @font-face {
-    font-family: "Arial";
+    font-family: "Press Start 2P";
     font-style: normal;
     font-weight: 400;
-    src: local("Arial"), local("PressStart2P-Regular"),
+    src: local("Press Start 2P"), local("PressStart2P-Regular"),
         url(https://fonts.gstatic.com/s/pressstart2p/v4/8Lg6LX8-ntOHUQnvQ0E7o3uGXJk6cuEylToZ-uuaubQ.ttf)
             format("truetype");
 }
@@ -169,7 +169,7 @@
     image-rendering: -moz-crisp-edges;
     image-rendering: -o-crisp-edges;
     image-rendering: pixelated;
-    font-family: "Arial", cursive;
+    font-family: "Press Start 2P", cursive;
 }
 .rpgui-container {
     position: fixed;

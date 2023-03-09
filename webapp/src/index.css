@@ -7,6 +7,11 @@ ul {
     padding: 0;
 }
 
+/* .rpgui-content * {
+    font-family: "Courier New", Courier, monospace;
+    font-size: large;
+} */
+
 .full {
     width: 100%;
     height: 100%;
@@ -46,7 +51,7 @@ ul {
 
 .settings {
     position: fixed;
-    bottom: 100px
+    bottom: 100px;
 }
 
 .player {
@@ -86,7 +91,7 @@ ul {
     margin-left: 10px;
     position: absolute;
     left: 120px;
-    top: 26px
+    top: 26px;
 }
 
 .add-points-button {
@@ -128,7 +133,6 @@ ul {
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
-
 }
 
 .role-description {
@@ -150,7 +154,7 @@ ul {
     position: fixed;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     max-width: 500px;
     height: 520px;
 }
