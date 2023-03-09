@@ -256,8 +256,7 @@ inside your html file.
     image-rendering: -o-crisp-edges;
     image-rendering: pixelated;
     /* default font */
-    /* font-family: 'Press Start 2P', cursive; } */
-    font-family: "Arial", cursive;
+    font-family: "Press Start 2P", cursive;
 }
 /**
 * customized divs (containers) and framed objects (background and frame image).
