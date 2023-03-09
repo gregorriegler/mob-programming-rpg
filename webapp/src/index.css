@@ -7,6 +7,9 @@ ul {
     padding: 0;
 }
 
+/* https://fonts.google.com/download?family=Play */
+/* "Roboto Mono" or "Inconsolata" or "Fira Code" */
+
 .rpgui-content * {
     font-family: "Courier New", Courier, monospace;
     font-size: large;
