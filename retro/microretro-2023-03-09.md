@@ -2,6 +2,12 @@ Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
+Co-Authored-By: Rea <reasu@protonmail.com>
+
+
+# Links
+1st session - 
+2nd session - https://gregorriegl-mobprogramm-bgos20rvbrp.ws-us89b.gitpod.io/
 
 # Agenda
 
@@ -27,6 +33,19 @@ Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 -   used some AI in the process
 -   very curious where this is going - are we under-utilising it?
 -   happy to work with the team and new people
+
+
+## Micro-retro at end of session #2
+- Felt good to be here after a while.  Wished she could stay longer, but body was tired.
+- Glad to see a visible change.
+- In small group, it's still working.  Closer to pairing.  Liked it (with only 3).  Also liked 4 and 5 (before others dropped).
+- Surprising to see so many folks in both sessions.  Exicting!
+- Felt more tired than normal.
+- Happy we organized today.  Was a good group effort.  
+- Learned a lot about styling and fonts.
+- With limited CSS knowledge, having 3 brains helped a lot.
+- Different kind of work (instead of testing/refactoring).
+- We like to change the ENV file to change locally, but that breaks production system.
 
 ## Bond
 
