@@ -32,7 +32,7 @@ describe('TimerDisplay', () => {
     it('plays the time', () => {
         render(<TimerDisplay clock={clock} timer={1}/>);
         const timer = screen.getByTitle("timer");
-        const startButton = screen.getByRole("button", {name: /start/i});
+        const startButton = getButton({name: /start/i});
         fireEvent.click(startButton);
 
         act(() => {
@@ -60,7 +60,7 @@ describe('TimerDisplay', () => {
         const notify = jest.fn();
         render(<TimerDisplay clock={clock} timer={1} onFinish={notify}/>);
         const timer = screen.getByTitle("timer");
-        const startButton = screen.getByRole("button", {name: /start/i});
+        const startButton = getButton({name: /start/i});
         fireEvent.click(startButton);
 
         act(() => {
@@ -85,4 +85,3 @@ describe('TimerDisplay', () => {
         jest.advanceTimersByTime(time);
     }
 });
-
