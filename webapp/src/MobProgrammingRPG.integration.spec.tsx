@@ -3,6 +3,7 @@ import React from "react";
 import execa from "execa";
 import MobProgrammingRPG from "./MobProgrammingRPG";
 import { Game } from "./model/Game";
+import { withinElementGetButton } from "./TestHarnessConvenienceFunctions";
 
 const randomPort = () => {
     return `${8000 + Math.floor(Math.random() * 100)}`;
@@ -103,7 +104,7 @@ async function waitForRotation() {
 
 async function startTimer(client1: HTMLElement) {
     await act(async () => {
-        const timerButton = within(client1).getByRole("button", { name: /Start/i });
+        const timerButton = withinElementGetButton(client1, { name: /Start/i });
         fireEvent.click(timerButton);
     });
 }
