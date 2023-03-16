@@ -160,12 +160,15 @@ describe('Mob Programming RPG', () => {
         expect(screen.queryByPlaceholderText(/Player Name/i)).toBeNull();
     })
 
-    it('has a rotate button that rotates the players', () => {
+    it('has a rotate button that rotates the players to their next position', () => {
         render(<MobProgrammingRPG initGame={new Game({players:["Gregor", "Peter", "Rita"]})} />);
 
         fireEvent.click(getRotateButton());
 
         const items = getPlayerListItems();
+        // TODO: role has a different meaning here as its defined by the testing framework
+        // we should change this test to not create this confusion
+        // role has two contexts: testing framework, the game player
         expect(within(items[0]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber')
         expect(within(items[1]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver')
         expect(within(items[2]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator')

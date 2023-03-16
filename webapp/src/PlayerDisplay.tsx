@@ -3,7 +3,7 @@ import {Role} from "./model/Roles";
 import {noOp} from "./model/Func";
 
 
-const PlayerDisplay = ({player, updateGameState = noOp, role = "Mobber"}) => {
+const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}) => {
 
     const [uiState, setUiState] = useState({addingPointsFor: []})
 
@@ -16,7 +16,7 @@ const PlayerDisplay = ({player, updateGameState = noOp, role = "Mobber"}) => {
     }
 
     return <li className='player rpgui-container framed-golden' aria-label={player.name}>
-        <h2>{role}</h2>
+        <h2>{position}</h2>
         <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar()}.png`}
                  alt={player.avatar()}/>{player.name}</h2>
 
