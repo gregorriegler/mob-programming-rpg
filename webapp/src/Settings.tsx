@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Game } from "./model/Game";
-import { DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER } from "./model/Roles";
+import { DRIVER_THEN_NAVIGATOR, Game, NAVIGATOR_THEN_DRIVER } from "./model/Game";
 
 export function Settings({ game, updateGameState, onClose }: { game: Game, updateGameState: () => void, onClose: () => void }) {
 

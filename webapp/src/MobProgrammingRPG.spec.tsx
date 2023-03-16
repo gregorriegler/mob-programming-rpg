@@ -1,11 +1,10 @@
-import MobProgrammingRPG from "./MobProgrammingRPG";
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import React from "react";
-import { ClockStub, MilliSeconds } from "./model/Clock";
-import { DEFAULT_TIMER, Game } from "./model/Game";
 import WS from "jest-websocket-mock";
-import { DRIVER_THEN_NAVIGATOR, NAVIGATOR_THEN_DRIVER } from "./model/Roles";
+import React from "react";
 import { gameIdFromUrl } from "./infrastructure/GameIdFromUrl";
+import MobProgrammingRPG from "./MobProgrammingRPG";
+import { ClockStub, MilliSeconds } from "./model/Clock";
+import { DRIVER_THEN_NAVIGATOR, Game, NAVIGATOR_THEN_DRIVER } from "./model/Game";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', { name: /Player List/ });

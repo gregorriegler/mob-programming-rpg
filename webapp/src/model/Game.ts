@@ -2,6 +2,8 @@ import { Avatar, Player } from "./Player";
 
 const DRIVER = "Driver";
 const NAVIGATOR = "Navigator";
+export const DRIVER_THEN_NAVIGATOR: string = "Driver,Navigator"
+export const NAVIGATOR_THEN_DRIVER: string = "Navigator,Driver"
 
 export type GameId = string;
 type Seconds = number;

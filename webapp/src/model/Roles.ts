@@ -10,9 +10,6 @@ export type Role = "Driver"
     | "Sponsor"
     | "Traffic Cop";
 
-export const DRIVER_THEN_NAVIGATOR: string = "Driver,Navigator"
-export const NAVIGATOR_THEN_DRIVER: string = "Navigator,Driver"
-
 export const levels: Role[][] = [
     [
         "Driver",
