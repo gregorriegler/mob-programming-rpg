@@ -115,9 +115,9 @@ const MobProgrammingRPG = (
                 {game.players().map((player) =>
                     <PlayerDisplay
                         player={player}
-                        role={game.roleOf(player.name())}
+                        role={game.roleOf(player.name)}
                         updateGameState={updateGameState}
-                        key={player.name()}
+                        key={player.name}
                     />
                 )}
                 {!uiState.showAddPlayerForm &&

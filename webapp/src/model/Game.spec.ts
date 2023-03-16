@@ -303,7 +303,7 @@ describe('Game', () => {
         `);
 
         expect(game.players().length).toEqual(1);
-        expect(game.players()[0].name()).toEqual("Gregor");
+        expect(game.players()[0].name).toEqual("Gregor");
         expect(game.players()[0].badges()).toEqual(["Mobber"]);
         expect(game.timer()).toEqual(240);
         expect(game.timerStatus()).toEqual("STOPPED");
