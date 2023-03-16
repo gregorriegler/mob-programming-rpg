@@ -5,6 +5,7 @@ import { gameIdFromUrl } from "./infrastructure/GameIdFromUrl";
 import MobProgrammingRPG from "./MobProgrammingRPG";
 import { ClockStub, MilliSeconds } from "./model/Clock";
 import { GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR, Game, GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER } from "./model/Game";
+import { getButton } from "./TestHarnessConvenienceFunctions";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', { name: /Player List/ });
@@ -12,7 +13,7 @@ function getPlayerListItems() {
 }
 
 function getSettingsButton() {
-    return screen.getByRole('button', { name: 'Settings' });
+    return getButton({ name: 'Settings' });
 }
 
 function getPlayersTextarea() {
@@ -24,7 +25,7 @@ function getTimerInput() {
 }
 
 function getRotateButton() {
-    return screen.getByRole('button', { name: 'Rotate' });
+    return getButton({ name: 'Rotate' });
 }
 
 function changePlayers(players: string) {
@@ -71,7 +72,7 @@ describe('Mob Programming RPG', () => {
     it('stores its state to localStorage', () => {
         render(<MobProgrammingRPG />);
 
-        fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+        fireEvent.click(getButton({ name: 'Start' }));
         changePlayers('1,2')
 
         // @ts-ignore
@@ -176,7 +177,7 @@ describe('Mob Programming RPG', () => {
     it("has a help button once clicked shows what a player should do", () => {
         render(<MobProgrammingRPG initGame={new Game({players:["Gregor", "Peter", "Rita"]})} />);
 
-        const helpButton = screen.getByRole('button', { name: 'Help' });
+        const helpButton = getButton({ name: 'Help' });
         expect(helpButton).toBeInTheDocument();
         fireEvent.click(helpButton);
     })
@@ -240,11 +241,11 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
-            expect(screen.getByRole('button', { name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR })).toBeInTheDocument();
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
+            expect(getButton({ name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR })).toBeInTheDocument();
 
-            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
-            expect(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
+            expect(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
         })
 
         it('that allows to change rotation direction to (Navigator,Driver)', () => {
@@ -253,7 +254,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
             fireEvent.click(screen.getByText("Save"));
 
             expect(game.navigatorThenDriver).toHaveBeenCalledTimes(1);
@@ -266,8 +267,8 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
-            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
             fireEvent.click(screen.getByText("Save"));
 
             expect(game.navigatorThenDriver).not.toHaveBeenCalled();
@@ -310,7 +311,7 @@ describe('Mob Programming RPG', () => {
                 wsServer={wsServerUrl}
             />);
 
-            expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument();
+            expect(getButton({ name: 'Start' })).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
             expect(timer).toBeInTheDocument();
             expect(timer).toHaveTextContent('04:00');
@@ -355,7 +356,7 @@ describe('Mob Programming RPG', () => {
         it('that is configurable', () => {
             render(<MobProgrammingRPG initGame={new Game({ timer: 3 })} />);
 
-            expect(screen.getByRole('button', { name: 'Start' })).toBeInTheDocument();
+            expect(getButton({ name: 'Start' })).toBeInTheDocument();
             const timer = screen.getByTitle("timer");
             expect(timer).toBeInTheDocument();
             expect(timer).toHaveTextContent('00:03');
@@ -366,7 +367,7 @@ describe('Mob Programming RPG', () => {
                 initGame={new Game({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
                 clock={clock}
             />);
-            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+            fireEvent.click(getButton({ name: 'Start' }));
 
             advanceTimeBy(1000 * 60 * 4)
 
@@ -382,12 +383,12 @@ describe('Mob Programming RPG', () => {
                 initGame={new Game({ players: ["Gregor", "Peter", "Rita"], timer: 60 * 4 })}
                 clock={clock}
             />);
-            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+            fireEvent.click(getButton({ name: 'Start' }));
             advanceTimeBy(1000 * 60 * 4)
-            fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+            fireEvent.click(getButton({ name: 'Close' }));
             expect(screen.queryByText("Time is over")).not.toBeInTheDocument();
 
-            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+            fireEvent.click(getButton({ name: 'Start' }));
             advanceTimeBy(1000 * 60)
 
             expect(screen.getByTitle("timer")).toHaveTextContent('03:00');
@@ -401,7 +402,7 @@ describe('Mob Programming RPG', () => {
             changePlayers('1,2,3');
             changePlayers('2,3');
 
-            fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+            fireEvent.click(getButton({ name: 'Start' }));
             advanceTimeBy(1000);
 
             const items = getPlayerListItems();
