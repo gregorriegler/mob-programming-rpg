@@ -140,6 +140,7 @@ export class Player {
         this._badges = new Set<Role>(badges);
     }
 
+    // property getter?
     name() {
         return this._name;
     }
