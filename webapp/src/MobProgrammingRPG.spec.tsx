@@ -4,7 +4,7 @@ import React from "react";
 import { gameIdFromUrl } from "./infrastructure/GameIdFromUrl";
 import MobProgrammingRPG from "./MobProgrammingRPG";
 import { ClockStub, MilliSeconds } from "./model/Clock";
-import { DRIVER_THEN_NAVIGATOR, Game, NAVIGATOR_THEN_DRIVER } from "./model/Game";
+import { GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR, Game, GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER } from "./model/Game";
 
 function getPlayerListItems() {
     const playerList = screen.getByRole('list', { name: /Player List/ });
@@ -240,11 +240,11 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
-            expect(screen.getByRole('button', { name: DRIVER_THEN_NAVIGATOR })).toBeInTheDocument();
+            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
+            expect(screen.getByRole('button', { name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR })).toBeInTheDocument();
 
-            fireEvent.click(screen.getByRole('button', { name: DRIVER_THEN_NAVIGATOR }));
-            expect(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
+            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
+            expect(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
         })
 
         it('that allows to change rotation direction to (Navigator,Driver)', () => {
@@ -253,7 +253,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
+            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
             fireEvent.click(screen.getByText("Save"));
 
             expect(game.navigatorThenDriver).toHaveBeenCalledTimes(1);
@@ -266,8 +266,8 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(screen.getByRole('button', { name: NAVIGATOR_THEN_DRIVER }));
-            fireEvent.click(screen.getByRole('button', { name: DRIVER_THEN_NAVIGATOR }));
+            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
+            fireEvent.click(screen.getByRole('button', { name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
             fireEvent.click(screen.getByText("Save"));
 
             expect(game.navigatorThenDriver).not.toHaveBeenCalled();
