@@ -130,9 +130,9 @@ describe('Game', () => {
         expect(game.driver()).toEqual('Max');
         expect(game.navigator()).toEqual('Rita');
         expect(game.next()).toEqual('Peter');
-        expect(game.roleOf('Max')).toEqual('Driver');
-        expect(game.roleOf('Rita')).toEqual('Navigator');
-        expect(game.roleOf('Peter')).toEqual('Mobber');
+        expect(game.positionOf('Max')).toEqual('Driver');
+        expect(game.positionOf('Rita')).toEqual('Navigator');
+        expect(game.positionOf('Peter')).toEqual('Mobber');
     });
 
     it('set the direction of roles: Navigator, Driver', () => {
@@ -144,9 +144,9 @@ describe('Game', () => {
         expect(game.driver()).toEqual('Rita');
         expect(game.navigator()).toEqual('Max');
         expect(game.next()).toEqual('Peter');
-        expect(game.roleOf('Rita')).toEqual('Driver');
-        expect(game.roleOf('Max')).toEqual('Navigator');
-        expect(game.roleOf('Peter')).toEqual('Mobber');
+        expect(game.positionOf('Rita')).toEqual('Driver');
+        expect(game.positionOf('Max')).toEqual('Navigator');
+        expect(game.positionOf('Peter')).toEqual('Mobber');
     });
 
     it('set the direction of roles: Driver, Navigator', () => {
@@ -159,9 +159,9 @@ describe('Game', () => {
         expect(game.driver()).toEqual('Max');
         expect(game.navigator()).toEqual('Rita');
         expect(game.next()).toEqual('Peter');
-        expect(game.roleOf('Max')).toEqual('Driver');
-        expect(game.roleOf('Rita')).toEqual('Navigator');
-        expect(game.roleOf('Peter')).toEqual('Mobber');
+        expect(game.positionOf('Max')).toEqual('Driver');
+        expect(game.positionOf('Rita')).toEqual('Navigator');
+        expect(game.positionOf('Peter')).toEqual('Mobber');
     });
 
     it('initialized with a 4 minute timer', () => {
@@ -211,10 +211,10 @@ describe('Game', () => {
 
         expect(game.driver()).toEqual('Rita');
         expect(game.navigator()).toEqual('Peter');
-        expect(game.roleOf('Rita')).toEqual('Driver');
-        expect(game.roleOf('Peter')).toEqual('Navigator');
-        expect(game.roleOf('Sam')).toEqual('Mobber');
-        expect(game.roleOf('Max')).toEqual('Mobber');
+        expect(game.positionOf('Rita')).toEqual('Driver');
+        expect(game.positionOf('Peter')).toEqual('Navigator');
+        expect(game.positionOf('Sam')).toEqual('Mobber');
+        expect(game.positionOf('Max')).toEqual('Mobber');
     });
 
     // rotate to target
@@ -227,10 +227,10 @@ describe('Game', () => {
 
         expect(game.driver()).toEqual('Rita');
         expect(game.navigator()).toEqual('Peter');
-        expect(game.roleOf('Rita')).toEqual('Driver');
-        expect(game.roleOf('Peter')).toEqual('Navigator');
-        expect(game.roleOf('Sam')).toEqual('Mobber');
-        expect(game.roleOf('Max')).toEqual('Mobber');
+        expect(game.positionOf('Rita')).toEqual('Driver');
+        expect(game.positionOf('Peter')).toEqual('Navigator');
+        expect(game.positionOf('Sam')).toEqual('Mobber');
+        expect(game.positionOf('Max')).toEqual('Mobber');
     });
 
     it('rotates around', () => {
@@ -253,10 +253,10 @@ describe('Game', () => {
 
         expect(game.driver()).toEqual('Peter');
         expect(game.navigator()).toEqual('Rita');
-        expect(game.roleOf('Peter')).toEqual('Driver');
-        expect(game.roleOf('Rita')).toEqual('Navigator');
-        expect(game.roleOf('Sam')).toEqual('Mobber');
-        expect(game.roleOf('Max')).toEqual('Mobber');
+        expect(game.positionOf('Peter')).toEqual('Driver');
+        expect(game.positionOf('Rita')).toEqual('Navigator');
+        expect(game.positionOf('Sam')).toEqual('Mobber');
+        expect(game.positionOf('Max')).toEqual('Mobber');
     });
 
     it('serializes to json', () => {

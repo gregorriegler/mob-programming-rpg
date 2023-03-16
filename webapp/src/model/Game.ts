@@ -146,7 +146,7 @@ export class Game {
         return this._targetRotation;
     }
 
-    roleOf(player: string) {
+    positionOf(player: string) {
         if (this.driver() === player) return DRIVER;
         if (this.navigator() === player) return NAVIGATOR;
         return 'Mobber';

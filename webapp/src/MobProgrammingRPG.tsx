@@ -115,7 +115,7 @@ const MobProgrammingRPG = (
                 {game.players().map((player) =>
                     <PlayerDisplay
                         player={player}
-                        position={game.roleOf(player.name)}
+                        position={game.positionOf(player.name)}
                         updateGameState={updateGameState}
                         key={player.name}
                     />
