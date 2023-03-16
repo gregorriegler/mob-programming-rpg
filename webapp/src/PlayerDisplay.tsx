@@ -15,10 +15,10 @@ const PlayerDisplay = ({player, updateGameState = noOp, role = "Mobber"}) => {
         event.preventDefault();
     }
 
-    return <li className='player rpgui-container framed-golden' aria-label={player.name()}>
+    return <li className='player rpgui-container framed-golden' aria-label={player.name}>
         <h2>{role}</h2>
         <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar()}.png`}
-                 alt={player.avatar()}/>{player.name()}</h2>
+                 alt={player.avatar()}/>{player.name}</h2>
 
         {player.badges().map(role => <Badge key={role} role={role}/>)}
         {player.badges().length < 4 && Array.from(Array(4 - player.badges().length).keys())
@@ -119,7 +119,7 @@ function SelectRole({player}) {
     useEffect(() => {
         // @ts-ignore
         if (window.RPGUI !== undefined) {
-            const selectElement = document.getElementById(player.name() + "-role-select");
+            const selectElement = document.getElementById(player.name + "-role-select");
             if (selectElement!!.getAttribute("data-rpguitype") === "dropdown") return
             // @ts-ignore
             window.RPGUI.create(selectElement, "dropdown")
@@ -127,7 +127,7 @@ function SelectRole({player}) {
     }, [player]);
 
     return <>
-        <select name="role" id={player.name() + "-role-select"} className="rpgui-dropdown">
+        <select name="role" id={player.name + "-role-select"} className="rpgui-dropdown">
             {player.selectableRoles().map(role =>
                 <option key={role} value={role}>{role}</option>)
             }

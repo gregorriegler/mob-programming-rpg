@@ -71,7 +71,7 @@ export class Game {
     }
 
     playerNames() {
-        return this._players.map(player => player.name()).join(", ")
+        return this._players.map(player => player.name).join(", ")
     }
 
     timer() {
@@ -123,7 +123,7 @@ export class Game {
     }
 
     next() {
-        return this.getPlayer(2).name();
+        return this.getPlayer(2).name;
     }
 
     private indexOfNavigator() {
@@ -170,13 +170,13 @@ export class Game {
     }
 
     private findPlayerByName(name: string) {
-        return this._players.find(it => it.name() === name)
+        return this._players.find(it => it.name === name)
     }
 
     private whoIs(index: number) {
         const player = this.getPlayer(index);
         if (!player) return "???"
-        return player.name();
+        return player.name;
     }
 
     private getPlayer(index: number) {

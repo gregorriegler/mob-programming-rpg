@@ -141,7 +141,7 @@ export class Player {
     }
 
     // property getter?
-    name() {
+    get name() {
         return this._name;
     }
 

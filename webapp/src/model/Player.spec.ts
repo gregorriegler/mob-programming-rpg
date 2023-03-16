@@ -9,7 +9,7 @@ describe('Player', () => {
     })
 
     it('starts with no badges and no points', () => {
-        expect(player.name()).toBe('Gregor');
+        expect(player.name).toBe('Gregor');
         expect(player.level()).toBe(0);
         expect(player.badges()).toEqual([]);
         expect(player.avatar()).toEqual('dodo');
@@ -187,7 +187,7 @@ describe('Player', () => {
             }
         );
 
-        expect(player.name()).toEqual('Gregor');
+        expect(player.name).toEqual('Gregor');
         expect(player.avatar()).toEqual('dev');
         expect(player.roles()).toEqual([
             "Mobber",

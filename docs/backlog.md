@@ -1,7 +1,11 @@
 # Doing
-- Keep on refactoring primitive obsession
+- Use property getters as appropriate
+    - [x] `player.name`
+    - [ ] more?
 
 # To Do (prioritized)
+- Keep on refactoring primitive obsession
+- which ecmascript version do we want to target for typescript? [tsconfig.json](../webapp/tsconfig.json)
 - Document in the readme.md to explain how to start the app
 - [Issues in GitHub](https://github.com/gregorriegler/mob-programming-rpg/issues)
     - Support small screen
