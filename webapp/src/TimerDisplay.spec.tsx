@@ -1,6 +1,7 @@
 import { act, ByRoleOptions, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
+import { getButton } from "./TestHarnessConvenienceFunctions";
 import TimerDisplay from "./TimerDisplay";
 
 describe('TimerDisplay', () => {
@@ -41,11 +42,6 @@ describe('TimerDisplay', () => {
         expect(global.document.title).toEqual('00:30');
         expect(timer).toHaveTextContent('00:30');
     })
-
-
-    function getButton(options?: ByRoleOptions | undefined) {
-        return screen.getByRole("button", options);
-    }
 
     it('notifies when over', () => {
         const notify = jest.fn();
