@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, ByRoleOptions, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { ClockStub, MilliSeconds } from "./model/Clock";
 import TimerDisplay from "./TimerDisplay";
@@ -42,10 +42,15 @@ describe('TimerDisplay', () => {
         expect(timer).toHaveTextContent('00:30');
     })
 
+
+    function getButton(options?: ByRoleOptions | undefined) {
+        return screen.getByRole("button", options);
+    }
+
     it('notifies when over', () => {
         const notify = jest.fn();
         render(<TimerDisplay clock={clock} timer={1} onFinish={notify}/>);
-        const startButton = screen.getByRole("button", {name: /start/i});
+        const startButton = getButton({ name: /start/i });
         fireEvent.click(startButton);
 
         act(() => {
@@ -84,3 +89,4 @@ describe('TimerDisplay', () => {
         jest.advanceTimersByTime(time);
     }
 });
+
