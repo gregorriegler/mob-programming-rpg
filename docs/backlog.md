@@ -4,6 +4,10 @@
     - [ ] more?
 
 # To Do (prioritized)
+- In this File `TestHarnessConvenienceFunctions.ts`
+    - Replace all `getByRole('list', ...)` with `getList(...)` because for us Role has a different meaning than the Testlibrary 
+    - Replace all `getByRole('listitem', ...)` with `getListItem(...)` because for us Role has a different meaning than the Testlibrary
+    - Replace all `getByRole('???', ...)` with `get???(...)` because for us Role has a different meaning than the Testlibrary 
 - Keep on refactoring primitive obsession
 - which ecmascript version do we want to target for typescript? [tsconfig.json](../webapp/tsconfig.json)
 - Document in the readme.md to explain how to start the app
@@ -13,6 +17,7 @@
 - Allow for local changes to env file (for testing) that do not break produciton.
 
 # DONE (most recently finished first)
+- Replace all `getByRole("button",...)` with `getButton(...)` because for us Role has a different meaning than the Testlibrary 
 - Create GitPod yaml file (for when new workspace is created)
 - create a global backlog
 - create a microretro template
