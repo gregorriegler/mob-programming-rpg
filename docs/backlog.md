@@ -1,3 +1,9 @@
+# Reminders
+
+- Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
+
+## Backlog
+
 # Doing
 
 - Refactor `game.players`  
@@ -5,7 +11,7 @@
 - Use property getters as appropriate
   - [x] `player.name`
     - [ ] where is `player.name` used?
-    - [ ] more?
+    - [ ] More? Should we research the pros/cons and intent within TypeScript specifically?
 - TypeScript compiler options: disallow Any type,... (stricter)
 
 # To Do (prioritized)
