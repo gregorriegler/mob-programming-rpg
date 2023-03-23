@@ -58,7 +58,7 @@ describe('Game', () => {
     it('starts with an empty list of players', () => {
         const game = createGame();
 
-        expect(game.players()).toEqual([]);
+        expect(game.mob()).toEqual([]);
     });
 
     it('can set a player', () => {
@@ -66,7 +66,7 @@ describe('Game', () => {
 
         game.setPlayers('Max');
 
-        expect(game.players()).toEqual([new Player('Max')]);
+        expect(game.mob()).toEqual([new Player('Max')]);
     });
 
     it('can add a player to an empty game', () => {
@@ -74,7 +74,7 @@ describe('Game', () => {
 
         game.addPlayer('Max', 'dev');
 
-        expect(game.players()).toEqual([new Player('Max', 'dev')]);
+        expect(game.mob()).toEqual([new Player('Max', 'dev')]);
     });
 
     it('adds players to the end of the player list', () => {
@@ -82,7 +82,7 @@ describe('Game', () => {
 
         game.addPlayer('  3', 'dodo');
 
-        expect(game.players()).toEqual([
+        expect(game.mob()).toEqual([
             new Player('1'),
             new Player('2'),
             new Player('3')
@@ -94,7 +94,7 @@ describe('Game', () => {
 
         game.setPlayers('Max,Rita,  Peter');
 
-        expect(game.players()).toEqual([
+        expect(game.mob()).toEqual([
             new Player('Max'),
             new Player('Rita'),
             new Player('Peter')
@@ -103,19 +103,19 @@ describe('Game', () => {
 
     it('changing players order does not delete their points', () => {
         const game = new Game({ players: ['1', '2'] });
-        const player1 = game.players()[0];
-        const player2 = game.players()[1];
+        const player1 = game.mob()[0];
+        const player2 = game.mob()[1];
 
         player1.doScoreAndAddBadge("Driver")
         game.setPlayers('2,1');
 
-        expect(game.players()).toEqual([player2, player1]);
+        expect(game.mob()).toEqual([player2, player1]);
     });
 
     it('can initialize players by array', () => {
         const game = new Game({ players: ['Max', 'Rita', 'Peter'] });
 
-        expect(game.players()).toEqual([
+        expect(game.mob()).toEqual([
             new Player('Max'),
             new Player('Rita'),
             new Player('Peter')
@@ -302,9 +302,9 @@ describe('Game', () => {
         }
         `);
 
-        expect(game.players().length).toEqual(1);
-        expect(game.players()[0].name).toEqual("Gregor");
-        expect(game.players()[0].badges()).toEqual(["Mobber"]);
+        expect(game.mob().length).toEqual(1);
+        expect(game.mob()[0].name).toEqual("Gregor");
+        expect(game.mob()[0].badges()).toEqual(["Mobber"]);
         expect(game.timer()).toEqual(240);
         expect(game.timerStatus()).toEqual("STOPPED");
         expect(game.rotations()).toEqual(1);

@@ -112,7 +112,7 @@ const MobProgrammingRPG = (
                 <img className="logo" alt="logo" src={process.env.PUBLIC_URL + "/favicon.png"}/>
             </h1>
             <ul aria-label="Player List" className="rpgui-container-framed flex-box">
-                {game.players().map((player) =>
+                {game.mob().map((player) =>
                     <PlayerDisplay
                         player={player}
                         position={game.positionOf(player.name)}

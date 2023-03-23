@@ -40,7 +40,7 @@ export class Game {
     }
 
     private readonly _id: GameId;
-    private _players: Player[];
+    private _mob: Player[];
     private _timer: Seconds;
     private _timerStatus: TimerStatus;
     private _targetRotation;
@@ -57,7 +57,7 @@ export class Game {
         targetRotation = undefined,
     }: GameProps = {}) {
         this._id = id;
-        this._players = playerObjects || players.map(name => new Player(name));
+        this._mob = playerObjects || players.map(name => new Player(name));
         this._timer = timer;
         this._timerStatus = timerStatus;
         this._rotations = rotations;
@@ -68,12 +68,17 @@ export class Game {
         return this._id;
     }
 
-    players() {
-        return this._players;
+    // game.mob.getPlayers()
+    // game.mob.names()
+    // game.mob.getDriver()
+    // game.mob.getDriver()
+
+    mob() {
+        return this._mob;
     }
 
     playerNames() {
-        return this._players.map(player => player.name).join(", ")
+        return this._mob.map(player => player.name).join(", ")
     }
 
     timer() {
@@ -102,14 +107,14 @@ export class Game {
     }
 
     setPlayers(players: string) {
-        this._players = players.split(',')
+        this._mob = players.split(',')
             .map(player => player.trim())
             .filter(it => it !== "")
             .map(it => this.findPlayerByName(it) || new Player(it));
     }
 
     addPlayer(name: string, avatar: Avatar) {
-        this._players.push(new Player(name.trim(), avatar))
+        this._mob.push(new Player(name.trim(), avatar))
     }
 
     driver() {
@@ -157,7 +162,7 @@ export class Game {
     toJSON() {
         return JSON.stringify({
             id: this._id,
-            players: this._players.map(it => it.toObject()),
+            players: this._mob.map(it => it.toObject()),
             timer: {
                 value: this._timer,
                 status: this._timerStatus
@@ -172,7 +177,7 @@ export class Game {
     }
 
     private findPlayerByName(name: string) {
-        return this._players.find(it => it.name === name)
+        return this._mob.find(it => it.name === name)
     }
 
     private whoIs(index: number) {
@@ -182,7 +187,7 @@ export class Game {
     }
 
     private getPlayer(index: number) {
-        return this._players[(index + this._rotations) % this._players.length];
+        return this._mob[(index + this._rotations) % this._mob.length];
     }
 
     navigatorThenDriver() {
