@@ -3,6 +3,7 @@
     "target": "ES5",
     "esModuleInterop": true,
     "jsx": "react",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "noImplicitAny": true,
   }
 }

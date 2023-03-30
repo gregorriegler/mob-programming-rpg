@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Role} from "./model/Roles";
 import {noOp} from "./model/Func";
+import { Player } from "./model/Player";
 
 
-const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}) => {
+const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}: { player: Player, updateGameState: () => void, position: string}) => {
 
     const [uiState, setUiState] = useState({addingPointsFor: []})
 
-    function selectRole(event) {
+    function selectRole(event: any) {
         const role = new FormData(event.target).get("role") as Role;
         player.selectRole(role);
         updateGameState();
@@ -41,7 +42,7 @@ const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}) =>
     </li>
 }
 
-const Badge = ({role}) => {
+const Badge = ({role}: any) => {
     function badgeSource(role: Role) {
         const images = {
             "Driver": "driver-badge.png",
@@ -54,8 +55,9 @@ const Badge = ({role}) => {
             "Nose": "nose-badge.png",
             "Archivist": "archivist-badge.png",
             "Traffic Cop": "traffic-cop-badge.png",
+            "Disciplinarian": "disciplinarian-badge.png",
         }
-        return process.env.PUBLIC_URL + "/img/icons/" + images[role];
+        return `${process.env.PUBLIC_URL}/img/icons/${images[role]}`;
     }
 
     return <div className="rpgui-icon magic-slot">
@@ -64,7 +66,7 @@ const Badge = ({role}) => {
     </div>
 }
 
-function RolePoints({player, role, setUiState, uiState, updateGame}) {
+function RolePoints({player, role, setUiState, uiState, updateGame}: {player: Player, role: Role, setUiState: any, uiState: any, updateGame: any }): JSX.Element {
     function showRolePointsForm(role: string) {
         return () =>
             setUiState({
@@ -72,12 +74,12 @@ function RolePoints({player, role, setUiState, uiState, updateGame}) {
             });
     }
 
-    function addDriverPoints(e) {
+    function addDriverPoints(e: { preventDefault: () => void; target: HTMLFormElement | undefined; }) {
         e.preventDefault();
         const amount = new FormData(e.target).get("amount") as String;
         player.scoreTimes(role, amount);
         setUiState({
-            addingPointsFor: uiState.addingPointsFor.filter(it => it !== role)
+            addingPointsFor: uiState.addingPointsFor.filter((it: any) => it !== role)
         });
         updateGame();
     }
@@ -128,7 +130,7 @@ function SelectRole({player}) {
 
     return <>
         <select name="role" id={player.name + "-role-select"} className="rpgui-dropdown">
-            {player.selectableRoles().map(role =>
+            {player.selectableRoles().map((role: boolean | React.Key | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined) =>
                 <option key={role} value={role}>{role}</option>)
             }
         </select>

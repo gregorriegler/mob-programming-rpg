@@ -16,7 +16,8 @@
   - [x] `player.name`
     - [x] where is `player.name` used?
     - [ ] More? Should we research the pros/cons and intent within TypeScript specifically?
-- TypeScript compiler options: disallow Any type,... (stricter)
+- TypeScript compiler options: disallow implicit Any type,... (stricter)
+- Need a `Position` Type instead of String
 
 # To Do (prioritized)
 
@@ -31,6 +32,8 @@
   - Support small screen
   - Option to play without the built-in timer
 - Allow for local changes to env file (for testing) that do not break produciton.
+- Need badge icon(s) for:
+  - Disciplinarian
 
 # DONE (most recently finished first)
 
