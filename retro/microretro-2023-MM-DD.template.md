@@ -14,15 +14,20 @@ Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
 
 # Agenda
 
-## Bond
+## Bond (15 min.)
 
 -   Try a [warmup exercise](../docs/warmup-exercises.md)
 
-## Goals
+## Work the Backlog (75 min.)
 
+-   Consider checking the recent `git log -p`
 -   Check the [global backlog](../docs/backlog.md)
 
-## Reflect
+## Leave Breadcrumbs (5 min.)
+
+-   Update the [global backlog](../docs/backlog.md)
+
+## Reflect / Retro (25 min.)
 
 ### How did that feel?
 

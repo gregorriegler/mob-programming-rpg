@@ -1,11 +1,14 @@
 # Reminders
 
+- See Agenda in Retro md / template
+- Before Retro: Update the Backlog
 - Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
 
 ## Backlog
 
 # Doing
 
+- Rename microretro* files and retro folder to refect actual contents (agenda + retro/session notes)
 - Refactor `game.players`  
   - Encapsulate player_collection into class Mob (or Ensemble)
 - Use property getters as appropriate
@@ -16,11 +19,11 @@
   - [x] `player.name`
     - [x] where is `player.name` used?
     - [ ] More? Should we research the pros/cons and intent within TypeScript specifically?
-- TypeScript compiler options: disallow implicit Any type,... (stricter)
-- Need a `Position` Type instead of String
+- Fix any types (now that set compiler options to disallow implicit any)
 
 # To Do (prioritized)
 
+- r Need a `Position` Type instead of String
 - In this File `TestHarnessConvenienceFunctions.ts`
   - Replace all `getByRole('list', ...)` with `getList(...)` because for us Role has a different meaning than the Testlibrary
   - Replace all `getByRole('listitem', ...)` with `getListItem(...)` because for us Role has a different meaning than the Testlibrary
@@ -37,6 +40,10 @@
 
 # DONE (most recently finished first)
 
+## 2023-03-30
+- Set TypeScript compiler option to disallow implicit any
+
+## Older
 - Rename Game.players to Game.mob
 - Replace all `getByRole("button",...)` with `getButton(...)` because for us Role has a different meaning than the Testlibrary
 - Create GitPod yaml file (for when new workspace is created)
