@@ -9,8 +9,12 @@
 - Refactor `game.players`  
   - Encapsulate player_collection into class Mob (or Ensemble)
 - Use property getters as appropriate
+  - but **why?**
+    - syntactic sugar
+    - user code looks ?cleaner?
+    - is it more readable? lower cognitive load?
   - [x] `player.name`
-    - [ ] where is `player.name` used?
+    - [x] where is `player.name` used?
     - [ ] More? Should we research the pros/cons and intent within TypeScript specifically?
 - TypeScript compiler options: disallow Any type,... (stricter)
 

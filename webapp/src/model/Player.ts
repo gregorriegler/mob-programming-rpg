@@ -144,7 +144,7 @@ export class Player {
         return this._name;
     }
 
-    avatar() {
+    get avatar() {
         return this._avatar;
     }
 

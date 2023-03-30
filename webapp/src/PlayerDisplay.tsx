@@ -17,8 +17,8 @@ const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}) =>
 
     return <li className='player rpgui-container framed-golden' aria-label={player.name}>
         <h2>{position}</h2>
-        <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar()}.png`}
-                 alt={player.avatar()}/>{player.name}</h2>
+        <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar}.png`}
+                 alt={player.avatar}/>{player.name}</h2>
 
         {player.badges().map(role => <Badge key={role} role={role}/>)}
         {player.badges().length < 4 && Array.from(Array(4 - player.badges().length).keys())
