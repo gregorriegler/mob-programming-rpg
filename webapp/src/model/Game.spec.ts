@@ -304,7 +304,7 @@ describe('Game', () => {
 
         expect(game.mob().length).toEqual(1);
         expect(game.mob()[0].name).toEqual("Gregor");
-        expect(game.mob()[0].badges()).toEqual(["Mobber"]);
+        expect(game.mob()[0].badges).toEqual(["Mobber"]);
         expect(game.timer()).toEqual(240);
         expect(game.timerStatus()).toEqual("STOPPED");
         expect(game.rotations()).toEqual(1);

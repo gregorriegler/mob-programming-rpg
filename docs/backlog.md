@@ -15,9 +15,9 @@
     - syntactic sugar
     - user code looks ?cleaner?
     - is it more readable? lower cognitive load?
-  - [x] `player.name`
+  - [x] `player.name` instead of player.name()....
     - [x] where is `player.name` used?
-    - [ ] More? Should we research the pros/cons and intent within TypeScript specifically?
+    - [-] More? Should we research the pros/cons and intent within TypeScript specifically?
 
 # To Do (prioritized)
 

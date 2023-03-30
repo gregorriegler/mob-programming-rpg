@@ -21,8 +21,8 @@ const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}: { 
         <h2><img className='avatar' src={`${process.env.PUBLIC_URL}/img/avatars/${player.avatar}.png`}
                  alt={player.avatar}/>{player.name}</h2>
 
-        {player.badges().map(role => <Badge key={role} role={role}/>)}
-        {player.badges().length < 4 && Array.from(Array(4 - player.badges().length).keys())
+        {player.badges.map(role => <Badge key={role} role={role}/>)}
+        {player.badges.length < 4 && Array.from(Array(4 - player.badges.length).keys())
             .map((item, index) => <div key={index} className="rpgui-icon magic-slot"/>)}
         {player.roles().map(role => <RolePoints key={role}
                                                 role={role}

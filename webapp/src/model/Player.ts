@@ -159,7 +159,7 @@ export class Player {
             }, 0);
     }
 
-    badges() {
+    get badges() {
         return Array.from(this._badges);
     }
 

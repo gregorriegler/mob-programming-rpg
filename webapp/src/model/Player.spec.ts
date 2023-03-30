@@ -11,7 +11,7 @@ describe('Player', () => {
     it('starts with no badges and no points', () => {
         expect(player.name).toBe('Gregor');
         expect(player.level()).toBe(0);
-        expect(player.badges()).toEqual([]);
+        expect(player.badges).toEqual([]);
         expect(player.avatar).toEqual('dodo');
         expectRolesAndPoints([
             ['Driver', 0],
@@ -34,7 +34,7 @@ describe('Player', () => {
     it('scores as Driver', () => {
         player.doScoreAndAddBadge('Driver');
 
-        expect(player.badges()).toEqual([]);
+        expect(player.badges).toEqual([]);
         expect(player.level()).toBe(0);
         expectRolesAndPoints([
             ['Driver', 1],
@@ -51,7 +51,7 @@ describe('Player', () => {
     it('scores two times as Navigator', () => {
         player.scoreTimes('Navigator', 2);
 
-        expect(player.badges()).toEqual([]);
+        expect(player.badges).toEqual([]);
         expectRolesAndPoints([
             ['Driver', 0],
             ['Navigator', 2],
@@ -70,7 +70,7 @@ describe('Player', () => {
         player.scoreTimes('Mobber', 3);
 
         expect(player.hasBadge('Mobber')).toBeTruthy();
-        expect(player.badges()).toEqual(['Mobber']);
+        expect(player.badges).toEqual(['Mobber']);
         expect(player.level()).toBe(1);
         expectRolesAndPoints([
             ['Driver', 0],
@@ -89,7 +89,7 @@ describe('Player', () => {
         player.scoreTimes('Driver', 3);
         player.scoreTimes('Navigator', 3);
 
-        expect(player.badges()).toEqual(expect.arrayContaining(['Mobber', 'Driver', 'Navigator']));
+        expect(player.badges).toEqual(expect.arrayContaining(['Mobber', 'Driver', 'Navigator']));
         expectRolesAndPoints([
             ['Driver', 3],
             ['Navigator', 3],
@@ -100,7 +100,7 @@ describe('Player', () => {
     it('cannot score for a Role that is not yet selected', () => {
         player.doScoreAndAddBadge('Researcher');
 
-        expect(player.badges()).toEqual([]);
+        expect(player.badges).toEqual([]);
         expect(player.pointsFor('Researcher')).toEqual(0);
     });
 
@@ -197,7 +197,7 @@ describe('Player', () => {
         ])
         expect(player.pointsFor("Mobber")).toEqual(3)
         expect(player.pointsFor("Researcher")).toEqual(0)
-        expect(player.badges()).toEqual(["Mobber"]);
+        expect(player.badges).toEqual(["Mobber"]);
     });
 
     describe("Score", () => {
