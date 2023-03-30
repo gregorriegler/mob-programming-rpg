@@ -8,7 +8,6 @@
 
 # Doing
 
-- Rename microretro* files and retro folder to refect actual contents (agenda + retro/session notes)
 - Refactor `game.players`  
   - Encapsulate player_collection into class Mob (or Ensemble)
 - Use property getters as appropriate
@@ -42,6 +41,7 @@
 
 ## 2023-03-30
 - Set TypeScript compiler option to disallow implicit any
+- Rename microretro* files and retro folder to refect actual contents (agenda + retro/session notes)
 
 ## Older
 - Rename Game.players to Game.mob
