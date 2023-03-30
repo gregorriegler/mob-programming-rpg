@@ -1,3 +1,4 @@
+Session 1:
 Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
@@ -69,3 +70,29 @@ Co-Authored-By: Rea <reasu@protonmail.com>
 
 ### Idea
 -   Write your Ideas to the [global backlog](../docs/backlog.md)
+
+## Reflect Session 2
+
+- changed settings in typescript to disallow implicit any - at first it was interesting, but now it's annoying. Fixing it is not worth it. Only fix types where it has some value, and ignore the rest.
+- don't see ROI in changing all the getters. There are more valuable things to work on.
+- liked when we allowed longer driving, and didn't have this fast rotation. Sometimes it's good, sometimes it isn't. 
+  - Depends on the group (size). 
+  - In a smaller group it's OK to finish the thought. 
+  - In a larger group, keeping the time is better, so everyone has a chance to become driver/navigator.
+- made the second session last until 7pm - just as long as the first one. 5h is too much when attending both sessions.
+- enjoyed the longer rotation time, with that group
+    - it felt rewarding to finish something
+- agree with 2h instead of 3h in the second session (3h is too long)
+- lesson on bash +1
+- interresting to listen to the retro of the first session
+- It was nice to listen to Session 1 retro as a start to Session 2.  That made it a warm start, not a cold start.
+- coming in when the group was already warm, i found it interresting to listen to the retro of the first session
+- it was not like a cold start
+- It was interesting to span both sessions.   The break was important.
+- It's valuable to span sessions to bring session 1 knowledge to session 2.
+- It was helpful to be in session 2 as though it was a completely new session, not just a continuation of session 1.
+- Having 2 sessions is a good experiment to keep running.
+
+
+
+

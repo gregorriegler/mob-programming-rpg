@@ -21,6 +21,7 @@
 
 # To Do (prioritized)
 
+- Change second session to 2h instead of 3h
 - Fix any types (now that set compiler options to disallow implicit any)
 - r Need a `Position` Type instead of String
 - In this File `TestHarnessConvenienceFunctions.ts`
