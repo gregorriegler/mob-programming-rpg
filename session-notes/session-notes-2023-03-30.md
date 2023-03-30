@@ -5,6 +5,10 @@ Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Emily Bache <emily@bacheconsulting.com>
 Co-Authored-By: Ethan Strominger <ethanstrominger2@gmail.com>
 
+Session 2:
+Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
+Co-Authored-By: Rea <reasu@protonmail.com>
+
 # Agenda
 
 ## Bond

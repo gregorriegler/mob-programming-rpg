@@ -74,7 +74,7 @@ function RolePoints({player, role, setUiState, uiState, updateGame}: {player: Pl
             });
     }
 
-    function addDriverPoints(e: { preventDefault: () => void; target: HTMLFormElement | undefined; }) {
+    function addDriverPoints(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const amount = new FormData(e.target).get("amount") as String;
         player.scoreTimes(role, amount);
@@ -117,7 +117,7 @@ function RolePoints({player, role, setUiState, uiState, updateGame}: {player: Pl
     </div>
 }
 
-function SelectRole({player}) {
+function SelectRole({player}: {player:Player}): JSX.Element {
     useEffect(() => {
         // @ts-ignore
         if (window.RPGUI !== undefined) {

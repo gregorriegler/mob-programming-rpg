@@ -18,10 +18,10 @@
   - [x] `player.name`
     - [x] where is `player.name` used?
     - [ ] More? Should we research the pros/cons and intent within TypeScript specifically?
-- Fix any types (now that set compiler options to disallow implicit any)
 
 # To Do (prioritized)
 
+- Fix any types (now that set compiler options to disallow implicit any)
 - r Need a `Position` Type instead of String
 - In this File `TestHarnessConvenienceFunctions.ts`
   - Replace all `getByRole('list', ...)` with `getList(...)` because for us Role has a different meaning than the Testlibrary
