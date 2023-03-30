@@ -182,7 +182,7 @@ export class Player {
         this._roleSheets.add(role);
     }
 
-    roles() {
+    get roles() {
         return this._roleSheets.roles();
     }
 
@@ -236,6 +236,6 @@ export class Player {
     }
 
     private hasRoleForLevel(level: number) {
-        return this.roles().some(it => levels[level].includes(it));
+        return this.roles.some(it => levels[level].includes(it));
     }
 }

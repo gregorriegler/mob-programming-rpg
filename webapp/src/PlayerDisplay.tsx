@@ -24,7 +24,7 @@ const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}: { 
         {player.badges.map(role => <Badge key={role} role={role}/>)}
         {player.badges.length < 4 && Array.from(Array(4 - player.badges.length).keys())
             .map((item, index) => <div key={index} className="rpgui-icon magic-slot"/>)}
-        {player.roles().map(role => <RolePoints key={role}
+        {player.roles.map(role => <RolePoints key={role}
                                                 role={role}
                                                 player={player}
                                                 updateGame={updateGameState}

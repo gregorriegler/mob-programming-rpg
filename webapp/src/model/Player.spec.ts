@@ -189,7 +189,7 @@ describe('Player', () => {
 
         expect(player.name).toEqual('Gregor');
         expect(player.avatar).toEqual('dev');
-        expect(player.roles()).toEqual([
+        expect(player.roles).toEqual([
             "Mobber",
             "Driver",
             "Navigator",
@@ -213,7 +213,7 @@ describe('Player', () => {
     })
 
     function expectRolesAndPoints(points) {
-        expect(player.roles()).toEqual(points.map(it => it[0]));
+        expect(player.roles).toEqual(points.map(it => it[0]));
         points.forEach(expectOneRolesPoints);
     }
 
@@ -222,7 +222,7 @@ describe('Player', () => {
     }
 
     function expectPercentage(percentages) {
-        expect(player.roles()).toEqual(percentages.map(it => it[0]));
+        expect(player.roles).toEqual(percentages.map(it => it[0]));
         percentages.forEach(expectOneRolesPercentage);
     }
 
