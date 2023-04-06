@@ -1,4 +1,5 @@
-export type Role = "Driver"
+export type Role =
+    | "Driver"
     | "Navigator"
     | "Mobber"
     | "Archivist"
@@ -11,39 +12,28 @@ export type Role = "Driver"
     | "Traffic Cop";
 
 export const levels: Role[][] = [
-    [
-        "Driver",
-        "Navigator",
-        "Mobber",
-    ],
-    [
-        "Researcher",
-        "Sponsor",
-        "Archivist",
-        "Traffic Cop"
-    ],
-    [
-        "Disciplinarian",
-        "Nose",
-        "Rear Admiral",
-    ],
-    [
-        "Automationist",
-    ],
-    []
+    ["Driver", "Navigator", "Mobber"],
+    ["Researcher", "Sponsor", "Archivist", "Traffic Cop"],
+    ["Disciplinarian", "Nose", "Rear Admiral"],
+    ["Automationist"],
+    [],
 ];
 
 export function levelOf(role: Role) {
+    // this looks like a 'find'
     for (let level = 0; level < levels.length; level++) {
         if (levels[level].includes(role)) {
             return level;
         }
     }
+
+    // default
+    return 0;
 }
 
 export interface RoleDetails {
-    name: Role,
-    todos: string[]
+    name: Role;
+    todos: string[];
 }
 
 type AllRoleDetails = {
@@ -57,8 +47,8 @@ export const roles: AllRoleDetails = {
             "Type something you disagree with",
             "Use a new keyboard shortcut",
             "Learn something new about tooling",
-            "Ignore a direct instruction from someone who isn't the Navigator"
-        ]
+            "Ignore a direct instruction from someone who isn't the Navigator",
+        ],
     },
     Navigator: {
         name: "Navigator",
@@ -66,10 +56,10 @@ export const roles: AllRoleDetails = {
             "Ask for ideas",
             "Filter the mob's ideas then tell the Driver exactly what to type",
             "Tell the Driver only your high-level intent and have them implement the details",
-            "Create a failing test", 
+            "Create a failing test",
             "Make it pass as simple as possible",
-            "Do a refactoring while staying in the green"
-        ]
+            "Do a refactoring while staying in the green",
+        ],
     },
     Mobber: {
         name: "Mobber",
@@ -77,16 +67,16 @@ export const roles: AllRoleDetails = {
             "Contribute an idea",
             "Admit a thing you didn't understand",
             "Ask questions till you understand",
-            "Listen on the edge of your seat"
-        ]
+            "Listen on the edge of your seat",
+        ],
     },
     "Rear Admiral": {
         name: "Rear Admiral",
         todos: [
             "Quietly speak into the Navigators ear",
             "Give the smallest cue necessary to move the Navigator forward through the problem",
-            "Navigate the Navigator at the highest level of abstraction they can successfully implement"
-        ]
+            "Navigate the Navigator at the highest level of abstraction they can successfully implement",
+        ],
     },
     "Traffic Cop": {
         name: "Traffic Cop",
@@ -96,8 +86,8 @@ export const roles: AllRoleDetails = {
             "Suggest a relevant new process or working agreement",
             "Point out when the team violates a process or working agreement",
             "Suggest a way to help the team remember to follow a process or working agreement",
-            "Point out when a process or working agreement is no longer needed"
-        ]
+            "Point out when a process or working agreement is no longer needed",
+        ],
     },
     Archivist: {
         name: "Archivist",
@@ -109,7 +99,7 @@ export const roles: AllRoleDetails = {
             "Record solution alternatives visibly for the team so they’re not forgotten",
             "Express an idea as it is taking shape on a big visible chart or whiteboard",
             "Articulate the current task at hand and make it visible to the entire mob",
-        ]
+        ],
     },
     Automationist: {
         name: "Automationist",
@@ -117,8 +107,8 @@ export const roles: AllRoleDetails = {
             "Point out a repeated task in a tool",
             "Point out a repeated aspect of team process",
             "Point out possible boiler plate code",
-            "Propose an automation for a repeated task "
-        ]
+            "Propose an automation for a repeated task ",
+        ],
     },
     Nose: {
         name: "Nose",
@@ -127,8 +117,8 @@ export const roles: AllRoleDetails = {
             "Point out a complex conditional",
             "Point out duplication",
             "Point out a poorly named variable or method",
-            "Propose an action for deodorizing the code"
-        ]
+            "Propose an action for deodorizing the code",
+        ],
     },
     Disciplinarian: {
         name: "Disciplinarian",
@@ -137,15 +127,15 @@ export const roles: AllRoleDetails = {
             "Remind the navigator to write a failing test first.",
             "Make sure we do not refactor while the tests are failing.",
             "Remind the group to refactor when in the green.",
-        ]
+        ],
     },
     Researcher: {
         name: "Researcher",
         todos: [
             "Find and share relevant information from documentation",
             "Find and share relevant information from a blog",
-            "Find and share relevant information from a coding forum"
-        ]
+            "Find and share relevant information from a coding forum",
+        ],
     },
     Sponsor: {
         name: "Sponsor",
@@ -153,7 +143,7 @@ export const roles: AllRoleDetails = {
             "Amplify the unheard voice",
             "Make sure the current Navigator is not overruled and gets their fair chance.",
             "Celebrate moments of excellence",
-            "Cheer up the mob in times of struggle"
-        ]
-    }
+            "Cheer up the mob in times of struggle",
+        ],
+    },
 };

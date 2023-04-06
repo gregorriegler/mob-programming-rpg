@@ -28,15 +28,15 @@ export const avatars = [
     "yed1",
 ];
 
-export type Avatar = typeof avatars[number]
+export type Avatar = typeof avatars[number];
 
 export class Score {
-    points: number = 0
+    points: number = 0;
 
     private readonly MAXIMUM_SCORE = 3;
 
     constructor(value: number = 0) {
-        this.points = value
+        this.points = value;
     }
 
     isMaximum(): boolean {
@@ -48,12 +48,12 @@ export class Score {
     }
 
     asPercentage() {
-        if (this.points === this.MAXIMUM_SCORE) return 100
-        return (this.points * this.roundToOneDecimal(100 / this.MAXIMUM_SCORE));
+        if (this.points === this.MAXIMUM_SCORE) return 100;
+        return this.points * this.roundToOneDecimal(100 / this.MAXIMUM_SCORE);
     }
 
     private roundToOneDecimal(input: number) {
-        return Math.round(input * 10) / 10
+        return Math.round(input * 10) / 10;
     }
 }
 
@@ -61,15 +61,20 @@ class RoleSheets {
     public readonly _roleSheets: Map<Role, Score>;
 
     static empty(): RoleSheets {
-        return new RoleSheets(new Map<Role, Score>(levels[0].map(role => [role, new Score()])));
+        return new RoleSheets(
+            new Map<Role, Score>(levels[0].map((role) => [role, new Score()]))
+        );
     }
 
-    static fromObject(roles: { [key in Role]?: number }): RoleSheets {
-        const _roles = new Map<Role, Score>();
-        for (let role in roles) {
-            _roles.set(role as Role, new Score(roles[role]));
+    static fromObject(roles: { [key in Role]: number }): RoleSheets {
+        const rolesToScores = new Map<Role, Score>();
+
+        for (let r in roles) {
+            const role = r as Role;
+            rolesToScores.set(role, new Score(roles[role]));
         }
-        return new RoleSheets(_roles);
+
+        return new RoleSheets(rolesToScores);
     }
 
     constructor(points: Map<Role, Score>) {
@@ -113,7 +118,12 @@ class RoleSheets {
     }
 
     toObject() {
-        return Object.fromEntries(Array.from(this._roleSheets.entries()).map(([role, point]) => ([role, point.points])));
+        return Object.fromEntries(
+            Array.from(this._roleSheets.entries()).map(([role, point]) => [
+                role,
+                point.points,
+            ])
+        );
     }
 }
 
@@ -124,15 +134,25 @@ export class Player {
     private readonly _roleSheets: RoleSheets;
     private readonly _badges = new Set<Role>();
 
-    static fromObject(json: { badges: Role[]; roles: { [key in Role]?: number }; name: string; avatar: Avatar; }): Player {
-        return new Player(json.name, json.avatar, RoleSheets.fromObject(json.roles), json.badges);
+    static fromObject(json: {
+        badges: Role[];
+        roles: { [key in Role]: number };
+        name: string;
+        avatar: Avatar;
+    }): Player {
+        return new Player(
+            json.name,
+            json.avatar,
+            RoleSheets.fromObject(json.roles),
+            json.badges
+        );
     }
 
     constructor(
         name: string,
-        avatar: Avatar = 'dodo',
-        roleSheets: RoleSheets = RoleSheets.empty(), 
-        badges: Role[] = [],
+        avatar: Avatar = "dodo",
+        roleSheets: RoleSheets = RoleSheets.empty(),
+        badges: Role[] = []
     ) {
         this._name = name;
         this._avatar = avatar;
@@ -153,10 +173,14 @@ export class Player {
     }
 
     level() {
-        return Array.from(levels.keys())
-            .reduce((reachedLevel, currentLevel) => {
-                return this.hasCompleted(currentLevel) ? ++currentLevel : reachedLevel;
-            }, 0);
+        return Array.from(levels.keys()).reduce(
+            (reachedLevel, currentLevel) => {
+                return this.hasCompleted(currentLevel)
+                    ? ++currentLevel
+                    : reachedLevel;
+            },
+            0
+        );
     }
 
     get badges() {
@@ -164,7 +188,11 @@ export class Player {
     }
 
     selectableRoles() {
-        for (let nextLevel = 1; nextLevel <= Array.from(levels.keys()).length; nextLevel++) {
+        for (
+            let nextLevel = 1;
+            nextLevel <= Array.from(levels.keys()).length;
+            nextLevel++
+        ) {
             if (this.canSelectRoleFor(nextLevel)) {
                 return levels[nextLevel];
             }
@@ -187,10 +215,10 @@ export class Player {
     }
 
     hasBadge(role: Role) {
-        return this._badges.has(role)
+        return this._badges.has(role);
     }
 
-    scoreTimes(role: Role, times) {
+    scoreTimes(role: Role, times: number) {
         for (let i = 0; i < times; i++) {
             this.doScoreAndAddBadge(role);
         }
@@ -214,10 +242,10 @@ export class Player {
 
     toObject() {
         return {
-            "name": this._name,
-            "avatar": this._avatar,
-            "roles": this._roleSheets.toObject(),
-            "badges": Array.from(this._badges)
+            name: this._name,
+            avatar: this._avatar,
+            roles: this._roleSheets.toObject(),
+            badges: Array.from(this._badges),
         };
     }
 
@@ -228,14 +256,14 @@ export class Player {
     }
 
     private hasCompleted(level: number) {
-        return levels[level].some(it => this.hasBadge(it));
+        return levels[level].some((it) => this.hasBadge(it));
     }
 
-    private canSelectRoleFor(level) {
+    private canSelectRoleFor(level: number) {
         return this.hasCompleted(level - 1) && !this.hasRoleForLevel(level);
     }
 
     private hasRoleForLevel(level: number) {
-        return this.roles.some(it => levels[level].includes(it));
+        return this.roles.some((it) => levels[level].includes(it));
     }
 }
