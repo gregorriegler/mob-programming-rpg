@@ -8,10 +8,10 @@
 
 # Doing
 
--   Fix any types (now that set compiler options to disallow implicit any)
-
 # To Do (prioritized)
 
+-   Fix broken pipeline. npm run build fails !!!
+-   Fix any types (now that set compiler options to disallow implicit any)
 -   Refactor `game.players`
     -   Encapsulate player_collection into class Mob (or Ensemble)
 -   Use property getters as appropriate
