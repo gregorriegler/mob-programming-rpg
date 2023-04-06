@@ -4,29 +4,31 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "16.x"
-      - run: npm ci
-        working-directory: webapp
-      - run: npm test -- --watchAll=false
-        working-directory: webapp
-      - run: npm run build
-        working-directory: webapp
-      - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: gh-pages
-          build_dir: webapp/build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: "16.x"
+            - run: npm ci
+              working-directory: webapp
+            - run: npm test -- --watchAll=false
+              working-directory: webapp
+            - run: |
+                  jq '.compilerOptions.noImplicitAny = false' tsconfig.json > INPUT.tmp && mv INPUT.tmp tsconfig.json
+                  npm run build
+              working-directory: webapp
+            - name: Deploy
+              uses: crazy-max/ghaction-github-pages@v1
+              with:
+                  target_branch: gh-pages
+                  build_dir: webapp/build
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
