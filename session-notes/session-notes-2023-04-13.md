@@ -59,7 +59,7 @@ Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
   - type checking
   - transpiling
 - jest (our test runner) binds the 2 together, so we'd have to configure to do one or the other (not both). We want to do _both_.
-- [ ] add above ^^^ to backlog
+- [x] add above ^^^ to backlog
 
 ### Idea
 
