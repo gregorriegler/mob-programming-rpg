@@ -39,6 +39,6 @@ Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
 
 ### What worked well, we want to do more of it?
 
-### Idea
+### Ideas
 
 -   Write your Ideas to the [global backlog](../docs/backlog.md)

@@ -61,7 +61,7 @@ Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
 - jest (our test runner) binds the 2 together, so we'd have to configure to do one or the other (not both). We want to do _both_.
 - [x] add above ^^^ to backlog
 
-### Idea
+### Ideas
 
 - [ ] During retro, Gitpod can time out if we go more than 30 minutes if the person who created the Gitpod workspace doesn't make any changes. Possible solutions: 
   - That person is the Typer during the retro, or
