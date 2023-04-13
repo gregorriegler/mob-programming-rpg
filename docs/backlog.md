@@ -4,6 +4,7 @@
 - Before Retro: Update the Backlog
 - Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
 
+
 ## Backlog
 
 # As we go...
@@ -14,13 +15,14 @@
 # Doing
 
 
-# To Do (prioritized)
+# To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
-- avoid ports pop-ups from npm test
+- e We want to continuously see the same errors in the dev environment that we see in the CI enviornment (many possible solutions, e.g., script changes to jest test runner or some other way); currently CI is doing: `npm run build` with `noImplicitAny=false` but the dev environment has `noImplicitAny=true`
+- e Avoid ports pop-ups from npm test
   https://www.gitpod.io/docs/configure/workspaces/ports#configure-port-ranges
-- Refactor `game.players`
+- r Refactor `game.players`
   - r Encapsulate player_collection into class Mob (or Ensemble)
-- Use property getters as appropriate
+- r Use property getters as appropriate
   - but **why?**
     - syntactic sugar
     - user code looks ?cleaner?
@@ -28,7 +30,6 @@
   - [x] `player.name` instead of player.name()....
     - [x] where is `player.name` used?
     - [-] More? Should we research the pros/cons and intent within TypeScript specifically?
-- Change second session to 2h instead of 3h
 - r Need a `Position` Type instead of String
 - In this File `TestHarnessConvenienceFunctions.ts`
   - Replace all `getByRole('list', ...)` with `getList(...)` because for us Role has a different meaning than the Testlibrary
