@@ -13,7 +13,6 @@
 
 # Doing
 
-- Fix broken pipeline. npm run build fails !!!
 
 # To Do (prioritized)
 
@@ -46,6 +45,8 @@
   - Disciplinarian
 
 # DONE (most recently finished first)
+
+- Fix broken pipeline by explicitly declaring fields to be optional using the `?`. `npm run build` fails while `npm test` succeeds/passes!!!
 
 ## 2023-03-30
 

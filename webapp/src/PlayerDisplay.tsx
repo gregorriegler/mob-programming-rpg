@@ -74,7 +74,7 @@ function RolePoints({player, role, setUiState, uiState, updateGame}: {player: Pl
             });
     }
 
-    function addDriverPoints(e: any) {
+    function addDriverPoints(e) {
         e.preventDefault();
         const amount = Number(new FormData(e.target).get("amount") as String);
         player.scoreTimes(role, amount);
