@@ -66,7 +66,7 @@ class RoleSheets {
         );
     }
 
-    static fromObject(roles: { [key in Role]: number }): RoleSheets {
+    static fromObject(roles: { [key in Role]?: number }): RoleSheets {
         const rolesToScores = new Map<Role, Score>();
 
         for (let r in roles) {
@@ -136,7 +136,7 @@ export class Player {
 
     static fromObject(json: {
         badges: Role[];
-        roles: { [key in Role]: number };
+        roles: { [key in Role]?: number };
         name: string;
         avatar: Avatar;
     }): Player {

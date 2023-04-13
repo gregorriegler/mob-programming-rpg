@@ -4,7 +4,7 @@ import {noOp} from "./model/Func";
 import { Player } from "./model/Player";
 
 
-const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}: { player: Player, updateGameState: () => void, position: string}) => {
+const PlayerDisplay = ({player, updateGameState = noOp, position = "Mobber"}: { player: Player, updateGameState?: () => void, position?: string}) => {
 
     const [uiState, setUiState] = useState({addingPointsFor: []})
 
@@ -74,9 +74,9 @@ function RolePoints({player, role, setUiState, uiState, updateGame}: {player: Pl
             });
     }
 
-    function addDriverPoints(e: React.FormEvent<HTMLFormElement>) {
+    function addDriverPoints(e: any) {
         e.preventDefault();
-        const amount = new FormData(e.target).get("amount") as String;
+        const amount = Number(new FormData(e.target).get("amount") as String);
         player.scoreTimes(role, amount);
         setUiState({
             addingPointsFor: uiState.addingPointsFor.filter((it: any) => it !== role)
