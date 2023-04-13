@@ -130,7 +130,7 @@ function SelectRole({player}: {player:Player}): JSX.Element {
 
     return <>
         <select name="role" id={player.name + "-role-select"} className="rpgui-dropdown">
-            {player.selectableRoles().map((role: boolean | React.Key | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined) =>
+            {player.selectableRoles().map((role) =>
                 <option key={role} value={role}>{role}</option>)
             }
         </select>
