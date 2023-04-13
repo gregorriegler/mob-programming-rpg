@@ -63,7 +63,11 @@ Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
 
 ### Idea
 
-- Experiment for next time: Try rotating typist slower than talker, and reverting 4-minute timer to 3-minutes. Nitsan uses 2 timers.
-- Create 'dashboard' or 'status script' that tells us everything we want to know (about code and about build process).
+- [ ] During retro, Gitpod can time out if we go more than 30 minutes if the person who created the Gitpod workspace doesn't make any changes. Possible solutions: 
+  - That person is the Typer during the retro, or
+  - We remind that person to do something to keep the workspace from timing out.
+- [ ] Experiment for next time: Try rotating typist slower than talker, and reverting 4-minute timer to 3-minutes. Nitsan uses 2 timers.
+- [ ] Change our mob's role order to: Typer, then Talker (everyone present preferred this)
+- [x] Add to backlog: Create 'dashboard' or 'status script' that tells us everything we want to know (about code and about build process).
 
 - Write your Ideas to the [global backlog](../docs/backlog.md)

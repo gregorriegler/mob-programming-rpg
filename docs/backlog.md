@@ -4,7 +4,6 @@
 - Before Retro: Update the Backlog
 - Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
 
-
 ## Backlog
 
 # As we go...
