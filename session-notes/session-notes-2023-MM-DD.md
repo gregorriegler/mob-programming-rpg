@@ -1,3 +1,9 @@
+# Co-Authors (This Session)
+
+## Active Co-Authors
+
+## Inactive Co-Authors
+
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: arrockt <cariari385@gmail.com>
 Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
