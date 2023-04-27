@@ -1,5 +1,6 @@
 # Reminders
 
+- Look at the previous session notes Ideas section
 - See Agenda in Retro md / [template](../session-notes/session-2023-MM-DD.template.md)
 - Before Retro: Update the Backlog
 - Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
@@ -12,9 +13,20 @@
 - r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing
-- change the README to only have the first mob session
+
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
+
+- F!! gain points using a form per player, where you choose actions/skills deserving points
+- F!! Ability to rename Positions; e.g., Navigator -> Talker, Driver -> Typist
+- Problem: Points are capped at 3 per role
+  - Potential Solution: Increment points per skill/action (e.g. listen on the edge of your seat)
+  - Potential Solution: Allow the points to continue past 3
+    - Just show the number
+    - Color coding for Badges (Level 2 Driver, Level 3 Driver)
+- Problem: Points given in an input field
+  - Potential Solution: F!! gain points using a form per player, where you choose actions/skills deserving points
+  - Potential Solution: Just have a button +1 (needs undo)
 
 - e We want to continuously see the same errors in the dev environment that we see in the CI enviornment (many possible solutions, e.g., script changes to jest test runner or some other way); currently CI is doing: `npm run build` with `noImplicitAny=false` but the dev environment has `noImplicitAny=true`
 - e Avoid ports pop-ups from npm test
@@ -44,8 +56,14 @@
 - Need badge icon(s) for:
   - Disciplinarian
 
+- F!! Change label of button to toggle between "Start", "Pause".  
+- F!! Separate button for "Cancel".
+- F!! Time less than 1:00.
+
+
 # DONE (most recently finished first)
 
+- change the README to only have the first mob session
 - Fix broken pipeline by explicitly declaring fields to be optional using the `?`. `npm run build` fails while `npm test` succeeds/passes!!!
 
 ## 2023-03-30
