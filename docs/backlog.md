@@ -12,7 +12,7 @@
 - r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing
-
+- change the README to only have the first mob session
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
