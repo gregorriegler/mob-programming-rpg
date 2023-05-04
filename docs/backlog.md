@@ -5,6 +5,10 @@
 - Before Retro: Update the Backlog
 - Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
 
+## Working Agreements
+
+- **Encouraging ad hoc facilitation**: It's ok for anybody to interrupt for 10 seconds and say they're feeling uncomfortable or point out that we are not adhering to our working agreements
+
 ## Backlog
 
 # As we go...
@@ -17,7 +21,7 @@
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
-- F!! gain points using a form per player, where you choose actions/skills deserving points
+- F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
 - F!! Ability to rename Positions; e.g., Navigator -> Talker, Driver -> Typist
 - Problem: Points are capped at 3 per role
   - Potential Solution: Increment points per skill/action (e.g. listen on the edge of your seat)
