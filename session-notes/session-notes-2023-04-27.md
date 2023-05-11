@@ -62,8 +62,8 @@ Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
 
 ### Ideas
 
-- [ ] Be remembered of a random activity when using a timer every once in a while
-- [ ] Put activities of Roles in our timer to be remembered and more connected to the game
-- [ ] if everybody puts their timer tab in the browser to be the left-most tab - this consistency might make it easier on our eyes
+- [x] Be remembered of a random activity when using a timer every once in a while (put as "Goals" in mobtimer so can see)
+    - Put activities of Roles in our timer to be remembered and more connected to the game
+- [x] if everybody puts their timer tab in the browser to be the left-most tab - this consistency might make it easier on our eyes
 - [ ] certain things can benefit from alone-time: should we allow for alone time pauses during a mob session?
 - Write your Ideas to the [global backlog](../docs/backlog.md)

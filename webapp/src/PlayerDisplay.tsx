@@ -113,7 +113,12 @@ function RolePoints({player, role, setUiState, uiState, updateGame}: {player: Pl
                 </label>
                 <button className="rpgui-button" type="submit"><p>Add</p></button>
             </form>
-        }
+        } 
+        {/* TODO: Add list of activities for this role */}
+        {/*
+           some_function({role}) returns string (or list of strings) to display here....
+           <p>Text goes here</p>
+        */}
     </div>
 }
 

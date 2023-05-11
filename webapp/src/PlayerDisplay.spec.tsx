@@ -33,6 +33,14 @@ describe('PlayerDisplay', () => {
 
     const player = new PlayerComponent();
 
+    it('shows skills per role', () => {
+        render(<PlayerDisplay player={new Player("Roger")}/>);
+        // Assert skills for role (e.g. driver)
+        // Feature Toggle goes here...???
+        // ... or develop on a branch (but <something> about next week)
+        fail();
+    })
+
     it('shows the players name', () => {
         render(<PlayerDisplay player={new Player("Roger")}/>);
         expect(screen.getByRole('listitem')).toHaveTextContent("Roger");
