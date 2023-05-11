@@ -16,13 +16,23 @@
 - r Split classes into separate files
 - r Fix implicit any types (now that set compiler options to disallow implicit any)
 
-# Doing
-
+# Doing (WIP)
+- F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
+  - [ ] F!! Show the skills in the card - below the points bar, per role
+  - [ ] F!! Gain points (based on these skills per role)
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
-- F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
-- F!! Ability to rename Positions; e.g., Navigator -> Talker, Driver -> Typist
+- B   Timer does not refresh for many people without restarting.
+- F   Positions should stay in same place on screen (with player names rotating through).
+- F   Make timer time-out more obvious.  Maybe with noise.  Maybe by locking screen.
+- F   Add skills to mobber (Speak up.  Be quiet)
+- F   Add skill to navigator - Yes, and... (continuing intent of previous navigator)
+- F   Capture mobber-level skill - quietly taking notes (without interrupting flow).  Personal notes.  Notes for the mob.
+  - Personal "Parking Lot" (to think about and MAYBE or (maybe not) share with mob
+  - Public - Possible future backlog items
+- F   Capture xxx role skill - Manage attention (both own attentoin and mob's attention)
+- F!! Ability to rename Positions; e.g., Navigator -> Talker, Driver -> Typist, Mobber -> Next
 - Problem: Points are capped at 3 per role
   - Potential Solution: Increment points per skill/action (e.g. listen on the edge of your seat)
   - Potential Solution: Allow the points to continue past 3
