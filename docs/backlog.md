@@ -7,7 +7,8 @@
 
 ## Working Agreements
 
-- **Encouraging ad hoc facilitation**: It's ok for anybody to interrupt for 10 seconds and say they're feeling uncomfortable or point out that we are not adhering to our working agreements
+- **Dogfood Burger**: Focus on one feature at a time, dogfooding only that feature before and after implementing the feature to remain focused on coding.
+- **Encouraging ad hoc facilitation**: It's ok for anybody to interrupt for 10 seconds and say they're feeling uncomfortable or point out that we are not adhering to our working agreements.
 
 ## Backlog
 
@@ -17,13 +18,13 @@
 - r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
-- F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
+- **Points Form** F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
   - [ ] F!! Show the skills in the card - below the points bar, per role
   - [ ] F!! Gain points (based on these skills per role)
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
-- B   Timer does not refresh for many people without restarting.
+- **Timer Sync** B Timer does not refresh for many people without restarting.
 - F   Positions should stay in same place on screen (with player names rotating through).
 - F   Make timer time-out more obvious.  Maybe with noise.  Maybe by locking screen.
 - F   Add skills to mobber (Speak up.  Be quiet)
