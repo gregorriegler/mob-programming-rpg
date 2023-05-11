@@ -28,6 +28,10 @@
   - Potential Solution: F!! gain points using a form per player, where you choose actions/skills deserving points
   - Potential Solution: Just have a button +1 (needs undo)
 
+- D   Capture snapshot of [Team Agreements](team-agreements.md), then incrementally add missing (or modified) practices.
+ 
+- See Agenda in Retro md / [template](../session-notes/session-2023-MM-DD.template.md)
+
 - e We want to continuously see the same errors in the dev environment that we see in the CI enviornment (many possible solutions, e.g., script changes to jest test runner or some other way); currently CI is doing: `npm run build` with `noImplicitAny=false` but the dev environment has `noImplicitAny=true`
 - e Avoid ports pop-ups from npm test
   https://www.gitpod.io/docs/configure/workspaces/ports#configure-port-ranges
