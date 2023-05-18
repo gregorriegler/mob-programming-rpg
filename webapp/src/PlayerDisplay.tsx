@@ -52,7 +52,6 @@ const PlayerDisplay = ({
           updateGame={updateGameState}
           uiState={uiState}
           setUiState={setUiState}
-          featureFlagShowSkillsPerRole={false}
         />
       ))}
       {player.selectableRoles().length > 0 && (
@@ -107,7 +106,7 @@ function RolePoints({
   setUiState,
   uiState,
   updateGame,
-  featureFlagShowSkillsPerRole=false
+  featureFlagShowSkillsPerRole=!!process.env.REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE
 }: {
   player: Player;
   role: Role;
@@ -188,8 +187,7 @@ function RolePoints({
       )}
       {/* TODO: Add list of activities for this role */}
 
-      {featureFlagShowSkillsPerRole && "junk"}
-      
+      {featureFlagShowSkillsPerRole && "junk that should be skills instead"}     
 
       {/*        
            some_function({role}) returns string (or list of strings) to display here....
