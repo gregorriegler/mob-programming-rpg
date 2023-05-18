@@ -20,6 +20,9 @@
 # Doing (WIP)
 - **Points Form** F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
   - [ ] F!! Show the skills in the card - below the points bar, per role
+    - [ ] create feature flag
+    - [ ] put crap - doesn't get deployed thanks to feature flag
+    - [ ] refine crap up to being good enough to be deployed
   - [ ] F!! Gain points (based on these skills per role)
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
