@@ -1,7 +1,7 @@
 # Reminders
 
 - Look at the previous session notes Ideas section
-- See Agenda in Retro md / [template](../session-notes/session-2023-MM-DD.template.md)
+- See Agenda in Retro md / [template](../session-notes/session-notes-2023-MM-DD.md)
 - Before Retro: Update the Backlog
 - Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
 
