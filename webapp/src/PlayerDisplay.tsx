@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Role } from "./model/Roles";
 import { noOp } from "./model/Func";
 import { Player } from "./model/Player";
 import { RolePoints } from "./RolePoints";
 import { Badge } from "./Badge";
+import { SelectRole } from "./SelectRole";
 
 const PlayerDisplay = ({
   player,
@@ -70,35 +71,5 @@ const PlayerDisplay = ({
     </li>
   );
 };
-
-function SelectRole({ player }: { player: Player }): JSX.Element {
-  useEffect(() => {
-    // @ts-ignore
-    if (window.RPGUI !== undefined) {
-      const selectElement = document.getElementById(
-        player.name + "-role-select"
-      );
-      if (selectElement!!.getAttribute("data-rpguitype") === "dropdown") return;
-      // @ts-ignore
-      window.RPGUI.create(selectElement, "dropdown");
-    }
-  }, [player]);
-
-  return (
-    <>
-      <select
-        name="role"
-        id={player.name + "-role-select"}
-        className="rpgui-dropdown"
-      >
-        {player.selectableRoles().map((role) => (
-          <option key={role} value={role}>
-            {role}
-          </option>
-        ))}
-      </select>
-    </>
-  );
-}
 
 export default PlayerDisplay;
