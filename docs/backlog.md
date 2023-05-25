@@ -23,7 +23,7 @@
     - [x] hardcode dummy text and verify in UI it appears
     - [x] create feature flag to toggle dummy text on/off
     - [ ] read by refactoring and make target area of code readable (e.g., fit into one screen; split react components into separate files)
-    - [ ] using TDD starting with [RolePoints.spec.ts](../webapp/src/RolePoints.spec.tsx), replace dummy text with actual skills in the card
+    - [ ] using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
       - only show skills per role if the feature toggle is on 
       - unit test
       - manually test in UI, using this command in the terminal: 
