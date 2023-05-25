@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Role } from "./model/Roles";
 import { noOp } from "./model/Func";
 import { Player } from "./model/Player";
-import { RolePoints } from "./RolePoints";
+import { RoleSheet } from "./RoleSheet";
 import { Badge } from "./Badge";
 import { SelectRole } from "./SelectRole";
 
@@ -48,7 +48,7 @@ const PlayerDisplay = ({
           (item, index) => <div key={index} className="rpgui-icon magic-slot" />
         )}
       {player.roles.map((role) => (
-        <RolePoints
+        <RoleSheet
           key={role}
           role={role}
           player={player}

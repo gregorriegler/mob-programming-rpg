@@ -2,7 +2,7 @@ import React from "react";
 import { Role } from "./model/Roles";
 import { Player } from "./model/Player";
 
-export function RolePoints({
+export function RoleSheet({
   player, role, setUiState, uiState, updateGame, featureFlagShowSkillsPerRole = !!process.env.REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE
 }: {
   player: Player;
