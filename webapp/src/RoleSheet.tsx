@@ -2,16 +2,23 @@ import React from "react";
 import { Role } from "./model/Roles";
 import { Player } from "./model/Player";
 
-export function RoleSheet({
-  player, role, setUiState, uiState, updateGame, featureFlagShowSkillsPerRole = !!process.env.REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE
-}: {
+type AppleSauce = {
   player: Player;
   role: Role;
   setUiState: any;
   uiState: any;
   updateGame: any;
   featureFlagShowSkillsPerRole?: boolean;
-}): JSX.Element {
+}
+
+export function RoleSheet({
+  player, 
+  role, 
+  setUiState, 
+  uiState, 
+  updateGame, 
+  featureFlagShowSkillsPerRole = !!process.env.REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE
+}: AppleSauce): JSX.Element {
   function showRolePointsForm(role: string) {
     return () => setUiState({
       addingPointsFor: [...uiState.addingPointsFor, role],

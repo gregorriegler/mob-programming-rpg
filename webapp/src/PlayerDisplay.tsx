@@ -45,7 +45,7 @@ const PlayerDisplay = ({
       ))}
       {player.badges.length < 4 &&
         Array.from(Array(4 - player.badges.length).keys()).map(
-          (item, index) => <div key={index} className="rpgui-icon magic-slot" />
+          (_, index) => <div key={index} className="rpgui-icon magic-slot" />
         )}
       {player.roles.map((role) => (
         <RoleSheet
