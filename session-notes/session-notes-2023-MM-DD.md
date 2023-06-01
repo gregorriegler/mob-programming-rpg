@@ -19,7 +19,7 @@ Co-Authored-By: Tsvetan Tsvetanov <cpi.cecko@gmail.com>
 Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
 Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
 Co-Authored-By: David Campey <campey@gmail.com>
-Co-Authored by: Zac Ball <zac156@gmail.com>
+Co-Authored-by: Zac Ball <zac156@gmail.com>
 
 # Agenda
 
