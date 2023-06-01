@@ -34,7 +34,7 @@ export function RoleSheet({
     });
     updateGame();
   }
-
+//TODO: Extract progress bar as a component 
   return (
     <div className="role">
       <hr />
