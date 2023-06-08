@@ -18,6 +18,7 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
+- [ ] Add domain words to cspell(1) dictionary.  It may (or may not) get checked in (or ignored as part of IDE or .ignore).
 
 -   **Points Form** F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
     -   [ ] F!! Show the skills in the card - below the points bar, per role
