@@ -1,111 +1,115 @@
 # Reminders
 
-- Look at the previous session notes Ideas section
-- See Agenda in Retro md / [template](../session-notes/session-notes-2023-MM-DD.md)
-- Before Retro: Update the Backlog
-- Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
+-   Look at the previous session notes Ideas section
+-   See Agenda in Retro md / [template](../session-notes/session-notes-2023-MM-DD.md)
+-   Before Retro: Update the Backlog
+-   Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
 
 ## Working Agreements
 
-- **Dogfood Burger**: Focus on one feature at a time, dogfooding only that feature before and after implementing the feature to remain focused on coding.
-- **Encouraging ad hoc facilitation**: It's ok for anybody to interrupt for 10 seconds and say they're feeling uncomfortable or point out that we are not adhering to our working agreements.
+-   **Dogfood Burger**: Focus on one feature at a time, dogfooding only that feature before and after implementing the feature to remain focused on coding.
+-   **Encouraging ad hoc facilitation**: It's ok for anybody to interrupt for 10 seconds and say they're feeling uncomfortable or point out that we are not adhering to our working agreements.
 
 ## Backlog
 
 # As we go...
 
-- r Split classes into separate files
-- r Fix implicit any types (now that set compiler options to disallow implicit any)
+-   r Split classes into separate files
+-   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
-- **Points Form** F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
-  - [ ] F!! Show the skills in the card - below the points bar, per role
-    - [x] hardcode dummy text and verify in UI it appears
-    - [x] create feature flag to toggle dummy text on/off
-    - [ ] read by refactoring and make target area of code readable (e.g., fit into one screen; split react components into separate files).  //TODO: Extract progress bar as a component 
-    - [ ] using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
-      - only show skills per role if the feature toggle is on 
-      - unit test
-      - manually test in UI, using this command in the terminal: 
-        - To show skills: `REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE=1 npm start`
-        - To hide skills: `npm start`
-    - [ ] remove feature flag when done
-  - [ ] F!! Gain points (based on these skills per role)
+
+-   **Points Form** F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
+    -   [ ] F!! Show the skills in the card - below the points bar, per role
+        -   [x] hardcode dummy text and verify in UI it appears
+        -   [x] create feature flag to toggle dummy text on/off
+        -   [ ] read by refactoring and make target area of code readable (e.g., fit into one screen; split react components into separate files).
+            -   [x] Extract progress bar as a component
+            -   [ ] Consider extracting sibling of ProgressBar (extract more components / read by refactoring)
+        -   [ ] using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
+            -   only show skills per role if the feature toggle is on
+            -   unit test
+            -   manually test in UI, using this command in the terminal:
+                -   To show skills: `REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE=1 npm start`
+                -   To hide skills: `npm start`
+        -   [ ] remove feature flag when done
+    -   [ ] F!! Gain points (based on these skills per role)
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
-- **Timer Sync** B Timer does not refresh for many people without restarting.
-- F   Positions should stay in same place on screen (with player names rotating through).
-- F   Make timer time-out more obvious.  Maybe with noise.  Maybe by locking screen.
-- F   Add skills to mobber (Speak up.  Be quiet)
-- F   Add skill to navigator - Yes, and... (continuing intent of previous navigator)
-- F   Capture mobber-level skill - quietly taking notes (without interrupting flow).  Personal notes.  Notes for the mob.
-  - Personal "Parking Lot" (to think about and MAYBE or (maybe not) share with mob
-  - Public - Possible future backlog items
-- F   Capture xxx role skill - Manage attention (both own attentoin and mob's attention)
-- F!! Ability to rename Positions; e.g., Navigator -> Talker, Driver -> Typist, Mobber -> Next
-- Problem: Points are capped at 3 per role
-  - Potential Solution: Increment points per skill/action (e.g. listen on the edge of your seat)
-  - Potential Solution: Allow the points to continue past 3
-    - Just show the number
-    - Color coding for Badges (Level 2 Driver, Level 3 Driver)
-- Problem: Points given in an input field
-  - Potential Solution: F!! gain points using a form per player, where you choose actions/skills deserving points
-  - Potential Solution: Just have a button +1 (needs undo)
+-   **Timer Sync** B Timer does not refresh for many people without restarting.
+-   F Positions should stay in same place on screen (with player names rotating through).
+-   F Make timer time-out more obvious. Maybe with noise. Maybe by locking screen.
+-   F Add skills to mobber (Speak up. Be quiet)
+-   F Add skill to navigator - Yes, and... (continuing intent of previous navigator)
+-   F Capture mobber-level skill - quietly taking notes (without interrupting flow). Personal notes. Notes for the mob.
+    -   Personal "Parking Lot" (to think about and MAYBE or (maybe not) share with mob
+    -   Public - Possible future backlog items
+-   F Capture xxx role skill - Manage attention (both own attentoin and mob's attention)
+-   F!! Ability to rename Positions; e.g., Navigator -> Talker, Driver -> Typist, Mobber -> Next
+-   Problem: Points are capped at 3 per role
+    -   Potential Solution: Increment points per skill/action (e.g. listen on the edge of your seat)
+    -   Potential Solution: Allow the points to continue past 3
+        -   Just show the number
+        -   Color coding for Badges (Level 2 Driver, Level 3 Driver)
+-   Problem: Points given in an input field
 
-- D   Capture snapshot of [Team Agreements](team-agreements.md), then incrementally add missing (or modified) practices.
- 
-- See Agenda in Retro md / [template](../session-notes/session-2023-MM-DD.template.md)
+    -   Potential Solution: F!! gain points using a form per player, where you choose actions/skills deserving points
+    -   Potential Solution: Just have a button +1 (needs undo)
 
-- e We want to continuously see the same errors in the dev environment that we see in the CI enviornment (many possible solutions, e.g., script changes to jest test runner or some other way); currently CI is doing: `npm run build` with `noImplicitAny=false` but the dev environment has `noImplicitAny=true`
-- e Avoid ports pop-ups from npm test
-  https://www.gitpod.io/docs/configure/workspaces/ports#configure-port-ranges
-- r Refactor `game.players`
-  - r Encapsulate player_collection into class Mob (or Ensemble)
-- r Use property getters as appropriate
-  - but **why?**
-    - syntactic sugar
-    - user code looks ?cleaner?
-    - is it more readable? lower cognitive load?
-  - [x] `player.name` instead of player.name()....
-    - [x] where is `player.name` used?
-    - [-] More? Should we research the pros/cons and intent within TypeScript specifically?
-- r Need a `Position` Type instead of String
-- In this File `TestHarnessConvenienceFunctions.ts`
-  - Replace all `getByRole('list', ...)` with `getList(...)` because for us Role has a different meaning than the Testlibrary
-  - Replace all `getByRole('listitem', ...)` with `getListItem(...)` because for us Role has a different meaning than the Testlibrary
-  - Replace all `getByRole('???', ...)` with `get???(...)` because for us Role has a different meaning than the Testlibrary
-- Keep on refactoring primitive obsession
-- which ecmascript version do we want to target for typescript? [tsconfig.json](../webapp/tsconfig.json)
-- Document in the readme.md to explain how to start the app
-- [Issues in GitHub](https://github.com/gregorriegler/mob-programming-rpg/issues)
-  - Support small screen
-  - Option to play without the built-in timer
-- Allow for local changes to env file (for testing) that do not break produciton.
-- Need badge icon(s) for:
-  - Disciplinarian
+-   D Capture snapshot of [Team Agreements](team-agreements.md), then incrementally add missing (or modified) practices.
 
-- F!! Change label of button to toggle between "Start", "Pause".  
-- F!! Separate button for "Cancel".
-- F!! Time less than 1:00.
+-   See Agenda in Retro md / [template](../session-notes/session-2023-MM-DD.template.md)
 
+-   e We want to continuously see the same errors in the dev environment that we see in the CI enviornment (many possible solutions, e.g., script changes to jest test runner or some other way); currently CI is doing: `npm run build` with `noImplicitAny=false` but the dev environment has `noImplicitAny=true`
+-   e Avoid ports pop-ups from npm test
+    https://www.gitpod.io/docs/configure/workspaces/ports#configure-port-ranges
+-   r Refactor `game.players`
+    -   r Encapsulate player_collection into class Mob (or Ensemble)
+-   r Use property getters as appropriate
+    -   but **why?**
+        -   syntactic sugar
+        -   user code looks ?cleaner?
+        -   is it more readable? lower cognitive load?
+    -   [x] `player.name` instead of player.name()....
+        -   [x] where is `player.name` used?
+        -   [-] More? Should we research the pros/cons and intent within TypeScript specifically?
+-   r Need a `Position` Type instead of String
+-   In this File `TestHarnessConvenienceFunctions.ts`
+    -   Replace all `getByRole('list', ...)` with `getList(...)` because for us Role has a different meaning than the Testlibrary
+    -   Replace all `getByRole('listitem', ...)` with `getListItem(...)` because for us Role has a different meaning than the Testlibrary
+    -   Replace all `getByRole('???', ...)` with `get???(...)` because for us Role has a different meaning than the Testlibrary
+-   Keep on refactoring primitive obsession
+-   which ecmascript version do we want to target for typescript? [tsconfig.json](../webapp/tsconfig.json)
+-   Document in the readme.md to explain how to start the app
+-   [Issues in GitHub](https://github.com/gregorriegler/mob-programming-rpg/issues)
+    -   Support small screen
+    -   Option to play without the built-in timer
+-   Allow for local changes to env file (for testing) that do not break produciton.
+-   Need badge icon(s) for:
+
+    -   Disciplinarian
+
+-   F!! Change label of button to toggle between "Start", "Pause".
+-   F!! Separate button for "Cancel".
+-   F!! Time less than 1:00.
 
 # DONE (most recently finished first)
 
-- change the README to only have the first mob session
-- Fix broken pipeline by explicitly declaring fields to be optional using the `?`. `npm run build` fails while `npm test` succeeds/passes!!!
+-   change the README to only have the first mob session
+-   Fix broken pipeline by explicitly declaring fields to be optional using the `?`. `npm run build` fails while `npm test` succeeds/passes!!!
 
 ## 2023-03-30
 
-- Set TypeScript compiler option to disallow implicit any
-- Rename microretro\* files and retro folder to refect actual contents (agenda + retro/session notes)
+-   Set TypeScript compiler option to disallow implicit any
+-   Rename microretro\* files and retro folder to refect actual contents (agenda + retro/session notes)
 
 ## Older
 
-- Rename Game.players to Game.mob
-- Replace all `getByRole("button",...)` with `getButton(...)` because for us Role has a different meaning than the Testlibrary
-- Create GitPod yaml file (for when new workspace is created)
-- create a global backlog
-- create a microretro template
-- Finish up the refactor test path
-- improve on font https://github.com/gregorriegler/mob-programming-rpg/issues/4
+-   Rename Game.players to Game.mob
+-   Replace all `getByRole("button",...)` with `getButton(...)` because for us Role has a different meaning than the Testlibrary
+-   Create GitPod yaml file (for when new workspace is created)
+-   create a global backlog
+-   create a microretro template
+-   Finish up the refactor test path
+-   improve on font https://github.com/gregorriegler/mob-programming-rpg/issues/4

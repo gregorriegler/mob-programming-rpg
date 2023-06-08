@@ -1,6 +1,5 @@
 import React from "react";
 
-// TODO - maybe player could hold the percentage
 export function ProgressBar({ percentage }: { percentage: number }) {
     return (
         <div
