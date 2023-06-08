@@ -1,6 +1,7 @@
 import React from "react";
 import { Role } from "./model/Roles";
 import { Player } from "./model/Player";
+import { ProgressBar } from "./ProgressBar";
 
 type AppleSauce = {
     player: Player;
@@ -45,7 +46,7 @@ export function RoleSheet({
 
             <label className="role-label">
                 {role}
-                <ProgressBar player={player} role={role} />
+                <ProgressBar percentage={player.percentageFor(role)} />
                 <input
                     disabled={true}
                     style={{ display: "none" }}
@@ -85,30 +86,6 @@ export function RoleSheet({
                  some_function({role}) returns string (or list of strings) to display here....
                  <p>Text goes here</p>
               */}
-        </div>
-    );
-}
-
-// TODO - change params to only include the progress-bar width / percentage
-// TODO - maybe player could hold the percentage
-function ProgressBar({ player, role }: { player: Player; role: string }) {
-    return (
-        <div
-            className="rpgui-progress"
-            data-rpguitype="progress"
-            data-value={0.1}
-        >
-            <div className="rpgui-progress-track">
-                <div
-                    className="rpgui-progress-fill"
-                    style={{
-                        left: "0px",
-                        width: "" + player.percentageFor(role) + "%",
-                    }}
-                ></div>
-            </div>
-            <div className=" rpgui-progress-left-edge"></div>
-            <div className=" rpgui-progress-right-edge"></div>
         </div>
     );
 }
