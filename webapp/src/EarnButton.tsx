@@ -1,6 +1,6 @@
 import React from "react";
 
-export function EarnButton({ showRolePointsForm, role }: { showRolePointsForm: (role: string) => () => any; role: string; }) {
+export function EarnButton({ onClick: showRolePointsForm, role }: { onClick: (role: string) => () => any; role: string; }) {
     return (
         <button
             onClick={showRolePointsForm(role)}

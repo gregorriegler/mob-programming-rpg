@@ -22,7 +22,7 @@ export function RoleSheet({
     featureFlagShowSkillsPerRole = !!process.env
         .REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE,
 }: AppleSauce): JSX.Element {
-    function showRolePointsForm(role: string) {
+    function addPoints(role: string) {
         return () =>
             setUiState({
                 addingPointsFor: [...uiState.addingPointsFor, role],
@@ -55,7 +55,7 @@ export function RoleSheet({
                     value={player.pointsFor(role)}
                 />
             </label>
-            <EarnButton showRolePointsForm={showRolePointsForm} role={role} />
+            <EarnButton onClick={addPoints} role={role} />
             {uiState.addingPointsFor.includes(role) && (
                 <form className="add-points-form" onSubmit={addDriverPoints}>
                     <label>
