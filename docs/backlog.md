@@ -26,6 +26,7 @@
         -   [x] create feature flag to toggle dummy text on/off
         -   [ ] read by refactoring and make target area of code readable (e.g., fit into one screen; split react components into separate files).
             -   [x] Extract progress bar as a component
+            -   [ ] WIP: Rename "add points" to "earn points for role" ([](../webapp/src/RoleSheet.tsx), [](../webapp/src/EarnPointsForRoleButton.tsx))
             -   [ ] Consider extracting sibling of ProgressBar (extract more components / read by refactoring)
         -   [ ] using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
             -   only show skills per role if the feature toggle is on
