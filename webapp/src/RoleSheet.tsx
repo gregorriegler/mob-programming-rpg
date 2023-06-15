@@ -2,7 +2,7 @@ import React from "react";
 import { Role } from "./model/Roles";
 import { Player } from "./model/Player";
 import { ProgressBar } from "./ProgressBar";
-import { EarnButton } from "./EarnButton";
+import { EarnPointsForRoleButton } from "./EarnPointsForRoleButton";
 
 type AppleSauce = {
     player: Player;
@@ -22,14 +22,14 @@ export function RoleSheet({
     featureFlagShowSkillsPerRole = !!process.env
         .REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE,
 }: AppleSauce): JSX.Element {
-    function addPoints(role: string) {
+    function earnPointsForRole(role: string) {
         return () =>
             setUiState({
                 addingPointsFor: [...uiState.addingPointsFor, role],
             });
     }
 
-    function addDriverPoints(e) {
+    function earnDriverPoints(e) {
         e.preventDefault();
         const amount = Number(new FormData(e.target).get("amount") as String);
         player.scoreTimes(role, amount);
@@ -55,9 +55,9 @@ export function RoleSheet({
                     value={player.pointsFor(role)}
                 />
             </label>
-            <EarnButton onClick={addPoints} role={role} />
+            <EarnPointsForRoleButton onClick={earnPointsForRole} role={role} />
             {uiState.addingPointsFor.includes(role) && (
-                <form className="add-points-form" onSubmit={addDriverPoints}>
+                <form className="add-points-form" onSubmit={earnDriverPoints}>
                     <label>
                         Add Points
                         <input
