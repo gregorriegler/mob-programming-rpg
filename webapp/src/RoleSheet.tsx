@@ -54,13 +54,7 @@ export function RoleSheet({
                     value={player.pointsFor(role)}
                 />
             </label>
-            <button
-                onClick={showRolePointsForm(role)}
-                className="rpgui-button add-points-button"
-                aria-label={"Add " + role + " Points"}
-            >
-                <p>Earn</p>
-            </button>
+            <EarnButton showRolePointsForm={showRolePointsForm} role={role} />
             {uiState.addingPointsFor.includes(role) && (
                 <form className="add-points-form" onSubmit={addDriverPoints}>
                     <label>
@@ -87,5 +81,16 @@ export function RoleSheet({
                  <p>Text goes here</p>
               */}
         </div>
+    );
+}
+
+function EarnButton({ showRolePointsForm, role }: { showRolePointsForm: (role: string) => () => any, role: string }) {
+    return (
+        <button
+            onClick={showRolePointsForm(role)}
+            className="rpgui-button add-points-button"
+            aria-label={"Add " + role + " Points"}>
+            <p>Earn</p>
+        </button>
     );
 }

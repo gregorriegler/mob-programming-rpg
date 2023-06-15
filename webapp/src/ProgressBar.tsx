@@ -5,8 +5,7 @@ export function ProgressBar({ percentage }: { percentage: number }) {
         <div
             className="rpgui-progress"
             data-rpguitype="progress"
-            data-value={0.1}
-        >
+            data-value={0.1}>
             <div className="rpgui-progress-track">
                 <div
                     className="rpgui-progress-fill"
