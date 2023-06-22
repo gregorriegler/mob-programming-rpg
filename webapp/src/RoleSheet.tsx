@@ -5,7 +5,7 @@ import { ProgressBar } from "./ProgressBar";
 import { EarnPointsForRoleButton } from "./EarnPointsForRoleButton";
 import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 
-type AppleSauce = {
+type RoleSheetProps = {
     player: Player;
     role: Role;
     setUiState: any;
@@ -22,7 +22,7 @@ export function RoleSheet({
     updateGame,
     featureFlagShowSkillsPerRole = !!process.env
         .REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE,
-}: AppleSauce): JSX.Element {
+}: RoleSheetProps): JSX.Element {
     function showEarnPointsForRoleForm(role: string) {
         return () =>
             setUiState({

@@ -8,6 +8,10 @@ tasks:
       pwd
       cd /workspace/mob-programming-rpg/webapp
       npm start
+  - name: mob timer
+    command: |
+      gp preview --external mobti.me/mobrpg
+      exit
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
