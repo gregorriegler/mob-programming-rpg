@@ -55,10 +55,7 @@ export function RoleSheet({
                     value={player.pointsFor(role)}
                 />
             </label>
-            <EarnPointsForRoleButton onClick={showEarnPointsForRoleForm} role={role} />
-            {uiState.addingPointsFor.includes(role) && (
-                <EarnPointsForRoleForm onSubmit={earnPoints} />
-            )}
+            {EarnPointsForRole(showEarnPointsForRoleForm, role, uiState, earnPoints)}
             {/* TODO: Add list of activities for this role */}
             {featureFlagShowSkillsPerRole &&
                 "junk that should be skills instead"}
@@ -72,4 +69,17 @@ export function RoleSheet({
 
 
 
+
+function EarnPointsForRole(showEarnPointsForRoleForm: (role: string) => () => any, role: string, uiState: any, earnPoints: (e: any) => void) {
+    // todo: does uiState belong in the parent component (role sheet)?
+        // could separate the uiState conceerns:
+        // 1 concern is the list of roles (driver, rear admiral, etc) at the level of the player display, is high leven
+        // 2 adding points could be in the new EarnPoints component
+
+    // todo: bundle all earn points related code into a single component
+    return <><EarnPointsForRoleButton onClick={showEarnPointsForRoleForm} role={role} />
+        {uiState.addingPointsFor.includes(role) && (
+            <EarnPointsForRoleForm onSubmit={earnPoints} />
+        )}</>;
+}
 
