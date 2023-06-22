@@ -3,6 +3,7 @@ import { Role } from "./model/Roles";
 import { Player } from "./model/Player";
 import { ProgressBar } from "./ProgressBar";
 import { EarnPointsForRoleButton } from "./EarnPointsForRoleButton";
+import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 
 type AppleSauce = {
     player: Player;
@@ -22,14 +23,14 @@ export function RoleSheet({
     featureFlagShowSkillsPerRole = !!process.env
         .REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE,
 }: AppleSauce): JSX.Element {
-    function earnPointsForRole(role: string) {
+    function showEarnPointsForRoleForm(role: string) {
         return () =>
             setUiState({
                 addingPointsFor: [...uiState.addingPointsFor, role],
             });
     }
 
-    function earnDriverPoints(e) {
+    function earnPoints(e) {
         e.preventDefault();
         const amount = Number(new FormData(e.target).get("amount") as String);
         player.scoreTimes(role, amount);
@@ -42,9 +43,8 @@ export function RoleSheet({
     }
 
     return (
-        <div className="role">
+        (<div className="role">
             <hr />
-
             <label className="role-label">
                 {role}
                 <ProgressBar percentage={player.percentageFor(role)} />
@@ -55,34 +55,21 @@ export function RoleSheet({
                     value={player.pointsFor(role)}
                 />
             </label>
-            <EarnPointsForRoleButton onClick={earnPointsForRole} role={role} />
+            <EarnPointsForRoleButton onClick={showEarnPointsForRoleForm} role={role} />
             {uiState.addingPointsFor.includes(role) && (
-                <form className="add-points-form" onSubmit={earnDriverPoints}>
-                    <label>
-                        Add Points
-                        <input
-                            className="add-points-input"
-                            type="text"
-                            name="amount"
-                            defaultValue="0"
-                        />
-                    </label>
-                    <button className="rpgui-button" type="submit">
-                        <p>Add</p>
-                    </button>
-                </form>
+                <EarnPointsForRoleForm onSubmit={earnPoints} />
             )}
             {/* TODO: Add list of activities for this role */}
-
             {featureFlagShowSkillsPerRole &&
                 "junk that should be skills instead"}
-
             {/*
                  some_function({role}) returns string (or list of strings) to display here....
                  <p>Text goes here</p>
               */}
-        </div>
+        </div>)
     );
 }
+
+
 
 

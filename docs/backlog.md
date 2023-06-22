@@ -18,6 +18,7 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
+
 - [ ] Add domain words to cspell(1) dictionary.  It may (or may not) get checked in (or ignored as part of IDE or .ignore).
 
 -   **Points Form** F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
@@ -98,6 +99,9 @@
 
 # DONE (most recently finished first)
 
+- [ ] Install extension to extract whole React components:
+  - [x] Abracabra - it works, but requires multiple steps (extract function in module scope; move to file; quick fix to convert parameters to destructured object; remove return type; change call site from function call to <... />)
+  - [ ] VSCode React Refactoring - works locally, but not on remote/GitPod  
 -   change the README to only have the first mob session
 -   Fix broken pipeline by explicitly declaring fields to be optional using the `?`. `npm run build` fails while `npm test` succeeds/passes!!!
 

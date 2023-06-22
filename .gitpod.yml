@@ -1,4 +1,4 @@
-# List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
+
 tasks:
   - name: Script Task
     init:  |
@@ -17,3 +17,7 @@ ports:
     onOpen: open-browser
 
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
+
+vscode:
+  extensions:
+    - nicoespeon.abracadabra/introduction/getting-started/quickstart
