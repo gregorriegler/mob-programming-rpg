@@ -55,11 +55,18 @@ Useful command for today's changes:
 git diff --ignore-all-space `git log --since="1 day ago" --pretty=format:%H | tail -1`
 ```
 
-Useful prompt:
+Useful prompts:
 
 ```
 Here are all the changes made to the repo during a single mob programming session
 
 could you please summarize what happened?
 what are some main points from the retro that was help at the end?
+```
+
+```
+here are notes from today's mob programming session retro
+
+please summarize
+and aslo - go up one or two levels asking "why?" (values, etc.)
 ```
