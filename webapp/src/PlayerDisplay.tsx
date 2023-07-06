@@ -7,23 +7,33 @@ import { Badge } from "./Badge";
 import { SelectRole } from "./SelectRole";
 
 const PlayerDisplay = ({
-  player,
+  player: _player,
   updateGameState = noOp,
-  position = "Mobber"  
+  position = "Mobber"
 }: {
   player: Player;
   updateGameState?: () => void;
   position?: string;
 }) => {
-  // this is a hack to make the test pass
-  const [, setUiState] = useState(0);
 
-  function selectRole(event: any) {
+  const [player, setPlayer] = useState(_player);
+
+  function submitSelectRoleForm(event: any) {
     const role = new FormData(event.target).get("role") as Role;
-    player.selectRole(role);
-    updateGameState();
-    setUiState(0);
+    selectRole(role);
     event.preventDefault();
+  }
+
+  function selectRole(role: Role) {
+    player.selectRole(role);
+    setPlayer(player.clone());
+    updateGameState();
+  }
+
+  function scorePoints(role: Role, amount: number) {
+    player.scoreTimes(role, amount);
+    setPlayer(player.clone());
+    updateGameState();
   }
 
   return (
@@ -53,12 +63,11 @@ const PlayerDisplay = ({
           key={role}
           role={role}
           player={player}
-          updateGame={updateGameState}
-          setUiState={setUiState}
+          scorePoints={scorePoints}
         />
       ))}
       {player.selectableRoles().length > 0 && (
-        <form onSubmit={selectRole}>
+        <form onSubmit={submitSelectRoleForm}>
           <label>
             Available Roles
             <SelectRole player={player} />

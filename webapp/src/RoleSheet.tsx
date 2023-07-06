@@ -2,28 +2,23 @@ import React, { useState } from "react";
 import { Role } from "./model/Roles";
 import { Player } from "./model/Player";
 import { ProgressBar } from "./ProgressBar";
-import { EarnPointsForRoleButton } from "./EarnPointsForRoleButton";
 import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 
 type RoleSheetProps = {
     player: Player;
     role: Role;
-    setUiState: any;
-    updateGame: any;
     featureFlagShowSkillsPerRole?: boolean;
+    scorePoints: any;
 };
 
 export function RoleSheet({
     player,
     role,
-    setUiState,
-    updateGame,
     featureFlagShowSkillsPerRole = !!process.env
         .REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE,
+    scorePoints
 }: RoleSheetProps): JSX.Element {
-
-    return (
-        (<div className="role">
+    return <div className="role">
             <hr />
             <label className="role-label">
                 {role}
@@ -35,11 +30,7 @@ export function RoleSheet({
                     value={player.pointsFor(role)}
                 />
             </label>
-            <EarnPointsForRole
-                role={role}
-                player={player}
-                updateGame={updateGame}
-                changeStateOnParent={() => setUiState(Math.random())} />
+            <EarnPointsForRole role={role} scorePoints={scorePoints} />
             {/* TODO: Add list of activities for this role */}
             {featureFlagShowSkillsPerRole &&
                 "junk that should be skills instead"}
@@ -47,52 +38,33 @@ export function RoleSheet({
                  some_function({role}) returns string (or list of strings) to display here....
                  <p>Text goes here</p>
               */}
-        </div>)
-    );
+        </div>;
 }
 
 type EarnPointsForRoleProps = {
     role: string;
-    player: Player;
-    updateGame: any;
-    changeStateOnParent: () => void;
+    scorePoints: any;
 };
 
-// {EarnPointsForRole(showEarnPointsForRoleForm, role, uiState, earnPoints)}
-function EarnPointsForRole({ role, player, updateGame, changeStateOnParent }: EarnPointsForRoleProps) {
-    const [state, setState] = useState(false);
-    // todo: does uiState belong in the parent component (role sheet)?
-    // could separate the uiState conceerns:
-    // 1 concern is the list of roles (driver, rear admiral, etc) at the level of the player display, is high level
-    // 2 adding points could be in the new EarnPoints component
+
+function EarnPointsForRole({ role, scorePoints }: EarnPointsForRoleProps) {
+    const [formVisible, setFormVisible] = useState(false);
 
     function onSubmit(e) {
         e.preventDefault();
         const amount = Number(new FormData(e.target).get("amount") as String);
-        player.scoreTimes(role, amount);
-        setState(false);
-        updateGame();
-        changeStateOnParent();
+        scorePoints(role, amount);
+        setFormVisible(false);
     }
 
-    if (state === true) {
-        return <>
-            <EarnPointsForRoleButton onClick={() => () => setState(true)} role={role} />
-            <EarnPointsForRoleForm onSubmit={onSubmit} />
-        </>;
-    } else {
-        return <EarnPointsForRoleButton onClick={() => () => setState(true)} role={role} />;
-    }
-
-    // return <><EarnPointsForRoleButton onClick={() => {setState(true)}} role={role} />
-    //     {state && (
-    //         <EarnPointsForRoleForm onSubmit={earnPoints2} />
-    //     )}</>;
-
-    // todo: bundle all earn points related code into a single component
-    //return <><EarnPointsForRoleButton onClick={() => {setState(true)}} role={role} />
-    //    {state && (
-    //        <EarnPointsForRoleForm onSubmit={earnPoints2} />
-    //    )}</>;
+    return <>
+        <button
+            onClick={() => setFormVisible(true)}
+            className="rpgui-button add-points-button"
+            aria-label={"Add " + role + " Points"}>
+            <p>Earn</p>
+        </button>
+        {formVisible && <EarnPointsForRoleForm onSubmit={onSubmit} />}
+    </>
 }
 

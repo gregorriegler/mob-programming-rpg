@@ -249,6 +249,10 @@ export class Player {
         };
     }
 
+    clone() {
+        return Player.fromObject(this.toObject());
+    }
+
     private addBadgeForMaximumScore(role: Role) {
         if (this._roleSheets.hasReachedMaximumForRole(role)) {
             this._badges.add(role);
