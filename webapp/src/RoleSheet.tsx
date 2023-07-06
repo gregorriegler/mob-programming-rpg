@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Role } from "./model/Roles";
 import { Player } from "./model/Player";
 import { ProgressBar } from "./ProgressBar";
@@ -56,7 +56,7 @@ export function RoleSheet({
                 />
             </label>
             <EarnPointsForRole
-                showEarnPointsForRoleForm={showEarnPointsForRoleForm} role={role} uiState={uiState} earnPoints={earnPoints} />
+                showEarnPointsForRoleForm={showEarnPointsForRoleForm} role={role} uiState={uiState} earnPoints={earnPoints} player={player} updateGame={updateGame} />
             {/* TODO: Add list of activities for this role */}
             {featureFlagShowSkillsPerRole &&
                 "junk that should be skills instead"}
@@ -73,19 +73,44 @@ type EarnPointsForRoleProps = {
     role: string;
     uiState: any;
     earnPoints: (e: any) => void;
+    player: Player;
+    updateGame: any;
 };
 
 // {EarnPointsForRole(showEarnPointsForRoleForm, role, uiState, earnPoints)}
-function EarnPointsForRole({ showEarnPointsForRoleForm, role, uiState, earnPoints }: EarnPointsForRoleProps) {
+function EarnPointsForRole({ showEarnPointsForRoleForm, role, uiState, earnPoints, player, updateGame }: EarnPointsForRoleProps) {
+    const [state, setState] = useState(false);
     // todo: does uiState belong in the parent component (role sheet)?
     // could separate the uiState conceerns:
     // 1 concern is the list of roles (driver, rear admiral, etc) at the level of the player display, is high level
     // 2 adding points could be in the new EarnPoints component
 
+    function earnPoints2(e) {
+        e.preventDefault();
+        const amount = Number(new FormData(e.target).get("amount") as String);
+        player.scoreTimes(role, amount);
+        updateGame();
+        setState(false);
+    }    
+   
+    if (state === true) {
+        return <>
+            <EarnPointsForRoleButton onClick={() => () => setState(true)} role={role} />
+            <EarnPointsForRoleForm onSubmit={earnPoints2} />
+        </>;
+    } else {
+        return <EarnPointsForRoleButton onClick={() => () => setState(true)} role={role} />;
+    }
+
+    // return <><EarnPointsForRoleButton onClick={() => {setState(true)}} role={role} />
+    //     {state && (
+    //         <EarnPointsForRoleForm onSubmit={earnPoints2} />
+    //     )}</>;
+
     // todo: bundle all earn points related code into a single component
-    return <><EarnPointsForRoleButton onClick={showEarnPointsForRoleForm} role={role} />
-        {uiState.addingPointsFor.includes(role) && (
-            <EarnPointsForRoleForm onSubmit={earnPoints} />
-        )}</>;
+    //return <><EarnPointsForRoleButton onClick={() => {setState(true)}} role={role} />
+    //    {state && (
+    //        <EarnPointsForRoleForm onSubmit={earnPoints2} />
+    //    )}</>;
 }
 
