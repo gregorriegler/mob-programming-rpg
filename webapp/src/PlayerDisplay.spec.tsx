@@ -61,16 +61,14 @@ describe('PlayerDisplay', () => {
         roleInitialized('Mobber');
     });
 
-    it('adds driver points', async () => {
+    it('adds driver points', () => {
         render(<PlayerDisplay player={new Player("Roger")} />);
         player.clickAddPoints('Driver');
         expect(player.addPointsInput()).toBeInTheDocument();
         expect(player.addPointsInput()).toHaveValue("0");
+
         player.enterAddPointsForm("2");
 
-        await new Promise(resolve => setTimeout(resolve, 100));
-        // does it rerender?
-        // console.log(player.pointsDisplay('Driver'));
         expect(player.pointsDisplay('Driver')).toHaveValue("2");
         expect(screen.queryByLabelText('Add Points')).toBeNull();
     });
