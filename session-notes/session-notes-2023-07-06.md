@@ -39,9 +39,63 @@ Co-Authored-by: Zac Ball <zac156@gmail.com>
 
 ## Reflect / Retro (25 min.)
 
+### Learned
+
+- cmd+shift+P - search anything in VSCode IDE
+- Implement a component :
+```tsx
+{EarnPointsForRole({ showEarnPointsForRoleForm, role, uiState, earnPoints })}
+Implement the EarnPointsForRole using JSX format (sim to HTML)
+<EarnPointsForRole showEarnPointsForRoleForm={showEarnPointsForRoleForm} role={role} uiState={uiState} earnPoints={earnPoints} />
+```
+- `npm test` - run all tests
+- `npm start` - run the app
+
+// pass in a signle oblect. as the Props object
+//now from JSX. we can instantiat it in JSX style
+"convert parameters to destructured object" - using the quick fix menu, we had to place te cursor on the function name
+function DianaTempFunction({ param1, param2 }: { param1; param2; })
+
+### noticed
+
+- long component names - two similar names got merge in my mind into one component - created confusion about the code
+- state as a global variable - makes things hard to understand
+- we have two kinds of state - game state, UI state
+- adding points flow - hard to understand; maybe some different terminology - "show/hide" / "expand/collapse"
+- confusing: clicking "earn" shows the form, but no straight forward way to hide it back
+- bonding - took one hour today; alot of valuable stuff; like it a lot! but also like coding, wish we had more time; and we actually stayed longer today
+
 ### How did that feel?
 
+- overall felt good, enjoyable
+- we don't have a good way of stopping if something doesn't work; what's our process for stopping?
+  - one option - just keep going
+  - another - commit a broken state
+- felt attached to the work, but actually we could reach it in a different way
+- the thing that we're solving is quite complex, need to keep a lot in the head, worried that after today it'll take me a while to be able to hold it in my head again
+
+### Discussion
+two situations when we might want to stop:
+if we are in the session and we get to a bad state
+   we could go back to green
+
+discovered: Button isnt a button
+we could have rolled back and inline the button instead of it being a button
+go back to previous green and try a smaller step
+
+we changed too many things at one 
+the problem was coming from the onclick handler
+
+if we go down a path - we learned something; if we go back to green, we're already smarter, we can choose a different path
+
+today we haven't been choosing to go back to green
+
+
 ### What worked well, we want to do more of it?
+
+- we were in the flow, throughput; wanted to complete this here and now
+- safe space, when not remembering the domain, was able to type w/o feeling uncomfortable of scared
+  - Nitsan said "you know what to do...", Typist said "no I don't" (w/o judgement), continues to respond w/o judgement in a verbose answer, then understood
 
 ### Ideas
 
