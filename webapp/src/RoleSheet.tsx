@@ -9,7 +9,6 @@ type RoleSheetProps = {
     player: Player;
     role: Role;
     setUiState: any;
-    uiState: any;
     updateGame: any;
     featureFlagShowSkillsPerRole?: boolean;
 };
@@ -18,29 +17,10 @@ export function RoleSheet({
     player,
     role,
     setUiState,
-    uiState,
     updateGame,
     featureFlagShowSkillsPerRole = !!process.env
         .REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE,
 }: RoleSheetProps): JSX.Element {
-    function showEarnPointsForRoleForm(role: string) {
-        return () =>
-            setUiState({
-                addingPointsFor: [...uiState.addingPointsFor, role],
-            });
-    }
-
-    function earnPoints(e) {
-        e.preventDefault();
-        const amount = Number(new FormData(e.target).get("amount") as String);
-        player.scoreTimes(role, amount);
-        setUiState({
-            addingPointsFor: uiState.addingPointsFor.filter(
-                (it: any) => it !== role
-            ),
-        });
-        updateGame();
-    }
 
     return (
         (<div className="role">
@@ -56,7 +36,10 @@ export function RoleSheet({
                 />
             </label>
             <EarnPointsForRole
-                showEarnPointsForRoleForm={showEarnPointsForRoleForm} role={role} uiState={uiState} earnPoints={earnPoints} player={player} updateGame={updateGame} />
+                role={role}
+                player={player}
+                updateGame={updateGame}
+                changeStateOnParent={() => setUiState(0)} />
             {/* TODO: Add list of activities for this role */}
             {featureFlagShowSkillsPerRole &&
                 "junk that should be skills instead"}
@@ -69,34 +52,33 @@ export function RoleSheet({
 }
 
 type EarnPointsForRoleProps = {
-    showEarnPointsForRoleForm: (role: string) => () => any;
     role: string;
-    uiState: any;
-    earnPoints: (e: any) => void;
     player: Player;
     updateGame: any;
+    changeStateOnParent: () => void;
 };
 
 // {EarnPointsForRole(showEarnPointsForRoleForm, role, uiState, earnPoints)}
-function EarnPointsForRole({ showEarnPointsForRoleForm, role, uiState, earnPoints, player, updateGame }: EarnPointsForRoleProps) {
+function EarnPointsForRole({ role, player, updateGame, changeStateOnParent }: EarnPointsForRoleProps) {
     const [state, setState] = useState(false);
     // todo: does uiState belong in the parent component (role sheet)?
     // could separate the uiState conceerns:
     // 1 concern is the list of roles (driver, rear admiral, etc) at the level of the player display, is high level
     // 2 adding points could be in the new EarnPoints component
 
-    function earnPoints2(e) {
+    function onSubmit(e) {
         e.preventDefault();
         const amount = Number(new FormData(e.target).get("amount") as String);
         player.scoreTimes(role, amount);
-        updateGame();
         setState(false);
-    }    
-   
+        updateGame();
+        changeStateOnParent();
+    }
+
     if (state === true) {
         return <>
             <EarnPointsForRoleButton onClick={() => () => setState(true)} role={role} />
-            <EarnPointsForRoleForm onSubmit={earnPoints2} />
+            <EarnPointsForRoleForm onSubmit={onSubmit} />
         </>;
     } else {
         return <EarnPointsForRoleButton onClick={() => () => setState(true)} role={role} />;
