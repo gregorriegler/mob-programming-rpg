@@ -39,7 +39,7 @@ export function RoleSheet({
                 role={role}
                 player={player}
                 updateGame={updateGame}
-                changeStateOnParent={() => setUiState(0)} />
+                changeStateOnParent={() => setUiState(Math.random())} />
             {/* TODO: Add list of activities for this role */}
             {featureFlagShowSkillsPerRole &&
                 "junk that should be skills instead"}
