@@ -21,6 +21,7 @@ const PlayerDisplay = ({
     const role = new FormData(event.target).get("role") as Role;
     player.selectRole(role);
     updateGameState();
+    // collapse all
     setUiState({ addingPointsFor: [] });
     event.preventDefault();
   }
