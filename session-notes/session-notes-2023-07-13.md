@@ -41,10 +41,25 @@ Co-Authored-by: Zac Ball <zac156@gmail.com>
 
 ### How did that feel?
 
+- +1 Eager to implement change in app behavior!
+- felt kind-of-stuck, feeling of "maybe one more thing..."; another example: the hidden input field used only for tests
+  - identify when we're in "weird problem" space and timebox / thumb-vote it
+- switching mob roles adds load; maybe make rotations longer
+- lots of small problems; potential to get stuck; but we didn't get stuck, we were able to move on; 
+- not caught-up / tried on: feeling of "I'm stupid" - this stopped working after a while / tried on: "it's the only way (mobbing) that can work"; meta - watching my thoughts
+- somebody passing their turn, not wanting to be talker / typist - this might be a smell; are we too deep into a rabbit-hole? is the cognitive load too high? can we make it easier for the team?
+
 ### What worked well, we want to do more of it?
+
+- thumb-vote to stop - make it explicit whether it's stopping or not
+- iso "make it bigger"; clearer - "make the terminal taller"
+- "don't change it yet, let's just listen and understand"
 
 ### Ideas
 
+- [ ] on timer expires "my intention was ... do we want to keep going?" / "do we want to stop?" 
+/ "any rabbit-hole concerns?" (are we stuck?)
+- [ ] .gitpod.yml: ports: ignore the integration tests ports range
 - [ ] for next time - see if the app opens for everybody joining the gitpod workspace
 -   Consider creating a backlog item if the idea is something we want to implement in a future mobbing session in [global backlog](../docs/backlog.md)
     for an idea (that was generated at this retro).
