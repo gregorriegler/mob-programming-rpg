@@ -61,7 +61,7 @@ function EarnPointsForRole({ role, scorePoints }: EarnPointsForRoleProps) {
         <button
             onClick={() => setFormVisible(true)}
             className="rpgui-button add-points-button"
-            aria-label={"Add " + role + " Points"}>
+            aria-label={"Earn " + role + " Points"}>
             <p>Earn</p>
         </button>
         {formVisible && <EarnPointsForRoleForm onSubmit={onSubmit} />}

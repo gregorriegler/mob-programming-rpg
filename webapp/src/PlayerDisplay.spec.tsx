@@ -8,7 +8,7 @@ import { act } from "react-dom/test-utils";
 describe('PlayerDisplay', () => {
     class PlayerComponent {
         addPointsButton(role) {
-            return screen.getByLabelText(`Add ${role} Points`);
+            return screen.getByLabelText(`Earn ${role} Points`);
         }
 
         clickAddPoints(role: string) {
