@@ -25,6 +25,7 @@
     -   [ ] F!! Show the skills in the card - below the points bar, per role
         -   [x] hardcode dummy text and verify in UI it appears
         -   [x] create feature flag to toggle dummy text on/off
+        -   [ ] improve the way the progress bar (the ui) value is checked in tests
         -   [ ] WIP: Read by refactoring and make target area of code readable (e.g., fit into one screen; split react components into separate files).
             -   [x] Extract progress bar as a component
             -   [ ] WIP: Rename "add points" to "earn points for role" ([](../webapp/src/RoleSheet.tsx), [](../webapp/src/EarnPointsForRoleButton.tsx))
