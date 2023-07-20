@@ -15,6 +15,8 @@ tasks:
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
+  - port: 8000-8100
+    onOpen: ignore
   - name: Frontend
     description: Port 3000 for the frontend
     port: 3000
