@@ -57,9 +57,9 @@ Co-Authored-by: Zac Ball <zac156@gmail.com>
 
 ### Ideas
 
-- [ ] on timer expires "my intention was ... do we want to keep going?" / "do we want to stop?" 
+- [x] on timer expires "my intention was ... do we want to keep going?" / "do we want to stop?" 
 / "any rabbit-hole concerns?" (are we stuck?)
-- [ ] .gitpod.yml: ports: ignore the integration tests ports range
+- [x] .gitpod.yml: ports: ignore the integration tests ports range
 - [ ] for next time - see if the app opens for everybody joining the gitpod workspace
 -   Consider creating a backlog item if the idea is something we want to implement in a future mobbing session in [global backlog](../docs/backlog.md)
     for an idea (that was generated at this retro).
