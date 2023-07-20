@@ -19,24 +19,13 @@
 
 # Doing (WIP)
 
-- [ ] Add domain words to cspell(1) dictionary.  It may (or may not) get checked in (or ignored as part of IDE or .ignore).
-
--   **Points Form** F!! gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
+-   **Points Form** Gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
     -   [ ] F!! Show the skills in the card - below the points bar, per role
-        -   [x] hardcode dummy text and verify in UI it appears
-        -   [x] create feature flag to toggle dummy text on/off
-        -   [ ] improve the way the progress bar (the ui) value is checked in tests
-        -   [ ] WIP: Read by refactoring and make target area of code readable (e.g., fit into one screen; split react components into separate files).
-            -   [x] Extract progress bar as a component
-            -   [ ] WIP: Rename "add points" to "earn points for role" ([](../webapp/src/RoleSheet.tsx), [](../webapp/src/EarnPointsForRoleButton.tsx))
-            -   [ ] Consider extracting sibling of ProgressBar (extract more components / read by refactoring)
-        -   [ ] using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
-            -   only show skills per role if the feature toggle is on
-            -   unit test
-            -   manually test in UI, using this command in the terminal:
-                -   To show skills: `REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE=1 npm start`
-                -   To hide skills: `npm start`
-        -   [ ] remove feature flag when done
+        -  Consider using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
+        -   Manually test in UI, using this command in the terminal:
+            -   To show skills: `REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE=1 npm start`
+            -   To hide skills: `npm start`
+        -   Remove feature flag when done
     -   [ ] F!! Gain points (based on these skills per role)
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
