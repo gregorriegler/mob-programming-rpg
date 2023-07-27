@@ -7,38 +7,34 @@ import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 type RoleSheetProps = {
     player: Player;
     role: Role;
-    featureFlagShowSkillsPerRole?: boolean;
     scorePoints: any;
 };
 
 export function RoleSheet({
     player,
     role,
-    featureFlagShowSkillsPerRole = !!process.env
-        .REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE,
     scorePoints
 }: RoleSheetProps): JSX.Element {
     return <div className="role">
-            <hr />
-            <label className="role-label">
-                {role}
-                <ProgressBar percentage={player.percentageFor(role)} />
-                <input
-                    disabled={true}
-                    style={{ display: "none" }}
-                    className="role-points"
-                    value={player.pointsFor(role)}
-                />
-            </label>
-            <EarnPointsForRole role={role} scorePoints={scorePoints} />
-            {/* TODO: Add list of activities for this role */}
-            {featureFlagShowSkillsPerRole &&
-                "junk that should be skills instead"}
-            {/*
+        <hr />
+        <label className="role-label">
+            {role}
+            <ProgressBar percentage={player.percentageFor(role)} />
+            <input
+                disabled={true}
+                style={{ display: "none" }}
+                className="role-points"
+                value={player.pointsFor(role)}
+            />
+        </label>
+        <EarnPointsForRole role={role} scorePoints={scorePoints} />
+        {/* TODO: Add list of activities for this role */}
+        {role === "Driver" ? "Ask a clarifying question about what to type" : ""}
+        {/*
                  some_function({role}) returns string (or list of strings) to display here....
                  <p>Text goes here</p>
               */}
-        </div>;
+    </div>;
 }
 
 type EarnPointsForRoleProps = {
