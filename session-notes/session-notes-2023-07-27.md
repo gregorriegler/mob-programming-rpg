@@ -7,22 +7,6 @@ Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Kitastro <admin@metafor.co.za>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 
-## Inactive Co-Authors
-
-
-Co-Authored-By: arrockt <cariari385@gmail.com>
-Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
-Co-Authored-By: Blessed538 <blesseddominic98@gmail.com>
-Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
-Co-Authored-By: Gabriel Mbaiorga <gabrielmbaiorga@gmail.com>
-Co-Authored-By: Idan Melamed <idanmel@gmail.com>
-Co-Authored-By: Rea <reasu@protonmail.com>
-Co-Authored-By: Tsvetan Tsvetanov <cpi.cecko@gmail.com>
-Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
-Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
-Co-Authored-By: David Campey <campey@gmail.com>
-Co-Authored-by: Zac Ball <zac156@gmail.com>
-
 # Agenda
 
 ## Bond (15 min.)
@@ -42,7 +26,44 @@ Co-Authored-by: Zac Ball <zac156@gmail.com>
 
 ### How did that feel?
 
+- First our felt great for having discussion
+- Second half felt good about a person joining without interrupting
+  - New participant had the skill to join the team without disrupting it
+  - Just joined right in, and productive
+- Feel like I got more perspective on the rest of the world
+  - Coding takes time, gettin stuck etc.
+  - Schadenfreude
+  - We are learning how to do it
+- Happy with the way things went overall
+- We let it slide a little bit long when we wanted to go to retro
+- Found that feature flag was getting into our way removed it
+- Made tangible progress towards making something work in the ui
+- I felt we were not going to code today and I was totally fine with that.
+  - Nitsan was on his phone so he couldn't code
+  - But then a new person joined and I was very excited about that.
+    - I was worried that we didn't have enough time toe accomplish something to make the new person feel like we accomplished something today
+      - That made me feel nervous a little bit
+  - I'm glad we are somewhere we know where to go from here.
+    - So i feel relieved
+    - I think he contributed.
+      - he wasn't shiywas just a part of the group
+      - noticed he is not used to the way we work, still hard to get used to it
+      - one of the things that was a little bit irritating
+        - we usually when we are typing we try to make it comfortable for the person talking.
+    - You were being curious by going to a different screen 
+    - what if it could be both
+      - Someone with a fresh perspective can invigorate / decimate
+    - he has a sharp mind
+  - Unless your uncomfortable you can't grow.
+    - felt threatening/enlightening
+  - Typing is disjointed (frustrating) when you type too fast on gitpod
+
+The Opposite of Schadenfreude Is Freudenfreude. Here’s How to Cultivate It. (2023). The New York Times. https://www.nytimes.com/2022/11/25/well/mind/schadenfreude-freudenfreude.html
+
 ### What worked well, we want to do more of it?
+
+Things went slow, but results came fast.  Everyone's skills increased as we shared what we knew with each other.  That sharing makes a huge impact.
+
 
 ### Ideas
 
