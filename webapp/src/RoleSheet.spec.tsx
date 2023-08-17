@@ -1,15 +1,12 @@
-import PlayerDisplay from "./PlayerDisplay";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
-import userEvent from "@testing-library/user-event";
 import { Player } from "./model/Player";
-import { act } from "react-dom/test-utils";
 import { RoleSheet } from "./RoleSheet";
-import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 
-it('driver does show a driver skill', () => {
+it('driver does show driver skills', () => {
     render(<RoleSheet player={new Player("Roger")} role="Driver" scorePoints={()=>{}}/>);
     expect(screen.getByText("Ask a clarifying question about what to type")).toBeInTheDocument()
+    expect(screen.getByText("Ignore a direct instruction from someone who isn't the Navigator")).toBeInTheDocument()
 })
 
 it('navigator does not show driver skills', () => {

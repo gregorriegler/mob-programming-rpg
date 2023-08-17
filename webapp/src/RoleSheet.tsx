@@ -29,7 +29,10 @@ export function RoleSheet({
         </label>
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
         {/* TODO: Add list of activities for this role */}
-        {role === "Driver" ? "Ask a clarifying question about what to type" : ""}
+        <div>
+            {role === "Driver" ? ["Ask a clarifying question about what to type",
+                "Ignore a direct instruction from someone who isn't the Navigator"].map(s => <div key={s}>{s}</div>) : ""}
+        </div>
         {/*
                  some_function({role}) returns string (or list of strings) to display here....
                  <p>Text goes here</p>
