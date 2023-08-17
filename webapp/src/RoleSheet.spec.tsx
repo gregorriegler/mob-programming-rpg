@@ -7,12 +7,12 @@ import { act } from "react-dom/test-utils";
 import { RoleSheet } from "./RoleSheet";
 import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 
-it('shows skills per role', () => {
+it('driver does show a driver skill', () => {
     render(<RoleSheet player={new Player("Roger")} role="Driver" scorePoints={()=>{}}/>);
     expect(screen.getByText("Ask a clarifying question about what to type")).toBeInTheDocument()
 })
 
-it('navigator doesn\'t show driver skills', () => {
+it('navigator does not show driver skills', () => {
     render(<RoleSheet player={new Player("Roger")} role="Navigator" scorePoints={()=>{}}/>);
-    expect(screen.getByText("Ask a clarifying question about what to type")).not.toBeInTheDocument()
+    expect(screen.queryByText("Ask a clarifying question about what to type")).toBeNull();
 })
