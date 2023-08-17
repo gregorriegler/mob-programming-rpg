@@ -31,6 +31,7 @@
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
 -   **Timer Sync** B Timer does not refresh for many people without restarting.
+-   enable feature flag for all Fs
 -   F Positions should stay in same place on screen (with player names rotating through).
 -   F Make timer time-out more obvious. Maybe with noise. Maybe by locking screen.
 -   F Add skills to mobber (Speak up. Be quiet)

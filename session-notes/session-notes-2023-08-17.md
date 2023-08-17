@@ -42,7 +42,34 @@ Co-Authored-By: Kitastro <admin@metafor.co.za>
 
 ### How did that feel?
 
+- Happy we got it done
+- We went Semi TDD
+  - Wasnt very strict, added functionality without a failing tests
+  - Added tests after the fact
+    - and its fine
+- Bothered that we are doing it on production (without the feature toggle)
+- Feels very easy to work together +1
+  - Increase the timer -> just did it
+- Michael sad we should run the app and see it before we commit, brought us back to the safety mindset
+- Felt like a good team
+- Wanted to be explicit about my expectations (wanna be part of a team, be productive, try a different way of working)
+  - Wanted to experiment
+  - I got all of them
+- Comfortable
+- Uncomfortable (the unknown was in the code)
+- Pretty amazing! We rocked it!
+  - Got a lot of good things done / and the way to do them
+  - as opposed to previous session - in this session, no stuggling at all
+  - was fun, enjoyed it
+- Noticed: we were so in the flow, we forgot about the time
+
 ### What worked well, we want to do more of it?
+
+- Revealing confusion
+  - We benefit from each others confusion / misunderstanding
+- Adapting the timer to the actual way we rotate (from 3m to 5m)
+- We were quite effective in finding a shared understanding. What was it that made that happen?
+- We had many agreements
 
 ### Ideas
 
