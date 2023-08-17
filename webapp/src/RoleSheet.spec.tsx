@@ -5,10 +5,17 @@ import { RoleSheet } from "./RoleSheet";
 import { Role, levels, roles } from "./model/Roles";
 
 
-const firstLevelRoles = levels[0].map((name) => roles[name]);
+describe('RoleSheet', () => {
+    const firstLevelRoles = levels[0].map((name) => roles[name]);
+    firstLevelRoles.forEach((role) => it(`shows skills for the ${role.name} role`, () => {
+        render(<RoleSheet role={role.name as Role} player={new Player("Roger")} scorePoints={() => { }} />);
 
-firstLevelRoles.forEach((role) => it(`${role.name} does show all role skills`, () => {
-  render(<RoleSheet role={role.name as Role} player={new Player("Roger")} scorePoints={() => { }} />);
+        role.todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
+    }))
+})
 
-  role.todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
-}))
+// TODO if canEarnPoints for role, show skills of role
+// cannot rotate until players have filled the form
+// TODO use it.each ??? but maybe its too clever?
+// rename role.todo to skills (might be used in other places)
+// now we use <div>, but its semantically a list (should use <li>)
