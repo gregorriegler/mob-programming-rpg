@@ -30,7 +30,7 @@ export function RoleSheet({
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
         {/* TODO: Add list of activities for this role */}
         <div>
-            {role === "Driver" ? roles[role].todos.map(s => <div key={s}>{s}</div>) : ""}
+            {roles[role].todos.map(s => <div key={s}>{s}</div>)}
         </div>
         {/*
                  some_function({role}) returns string (or list of strings) to display here....
