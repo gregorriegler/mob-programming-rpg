@@ -6,7 +6,7 @@ import { roles } from "./model/Roles";
 
 const role = roles.Driver;
 
-it('driver does show all driver skills', () => {
+it(`${role.name} does show all role skills`, () => {
   render(<RoleSheet player={new Player("Roger")} role={role.name} scorePoints={() => { }} />);
   role.todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
 })
