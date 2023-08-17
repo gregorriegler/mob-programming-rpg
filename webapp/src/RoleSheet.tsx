@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Role } from "./model/Roles";
+import { Role, roles } from "./model/Roles";
 import { Player } from "./model/Player";
 import { ProgressBar } from "./ProgressBar";
 import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
@@ -30,8 +30,7 @@ export function RoleSheet({
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
         {/* TODO: Add list of activities for this role */}
         <div>
-            {role === "Driver" ? ["Ask a clarifying question about what to type",
-                "Ignore a direct instruction from someone who isn't the Navigator"].map(s => <div key={s}>{s}</div>) : ""}
+            {role === "Driver" ? roles[role].todos.map(s => <div key={s}>{s}</div>) : ""}
         </div>
         {/*
                  some_function({role}) returns string (or list of strings) to display here....
