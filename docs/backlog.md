@@ -1,11 +1,8 @@
 # Reminders
 
--   [Today's session notes](../session-notes/_todays-session-notes.md)
--   [Previous session notes](../session-notes/_previous-session-notes.md)
--   Look at the previous session notes Ideas section
--   See Agenda in Retro md / [template](../session-notes/session-notes-2023-MM-DD.md)
+-   Review the Ideas section of the [previous session notes](../session-notes/_previous-session-notes.md)
+-   Update the Active Co-Authors section of [today's session notes](../session-notes/_todays-session-notes.md) 
 -   Before Retro: Update the Backlog
--   Before/Beginning of Session: Set timer/expectations for retro for 30 min before end of session
 
 ## Working Agreements
 
@@ -22,9 +19,8 @@
 # Doing (WIP)
 
 -   **Session Notes Automation**
-    -   Create single script to do all automation in one atomic transaction
-    -   Do we want to .gitignore the symlinks?
-    -   Issue: When open symlink, you don't see the actual date of the file in the tab text
+    -   [ ] Issue: When open symlink, you don't see the actual date of the file in the tab text. Idea: Add date at top of session
+            notes file when create it.
 -   **Points Form** Gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
     -   [ ] F!! Show the skills in the card - below the points bar, per role
         -  Consider using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
