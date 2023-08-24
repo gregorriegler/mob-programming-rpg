@@ -22,6 +22,11 @@
 
 # Doing (WIP)
 
+-   **Session Notes Automation**
+    -   Script needs to update previous session notes symlink [script](../update-links.sh)
+    -   Create single script to do all automation in one automic transaction
+    -   Do we want to .gitignore the symlinks?
+    -   Issue: When open symlink, you don't see the actual date of the file in the tab text
 -   **Points Form** Gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
     -   [ ] F!! Show the skills in the card - below the points bar, per role
         -  Consider using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card

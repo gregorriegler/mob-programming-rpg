@@ -42,7 +42,17 @@ Co-Authored-By: Kitastro <admin@metafor.co.za>
 
 ### How did that feel?
 
+- It was a Joy
+- I love todays session
+- It was cool, the combination of brainstorming to leverage chatGPT and to automation
+- I would like to see more of this (AI Assisted Programming)
+
 ### What worked well, we want to do more of it?
+
+- There was something about rotations I noticed:
+  - We're going Typing -> Talking -> Next.
+  - I was hungry going to get something to eat, and when I came back I only had to type. So it allowed me to take a small break
+  - Helped me rejoin and keep the flow
 
 ### Ideas
 
