@@ -12,9 +12,11 @@ tasks:
     command: |
       gp preview --external mobti.me/mobrpg
       exit
-  - name: create session notes
+  - name: prepare session notes
     command: |
-      ./create-session-notes.sh
+      ./create-todays-session-notes.sh
+      ./update-todays-session-notes-link.sh
+      ./update-previous-session-notes-link.sh
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:

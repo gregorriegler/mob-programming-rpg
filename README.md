@@ -31,7 +31,7 @@ We use these tools to collaboate:
 
 During the sessions
 
-* Create a new session notes file: [./create-session-notes.sh](create-session-notes.sh)
+* Consider opening the [Backlog](./docs/backlog.md) and following what it says, starting with Reminders at the top
 * Start the game: `npm start`
 * Test the game: `npm test`
 

@@ -2,7 +2,6 @@
 
 -   [Today's session notes](../session-notes/_todays-session-notes.md)
 -   [Previous session notes](../session-notes/_previous-session-notes.md)
--   [Create new session notes](../create-session-notes.sh)
 -   Look at the previous session notes Ideas section
 -   See Agenda in Retro md / [template](../session-notes/session-notes-2023-MM-DD.md)
 -   Before Retro: Update the Backlog
