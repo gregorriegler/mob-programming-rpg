@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# Determine the script's directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Get the current date
 CURRENT_DATE=$(date +"%Y-%m-%d")
 
-# Define the template and new file paths
-TEMPLATE="./session-notes/session-notes-YYYY-MM-DD.md"
-NEW_FILE="./session-notes/session-notes-$CURRENT_DATE.md"
+# Define the template and new file paths using the script's directory
+TEMPLATE="$SCRIPT_DIR/session-notes/session-notes-YYYY-MM-DD.md"
+NEW_FILE="$SCRIPT_DIR/session-notes/session-notes-$CURRENT_DATE.md"
 
 # Check if the template exists
 if [ ! -f "$TEMPLATE" ]; then
