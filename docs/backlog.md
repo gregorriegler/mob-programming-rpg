@@ -1,5 +1,6 @@
 # Reminders
 
+-   [Create new session notes](../create-session-notes.sh)
 -   Look at the previous session notes Ideas section
 -   See Agenda in Retro md / [template](../session-notes/session-notes-2023-MM-DD.md)
 -   Before Retro: Update the Backlog
