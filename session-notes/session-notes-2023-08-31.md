@@ -42,9 +42,55 @@ Co-Authored-By: Kitastro <admin@metafor.co.za>
 
 ### How did that feel?
 
+- Thought Y got annoyed with Chat
+- Y felt frustrated
+  - It looked like we made it more complicated than it needed to be
+  - Its about an echo, but I didnt bring it up
+  - Emotions were informing that it was a waste of time
+  - Question is "why we are doing it this way?"
+  - Then I just backed off and let the momentum go
+- X felt interrest in exploring it with Chat, even if it took longer
+- I feel like, is was about *bash scripting*, having one person being an expert in this space - so by going to chat it *took away* the opportunity to bash script!
+  - yes, it was a trade-off: learning chatgpt vs. someone contributing directly
+- Also, other people feel excited about exploring how far we can go with chatGPT - conflicting motivations
+- yes, we had different ideas about what to do
+  - how do we want to handle these kinds of conflict?
+  - this time - the navigator said "I'd like to go forward with the AI", but we kept discussing
+  - meaning we did not defer to the navigator
+  - we switched navigator and typist, like dancing
+- awkward rotating while using the AI (chatgpt, bard, claude)
+  - we don't all have the same tools
+  - the chats are not shared
+  - also - outages with chatgpt
+    - its the first time I see stackoverflow in a long time (see ChatGPT usually)
+- the thing about chat is to still be in the loop, because you need to review it. but you don't have to generate it.
+  - it's like offloading some of the mental strain
+  - when I code its like you have to write and maybe review
+  - you become a validator rather than a creator
+    - maybe - there are different things to learn - e.g. being a better validator; to better prepare for the future of programming; a shift from creating code to vaidating code
+- lean on the compiler: when writing the code as we intend it to be, then lean on the compiler and "make this exist please"
+  - in the future, let's "lean on the AI"; offloading mental loads to tools
+  - eventually, we want the AI to be a fully-fledged member of the mob
+- Feel we are in sync with our rigorous coding workflow +1
+  - small steps
+  - unspoken fundamentals
+  - this makes us more productive because we dont have to revisit them
+
+
 ### What worked well, we want to do more of it?
 
+- +1 working with the old timer is much better! https://mobtime.fly.dev/friendly-grid?
+  - had some issues with the sound
+
 ### Ideas
+
+- IDE like VSCode for AI: Cursor
+  - It adds some AI Tooling into the mix.
+    - Think its amazing, you can chat with your code. Chat becomes typist
+    - Its not possible with GitPod
+    - Nitsan could drive for one hour so we could try it out
+    - proposal - do it with a kata, e.g. Roman Numerals
+    - there's a trade-off between "easy to use" and "power user friendly"
 
 -   Consider creating a backlog item if the idea is something we want to implement in a future mobbing session in [global backlog](../docs/backlog.md)
     for an idea (that was generated at this retro).
