@@ -23,7 +23,8 @@ if [ -f "$NEW_FILE" ]; then
 fi
 
 # Create a new file from the template
-cp "$TEMPLATE" "$NEW_FILE"
+echo "# Session Date: ${CURRENT_DATE}" > "$NEW_FILE"
+cat "$TEMPLATE" >> "$NEW_FILE"
 
 # Feedback to the user
 if [ $? -eq 0 ]; then

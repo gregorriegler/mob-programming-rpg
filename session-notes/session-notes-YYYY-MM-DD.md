@@ -1,4 +1,3 @@
-# Co-Authors (This Session)
 
 ## Active Co-Authors
 
