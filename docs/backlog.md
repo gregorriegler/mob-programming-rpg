@@ -17,14 +17,7 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
-Short brain dump...
-- Session note template w/ our names at top
 
-
-
--   **Session Notes Automation**
-    -   [ ] Issue: When open symlink, you don't see the actual date of the file in the tab text. Idea: Add date at top of session
-            notes file when create it.
 -   **Points Form** Gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
     -   [ ] F!! Show the skills in the card - below the points bar, per role
         -  Consider using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card

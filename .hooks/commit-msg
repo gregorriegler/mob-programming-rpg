@@ -1,0 +1,13 @@
+#!/bin/sh
+# This script checks if the commit message contains "Co-authored-by" (case-insensitive).
+
+COMMIT_MSG_FILE=$1
+
+# Check if the commit message includes "Co-authored-by", case-insensitively
+if grep -iq "Co-authored-by" "$COMMIT_MSG_FILE"; then
+  exit 0
+else
+  echo "ERROR: Commit message must contain 'Co-authored-by'."
+  exit 1
+fi
+

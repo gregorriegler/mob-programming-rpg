@@ -17,6 +17,11 @@ tasks:
       ./create-todays-session-notes.sh
       ./update-todays-session-notes-link.sh
       ./update-previous-session-notes-link.sh
+      exit
+  - name: git hooks
+    command: |
+      cp ./hooks/commit-msg .git/hooks/
+      exit
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
