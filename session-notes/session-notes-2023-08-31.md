@@ -1,14 +1,14 @@
-# Co-Authors (This Session)
+# Session Date: 2023-08-31
 
 ## Active Co-Authors
 
-## Inactive Co-Authors
-
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
+Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
-Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
-Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
+
+## Inactive Co-Authors
+
 Co-Authored-By: arrockt <cariari385@gmail.com>
 Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
 Co-Authored-By: Blessed538 <blesseddominic98@gmail.com>
@@ -18,6 +18,7 @@ Co-Authored-By: Idan Melamed <idanmel@gmail.com>
 Co-Authored-By: Rea <reasu@protonmail.com>
 Co-Authored-By: Tsvetan Tsvetanov <cpi.cecko@gmail.com>
 Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
+Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
 Co-Authored-By: David Campey <campey@gmail.com>
 Co-Authored-by: Zac Ball <zac156@gmail.com>
 Co-Authored-By: Kitastro <admin@metafor.co.za>

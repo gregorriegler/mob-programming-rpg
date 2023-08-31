@@ -1,7 +1,7 @@
 # Reminders
 
 -   Review the Ideas section of the [previous session notes](../session-notes/_previous-session-notes.md)
--   Update the Active Co-Authors section of [today's session notes](../session-notes/_todays-session-notes.md) 
+-   Update the Date and Active Co-Authors for [today's session notes](../session-notes/_todays-session-notes.md) 
 -   Before Retro: Update the Backlog
 
 ## Working Agreements
@@ -17,6 +17,10 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
+Short brain dump...
+- Session note template w/ our names at top
+
+
 
 -   **Session Notes Automation**
     -   [ ] Issue: When open symlink, you don't see the actual date of the file in the tab text. Idea: Add date at top of session
