@@ -10,7 +10,7 @@ tasks:
       npm start
   - name: mob timer
     command: |
-      gp preview --external mobti.me/mobrpg
+      gp preview --external mobtime.fly.dev/friendly-grid
       exit
   - name: prepare session notes
     command: |
