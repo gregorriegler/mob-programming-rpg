@@ -3,9 +3,9 @@
 ## Active Co-Authors
 
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
+Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
-Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Rea <reasu@protonmail.com>
 
 # Agenda
@@ -27,9 +27,68 @@ Co-Authored-By: Rea <reasu@protonmail.com>
 
 ### How did that feel?
 
-### What worked well, we want to do more of it?
+#### Trying Cursor
+- Fun
+- Cool
+- Interresting
+- Challenging
+- The level and nuance that chat gpt understands and doesnt understand. 
+- GPT is a little bit Booksmart
+- Surprised
+  - about the isDivisibleBy lambda function refactoring, that was a good one.
+- Disappointed
+  - was hoping it would do better when you instruct it on a high level
 
+- Noticed how the agile mindset affects personal life, where I prefer fewer inventory
+- Today was very experimental
+  - had to figure out what to do and how to do it.
+  - maybe made a participant uncomfortable
+    - wish to make the participant feel more comfortable, but didnt know how.
+
+ - Because there's a gap between the previous and the current session, we reopened a decisionmaking (using cursor vs something else).
+   - we had already decided on it last time.
+   - could have limited the discussion more on what has been the definitive idea, maybe introducing the thumbvote
+
+ - I thought that Ctrl+L (giving it a whole file) worked faster, and better, but you had to copy code manually.
+   - But you wouldn't see the diff
+ - Using Ctrl+K felt a little bit slow.
+   - The longer the Code got, it felt even slower.
+     - Wonder what would have happened if we didnt always select the whole file.
+ - Using Ctrl+L it got rid of a good refactoring to.
+   - And it hallucinated (reversed expected and actual in the parameterized test)
+ 
+ - Was wondering what prompts it was using under the hood.
+ - GPT knows fizzbuzz and kept going ahead
+   - to solve that we either
+     - had to tell it really specifically what it should do in detail. what we want it to do and what we dont want it to do.
+       - "do not make any new requirements. make it simple which includes hardcoded."
+   - Idea is to make our own Kata. One that it doesnt know
+ - Sad that Cursor or ChatGPT isnt well built for/trained on TDD
+   - There are no defaults in the tool to support TDD better
+ - Given it uses the API, probably would be expensive with extensive use
+
+### What worked well, we want to do more of it?
+- Ctrl+Z (go back) it would include changes in my prompt (so I would not loose any state we were in)
+- We were learning what it knew or what it didnt know, and to make a better prompt.
+  - It forced us to refine our language to be more specific
+    - As we learned how to be more specific we also learned how to be more compact (shorter prompts)
+- Use AI, get better at it
+ 
 ### Ideas
+- [ ] when someone is new or hasnt join the mob in a long time its better to avoid riskier agendas and stick to the tried and true
+    - the more we go off the rails the more it might make them feel uncomfortable?
+- [ ] use a thumbvote on the previous Idea to avoid getting to deep into discussion again
+- [ ] More Cursor experiments
+  - [ ] figure out how other people use Cursor (we are concerned that ChatGPT wont remember what we told it about TDD)
+  - [ ] Try a Kata with Cursor, that ChatGPT hasnt seen before, so it cant go ahead because it already knows it too well. +1
+  - [ ] To try how far to get with high level prompts. Want ChatGPT to figure out the details
+    - [ ] Can we find a good prompt template for that (TDD Cycle)?
+      - [ ] Is there a tiny prompt that would work?
+      - [ ] Are you able to give ChatGPT a context in Cursor? One that is resent everytime.
+    - [ ] Train it by giving it a few examples.
+  - [ ] Research how other people did TDD with ChatGPT. Maybe we can find better prompts.
+
+
 
 -   Consider creating a backlog item if the idea is something we want to implement in a future mobbing session in [global backlog](../docs/backlog.md)
     for an idea (that was generated at this retro).
