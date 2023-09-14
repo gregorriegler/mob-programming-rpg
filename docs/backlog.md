@@ -1,7 +1,8 @@
 # Reminders
 
--   Review the Ideas section of the [previous session notes](../session-notes/_previous-session-notes.md)
 -   Update the Date and Active Co-Authors for [today's session notes](../session-notes/_todays-session-notes.md) 
+-   Review the Ideas section of the [previous session notes](../session-notes/_previous-session-notes.md)
+-   Everyone: turn on mob timer sounds 📣
 -   Before Retro: Update the Backlog
 
 ## Working Agreements
