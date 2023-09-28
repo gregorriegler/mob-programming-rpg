@@ -66,8 +66,10 @@ what are some main points from the retro that was help at the end?
 ```
 
 ```
-here are notes from today's mob programming session retro
+here are notes from today's mob programming session retro.
+Infer values of the team.
 
-please summarize
-and aslo - go up one or two levels asking "why?" (values, etc.)
+{
+    $notes    
+}
 ```
