@@ -8,6 +8,8 @@ The game [is hosted here](https://gregorriegler.com/mob-programming-rpg/).  You 
 
 ## Participate in the mobbing sessions
 
+We start at [3 pm (CET)](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=N21ubDl1a2Y4ZDFtc3AyZ2JvY2RpamtpMmtfMjAyMzAyMTZUMTQwMDAwWiA3Mzk5NWUxZTBiMWM5NDhhOGEwMDIxZWM0YzNjZTcyOTQxZjdiN2FjOTc1NGJjZTNmMGU5ZGRkMDA1MmY4NjQxQGc&tmsrc=73995e1e0b1c948a8a0021ec4c3ce72941f7b7ac9754bce3f0e9ddd0052f8641%40group.calendar.google.com&scp=ALL) every Thursday.
+
 Join us by following this link: [Gather Town](https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo) (Password: ```deliberate```)
 
 During the sessions
