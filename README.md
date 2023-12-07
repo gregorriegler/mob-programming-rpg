@@ -8,12 +8,7 @@ The game [is hosted here](https://gregorriegler.com/mob-programming-rpg/).  You 
 
 ## Participate in the mobbing sessions
 
-We use these tools to collaborate:
-
-- [GatherTown](https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo) for faces and screens. (Password: ```deliberate```)
-- [mobtime](https://mobti.me/mobrpg) for role rotations.
-- [GitHub](https://github.com/gregorriegler/mob-programming-rpg) as code repositiory.
-- [Gitpod](https://gitpod.io/docs) as a shared workspace
+Join us by following this link: [Gather Town](https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo) (Password: ```deliberate```)
 
 During the sessions
 
