@@ -2,6 +2,7 @@
 ## Active Co-Authors
 
 ## Inactive Co-Authors
+Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
 Co-Authored-By: Blaise Pabon <blaise@gmail.com>
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
