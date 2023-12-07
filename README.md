@@ -6,6 +6,21 @@ This web app automates a game developed by Willem Larsen.  See the original [Mob
 
 The game [is hosted here](https://gregorriegler.com/mob-programming-rpg/).  You can test it out alone, or play it with a group.
 
+## Participate in the mobbing sessions
+
+We use these tools to collaborate:
+
+- [GatherTown](https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo) for faces and screens. (Password: ```deliberate```)
+- [mobtime](https://mobti.me/mobrpg) for role rotations.
+- [GitHub](https://github.com/gregorriegler/mob-programming-rpg) as code repositiory.
+- [Gitpod](https://gitpod.io/docs) as a shared workspace
+
+During the sessions
+
+* Consider opening the [Backlog](./docs/backlog.md) and following what it says, starting with Reminders at the top
+* Start the game: `npm start`
+* Test the game: `npm test`
+
 ## Subscribe to weekly events
 
 This software is developed in a public remote mob where everybody is invited to join.
@@ -19,21 +34,6 @@ We start at [3 pm (CET)](https://calendar.google.com/calendar/event?action=TEMPL
 Note: we no longer have two sessions, only one.
 
 Subscribe to [our Google Calendar](https://calendar.google.com/calendar/u/0?cid=NzM5OTVlMWUwYjFjOTQ4YThhMDAyMWVjNGMzY2U3Mjk0MWY3YjdhYzk3NTRiY2UzZjBlOWRkZDAwNTJmODY0MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t) so that you don't miss any events.
-
-## Participate in the mobbing sessions
-
-We use these tools to collaboate:
-
-- [GatherTown](https://app.gather.town/app/kNtWdLSSLSYIoR5R/CodingDojo) for faces and screens. (Password: ```deliberate```)
-- [mobtime](https://mobti.me/mobrpg) for role rotations.
-- [GitHub](https://github.com/gregorriegler/mob-programming-rpg) as code repositiory.
-- [Gitpod](https://gitpod.io/docs) as a shared workspace
-
-During the sessions
-
-* Consider opening the [Backlog](./docs/backlog.md) and following what it says, starting with Reminders at the top
-* Start the game: `npm start`
-* Test the game: `npm test`
 
 ## Credits
 
