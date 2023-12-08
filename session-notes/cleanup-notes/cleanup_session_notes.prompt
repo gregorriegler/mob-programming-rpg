@@ -1,0 +1,80 @@
+Ignore previous instructions.
+
+# Task: perform cleanup on files
+
+## Input
+
+The files have names like
+         session-notes-2022-10-20.md
+         session-notes-2022-11-03.md
+         session-notes-2022-11-10.md
+         session-notes-2022-11-24.md
+         session-notes-2022-12-01.md
+
+The files are in markdown format.  
+
+Specifically, 1st-level headers have 1 "#" at beginning of line and 2nd-level headers have "##"... likewise for 3rd-level
+
+## Cleanup
+
+All regular expresssion 'match' and 'substitute' operations should do case-insensitive matching.
+
+Create code to accomplish each sub-task in Python
+
+
+### Sub-task: Create subroutine 'get_date_from_filename'
+  - parameter: filename
+  - return: date portion of the filename
+
+### Sub-task: Create subroutine 'slurp_file'
+  - parameter: filename
+  - return: entire contents of file as a string
+
+### Sub-task: Create subroutine 'contains_inactive_coauthors'
+  - argument: contents
+  - return: boolean.  true iff 'contents' matches (case-insensitive) a 1st or 2nd level header with "Inactive Co-Authors"
+
+### Sub-task: Create subroutine 'contains_active_coauthors'
+  - argument: contents
+  - return: boolean.  true iff 'contents' matches (case-insensitive) a 1st or 2nd level header with "Active Co-Authors"
+
+### Sub-task: Create subroutine 'contains_session_date'
+  - argument: contents
+  - return: boolean.  true iff 'contents' matches (case-insensitive) a 1st or 2nd level header with "Session Date"
+
+### Sub-task: Create subroutine: 'delete_inactive_coauthors'
+  - argument: contents
+  - action: if there is a 1st or 2nd level header that matches "Inactive Co-Authors", delete the whole section (i.e. the header through, but not including, the next header)
+  - return: none.  But assure that the argument has changes if they were made
+
+### Sub-task: Create subroutine 'normalize_coauthor_heading'
+  - argument: contents
+  - action: Any header that contains "Co-Author", whether or not it contains other text, should be rewritten to be a 2nd-level header with only "Co-Authors"
+  - return: none.  But assure that the argument has changes if they were made
+
+### Sub-task: Create subroutine 'cleanup_file'
+  - argument: filename
+  - actions
+     1. slurp file contents into variable 'original_contents' and also 'contents'.
+     2. set 'date_as_string' from 'filename'
+     3. if 'contents' does not contain session date, add a 1st-level header to the beginning with "Session Date" followed by value of 'date_as_string'
+     4. if 'contents' contains active coauthors AND 'contents' contains inactive coauthors, delete inactive coauthors
+     5. if 'contents' and 'original_contents' are different
+     	a. Notify user that changes have been made
+        b. create a new file to contain changed text
+           - name based on oiginal name with .new appended
+           - same mode as original file
+           - same modification times as original file
+	    c. write 'contents' to the *.new file
+        d. rename original file to have ".original" appended to filename
+        e. rename file with new text (and .new appended) to original filename
+        f. output a command that user can type to compare the
+	    - original file (*.original file name)
+	    - new file (original file name)
+
+### Sub-task: Create subroutine 'main'
+    - foreach filename given on the command line, pass the filename to "cleanup_file"
+	 
+### Sub-task: Consolidate code
+    - Display all sub-task code in python code block
+    
