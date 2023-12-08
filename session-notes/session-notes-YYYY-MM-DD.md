@@ -1,5 +1,26 @@
+# Updating this file for a new session
+Start of Session
+- Copy from template (session-notes-YYYY-MM-DD.md) to a file for today
+- Update YYYY-MM-DD everywhere
+- Move today's participants to "Co-Authors" section
+- If new participants, add them both to (1) daily file and (2) template file
+   (While template is open, float active participants up in the list)
 
-## Active Co-Authors
+During Session
+As work proceeds
+- Update backlog and WIP
+- Copy Co-authors from here to commit message
+
+Close of Session
+- Remove "Inactive Co-Authors" section completely (to prevent spurious github changes)
+- Remove this whole "Updating..." section, leaving "Session Date" at top of file
+- Add notes for retro
+- Add ideas for next time
+- Commit final change
+- (Maybe) delete Gitpod.io work space
+
+# Session Date: YYYY-MM-DD
+## Co-Authors
 
 ## Inactive Co-Authors
 Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
