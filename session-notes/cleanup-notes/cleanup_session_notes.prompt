@@ -68,9 +68,11 @@ Create code to accomplish each sub-task in Python
 	    c. write 'contents' to the *.new file
         d. rename original file to have ".original" appended to filename
         e. rename file with new text (and .new appended) to original filename
-        f. output a command that user can type to compare the
-	    - original file (*.original file name)
+        f. output a command that user can type to compare the following files.  Assure that the command is alone on a line to make it easier to coyy/paste.
+  	    - original file (*.original file name)
 	    - new file (original file name)
+     5. if 'contents' and 'original_contents' are identical, tell the user that no changes were made
+     6. Exit with return codes similar in intent to diff(1)
 
 ### Sub-task: Create subroutine 'main'
     - foreach filename given on the command line, pass the filename to "cleanup_file"

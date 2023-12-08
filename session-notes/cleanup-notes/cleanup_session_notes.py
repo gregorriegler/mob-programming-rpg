@@ -1,8 +1,7 @@
-# Consolidated Python code to fulfill the specified tasks
-
 import re
 import os
 import shutil
+import sys
 
 
 def get_date_from_filename(filename):
@@ -39,6 +38,24 @@ def normalize_coauthor_heading(contents):
     return re.sub(r'^#+\s*.*Co-Author.*', '## Co-Authors', contents, flags=re.IGNORECASE | re.MULTILINE)
 
 
+def remove_extra_coauthor_headers(contents):
+    lines = contents.splitlines()
+    found = False
+    result = []
+
+    for line in lines:
+        if 'Co-Author' in line.lower():
+            if not found:
+                found = True
+                result.append('## Co-Authors')
+            else:
+                continue
+        else:
+            result.append(line)
+
+    return '\n'.join(result)
+
+
 def cleanup_file(filename):
     original_contents = slurp_file(filename)
     if original_contents is None:
@@ -55,6 +72,7 @@ def cleanup_file(filename):
         contents = delete_inactive_coauthors(contents)
 
     contents = normalize_coauthor_heading(contents)
+    contents = remove_extra_coauthor_headers(contents)
 
     if contents != original_contents:
         print(f"Changes made to file: {filename}")
@@ -69,7 +87,7 @@ def cleanup_file(filename):
         os.rename(filename, original_backup_filename)
         os.rename(new_filename, filename)
 
-        print(f"To compare old and new files, run: diff -u {original_backup_filename} {filename}")
+        print(f"Changes saved. Original file backed up as {original_backup_filename}")
 
 
 def main(filenames):
@@ -78,6 +96,4 @@ def main(filenames):
 
 
 if __name__ == "__main__":
-    import sys
-
     main(sys.argv[1:])
