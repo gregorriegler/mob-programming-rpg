@@ -59,20 +59,20 @@ Create code to accomplish each sub-task in Python
      2. set 'date_as_string' from 'filename'
      3. if 'contents' does not contain session date, add a 1st-level header to the beginning with "Session Date" followed by value of 'date_as_string'
      4. if 'contents' contains active coauthors AND 'contents' contains inactive coauthors, delete inactive coauthors
-     5. if 'contents' and 'original_contents' are different
-     	a. Notify user that changes have been made
-        b. create a new file to contain changed text
-           - name based on oiginal name with .new appended
-           - same mode as original file
-           - same modification times as original file
-	    c. write 'contents' to the *.new file
-        d. rename original file to have ".original" appended to filename
-        e. rename file with new text (and .new appended) to original filename
-        f. output a command that user can type to compare the following files.  Assure that the command is alone on a line to make it easier to coyy/paste.
-  	    - original file (*.original file name)
-	    - new file (original file name)
-     5. if 'contents' and 'original_contents' are identical, tell the user that no changes were made
-     6. Exit with return codes similar in intent to diff(1)
+     5. if 'contents' and 'original_contents' are identical
+     	   Notify user "No changes were needed"
+        else
+	    a. Notify user that "Changes were made"
+	    b. create a new file to contain changed text
+	       - name based on oiginal name with .new appended
+	       - same mode as original file
+	       - same modification times as original file
+		c. write 'contents' to the *.new file
+	    d. rename original file to have ".original" appended to filename
+	    e. rename file with new text (and .new appended) to original filename
+	    f. Notify user "You can view changes by issuing this command"...
+               ... then, on a new line, output command "diff -u original_backup_file new_file"
+	    Note:  Surround file manipulation commands with ex
 
 ### Sub-task: Create subroutine 'main'
     - foreach filename given on the command line, pass the filename to "cleanup_file"
