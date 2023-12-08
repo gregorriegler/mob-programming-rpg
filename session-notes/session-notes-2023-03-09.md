@@ -1,3 +1,4 @@
+# Session Date: 2023-03-09
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>

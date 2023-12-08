@@ -1,3 +1,4 @@
+# Session Date: 2023-01-12
 # Goal
 - Bug: Game ID should be in the URL
 - Exploratory testing
