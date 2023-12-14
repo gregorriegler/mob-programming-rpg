@@ -162,9 +162,25 @@ Next step:
 
 
 Joel
-- 
+- We did not commit often enough to feel comfortable.
 
 - Gregor
+We used a failing test for many iterations.  It felt like ApprovalTests.
+
+- Nitsan
+Are there ways to refactor this code without failing tests?  The way Nitsan did it broke the test.
+
+It's good to _stay_ in green.  It's comfortable.  But this time, it felt OK to stay in ~red~ orange state (red to guide on way to green).
+
+Failing test can be guiding light.  Force.  Pulling forward.  Eventually need to make it pass.  But do it slowly (not ASAP).
+
+For compiled languages, get to red (not yellow-uncompilable).  Stay in REPL(?) you can operate differently.  This evaluate/print loop gives the feedback loop differently from red/green/refactor.  But it's still using test to guide.  In this way, it's similar to approvals.
+
+REPL (Read Evaluate Print Loop)
+
+"Tiny steps take you a long way"
+  -- Nitsan Avni
+
 
 
 
