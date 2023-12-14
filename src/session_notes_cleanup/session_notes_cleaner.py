@@ -5,9 +5,16 @@ import os
 import shutil
 import sys
 
+
+class SessionNotesCleaner:
+    def __init__(self):
+        pass
+
+
 def get_date_from_filename(filename):
     match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
     return match.group(1) if match else None
+
 
 def slurp_file(filename):
     try:
@@ -16,20 +23,27 @@ def slurp_file(filename):
     except FileNotFoundError:
         return None
 
+
 def contains_inactive_coauthors(contents):
     return bool(re.search(r'^#+\s*Inactive Co-Authors', contents, re.IGNORECASE | re.MULTILINE))
+
 
 def contains_active_coauthors(contents):
     return bool(re.search(r'^#+\s*Active Co-Authors', contents, re.IGNORECASE | re.MULTILINE))
 
+
 def contains_session_date(contents):
     return bool(re.search(r'^#+\s*Session Date', contents, re.IGNORECASE | re.MULTILINE))
 
+
 def delete_inactive_coauthors(contents):
-    return re.sub(r'^#+\s*Inactive Co-Authors.*?(?=^#|\Z)', '', contents, flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
+    return re.sub(r'^#+\s*Inactive Co-Authors.*?(?=^#|\Z)', '', contents,
+                  flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
+
 
 def normalize_coauthor_heading(contents):
     return re.sub(r'^#+\s*.*Co-Author.*', '## Co-Authors', contents, flags=re.IGNORECASE | re.MULTILINE)
+
 
 def cleanup_file(filename):
     original_contents = slurp_file(filename)
@@ -61,9 +75,11 @@ def cleanup_file(filename):
         os.rename(new_filename, filename)
         print(f"You can view changes by issuing this command: diff -u {original_backup_filename} {filename}")
 
+
 def main():
     for filename in sys.argv[1:]:
         cleanup_file(filename)
+
 
 if __name__ == "__main__":
     main()
