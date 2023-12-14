@@ -82,3 +82,17 @@ What to do next? Vote on Proposals:
     - 2. shared leadership, dedicated facilitation
     - 3. consider a checklist for newcomers (was a discussion about this)
     - 4. consider items in the backlog (reminders, what are we working on, etc.)
+
+# Approximate timings of prior session:
+
+Itemized:
+- Discuss/decide: 50 min.
+- Coding:         55 min.
+- Retro 1:        25 min.
+- Coding:         35 min.
+- Retro 2:        15 min.
+
+Summary:
+- Coding:         50% (90 min.)
+- Discuss/Decide: 28% (50 min.)
+- Retros:         22% (40 min.)
