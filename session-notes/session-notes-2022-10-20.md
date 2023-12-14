@@ -1,3 +1,4 @@
+# Session Date: 2022-10-20
 # How did that feel?
 - Nice +1
 - Interesting

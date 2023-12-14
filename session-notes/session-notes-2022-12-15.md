@@ -1,3 +1,4 @@
+# Session Date: 2022-12-15
 # Goal
 
 - curios to test the rotation issue again manually

@@ -1,3 +1,4 @@
+# Session Date: 2022-11-03
 # How did that feel?
 - Enjoyed it, a bit of small talk in the beggining
 - Felt productive, made good progress

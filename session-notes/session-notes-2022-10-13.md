@@ -1,3 +1,4 @@
+# Session Date: 2022-10-13
 # How did that feel?
 - Liked the Game, is cool. Works well as a timer (has bugs). Like a mini retro all the time.
 - Great Time
