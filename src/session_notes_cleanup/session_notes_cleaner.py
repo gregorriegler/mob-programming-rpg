@@ -70,11 +70,6 @@ class SessionNotesCleaner:
             return None
 
 
-def fn_delete_inactive_coauthors(contents):
-    return re.sub(r'^#+\s*Inactive Co-Authors.*?(?=^#|\Z)', '', contents,
-                  flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
-
-
 def fn_normalize_coauthor_heading(contents):
     return re.sub(r'^#+\s*.*Co-Author.*', '## Co-Authors', contents, flags=re.IGNORECASE | re.MULTILINE)
 
@@ -102,7 +97,7 @@ def fn_applesauce(contents, date_from_filename):
         contents = f"# Session Date: {date_from_filename}\n" + contents
     if SessionNotesCleaner().contains_active_coauthors(contents) and \
             SessionNotesCleaner().contains_inactive_coauthors(contents):
-        contents = fn_delete_inactive_coauthors(contents)
+        contents = SessionNotesCleaner().delete_inactive_coauthors(contents)
     contents = fn_normalize_coauthor_heading(contents)
     return contents
 
