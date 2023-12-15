@@ -1,11 +1,23 @@
-# Session Date: 2023-05-18
-## Co-Authors
+# Co-Authors (This Session)
 
-## Co-Authors
+## Active Co-Authors
 
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
+
+## Inactive Co-Authors
+
+Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
+Co-Authored-By: arrockt <cariari385@gmail.com>
+Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
+Co-Authored-By: Blessed538 <blesseddominic98@gmail.com>
+Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
+Co-Authored-By: Gabriel Mbaiorga <gabrielmbaiorga@gmail.com>
+Co-Authored-By: Idan Melamed <idanmel@gmail.com>
+Co-Authored-By: Rea <reasu@protonmail.com>
+Co-Authored-By: Tsvetan Tsvetanov <cpi.cecko@gmail.com>
+Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
 
 # Agenda
 

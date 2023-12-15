@@ -1,4 +1,3 @@
-# Session Date: 2022-11-10
 # How did that feel?
 - I like working on Testinfrastructure
     - Nice engineering challenge

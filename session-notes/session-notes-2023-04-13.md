@@ -1,4 +1,3 @@
-# Session Date: 2023-04-13
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>

@@ -1,4 +1,3 @@
-# Session Date: 2022-12-01
 # How did that feel?
 - Challenging +100
 - Not Stable, constantly port in use

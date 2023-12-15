@@ -1,4 +1,3 @@
-# Session Date: 2022-12-22
 # Goal
 
 - [X] !! potential bug: rotate button should not use rotateToTarget

@@ -1,4 +1,3 @@
-# Session Date: 2023-01-26
 # Goal
 - Exploratory testing
     - A: which part? Q: all the app

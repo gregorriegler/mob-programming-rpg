@@ -1,4 +1,3 @@
-# Session Date: 2023-01-19
 # Goal
 - Limit number of points to 3 per role
 - Exploratory testing

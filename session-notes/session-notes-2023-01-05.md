@@ -1,4 +1,3 @@
-# Session Date: 2023-01-05
 # Goal
 
 - [x] For next time we could take a look at this one:

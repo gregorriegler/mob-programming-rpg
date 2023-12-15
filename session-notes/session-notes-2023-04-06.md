@@ -1,4 +1,3 @@
-# Session Date: 2023-04-06
 ## Active
 
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>

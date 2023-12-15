@@ -1,4 +1,3 @@
-# Session Date: 2022-12-08
 # Goal
 
 - Fix inconsistent test failures around the wsserver
