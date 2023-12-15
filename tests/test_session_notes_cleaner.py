@@ -22,7 +22,7 @@ class TestSessionNotesCleaner(unittest.TestCase):
         return re.sub(pattern, '\n', text)
 
     def sample_file_contents(self):
-        return '''# Session Date: 2023-12-07
+        text = '''# Session Date: 2023-12-07
 
     ## Active Co-Authors   
     Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>   
@@ -107,9 +107,21 @@ class TestSessionNotesCleaner(unittest.TestCase):
         - 3. consider a checklist for newcomers (was a discussion about this)
         - 4. consider items in the backlog (reminders, what are we working on, etc.
 '''
+        return self.strip_trailing_whitespace(text)
 
     def test_strip_trailing_whitespace(self):
-        text = self.sample_file_contents()
+        text = '''Line with trailing spaces        
+Line with trailing tabs
+    Line with 4 leading spaces
+        Line with 2 leading tabs
+Following line is empty
+
+Following line has 3 tabs
+            
+Following line has 4 spaces
+    
+This is last line.                
+'''
         stripped_text = self.strip_trailing_whitespace(text)
         verify(stripped_text)
 
