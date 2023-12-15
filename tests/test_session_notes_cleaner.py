@@ -125,6 +125,10 @@ This is last line.
         stripped_text = self.strip_trailing_whitespace(text)
         verify(stripped_text)
 
+    def test_sample_file_has_no_trailing_whitespace(self):
+        text = self.sample_file_contents()
+        stripped_text = self.strip_trailing_whitespace(text)
+        self.assertEquals(text, stripped_text)
 
 if __name__ == '__main__':
     unittest.main()
