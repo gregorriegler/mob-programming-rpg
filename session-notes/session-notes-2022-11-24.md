@@ -1,3 +1,4 @@
+# Session Date: 2022-11-24
 # How did that feel?
 - frustrating +1
 - happy that we found the cause in the end +1

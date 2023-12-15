@@ -1,7 +1,7 @@
-# Co-Authors (This Session)
+# Session Date: 2023-05-11
 
-## Active Co-Authors
 
+## Co-Authors
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
