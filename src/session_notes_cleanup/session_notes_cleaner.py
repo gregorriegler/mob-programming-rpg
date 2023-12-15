@@ -10,6 +10,13 @@ class SessionNotesCleaner:
     def __init__(self):
         pass
 
+    def contains_inactive_coauthors(self, text):
+        return bool(re.search(r'^#+\s*Inactive Co-Authors', text, re.IGNORECASE | re.MULTILINE))
+
+    def delete_inactive_coauthors(self, text):
+        return re.sub(r'^#+\s*Inactive Co-Authors.*?(?=^#|\Z)', '', text,
+                      flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
+
 
 def get_date_from_filename(filename):
     match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
