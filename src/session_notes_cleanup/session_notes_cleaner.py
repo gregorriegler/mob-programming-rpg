@@ -23,6 +23,21 @@ class SessionNotesCleaner:
                       text,
                       flags=re.IGNORECASE | re.MULTILINE)
 
+    import re
+
+    def remove_coauthor_headings(self, text):
+        # Regular expression to match 1st and 2nd level headings with "Co-Authors"
+        # Assumes Markdown formatting where 1st level is '# ' and 2nd level is '## '
+        standard_text = self.standardize_coauthor_heading(text)
+        pattern = r'^#{1,2}\s*Co-Authors.*$\n?'
+        cleaned_text = re.sub(pattern, '', standard_text, flags=re.MULTILINE)
+
+        return cleaned_text
+
+    def applesauce(self, text):
+        pattern = r'^#+\s*Co-Author$'
+        re.sub(pattern, text,flags=re.IGNORECASE )
+
     def get_date_from_filename(self, filename):
         match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
         return match.group(1) if match else None
@@ -55,9 +70,9 @@ class SessionNotesCleaner:
         date_as_string = self.get_date_from_filename(filename)
         contents = self.cleanup_contents(contents, date_as_string)
         if contents == original_contents:
-            print(f"No changes were needed for the file: {filename}")
+            print(f"# No changes were needed for the file: {filename}")
         else:
-            print(f"Changes were made to the file: {filename}")
+            print(f"# Changes were made to the file: {filename}")
             new_filename = filename + ".new"
             with open(new_filename, 'w') as new_file:
                 new_file.write(contents)
@@ -65,7 +80,7 @@ class SessionNotesCleaner:
             original_backup_filename = filename + ".original"
             os.rename(filename, original_backup_filename)
             os.rename(new_filename, filename)
-            print(f"You can view changes by issuing this command: diff -u {original_backup_filename} {filename}")
+            print(f"# You can view changes by issuing this command:\ndiff -u {original_backup_filename} {filename}")
 
 
 def main():
