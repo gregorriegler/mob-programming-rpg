@@ -20,6 +20,14 @@ class SessionNotesCleaner:
     def contains_active_coauthors(self, text):
         return bool(re.search(r'^#+\s*Active Co-Authors', text, re.IGNORECASE | re.MULTILINE))
 
+    def cleanup_contents(self, contents, param):
+        if not contains_session_date(contents):
+            contents = f"# Session Date: {param}\n" + contents
+        if contains_active_coauthors(contents) and contains_inactive_coauthors(contents):
+            contents = delete_inactive_coauthors(contents)
+        contents = normalize_coauthor_heading(contents)
+        return contents
+
 
 def get_date_from_filename(filename):
     match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
@@ -64,13 +72,7 @@ def cleanup_file(filename):
     contents = original_contents
     date_as_string = get_date_from_filename(filename)
 
-    if not contains_session_date(contents):
-        contents = f"# Session Date: {date_as_string}\n" + contents
-
-    if contains_active_coauthors(contents) and contains_inactive_coauthors(contents):
-        contents = delete_inactive_coauthors(contents)
-
-    contents = normalize_coauthor_heading(contents)
+    contents = applesauce(contents, date_as_string)
 
     if contents == original_contents:
         print(f"No changes were needed for the file: {filename}")
@@ -84,6 +86,15 @@ def cleanup_file(filename):
         os.rename(filename, original_backup_filename)
         os.rename(new_filename, filename)
         print(f"You can view changes by issuing this command: diff -u {original_backup_filename} {filename}")
+
+
+def applesauce(contents, date_from_filename):
+    if not contains_session_date(contents):
+        contents = f"# Session Date: {date_from_filename}\n" + contents
+    if contains_active_coauthors(contents) and contains_inactive_coauthors(contents):
+        contents = delete_inactive_coauthors(contents)
+    contents = normalize_coauthor_heading(contents)
+    return contents
 
 
 def main():

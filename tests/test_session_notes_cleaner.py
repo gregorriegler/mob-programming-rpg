@@ -36,6 +36,12 @@ class TestSessionNotesCleaner(unittest.TestCase):
         clean_text = cleaner.delete_inactive_coauthors(text)
         verify(clean_text)
 
+    def test_cleanup_contents(self):
+        cleaner = SessionNotesCleaner()
+        text = self.sample_file_contents()
+        clean_text = cleaner.cleanup_contents(text, "2023-12-07")
+        verify(clean_text)
+
     def strip_trailing_whitespace(self, text):
         # Regular expression pattern to match trailing horizontal whitespace on each line, excluding newline
         pattern = r'[ \t]+\n'
