@@ -68,14 +68,6 @@ def fn_slurp_file(filename):
         return None
 
 
-# def fn_contains_inactive_coauthors(contents):
-#     return bool(re.search(r'^#+\s*Inactive Co-Authors', contents, re.IGNORECASE | re.MULTILINE))
-#
-#
-# def fn_contains_active_coauthors(contents):
-#     return bool(re.search(r'^#+\s*Active Co-Authors', contents, re.IGNORECASE | re.MULTILINE))
-
-
 def fn_contains_session_date(contents):
     return bool(re.search(r'^#+\s*Session Date', contents, re.IGNORECASE | re.MULTILINE))
 
