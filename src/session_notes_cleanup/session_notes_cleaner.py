@@ -37,7 +37,7 @@ class SessionNotesCleaner:
         return bool(re.search(r'^#+\s*Session Date', contents, re.IGNORECASE | re.MULTILINE))
 
     def cleanup_file(self, filename):
-        original_contents = fn_slurp_file(filename)
+        original_contents = SessionNotesCleaner().slurp_file(filename)
         if original_contents is None:
             print(f"File not found: {filename}")
             return
@@ -62,13 +62,12 @@ class SessionNotesCleaner:
         match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
         return match.group(1) if match else None
 
-
-def fn_slurp_file(filename):
-    try:
-        with open(filename, 'r') as file:
-            return file.read()
-    except FileNotFoundError:
-        return None
+    def slurp_file(self, filename):
+        try:
+            with open(filename, 'r') as file:
+                return file.read()
+        except FileNotFoundError:
+            return None
 
 
 def fn_delete_inactive_coauthors(contents):
