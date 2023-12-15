@@ -1,6 +1,7 @@
 # test_session_notes_cleaner.py
 import re
 import unittest
+
 from approvaltests import verify
 
 from src.session_notes_cleanup.session_notes_cleaner import SessionNotesCleaner
@@ -35,6 +36,13 @@ class TestSessionNotesCleaner(unittest.TestCase):
         text = self.sample_file_contents()
         clean_text = cleaner.delete_inactive_coauthors(text)
         verify(clean_text)
+
+    def test_normalize_coauthor_heading(self):
+        cleaner = SessionNotesCleaner()
+        text = "## Coauthors\n## Active Co-Authors\n## Today's Co-Authors\n## Co-Authors (today)\n"
+        clean_text = cleaner.normalize_coauthor_heading(text)
+        acceptance_text = f'Before\n{text}\n\nAfter\n{clean_text}'
+        verify(acceptance_text)
 
     def test_cleanup_contents(self):
         cleaner = SessionNotesCleaner()
