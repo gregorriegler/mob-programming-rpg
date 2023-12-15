@@ -21,7 +21,7 @@ class SessionNotesCleaner:
         return bool(re.search(r'^#+\s*Active Co-Authors', text, re.IGNORECASE | re.MULTILINE))
 
     def cleanup_contents(self, text, session_date):
-        if not fn_contains_session_date(text):
+        if not self.contains_session_date(text):
             text = f"# Session Date: {session_date}\n" + text
         if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
             text = self.delete_inactive_coauthors(text)
@@ -32,6 +32,9 @@ class SessionNotesCleaner:
         return re.sub(r'^#+\s*.*Co-?Author.*', '## Co-Authors',
                       text,
                       flags=re.IGNORECASE | re.MULTILINE)
+
+    def contains_session_date(self, contents):
+        return bool(re.search(r'^#+\s*Session Date', contents, re.IGNORECASE | re.MULTILINE))
 
     def cleanup_file(self, filename):
         original_contents = fn_slurp_file(filename)
@@ -68,10 +71,6 @@ def fn_slurp_file(filename):
         return None
 
 
-def fn_contains_session_date(contents):
-    return bool(re.search(r'^#+\s*Session Date', contents, re.IGNORECASE | re.MULTILINE))
-
-
 def fn_delete_inactive_coauthors(contents):
     return re.sub(r'^#+\s*Inactive Co-Authors.*?(?=^#|\Z)', '', contents,
                   flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
@@ -100,7 +99,7 @@ def method_name(filename, original_contents):
 
 
 def fn_applesauce(contents, date_from_filename):
-    if not fn_contains_session_date(contents):
+    if not SessionNotesCleaner().contains_session_date(contents):
         contents = f"# Session Date: {date_from_filename}\n" + contents
     if SessionNotesCleaner().contains_active_coauthors(contents) and \
             SessionNotesCleaner().contains_inactive_coauthors(contents):
