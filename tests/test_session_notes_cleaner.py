@@ -51,6 +51,19 @@ class TestSessionNotesCleaner(unittest.TestCase):
         acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
         verify(acceptance_text)
 
+    def test_add_coauthor_heading_before_co_authored_by_list(self):
+        cleaner = SessionNotesCleaner()
+        text = ""
+        text += "## Facilitator\n"
+        text += "Everyone\n"
+        text += "\n"
+        text += "Co-Authored-By: Manny\n"
+        text += "Co-Authored-By: Moe\n"
+        text += "Co-Authored-By: Jack\n"
+        clean_text = cleaner.add_coauthor_heading_before_co_authored_by_list(text)
+        acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
+        verify(acceptance_text)
+
     def test_cleanup_contents(self):
         cleaner = SessionNotesCleaner()
         text = self.sample_file_contents()

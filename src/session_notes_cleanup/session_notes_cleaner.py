@@ -30,8 +30,17 @@ class SessionNotesCleaner:
         # Assumes Markdown formatting where 1st level is '# ' and 2nd level is '## '
         standard_text = self.standardize_coauthor_heading(text)
         pattern = r'^#{1,2}\s*Co-Authors.*$\n?'
-        cleaned_text = re.sub(pattern, '', standard_text, flags=re.MULTILINE)
+        cleaned_text = re.sub(pattern, '', standard_text, flags=re.IGNORECASE | re.MULTILINE)
 
+        return cleaned_text
+
+
+    def add_coauthor_heading_before_co_authored_by_list(self, text):
+        search_pattern = r'^(Co-Authored-By.*)$'
+        replace_pattern = r'## Co-Authors\n\1'
+        cleaned_text = re.sub(search_pattern, replace_pattern, text,
+                              count=1,
+                              flags=re.IGNORECASE | re.MULTILINE)
         return cleaned_text
 
     def applesauce(self, text):
@@ -58,6 +67,8 @@ class SessionNotesCleaner:
         if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
             text = self.delete_inactive_coauthors(text)
         text = self.standardize_coauthor_heading(text)
+        text = self.remove_coauthor_headings(text)
+        text = self.add_coauthor_heading_before_co_authored_by_list(text)
         return text
 
     def cleanup_file(self, filename):
