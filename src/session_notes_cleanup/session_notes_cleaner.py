@@ -20,17 +20,17 @@ class SessionNotesCleaner:
     def contains_active_coauthors(self, text):
         return bool(re.search(r'^#+\s*Active Co-Authors', text, re.IGNORECASE | re.MULTILINE))
 
-    def cleanup_contents(self, contents, param):
-        if not contains_session_date(contents):
-            contents = f"# Session Date: {param}\n" + contents
-        if self.contains_active_coauthors(contents) and self.contains_inactive_coauthors(contents):
-            contents = self.delete_inactive_coauthors(contents)
-        contents = self.normalize_coauthor_heading(contents)
-        return contents
+    def cleanup_contents(self, text, session_date):
+        if not contains_session_date(text):
+            text = f"# Session Date: {session_date}\n" + text
+        if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
+            text = self.delete_inactive_coauthors(text)
+        text = self.normalize_coauthor_heading(text)
+        return text
 
-    def normalize_coauthor_heading(self, contents):
+    def normalize_coauthor_heading(self, text):
         return re.sub(r'^#+\s*.*Co-Author.*', '## Co-Authors',
-                      contents,
+                      text,
                       flags=re.IGNORECASE | re.MULTILINE)
 
 
