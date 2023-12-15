@@ -20,6 +20,11 @@ class TestSessionNotesCleaner(unittest.TestCase):
         stripped_text = self.strip_trailing_whitespace(text)
         self.assertEquals(text, stripped_text)
 
+    def test_contains_active_coauthors(self):
+        text = self.sample_file_contents()
+        cleaner = SessionNotesCleaner()
+        self.assertTrue(cleaner.contains_active_coauthors(text))
+
     def test_contains_inactive_coauthors(self):
         text = self.sample_file_contents()
         cleaner = SessionNotesCleaner()
