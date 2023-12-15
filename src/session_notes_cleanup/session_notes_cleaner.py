@@ -23,8 +23,19 @@ class SessionNotesCleaner:
                       text,
                       flags=re.IGNORECASE | re.MULTILINE)
 
-    def contains_session_date(self, contents):
-        return bool(re.search(r'^#+\s*Session Date', contents, re.IGNORECASE | re.MULTILINE))
+    def get_date_from_filename(self, filename):
+        match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
+        return match.group(1) if match else None
+
+    def slurp_file(self, filename):
+        try:
+            with open(filename, 'r') as file:
+                return file.read()
+        except FileNotFoundError:
+            return None
+
+    def contains_session_date(self, text):
+        return bool(re.search(r'^#+\s*Session Date', text, re.IGNORECASE | re.MULTILINE))
 
     def cleanup_contents(self, text, session_date):
         if not self.contains_session_date(text):
@@ -55,17 +66,6 @@ class SessionNotesCleaner:
             os.rename(filename, original_backup_filename)
             os.rename(new_filename, filename)
             print(f"You can view changes by issuing this command: diff -u {original_backup_filename} {filename}")
-
-    def get_date_from_filename(self, filename):
-        match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
-        return match.group(1) if match else None
-
-    def slurp_file(self, filename):
-        try:
-            with open(filename, 'r') as file:
-                return file.read()
-        except FileNotFoundError:
-            return None
 
 
 def main():
