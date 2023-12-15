@@ -1,7 +1,7 @@
 # Python code for the specified tasks
 
-import re
 import os
+import re
 import shutil
 import sys
 
@@ -29,7 +29,7 @@ class SessionNotesCleaner:
         return text
 
     def normalize_coauthor_heading(self, text):
-        return re.sub(r'^#+\s*.*Co-Author.*', '## Co-Authors',
+        return re.sub(r'^#+\s*.*Co-?Author.*', '## Co-Authors',
                       text,
                       flags=re.IGNORECASE | re.MULTILINE)
 
