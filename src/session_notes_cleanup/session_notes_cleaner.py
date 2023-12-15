@@ -23,10 +23,15 @@ class SessionNotesCleaner:
     def cleanup_contents(self, contents, param):
         if not contains_session_date(contents):
             contents = f"# Session Date: {param}\n" + contents
-        if contains_active_coauthors(contents) and contains_inactive_coauthors(contents):
-            contents = delete_inactive_coauthors(contents)
-        contents = normalize_coauthor_heading(contents)
+        if self.contains_active_coauthors(contents) and self.contains_inactive_coauthors(contents):
+            contents = self.delete_inactive_coauthors(contents)
+        contents = self.normalize_coauthor_heading(contents)
         return contents
+
+    def normalize_coauthor_heading(self, contents):
+        return re.sub(r'^#+\s*.*Co-Author.*', '## Co-Authors',
+                      contents,
+                      flags=re.IGNORECASE | re.MULTILINE)
 
 
 def get_date_from_filename(filename):
