@@ -18,7 +18,7 @@ class SessionNotesCleaner:
     def contains_active_coauthors(self, text):
         return bool(re.search(r'^#+\s*Active Co-Authors', text, re.IGNORECASE | re.MULTILINE))
 
-    def normalize_coauthor_heading(self, text):
+    def standardize_coauthor_heading(self, text):
         return re.sub(r'^#+\s*.*Co-?Author.*', '## Co-Authors',
                       text,
                       flags=re.IGNORECASE | re.MULTILINE)
@@ -42,7 +42,7 @@ class SessionNotesCleaner:
             text = f"# Session Date: {session_date}\n" + text
         if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
             text = self.delete_inactive_coauthors(text)
-        text = self.normalize_coauthor_heading(text)
+        text = self.standardize_coauthor_heading(text)
         return text
 
     def cleanup_file(self, filename):

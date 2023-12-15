@@ -40,7 +40,7 @@ class TestSessionNotesCleaner(unittest.TestCase):
     def test_normalize_coauthor_heading(self):
         cleaner = SessionNotesCleaner()
         text = "## Coauthors\n## Active Co-Authors\n## Today's Co-Authors\n## Co-Authors (today)\n"
-        clean_text = cleaner.normalize_coauthor_heading(text)
+        clean_text = cleaner.standardize_coauthor_heading(text)
         acceptance_text = f'Before\n{text}\n\nAfter\n{clean_text}'
         verify(acceptance_text)
 
