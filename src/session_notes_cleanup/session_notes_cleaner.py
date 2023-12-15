@@ -9,21 +9,19 @@ class SessionNotesCleaner:
         pass
 
     def contains_inactive_coauthors(self, text):
-        return bool(re.search(r'^#+\s*Inactive Co-Authors', text, re.IGNORECASE | re.MULTILINE))
+        return bool(re.search(r'^#+\s*Inactive( Co-Authors)?', text, re.IGNORECASE | re.MULTILINE))
 
     def delete_inactive_coauthors(self, text):
-        return re.sub(r'^#+\s*Inactive Co-Authors.*?(?=^#|\Z)', '', text,
+        return re.sub(r'^#+\s*Inactive( Co-Authors)?.*?(?=^#|\Z)', '', text,
                       flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
 
     def contains_active_coauthors(self, text):
-        return bool(re.search(r'^#+\s*Active Co-Authors', text, re.IGNORECASE | re.MULTILINE))
+        return bool(re.search(r'^#+\s*(Active )?Co-Authors', text, re.IGNORECASE | re.MULTILINE))
 
     def standardize_coauthor_heading(self, text):
-        return re.sub(r'^#+\s*.*Co-?Author.*', '## Co-Authors',
+        return re.sub(r'^#+\s*.*?((?:Inactive\s+)?)\s*Co-?Author.*', r'## \1Co-Authors',
                       text,
                       flags=re.IGNORECASE | re.MULTILINE)
-
-    import re
 
     def remove_coauthor_headings(self, text):
         # Regular expression to match 1st and 2nd level headings with "Co-Authors"
@@ -34,7 +32,6 @@ class SessionNotesCleaner:
 
         return cleaned_text
 
-
     def add_coauthor_heading_before_co_authored_by_list(self, text):
         search_pattern = r'^(Co-Authored-By.*)$'
         replace_pattern = r'## Co-Authors\n\1'
@@ -42,10 +39,6 @@ class SessionNotesCleaner:
                               count=1,
                               flags=re.IGNORECASE | re.MULTILINE)
         return cleaned_text
-
-    def applesauce(self, text):
-        pattern = r'^#+\s*Co-Author$'
-        re.sub(pattern, text,flags=re.IGNORECASE )
 
     def get_date_from_filename(self, filename):
         match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
@@ -64,9 +57,9 @@ class SessionNotesCleaner:
     def cleanup_contents(self, text, session_date):
         if not self.contains_session_date(text):
             text = f"# Session Date: {session_date}\n" + text
+        text = self.standardize_coauthor_heading(text)
         if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
             text = self.delete_inactive_coauthors(text)
-        text = self.standardize_coauthor_heading(text)
         text = self.remove_coauthor_headings(text)
         text = self.add_coauthor_heading_before_co_authored_by_list(text)
         return text
