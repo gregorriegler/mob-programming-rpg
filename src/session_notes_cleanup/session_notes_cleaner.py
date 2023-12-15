@@ -1,5 +1,3 @@
-# Python code for the specified tasks
-
 import os
 import re
 import shutil
@@ -20,14 +18,6 @@ class SessionNotesCleaner:
     def contains_active_coauthors(self, text):
         return bool(re.search(r'^#+\s*Active Co-Authors', text, re.IGNORECASE | re.MULTILINE))
 
-    def cleanup_contents(self, text, session_date):
-        if not self.contains_session_date(text):
-            text = f"# Session Date: {session_date}\n" + text
-        if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
-            text = self.delete_inactive_coauthors(text)
-        text = self.normalize_coauthor_heading(text)
-        return text
-
     def normalize_coauthor_heading(self, text):
         return re.sub(r'^#+\s*.*Co-?Author.*', '## Co-Authors',
                       text,
@@ -35,6 +25,14 @@ class SessionNotesCleaner:
 
     def contains_session_date(self, contents):
         return bool(re.search(r'^#+\s*Session Date', contents, re.IGNORECASE | re.MULTILINE))
+
+    def cleanup_contents(self, text, session_date):
+        if not self.contains_session_date(text):
+            text = f"# Session Date: {session_date}\n" + text
+        if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
+            text = self.delete_inactive_coauthors(text)
+        text = self.normalize_coauthor_heading(text)
+        return text
 
     def cleanup_file(self, filename):
         original_contents = SessionNotesCleaner().slurp_file(filename)
