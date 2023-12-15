@@ -40,7 +40,7 @@ class SessionNotesCleaner:
             return
 
         contents = original_contents
-        date_as_string = get_date_from_filename(filename)
+        date_as_string = self.get_date_from_filename(filename)
         contents = self.cleanup_contents(contents, date_as_string)
         if contents == original_contents:
             print(f"No changes were needed for the file: {filename}")
@@ -55,10 +55,9 @@ class SessionNotesCleaner:
             os.rename(new_filename, filename)
             print(f"You can view changes by issuing this command: diff -u {original_backup_filename} {filename}")
 
-
-def get_date_from_filename(filename):
-    match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
-    return match.group(1) if match else None
+    def get_date_from_filename(self, filename):
+        match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
+        return match.group(1) if match else None
 
 
 def fn_slurp_file(filename):
@@ -92,7 +91,7 @@ def fn_normalize_coauthor_heading(contents):
 
 def method_name(filename, original_contents):
     contents = original_contents
-    date_as_string = get_date_from_filename(filename)
+    date_as_string = SessionNotesCleaner().get_date_from_filename(filename)
     contents = fn_applesauce(contents, date_as_string)
     if contents == original_contents:
         print(f"No changes were needed for the file: {filename}")
@@ -111,7 +110,8 @@ def method_name(filename, original_contents):
 def fn_applesauce(contents, date_from_filename):
     if not fn_contains_session_date(contents):
         contents = f"# Session Date: {date_from_filename}\n" + contents
-    if fn_contains_active_coauthors(contents) and fn_contains_inactive_coauthors(contents):
+    if SessionNotesCleaner().contains_active_coauthors(contents) and \
+            SessionNotesCleaner().contains_inactive_coauthors(contents):
         contents = fn_delete_inactive_coauthors(contents)
     contents = fn_normalize_coauthor_heading(contents)
     return contents
