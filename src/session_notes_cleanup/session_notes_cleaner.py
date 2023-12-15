@@ -3,32 +3,55 @@ import re
 import shutil
 import sys
 
+inactive_co_author_header_pattern = r'^#+\s*Inactive\s(Co-Authors)?.*$'
+
+active_co_author_header_pattern = r'^#+\s*(Active Co-Authors|Co-Authors \(This Session\)).*$'
+
 
 class SessionNotesCleaner:
     def __init__(self):
         pass
 
     def contains_inactive_coauthors(self, text):
-        return bool(re.search(r'^#+\s*Inactive( Co-Authors)?', text, re.IGNORECASE | re.MULTILINE))
+        return bool(re.search(inactive_co_author_header_pattern, text,
+                              flags=re.IGNORECASE | re.MULTILINE))
 
     def delete_inactive_coauthors(self, text):
-        return re.sub(r'^#+\s*Inactive( Co-Authors)?.*?(?=^#|\Z)', '', text,
+        return re.sub(r'^#+\s*Inactive Co-Authors.*?(?=^#|\Z)', '', text,
                       flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
 
     def contains_active_coauthors(self, text):
-        return bool(re.search(r'^#+\s*(Active )?Co-Authors', text, re.IGNORECASE | re.MULTILINE))
+        return bool(re.search(active_co_author_header_pattern, text,
+                              flags=re.IGNORECASE | re.MULTILINE))
 
     def standardize_coauthor_heading(self, text):
-        return re.sub(r'^#+\s*.*?((?:Inactive\s+)?)\s*Co-?Author.*', r'## \1Co-Authors',
-                      text,
-                      flags=re.IGNORECASE | re.MULTILINE)
+        # Co-Authors (This Session)
+        # Active Co-Authors
+        # active_co_author_search_pattern = r'^#+\s*((?:Active\s+)?)Co-?Authors.*$'
+        active_co_author_search_pattern = active_co_author_header_pattern
+        active_co_author_replace_pattern = r'## Co-Authors'
+        standardized_text_for_active_authors = \
+            re.sub(active_co_author_search_pattern, active_co_author_replace_pattern, text,
+                   flags=re.IGNORECASE | re.MULTILINE)
+
+        # Inactive Co-Authors
+        # Inactive
+        inactive_co_author_search_pattern = inactive_co_author_header_pattern
+        inactive_co_author_replace_pattern = r'## Inactive Co-Authors'
+        standardized_text_for_active_and_inactive_authors \
+            = re.sub(inactive_co_author_search_pattern, inactive_co_author_replace_pattern,
+                     standardized_text_for_active_authors,
+                     flags=re.IGNORECASE | re.MULTILINE)
+
+        return standardized_text_for_active_and_inactive_authors
 
     def remove_coauthor_headings(self, text):
         # Regular expression to match 1st and 2nd level headings with "Co-Authors"
         # Assumes Markdown formatting where 1st level is '# ' and 2nd level is '## '
         standard_text = self.standardize_coauthor_heading(text)
         pattern = r'^#{1,2}\s*Co-Authors.*$\n?'
-        cleaned_text = re.sub(pattern, '', standard_text, flags=re.IGNORECASE | re.MULTILINE)
+        cleaned_text = re.sub(pattern, '', standard_text,
+                              flags=re.IGNORECASE | re.MULTILINE)
 
         return cleaned_text
 
@@ -58,8 +81,9 @@ class SessionNotesCleaner:
         if not self.contains_session_date(text):
             text = f"# Session Date: {session_date}\n" + text
         text = self.standardize_coauthor_heading(text)
-        if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
-            text = self.delete_inactive_coauthors(text)
+        # if self.contains_active_coauthors(text) and self.contains_inactive_coauthors(text):
+        text = self.delete_inactive_coauthors(text)
+
         text = self.remove_coauthor_headings(text)
         text = self.add_coauthor_heading_before_co_authored_by_list(text)
         return text

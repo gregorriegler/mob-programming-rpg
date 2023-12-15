@@ -38,16 +38,26 @@ class TestSessionNotesCleaner(unittest.TestCase):
         verify(clean_text)
 
     def test_normalize_coauthor_heading(self):
+        text = ""
+        text += "## Co-Authors (This Session)\n"
+        text += "## Active Co-Authors\n"
+        text += "\n"
+        text += "## Inactive Co-Authors\n"
+        text += "## Inactive\n"
+
         cleaner = SessionNotesCleaner()
-        text = "## Coauthors\n## Active Co-Authors\n## Today's Co-Authors\n## Co-Authors (today)\n"
-        text += "## Inactive\n## Inactive Co-Authors\n## Inactive CoAuthors\n"
         clean_text = cleaner.standardize_coauthor_heading(text)
         acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
         verify(acceptance_text)
 
     def test_remove_coauthor_headings(self):
         cleaner = SessionNotesCleaner()
-        text = "## Coauthors\n## Facilitator\n## Active Co-Authors\n## Today's Co-Authors\n## Co-Authors (today)\n"
+        text = ""
+        text += "## Co-Authors (This Session)\n"
+        text += "## Active Co-Authors\n"
+        text += "\n"
+        text += "## Inactive Co-Authors\n"
+        text += "## Inactive\n"
         clean_text = cleaner.remove_coauthor_headings(text)
         acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
         verify(acceptance_text)
