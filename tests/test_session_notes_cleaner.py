@@ -19,7 +19,7 @@ class TestSessionNotesCleaner(unittest.TestCase):
     def test_sample_file_has_no_trailing_whitespace(self):
         text = self.sample_file_contents()
         stripped_text = self.strip_trailing_whitespace(text)
-        self.assertEquals(text, stripped_text)
+        self.assertEqual(text, stripped_text)
 
     def test_contains_active_coauthors(self):
         text = self.sample_file_contents()
