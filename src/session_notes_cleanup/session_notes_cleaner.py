@@ -4,9 +4,11 @@ import shutil
 import sys
 
 inactive_co_author_header_pattern = r'^#+\s*Inactive\s(Co-Authors)?.*$'
-
 active_co_author_header_pattern = r'^#+\s*(Active Co-Authors|Co-Authors \(This Session\)).*$'
 
+# TODO
+# - Fix file that has no header before inactive co-authors
+# - Return codes similar to diff(1)
 
 class SessionNotesCleaner:
     def __init__(self):
