@@ -13,12 +13,17 @@ Try to get to the coding part sooner (defer group business). Allow for bonding a
 - Avoid a lot of upfront explanations
 - The goal is to have the new member see and experience how we work
 - Talker is explicit about each TDD step (eg "Let's start with a failing test...")
-- We use FizzBuzz on [cyber-dojo](https://cyber-dojo.org)
+
+### Setup
+- Kata Setup:
+  - We use FizzBuzz on [cyber-dojo](https://cyber-dojo.org)
   - We should use their favourite language and test framework
-- The goal is to have a full rotation and retro (3 minutes seems best)
-- The new members ideally should have a chance to observe before being Talker or Typer
-- Optional for mid-point retros: prompt the newcomer with "What went well?", "First impressions?", "Should anything change for the second part of the session?"
+- Timer Setup:
+  - 3 minutes per turn seems best
+  - New members ideally should have a chance to observe before being Talker or Typer
+  - The goal is for the newcomer to experience each role in the mob and the retro
+
+## Retro
 - Consider have the newcomer not be first in the retro speaking order
-
-
-TODO: Nitsan: Retro item
+- Optional for mid-point retros: prompt the newcomer with "What went well?", "First impressions?", "Should anything change for the second part of the session?"
+- Prompt the newcomer with they observed had happened
