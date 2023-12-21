@@ -1,6 +1,6 @@
 # Reminders
 
--   Identify who Facilitates
+-   Identify who facilitates (Blaise would like to facilitate on 2023-12-28, backup Nitsan/Joel)
 -   If we have any newcomers review our [onboarding notes](./onboarding-notes.md)
 -   Update the Date and Active Co-Authors for [today's session notes](../session-notes/_todays-session-notes.md) 
 -   Review the Ideas section of the [previous session notes](../session-notes/_previous-session-notes.md)

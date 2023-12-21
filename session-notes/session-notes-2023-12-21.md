@@ -69,11 +69,7 @@ Michael - Doing a comfortable kata allowed us to practice our communication skil
 
 ## Reflect / Retro (25 min.)
 
-
-
-### How did that feel?
-
-### What worked well, we want to do more of it?
+Had a non-written retro
 
 ### Ideas
 
