@@ -1,14 +1,18 @@
-# Session Date: YYYY-MM-DD
-## Co-Authors
+# Session Date: 2023-12-21
 
-## Inactive Co-Authors
+## Facilitated by
+Blaise Pabon
+
+## Co-Authors
 Co-Authored-By: martin-martin <breuss.martin@gmail.com>
-Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
 Co-Authored-By: Blaise Pabon <blaise@gmail.com>
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
-Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
+Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
+
+## Inactive Co-Authors
+Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
 Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
 Co-Authored-By: arrockt <cariari385@gmail.com>
 Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
@@ -36,11 +40,36 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 -   Consider checking the recent `git log -p`
 -   Check the [global backlog](../docs/backlog.md)
 
+### Items we could do
+0. Python Kata as an Ensemble
+1. Review Pull Request from Michael
+2. Continue Commit message generator
+3. Show and Tell instead of review Michaels Pull Request
+4. Align backlog and readme (overall doc) to reflect what we are doing (4)
+5. Kata and record it and publish it
+6. Continue Kata from last week (6)
+7. Make GPT do something new
+
+## Mid Session Retro (5 minute)
+
+Blaise - Delighted hatt it gave Martin a good overview.
+
+Joel - Happy to have new member.  With little taste of cyber-dojo.  Next time -- 3 minutes instead of 2.
+
+Gregor - Happy to have Martin.  We really got into coding rather quick.  Enjoyed it.  Good to cleanup before moving on.  After confusion, referring to readme helped get clarity before moving on.  Intent before "WHAT" helped.
+
+Martin - Fun to try it out.  Timer was stressful.  You can't zone out.  Nice way to make sure we know how to communicate.
+
+Michael - Doing a comfortable kata allowed us to practice our communication skillls. 'Welcome Kata'
+
+
 ## Leave Breadcrumbs (5 min.)
 
 -   Update the [global backlog](../docs/backlog.md)
 
 ## Reflect / Retro (25 min.)
+
+
 
 ### How did that feel?
 
