@@ -3,11 +3,25 @@ import re
 import unittest
 
 from approvaltests import verify
-
+# from approvaltests.core import approval
+from approvaltests.reporters import GenericDiffReporterFactory, ClipboardReporter, MultiReporter
 from src.session_notes_cleanup.session_notes_cleaner import SessionNotesCleaner
+
+default_reporter = GenericDiffReporterFactory().get_first_working()
+# approval.DEFAULT_REPORTER = default_reporter
+
+
+first_working_reporter = GenericDiffReporterFactory().get_first_working()
+clipboard_reporter = ClipboardReporter()
+# bc_reporter = GenericDiffReporterFactory().get("Beyond Compare")
+preferred_multi_reporter = MultiReporter(first_working_reporter, clipboard_reporter)
 
 
 class TestSessionNotesCleaner(unittest.TestCase):
+    # def setUp(self) -> None:
+
+    # self.addCleanup(first_working_reporter.report)
+
     def test_initialization(self):
         cleaner = SessionNotesCleaner()
         # Add assertions here to test initial conditions
@@ -35,7 +49,7 @@ class TestSessionNotesCleaner(unittest.TestCase):
         cleaner = SessionNotesCleaner()
         text = self.sample_file_contents()
         clean_text = cleaner.delete_inactive_coauthors(text)
-        verify(clean_text)
+        verify(clean_text, preferred_multi_reporter)
 
     def test_normalize_coauthor_heading(self):
         text = ""
@@ -48,7 +62,7 @@ class TestSessionNotesCleaner(unittest.TestCase):
         cleaner = SessionNotesCleaner()
         clean_text = cleaner.standardize_coauthor_heading(text)
         acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
-        verify(acceptance_text)
+        verify(acceptance_text, preferred_multi_reporter)
 
     def test_remove_coauthor_headings(self):
         cleaner = SessionNotesCleaner()
@@ -60,7 +74,7 @@ class TestSessionNotesCleaner(unittest.TestCase):
         text += "## Inactive\n"
         clean_text = cleaner.remove_coauthor_headings(text)
         acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
-        verify(acceptance_text)
+        verify(acceptance_text, preferred_multi_reporter)
 
     def test_add_coauthor_heading_before_co_authored_by_list(self):
         cleaner = SessionNotesCleaner()
@@ -73,23 +87,53 @@ class TestSessionNotesCleaner(unittest.TestCase):
         text += "Co-Authored-By: Jack\n"
         clean_text = cleaner.add_coauthor_heading_before_co_authored_by_list(text)
         acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
-        verify(acceptance_text)
+        verify(acceptance_text, preferred_multi_reporter)
 
-    def test_cleanup_contents(self):
+        # Import the function to be tested
+        # from your_script import get_date_from_filename
+
+        # Test suite for 'get_date_from_filename'
+
+    def test_get_date_from_filename(self):
         cleaner = SessionNotesCleaner()
-        text = self.sample_file_contents()
-        clean_text = cleaner.cleanup_contents(text, "2023-12-07")
-        verify(clean_text)
+
+        # Test with valid filenames
+        assert cleaner.get_date_from_filename("session-notes-2022-10-20.md") == "2022-10-20"
+        assert cleaner.get_date_from_filename("session-notes-2021-01-01.md") == "2021-01-01"
+
+        # Test with filenames that do not follow the expected pattern
+        assert cleaner.get_date_from_filename("session-notes.md") is None
+        assert cleaner.get_date_from_filename("notes-2022-10-20.md") is None
+        assert cleaner.get_date_from_filename("session-2022-10-20.md") is None
+
+        # Test with filenames that are close to the pattern but not exact
+        assert cleaner.get_date_from_filename("session-notes-2022-10-20.markdown") is None
+        assert cleaner.get_date_from_filename("session-notes-2022-13-01.md") is None  # Invalid month
+        assert cleaner.get_date_from_filename("session-notes-2022-00-10.md") is None  # Invalid month
+
+        # Test with edge cases
+        assert cleaner.get_date_from_filename("") is None
+        assert cleaner.get_date_from_filename(" ") is None
+
+    # Note: Replace 'your_script' with the name of the Python file where 'get_date_from_filename' is defined.
+
+
+def test_cleanup_contents(self):
+    cleaner = SessionNotesCleaner()
+    text = self.sample_file_contents()
+    clean_text = cleaner.cleanup_contents(text, "2023-12-07")
+    verify(clean_text, preferred_multi_reporter)
 
     @staticmethod
-    def strip_trailing_whitespace(text):
+    def strip_trailing_whitespace(multi_line_text):
         # Regular expression pattern to match trailing horizontal whitespace on each line, excluding newline
         pattern = r'[ \t]+\n'
         # Replace matched patterns with nothing (i.e., remove them)
-        return re.sub(pattern, '\n', text)
+        return re.sub(pattern, '\n', multi_line_text)
 
-    def sample_file_contents(self):
-        text = '''# Session Date: 2023-12-07
+
+def sample_file_contents(self):
+    text = '''# Session Date: 2023-12-07
 
 ## Active Co-Authors   
 Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>   
@@ -174,10 +218,11 @@ What to do next? Vote on Proposals:
     - 3. consider a checklist for newcomers (was a discussion about this)
     - 4. consider items in the backlog (reminders, what are we working on, etc.
 '''
-        return self.strip_trailing_whitespace(text)
+    return self.strip_trailing_whitespace(text)
 
-    def test_strip_trailing_whitespace(self):
-        text = '''Line with trailing spaces        
+
+def test_strip_trailing_whitespace(self):
+    text = '''Line with trailing spaces        
 Line with trailing tabs
     Line with 4 leading spaces
         Line with 2 leading tabs
@@ -189,8 +234,8 @@ Following line has 4 spaces
     
 This is last line.                
 '''
-        stripped_text = self.strip_trailing_whitespace(text)
-        verify(stripped_text)
+    stripped_text = self.strip_trailing_whitespace(text)
+    verify(stripped_text, preferred_multi_reporter)
 
 
 if __name__ == '__main__':
