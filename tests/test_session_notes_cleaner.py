@@ -3,14 +3,15 @@ import re
 import unittest
 
 from approvaltests import verify
-# from approvaltests.core import approval
 from approvaltests.reporters import GenericDiffReporterFactory, ClipboardReporter, MultiReporter
 
 from src.session_notes_cleanup.session_notes_cleaner import SessionNotesCleaner
 
+# Set up ApprovalTests reporter(s)
 default_reporter = GenericDiffReporterFactory().get_first_working()
+# TODO - Set reporter for whole file/class
+# from approvaltests.core import approval
 # approval.DEFAULT_REPORTER = default_reporter
-
 
 first_working_reporter = GenericDiffReporterFactory().get_first_working()
 clipboard_reporter = ClipboardReporter()
@@ -89,11 +90,6 @@ class TestSessionNotesCleaner(unittest.TestCase):
         clean_text = cleaner.add_coauthor_heading_before_co_authored_by_list(text)
         acceptance_text = f'Before\n{text}====\nAfter\n{clean_text}====\n'
         verify(acceptance_text, preferred_multi_reporter)
-
-        # Import the function to be tested
-        # from your_script import get_date_from_filename
-
-        # Test suite for 'get_date_from_filename'
 
     def test_get_date_from_filename(self):
         cleaner = SessionNotesCleaner()
