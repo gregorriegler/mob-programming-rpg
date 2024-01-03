@@ -69,7 +69,9 @@ class SessionNotesCleaner:
     def get_date_from_filename(self, filename):
         match = re.search(r'^session-notes-(\d{4}-\d{2}-\d{2}).*[.]md$', filename)
 
-        if match:
+        if not match:
+            return None
+        else:
             date_str = match.group(1)
             try:
                 # Attempt to parse the date string
@@ -78,8 +80,6 @@ class SessionNotesCleaner:
             except ValueError:
                 # The date string is not a valid date
                 return None
-        else:
-            return None
 
     def slurp_file(self, filename):
         try:
