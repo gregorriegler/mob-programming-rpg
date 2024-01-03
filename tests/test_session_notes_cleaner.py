@@ -17,6 +17,7 @@ first_working_reporter = GenericDiffReporterFactory().get_first_working()
 clipboard_reporter = ClipboardReporter()
 # bc_reporter = GenericDiffReporterFactory().get("Beyond Compare")
 preferred_multi_reporter = MultiReporter(first_working_reporter, clipboard_reporter)
+preferred_multi_reporter = first_working_reporter
 
 
 class TestSessionNotesCleaner(unittest.TestCase):
