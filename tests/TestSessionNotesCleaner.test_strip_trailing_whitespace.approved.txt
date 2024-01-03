@@ -1,0 +1,11 @@
+Line with trailing spaces
+Line with trailing tabs
+    Line with 4 leading spaces
+        Line with 2 leading tabs
+Following line is empty
+
+Following line has 3 tabs
+
+Following line has 4 spaces
+
+This is last line.

@@ -2,11 +2,8 @@
 
 git_toplevel="$(git rev-parse --show-toplevel)"
 note_directory="${git_toplevel}/session-notes"
-script_directory="${note_directory}/cleanup-notes"
-script_path="${script_directory}/cleanup_session_notes.py"
-
-cd  "${note_directory}" || exit 2
-
+script_directory="${git_toplevel}/src/session_notes_cleanup"
+script_path="${script_directory}/session_notes_cleaner.py"
 
 
 for arg in "$@"
@@ -18,7 +15,7 @@ do
 	filename="$arg"
     fi
 
-    . "${script_directory}/venv/bin/activate" || exit 3
+    # . "${git_toplevel}/venv/bin/activate" || exit 3
 
     python "${script_path}" "${filename}"
 done

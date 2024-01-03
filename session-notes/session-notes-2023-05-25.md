@@ -1,8 +1,7 @@
 # Session Date: 2023-05-25
-## Co-Authors
+
 
 ## Co-Authors
-
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>

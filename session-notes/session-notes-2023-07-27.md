@@ -1,5 +1,4 @@
 # Session Date: 2023-07-27
-## Co-Authors
 
 ## Co-Authors
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>

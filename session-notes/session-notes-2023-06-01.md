@@ -1,8 +1,7 @@
 # Session Date: 2023-06-01
-## Co-Authors
+
 
 ## Co-Authors
-
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>

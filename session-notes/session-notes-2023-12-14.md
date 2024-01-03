@@ -2,7 +2,7 @@
 ## Facilitated by
  - Joel Silberman
 
-## Active Co-Authors
+## Co-Authors
 Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
 Co-Authored-By: Blaise Pabon <blaise@gmail.com>
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>

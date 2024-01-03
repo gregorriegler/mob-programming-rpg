@@ -1,4 +1,5 @@
 # Session Date: 2023-03-16
+## Co-Authors
 Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>

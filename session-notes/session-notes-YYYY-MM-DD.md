@@ -1,5 +1,5 @@
-# Session Date: YYYY-MM-DD
-## Co-Authors
+
+## Active Co-Authors
 
 ## Inactive Co-Authors
 Co-Authored-By: martin-martin <breuss.martin@gmail.com>
