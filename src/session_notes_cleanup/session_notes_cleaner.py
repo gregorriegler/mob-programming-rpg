@@ -72,13 +72,11 @@ class SessionNotesCleaner:
         if not match:
             return None
         else:
-            date_str = match.group(1)
             try:
-                # Attempt to parse the date string
+                date_str = match.group(1)
                 datetime.strptime(date_str, '%Y-%m-%d')
                 return date_str
             except ValueError:
-                # The date string is not a valid date
                 return None
 
     def slurp_file(self, filename):
