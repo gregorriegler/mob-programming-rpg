@@ -7,7 +7,6 @@ inactive_co_author_header_pattern = r'^#+\s*Inactive\s(Co-Authors)?.*$'
 active_co_author_header_pattern = r'^#+\s*(Active Co-Authors|Co-Authors \(This Session\)).*$'
 
 # TODO
-# - Fix file that has no header before inactive co-authors
 # - Return codes similar to diff(1)
 
 class SessionNotesCleaner:
@@ -66,7 +65,7 @@ class SessionNotesCleaner:
         return cleaned_text
 
     def get_date_from_filename(self, filename):
-        match = re.search(r'(\d{4}-\d{2}-\d{2})', filename, re.IGNORECASE)
+        match = re.search(r'^session-notes-(\d{4}-\d{2}-\d{2}).*[.]md$', filename)
         return match.group(1) if match else None
 
     def slurp_file(self, filename):
