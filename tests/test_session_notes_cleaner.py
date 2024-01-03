@@ -104,20 +104,17 @@ class TestSessionNotesCleaner(unittest.TestCase):
         self.assertEqual(cleaner.get_date_from_filename("session-notes-2021-01-01-part2.md"), "2021-01-01")
 
         # Test with filenames that do not follow the expected pattern
-        self.assertIsNone(cleaner.get_date_from_filename("session-notes.md"))  # no date
-        self.assertIsNone(cleaner.get_date_from_filename("Session-notes-2000-01-01.md"))  # Incorrect capitalization
-        self.assertIsNone(cleaner.get_date_from_filename("session-notes-2000-01-01.txt"))  # Incorrect extension
-        self.assertIsNone(cleaner.get_date_from_filename("notes-2022-10-20.md"))  # incomplete leading part
-        self.assertIsNone(cleaner.get_date_from_filename("session-2022-10-20.md"))  # incomplete leading part
+        self.assertIsNone(cleaner.get_date_from_filename("session-notes.md"), "Missing date part")
+        self.assertIsNone(cleaner.get_date_from_filename("Session-notes-2000-01-01.md"), "Incorrect capitalization")
+        self.assertIsNone(cleaner.get_date_from_filename("session-notes-2000-01-01.txt"), "Invalid extension")
 
-        # # Test with filenames that are close to the pattern but not exact
-        # assert cleaner.get_date_from_filename("session-notes-2022-10-20.markdown") is None
-        # assert cleaner.get_date_from_filename("session-notes-2022-13-01.md") is None  # Invalid month
-        # assert cleaner.get_date_from_filename("session-notes-2022-00-10.md") is None  # Invalid month
-        #
-        # # Test with edge cases
-        # assert cleaner.get_date_from_filename("") is None
-        # assert cleaner.get_date_from_filename(" ") is None
+        self.assertIsNone(cleaner.get_date_from_filename("notes-2022-10-20.md"), "Incorrect leading part")
+
+        self.assertIsNone(cleaner.get_date_from_filename("session-notes-2022-13-01.md"), "Invalid month")
+        self.assertIsNone(cleaner.get_date_from_filename("session-notes-2022-00-10.md"), "Invalid month")
+
+        self.assertIsNone(cleaner.get_date_from_filename(""), "Empty")
+        self.assertIsNone(cleaner.get_date_from_filename(" "), "Blank")
 
     def test_cleanup_contents(self):
         cleaner = SessionNotesCleaner()

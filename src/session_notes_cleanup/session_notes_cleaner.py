@@ -2,9 +2,11 @@ import os
 import re
 import shutil
 import sys
+from datetime import datetime
 
 inactive_co_author_header_pattern = r'^#+\s*Inactive\s(Co-Authors)?.*$'
 active_co_author_header_pattern = r'^#+\s*(Active Co-Authors|Co-Authors \(This Session\)).*$'
+
 
 # TODO
 # - Return codes similar to diff(1)
@@ -64,9 +66,21 @@ class SessionNotesCleaner:
                               flags=re.IGNORECASE | re.MULTILINE)
         return cleaned_text
 
+
     def get_date_from_filename(self, filename):
         match = re.search(r'^session-notes-(\d{4}-\d{2}-\d{2}).*[.]md$', filename)
-        return match.group(1) if match else None
+
+        if match:
+            date_str = match.group(1)
+            try:
+                # Attempt to parse the date string into a datetime object
+                valid_date = datetime.strptime(date_str, '%Y-%m-%d')
+                return date_str
+            except ValueError:
+                # The date string is not a valid date
+                return None
+
+        return None
 
     def slurp_file(self, filename):
         try:
