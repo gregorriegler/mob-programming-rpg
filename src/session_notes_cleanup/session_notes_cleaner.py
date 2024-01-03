@@ -78,8 +78,8 @@ class SessionNotesCleaner:
             except ValueError:
                 # The date string is not a valid date
                 return None
-
-        return None
+            else:
+                return None
 
     def slurp_file(self, filename):
         try:
