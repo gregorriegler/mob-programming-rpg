@@ -66,15 +66,14 @@ class SessionNotesCleaner:
                               flags=re.IGNORECASE | re.MULTILINE)
         return cleaned_text
 
-
     def get_date_from_filename(self, filename):
         match = re.search(r'^session-notes-(\d{4}-\d{2}-\d{2}).*[.]md$', filename)
 
         if match:
             date_str = match.group(1)
             try:
-                # Attempt to parse the date string into a datetime object
-                valid_date = datetime.strptime(date_str, '%Y-%m-%d')
+                # Attempt to parse the date string
+                datetime.strptime(date_str, '%Y-%m-%d')
                 return date_str
             except ValueError:
                 # The date string is not a valid date
