@@ -27,6 +27,8 @@
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
+-   . e The current session notes date in the first line is duplicated on creation 
+-   . e The Problem is: Easily find the session-notes template. Search for the 'template' using ctrl+p doesn't find the session-notes template.
 -   **Timer Sync** B Timer does not refresh for many people without restarting.
 -   enable feature flag for all Fs
 -   F Positions should stay in same place on screen (with player names rotating through).

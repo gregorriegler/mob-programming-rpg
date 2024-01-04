@@ -34,7 +34,6 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 - [ ] **Facilitator:** Identify who facilitates
 - [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
-- [ ] **?:** Short decisions / review reminders
 - [ ] **Code:** Get to coding quickly on a kata or other well refined backlog item
   - [ ] Everyone: turn on mob timer sounds 📣
   - [ ] Code
@@ -42,6 +41,7 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
   - [ ] More code
   - [ ] 10m retro
 - [ ] **Process improvement:** Improving process (e.g. the .md files)
+  - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
 - [ ] **Backlog refinement**
 - [ ] **Retro:** Final longer retro
 
