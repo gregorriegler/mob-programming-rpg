@@ -36,11 +36,11 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
 - [ ] **Code:** Get to coding quickly on a kata or other well refined backlog item
   - [ ] Everyone: turn on mob timer sounds 📣
-  - [ ] Add 'Retro' as the last participant to the timer 
+  - [ ] Add "Retro" as the last participant in the timer
   - [ ] Code
-  - [ ] 1m/person mid-session retro
+  - [ ] 10m mid-session retro
   - [ ] More code
-  - [ ] 1m/person retro
+  - [ ] 10m retro
 - [ ] **Process improvement:** Improving process (e.g. the .md files)
   - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
 - [ ] **Backlog refinement**

@@ -45,20 +45,19 @@ Agenda - Ideal
 A single chronological Session Workflow
 # Here is what we usually do
 
-- [ ] **Bond:** Bonding
-- [ ] **Facilitator:** Identify who facilitates (Blaise would like to facilitate on 2023-12-28, backup Nitsan/Joel)
-- [ ] **Co-Authors:** Update the Active Co-Authors for [today's session notes](../session-notes/_todays-session-notes.md) 
-- **Newcomers?:** If we have any newcomers review our [onboarding notes](./onboarding-notes.md)
-- [ ] **?:** Short decisions / review reminders
-  - [ ] **?:** Review the Ideas/Decisions section of the [previous session notes](../session-notes/_previous-session-notes.md)
-- [ ] **Code:** Get to coding quickly on a kata or other well refined backlog item
-  - [ ] Everyone: turn on mob timer sounds 📣
-  - [ ] Code
-  - [ ] 10m mid-session retro
+- [x] **Bond:** Bonding
+- [x] **Facilitator:** Identify who facilitates
+- [x] **Co-Authors:** Update the [Co-Authors](#co-authors) 
+- [x] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
+- [~x] **Code:** Get to coding quickly on a kata or other well refined backlog item
+  - [x] Everyone: turn on mob timer sounds 📣
+  - [~x] Code
+  - [x] 1m/person mid-session retro
   - [ ] More code
-  - [ ] 10m retro
-- [ ] **Process improvement:** Improving process (e.g. the .md files)
-- [ ] **Backlog refinement**
+  - [ ] 1m/person retro
+- [x] **Process improvement:** Improving process (e.g. the .md files)
+  - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
+- [~x] **Backlog refinement**
 - [ ] **Retro:** Final longer retro
 
 -----------------------------------
@@ -79,6 +78,35 @@ A single chronological Session Workflow
 -   Update the [global backlog](../docs/backlog.md)
 
 ## Reflect / Retro (25 min.)
+
+https://cyber-dojo.org/kata/edit/qeUSkn
+
+### Mid Session Retro (1 min each)
+
+Nitsan: Happy we did this, Feel like we're not done, can make it more compact (single source of truth) 
+        Would be happy to code if you have capacity.
+        Felt good in terms of collaboration.
+
+Joel:   Plus one on all of those.
+        In the beginning we had different Ideas. 
+        I'm glad we didnt talk too long on it.
+        It worked out really well, good demonstration of just try it.
+        Blew past timebox but totally worth it.
+
+Gregor: Went a lot differently than I thought, was thinking about small changes, but we did a overhaul really.
+        Confusing to me, becasue so diffeent than anticipated;
+        Very happy with the end result - fills its purpose
+        yes - happy doing coding still
+
+### Second Retro (1 min each)
+
+Nitsan: Feels more fluent with clojure. Like to go on, maybe get to some place new today.
+
+Joel:   Enjoyable, being recorded made me be more careful about what I said. I want not be aware of it. Like how the coding unfolded. 3 min is plenty time
+
+Gregor: Liked how the code unfolded;
+        Noticed how big of a deal when the tests are **slow** - e.g. was the `str` correct? because the test result wasn't immediate we went to chatGPT; 
+        Happy about recording, and excited how it might affect our retro later
 
 ### How did that feel?
 
