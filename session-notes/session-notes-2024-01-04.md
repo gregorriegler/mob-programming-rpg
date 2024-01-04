@@ -24,6 +24,7 @@ Agenda - today proposal
 
 - [x] bonding
 - [ ] get the .md files in shape - timeboxed to 25 min
+  - [ ] create a single chronological workflow, in one place
 - [ ] condensed coding
 - [ ] backlog refinement
 
@@ -38,6 +39,29 @@ Agenda - Ideal
 - backlog refinement
 - improving process (e.g. the .md files)
 - final longer retro
+- 
+-----------------
+
+A single chronological Session Workflow
+# Here is what we usually do
+
+- [ ] **Bond:** Bonding
+- [ ] **Facilitator:** Identify who facilitates (Blaise would like to facilitate on 2023-12-28, backup Nitsan/Joel)
+- [ ] **Co-Authors:** Update the Active Co-Authors for [today's session notes](../session-notes/_todays-session-notes.md) 
+- **Newcomers?:** If we have any newcomers review our [onboarding notes](./onboarding-notes.md)
+- [ ] **?:** Short decisions / review reminders
+  - [ ] **?:** Review the Ideas/Decisions section of the [previous session notes](../session-notes/_previous-session-notes.md)
+- [ ] **Code:** Get to coding quickly on a kata or other well refined backlog item
+  - [ ] Everyone: turn on mob timer sounds 📣
+  - [ ] Code
+  - [ ] 10m mid-session retro
+  - [ ] More code
+  - [ ] 10m retro
+- [ ] **Process improvement:** Improving process (e.g. the .md files)
+- [ ] **Backlog refinement**
+- [ ] **Retro:** Final longer retro
+
+-----------------------------------
 
 # Agenda
 

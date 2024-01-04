@@ -1,14 +1,6 @@
 # Reminders
 
--   Identify who facilitates (Blaise would like to facilitate on 2023-12-28, backup Nitsan/Joel)
--   If we have any newcomers review our [onboarding notes](./onboarding-notes.md)
--   Update the Date and Active Co-Authors for [today's session notes](../session-notes/_todays-session-notes.md) 
--   Review the Ideas section of the [previous session notes](../session-notes/_previous-session-notes.md)
--   Think about recording it
--   Everyone: turn on mob timer sounds 📣
--   Before Retro: Update the Backlog
--   Consider a 10 minute mid-session retro
-    -   Thumbvote feedback on the mid-session retro
+-   Each Session has an auto-generated [session notes file](../session-notes/_todays-session-notes.md) 
 
 ## Working Agreements
 
