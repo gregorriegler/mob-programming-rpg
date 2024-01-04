@@ -1,1 +1,1 @@
-/workspace/mob-programming-rpg/session-notes/session-notes-2023-12-21.md
+/workspace/mob-programming-rpg/session-notes/session-notes-2024-01-04.md

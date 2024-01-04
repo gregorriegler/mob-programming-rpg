@@ -1,32 +1,43 @@
-# Session Date: YYYY-MM-DD
+# Session Date: 2024-01-04
 
 ## Facilitated by
 
+Gregor
+
 ## Co-Authors
 
-## Inactive Co-Authors
-Co-Authored-By: martin-martin <breuss.martin@gmail.com>
-Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
-Co-Authored-By: Blaise Pabon <blaise@gmail.com>
 Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
-Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
-Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
-Co-Authored-By: arrockt <cariari385@gmail.com>
-Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
-Co-Authored-By: Blessed538 <blesseddominic98@gmail.com>
-Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
-Co-Authored-By: Gabriel Mbaiorga <gabrielmbaiorga@gmail.com>
-Co-Authored-By: Idan Melamed <idanmel@gmail.com>
-Co-Authored-By: Rea <reasu@protonmail.com>
-Co-Authored-By: Tsvetan Tsvetanov <cpi.cecko@gmail.com>
-Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
-Co-Authored-By: David Campey <campey@gmail.com>
-Co-Authored-by: Zac Ball <zac156@gmail.com>
-Co-Authored-By: Kitastro <admin@metafor.co.za>
-Co-Authored-By: Woody Zuill <wzuill@yahoo.com>
-Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
+
+# Inbox
+
+Ideas for this session
+
+- find the template by typing "template"
+- prune the backlog / simplify the markdown files - how to get started with a session; make it easier to navigate into the session
+  - we actually have two backlogs: 1. for the RPG game 2. the things we're interested in doing as a team
+- clean-up the YYYY-MM-DD from the newly generated session notes
+- we could first do a kata - code in the beginning
+
+Agenda - today proposal
+
+- [x] bonding
+- [ ] get the .md files in shape - timeboxed to 25 min
+- [ ] condensed coding
+- [ ] backlog refinement
+
+Agenda - Ideal
+
+- bonding
+- short decisions / review reminders
+- get to coding quickly on a kata or other well refined backlog item
+- mid-session retro
+- more coding
+- 10m retro
+- backlog refinement
+- improving process (e.g. the .md files)
+- final longer retro
 
 # Agenda
 
