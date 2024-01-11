@@ -68,3 +68,18 @@ Michael: Thanks for being ok with the suggestion.
          Prefer 'Add' to 'Instead'. Sometimes makes sense to stop and talk it through, back to dancing later. 
          Nitsan suggested a refactoring - just went with it. Done.
          
+
+Round #3
+
+Michael: As Joel was talking, trying not to lead from Typing position, also trying to anticipate where it was going; anticipated wrong.
+         Sometimes you do anticipate right - feels good :)
+
+Gregor:  Good example of: not caring what the code does, and just by looking at the structure able to make progress.
+         Love it!
+
+Joel:    Love it too, more time coding, and TDD. Coding + TDD - always loving it.
+         Glad we tried backlog refinement, even if we couldn't figure it out;
+         Talker / Typer flow - went pretty well. Sometimes as the Typer we should wait for the Talker to actually want something.
+
+Nitsan:  Appreciated refactorings. Some were new to me, new sequence; was safe, small steps. Would like to continue this kata refactoring.
+         Nice micro-steps

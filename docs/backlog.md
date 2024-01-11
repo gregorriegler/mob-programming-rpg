@@ -21,6 +21,7 @@
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
 - Kata short with learning goal
+- Automate co-authors further for committing
 
 # Someday maybe later
 
