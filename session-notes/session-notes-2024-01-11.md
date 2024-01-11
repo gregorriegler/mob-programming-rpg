@@ -31,4 +31,28 @@ Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com
 
 ## Retro [Templates](../docs/retro-templates.md)
 
-<-- Retro Notes go here
+
+Round #1
+
+Joel:    Like the idea of getting going quickly - start with a generate state, and focus on refactoring
+         Rotation are good and smooth
+         Potential discussion: did we need a facilitator or not?
+
+Nitsan:  Missed opportunity to have more challenging coding if we just used what GPT gave us
+
+Michael: Go with the offer vs refine the offer; e.g. Nitsan suggests somthg, Michael & Joel suggested refinement - is it worth it?
+         Same with the generated code from GPT - flow vs. quality
+
+
+Round #2
+
+Joel:    Liked Michael bringing up: "how do you break in while the Talker/Typer pair are talking?";
+         Though: "are you open to a suggestion?"
+         
+Nitsan:  Liked that we've gone far in the kata. We started with working code and tests from GPT, which made
+         it quick; and we are quick as developers with python, environment, etc. - good progress
+
+Michael: Thanks for being ok with the suggestion.
+         Prefer 'Add' to 'Instead'. Sometimes makes sense to stop and talk it through, back to dancing later. 
+         Nitsan suggested a refactoring - just went with it. Done.
+         
