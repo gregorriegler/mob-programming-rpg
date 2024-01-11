@@ -9,6 +9,7 @@ None (just 3 of us) - an experiment
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
+Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 
 # Agenda
 
