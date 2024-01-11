@@ -16,6 +16,15 @@
 
 # Doing (WIP)
 
+-
+
+# To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
+
+- Kata short with learning goal
+
+# Someday maybe later
+
+-
 -   **Points Form** Gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
     -   [ ] F!! Show the skills in the card - below the points bar, per role
         -  Consider using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
@@ -24,9 +33,6 @@
             -   To hide skills: `npm start`
         -   Remove feature flag when done
     -   [ ] F!! Gain points (based on these skills per role)
-
-# To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
-
 -   **Timer Sync** B Timer does not refresh for many people without restarting.
 -   enable feature flag for all Fs
 -   F Positions should stay in same place on screen (with player names rotating through).
