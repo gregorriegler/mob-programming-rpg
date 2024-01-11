@@ -16,17 +16,29 @@ Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com
 - [x] **Facilitator:** Identify who facilitates
 - [x] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [x] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
-- [ ] **Code:** Get to coding quickly on a kata or other well refined backlog item
-  - [ ] Everyone: turn on mob timer sounds 📣
-  - [ ] Add 'Retro' as the last participant to the timer 
-  - [ ] Code
-  - [ ] 1m/person mid-session retro
-  - [ ] More code (optional/consider refining backlog)
-  - [ ] 1m/person retro
+- [x] **Code:** Get to coding quickly on a kata or other well refined backlog item
+  - [x] Everyone: turn on mob timer sounds 📣
+  - [x] Add 'Retro' as the last participant to the timer 
+  - [x] Code
+  - [x] 1m/person mid-session retro
+  - [x] More code (optional/consider refining backlog)
+  - [x] 1m/person retro
 - [ ] **Process improvement:** Improving process (e.g. the .md files) 
   - [ ] Maybe Consider what "ready" means for non-kata backlog items
   - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
 - [ ] **Backlog refinement**
+    - Backlog ideas:
+      - Commit message generator
+      - Lift Ticket Kata - refactor the hell out of it (RTHOOI)
+      - Kata-fy and start in cyber-dojo and then migrate to other dev env (VSCode or pycharm etc)
+        - commit message generator (kata)
+        - mobtimer (kata)
+        - other
+      - JQ for Cyber-dojo
+      - Teach GPT to refactor, e.g., inline var, extract method, etc. 
+    - Process / practice ideas:
+      - MobRPG game - practice roles
+
 - [ ] **Retro:** Final longer retro
 
 ## Retro [Templates](../docs/retro-templates.md)
