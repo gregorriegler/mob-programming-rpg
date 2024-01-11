@@ -44,6 +44,7 @@ Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 
 ## Retro [Templates](../docs/retro-templates.md)
 
+we were working here: https://cyber-dojo.org/kata/edit/wHkyGJ
 
 Round #1
 
@@ -96,4 +97,18 @@ Joel:    Interesting. Taking a different direction for FizzBuzz. Learned: return
          Noticed it's taking longer than expected, surprised.
 
 Nitsan:  Interesting place to stop for a retro, in the middle of a thought. Steps are small and safe, but direction isn't clear to team - 
-         How could we make this clearer? 
+         How could we make this clearer?
+
+Round #5
+
+Michael: Reminding me of the Clojure exercise (isDivibleBy, then currying, and HOF). "Feel" the solution but not "know" it.
+         At the edge of understanding -> learning is happening.
+        
+Gregor:  Interesting. Reminds me of a deep dive in fn programming, theory, typescript. Unary functions (taking single arg, return   
+         single result) allow to use helper functions like `combine`.
+
+Joel:    Interesting, and different way of thinking. E.g. a function returning a function.
+         Like: separate out the data (3, fizz).
+        
+Nitsan:  Maybe I was too pushy about this refactoring idea; thanks for being patient with it. There are other ways to separate the data.
+        
