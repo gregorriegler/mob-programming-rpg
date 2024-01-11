@@ -111,4 +111,8 @@ Joel:    Interesting, and different way of thinking. E.g. a function returning a
          Like: separate out the data (3, fizz).
         
 Nitsan:  Maybe I was too pushy about this refactoring idea; thanks for being patient with it. There are other ways to separate the data.
-        
+
+
+Final Retro
+
+Mini-retros sometimes derailed our momentum
