@@ -84,3 +84,16 @@ Joel:    Love it too, more time coding, and TDD. Coding + TDD - always loving it
 
 Nitsan:  Appreciated refactorings. Some were new to me, new sequence; was safe, small steps. Would like to continue this kata refactoring.
          Nice micro-steps
+
+Round #4
+
+Michael: Truting the collective mind. Learning + Explaning + Doing. Not a simple Talker / Typer strict pair.
+         When dangerous - not doign more than asked.
+
+Gregor:  Want to continue.
+
+Joel:    Interesting. Taking a different direction for FizzBuzz. Learned: return a function in python.
+         Noticed it's taking longer than expected, surprised.
+
+Nitsan:  Interesting place to stop for a retro, in the middle of a thought. Steps are small and safe, but direction isn't clear to team - 
+         How could we make this clearer? 
