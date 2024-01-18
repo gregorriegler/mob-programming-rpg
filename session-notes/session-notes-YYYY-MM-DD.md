@@ -30,11 +30,16 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 
 # Agenda
 
-- [ ] **Bond:** Bonding
+- [ ] HH:00 **Bond:** Bonding
 - [ ] **Facilitator:** Identify who facilitates
 - [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
-- [ ] **Code:** Get to coding quickly on a kata or other well refined backlog item
+- [ ] HH:25 **Decide on What to Code** by 25 min after the hour; choose either:
+    - continuing kata 
+    - new kata
+    - well refined backlog item
+    - new item - "follow the energy" - something else that can be coded by the mob 
+- [ ] HH:30 **Code:** Get to coding by 30 min after the hour 
   - [ ] Everyone: turn on mob timer sounds 📣
   - [ ] Add "Retro" as the last participant in the timer
   - [ ] Code
@@ -44,7 +49,8 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 - [ ] **Process improvement:** Improving process (e.g. the .md files)
   - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
 - [ ] **Backlog refinement**
-- [ ] **Retro:** Final longer retro
+- [ ] **Retro:** Final longer retro (consider: aim to start 30 min before end time)
+- [ ] Done by end of 3 hour (consider: aim to finish 10 min early)
 
 ## Retro [Templates](../docs/retro-templates.md)
 

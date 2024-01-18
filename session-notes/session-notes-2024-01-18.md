@@ -32,15 +32,16 @@ Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
   - [x] Add 'Retro' as the last participant to the timer 
   - [x] Code
   - [x] 1m/person mid-session retro
-  - [ ] More code
-  - [ ] 1m/person retro
+  - [x] More code
+  - [x] 1m/person retro
 - [ ] **Process improvement:** Improving process (e.g. the .md files)
   - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
 - [ ] **Backlog refinement**
 - [ ] **Retro:** Final longer retro
 
 ## Retro [Templates](../docs/retro-templates.md)
-### mini Retro
+
+### mini Retro 1
 
 Michael:
 better to reflect on code changes before doing more code changes
@@ -65,5 +66,49 @@ Interesting convo at start.
 Love using GPT, curious about prompts, like seeing the prompts people come up with.
   Would like to capture the prompts in some way.
 
-change template: 
-^- Retro Notes go here
+### mini Retro 2
+
+Diana:
+Wondering about how Michael was feeling when we weren't getting to coding as fast as wanted after 1st retro?
+(Answer from Michael: Frusted. 18 minutes total instead of 1 min. each.)
+Really happy to be here.
+
+Michael:
+Liked that able to practice expressing emotions/frustration. 
+Would like to stick to mid-retro 1 min. limit person. 
+
+Gregor:
+Happy to have Diana back with us.
+Like doing small steps.
+Like the process now: we can raise what's important to us every rotation & can keep going so doesn't feel too disruptive
+
+Joel:
+Slow down a little to expain process to newcomer or someone who hasn't been here for a while. (Temporary slow down only)
+
+### longer retro
+
+Gregor:
+We were testing our agenda and session notes with Diana who hadn't been here for this agenda before. 
+Diana seemed like a faciltator.
+
+We also discussed:
+Being explicit about what we need, how verbose to be, when to do just-in-time vs up front explaining / setting up / helping newcomers,
+consider letting people try/flounder and hold back on helping (give them time to try).
+
+From Diana:
+- Consider: add to retro notes----> for mid session retro be committed to the outcome rather than committed to the process
+- liked it Worked well
+  not a alot to make it better
+  since agenda was not explicit
+  we might need to allow time for onboard someone unfamiliar
+—- pattern Diana has
+Verbose about what I need 
+Michael: As an engineer I try to problems and fix. As a sales person  I try to find things that work and sell them.
+Fat finger fumbling 
+
+
+How to get faster to coding. Proposal(s):
+- Do the first idea in room unless someone else disagrees and wants to do someone else
+- Keep doing what is WIP until done/exhausted
+- Lean coffee... time box, don't debate a long time
+
