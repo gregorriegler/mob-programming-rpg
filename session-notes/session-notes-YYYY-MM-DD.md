@@ -48,4 +48,13 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 
 ## Retro [Templates](../docs/retro-templates.md)
 
-<-- Retro Notes go here
+Retro Notes go here:
+
+### Mid-Session Retro (1 minute per person - what liked/disliked & propose changes)
+
+
+
+
+
+
+

@@ -27,7 +27,7 @@ Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 - [ ] **Process improvement:** Improving process (e.g. the .md files) 
   - [ ] Maybe Consider what "ready" means for non-kata backlog items
   - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
-- [ ] **Backlog refinement**
+- [ ] **Backlog refinement**        
     - Backlog ideas:
       - Commit message generator
       - Lift Ticket Kata - refactor the hell out of it (RTHOOI)
