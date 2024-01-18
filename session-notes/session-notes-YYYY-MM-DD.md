@@ -1,6 +1,8 @@
 # Session Date: YYYY-MM-DD
 
-## Facilitated by
+## Facilitated by:
+
+## Time-Keeper:
 
 ## Co-Authors
 
@@ -32,6 +34,7 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 
 - [ ] HH:00 **Bond:** Bonding
 - [ ] **Facilitator:** Identify who facilitates
+- [ ] **Time-Keeper:** Identify who keeps track of total time for sessoin
 - [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
 - [ ] HH:25 **Decide on What to Code** by 25 min after the hour; choose either:
@@ -56,8 +59,21 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 
 Retro Notes go here:
 
-### Mid-Session Retro (1 minute per person - what liked/disliked & propose changes)
+### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
 
+### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
+
+### Final Retro
+
+### How we spent our time today:
+- __ minutes coding
+- __ minutes template edits (?)
+- H1:00 - H0:__ bonding            (__ min)
+- H1:__ - H1:__ agenda & deciding  (__ min)
+- H1:__ - H2:__ round 1 of coding  (__ min)
+- ...
+- Thoughts:
+  - __
 
 
 

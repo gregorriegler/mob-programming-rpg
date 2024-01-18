@@ -112,3 +112,17 @@ How to get faster to coding. Proposal(s):
 - Keep doing what is WIP until done/exhausted
 - Lean coffee... time box, don't debate a long time
 
+### How we spent our time today:
+- 36 minutes coding
+- 45 minutes template edits (?)
+- H1:00 - H0:18 bonding            (18 min)
+- H1:18 - H1:45 agenda & deciding  (37 min)
+- H1:45 - H2:05 round 1 of coding  (20 min)
+- H2:05 - H2:20 min-retro          (15 min)
+- H2:20 - H2:36 round 2 of coding  (16 min)
+- H2:36 - H3:00 retro              (24 min)
+- H3:00 - H:30 process improvement (30 min)
+- Thoughts:
+  - Gregor: Too much time on deciding, but overall fine
+  - Michael: Reasonable, but not as much coding (only 20%)
+  - Joel: More coding would be better! Time-box deciding or keep going (instead of changing what work on) more often
