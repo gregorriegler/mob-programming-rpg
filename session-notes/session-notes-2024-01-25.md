@@ -4,6 +4,7 @@
 Michael
 
 ## Co-Authors
+Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
@@ -15,7 +16,7 @@ Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
 - [x] **Facilitator:** Identify who facilitates
 - [x] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [x] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
-- [x] **Code:** Get to coding quickly on a kata or other well refined backlog item - **Vending Machine**
+- [x] **Code:** Get to coding quickly on a kata or other well refined backlog item - **Vending Machine** 
   - [x] Everyone: turn on mob timer sounds 📣
   - [x] Add 'Retro' as the last participant to the timer 
   - [x] Code - H1:34
@@ -192,4 +193,20 @@ Proposal:
 - Get ChatGPT to create with single file implementation 
   1. Generate clear human readable tests (and we check they are correct)
   2. Generate the code to pass the tests
-- Try with Vending Machine and single prompt (fallback if slow/hard: do with FizzBuzz or something else easier)
+- AGREED: Try with Vending Machine with single GPT prompt (fallback if slow/hard: do with FizzBuzz or something else easier)
+
+### Retro #4
+
+Michael - felt alive, great; too much going on this time, too little in the past. Liked today. Having facilitator was helpful. Jumped in a couple of times. Still thinks of them as training wheels, but right now still needed.
+
+Gregor - Liked having a fresh start with a defined goal. Generated code failed, and then we tried to fix the code - but I'd have liked to have tried harder to get GPT to generate the correct code for us; e.g., try self-correcting features.
+
+Nitsan - Lost direction quickly. We tried only one GPT prompt. Would have liked to have tried GPT more - don't try to fix the code ourselves, see if GPT could have.
+
+Joel - Thought direction was good; GPT hallucinates, so glad only prompted once and moved on.
+
+Michael - Would like the group to be explicit about sticking with a goal or changing goal. Suggests if you see a change of direction, say something like: "Observation, we're not on the goal we set earlier" - and if no one says it, then Facilitator can say it. 
+
+Nitsan - Suggestion: If you think a goal is done, say so, to make it clear. 
+Leaned a lot today - made me think a lot.
+
