@@ -1,6 +1,8 @@
 # Session Date: YYYY-MM-DD
 
-## Facilitated by
+## Facilitated by:
+
+## Time-Keeper:
 
 ## Co-Authors
 
@@ -30,22 +32,45 @@ Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
 
 # Agenda
 
-- [ ] **Bond:** Bonding
+- [ ] HH:00 **Bond:** Bonding
 - [ ] **Facilitator:** Identify who facilitates
+- [ ] **Time-Keeper:** Identify who keeps track of total time for session
 - [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
-- [ ] **Code:** Get to coding quickly on a kata or other well refined backlog item
+- [ ] HH:25 **Decide on What to Code** by 25 min after the hour; choose either:
+    - continuing kata 
+    - new kata
+    - well refined backlog item
+    - new item - "follow the energy" - something else that can be coded by the mob 
+- [ ] HH:30 **Code:** Get to coding by 30 min after the hour 
   - [ ] Everyone: turn on mob timer sounds 📣
-  - [ ] Add 'Retro' as the last participant to the timer 
+  - [ ] Add "Retro" as the last participant in the timer
   - [ ] Code
-  - [ ] 1m/person mid-session retro
+  - [ ] 10m mid-session retro
   - [ ] More code
-  - [ ] 1m/person retro
+  - [ ] 10m retro
 - [ ] **Process improvement:** Improving process (e.g. the .md files)
   - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
 - [ ] **Backlog refinement**
-- [ ] **Retro:** Final longer retro
+- [ ] **Retro:** Final longer retro (consider: aim to start 30 min before end time)
+- [ ] Done by end of 3 hour (consider: aim to finish 10 min early)
 
 ## Retro [Templates](../docs/retro-templates.md)
 
-<-- Retro Notes go here
+Retro Notes go here:
+
+### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
+
+### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
+
+### Final Retro
+
+### How we spent our time today:
+- __ minutes coding
+- __ minutes template edits (?)
+- H1:00 - H0:__ bonding            (__ min)
+- H1:__ - H1:__ agenda & deciding  (__ min)
+- H1:__ - H2:__ round 1 of coding  (__ min)
+- ...
+- Thoughts:
+  - __
