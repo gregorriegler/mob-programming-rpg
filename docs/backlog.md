@@ -16,7 +16,7 @@
 
 # Doing (WIP)
 
-- FizzBuzz Kata: https://www.youtube.com/watch?v=l2lZ_7-HgnE
+- Vending Machine Kata: https://cyber-dojo.org/kata/edit/pA562v
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
