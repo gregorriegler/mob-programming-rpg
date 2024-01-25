@@ -188,4 +188,8 @@ Nitsan - not too attached to idea of metaprompting
 
 Joel - learning is always good - even if learning what seemed like a good idea at first later was a rabbit hole
 
-
+Proposal:
+- Get ChatGPT to create with single file implementation 
+  1. Generate clear human readable tests (and we check they are correct)
+  2. Generate the code to pass the tests
+- Try with Vending Machine and single prompt (fallback if slow/hard: do with FizzBuzz or something else easier)
