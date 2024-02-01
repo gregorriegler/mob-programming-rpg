@@ -16,8 +16,8 @@
 
 # Doing (WIP)
 
-- Vending Machine Kata: 
-    - new (fork): https://cyber-dojo.org/kata/edit/zwNPxd
+- tennis kata in cyber-dojo  using C#
+    -   https://cyber-dojo.org/kata/edit/0htSZJ
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
