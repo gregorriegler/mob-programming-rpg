@@ -12,10 +12,6 @@ Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 
-## Inactive Co-Authors
-
-Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
-Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 
 # Agenda
 
@@ -52,8 +48,36 @@ simple kata
 Retro Notes go here:
 
 ### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
-[ ]will we sta cyber-dojo or go someting other IDE
+
+- Nitsan: thank you for practicing tennis refactoring kata. I like cyber-dojo. I prefer to stay in cyber-dojo and use GPT. Worry: different IDE will take some time/effort to get it working. I like writing the GPT prompt in its own file so we can iterate over it.
+
+- Diana: Noticed we weren't using GPT right away, but kept quiet to see how human refactoring would go at first. Want to continue using GPT. Neutral on moving to a different IDE.
+
+- Joel: agree to continue in cyberdojo, results (from GPT?) in a separate file; like: get to code quickly, limit number of changes
+
+
+[x] will we sta cyber-dojo or go something other IDE?
+- Decided to stay in cyberdojo, use ChatGPT, separate file for prompts
+- consider: save the GPT-generated code in a separate file too
+
+
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
+
+- [ ] still staying in cyberdojo?
+
+Diana:  Grateful for using ChatGPT
+        Liked putting the response back into cyberdojo
+        Craving using better refactoring tools; Still learned to refactor in cyberdojo
+        Nice timer!
+        https://vclock.com/timer/#countdown=00:01:00&enabled=0&seconds=0&sound=custom&loop=0
+
+Joel:   Agree. Liked the approach.
+        Makes sense to have the GPT results back into cyberdojo - becomes a little backlog / checklist
+        Payed off to not switching IDEs.
+        Still wonder if switching is possible? Would like to get up and running quickly
+
+Nitsan: Cool that Joel & GPT suggested exact same 1st refactoring - spot on.
+        Still think we could experiment with different styles of prompts and of handing over GPT results, e.g., maybe take a small subset of what is suggested and then iterate over the prompt.
 
 ### Final Retro
 

@@ -1,6 +1,6 @@
 # Reminders
 
--   Each Session has an auto-generated [session notes file](../session-notes/_todays-session-notes.md) 
+-   Each Session has an auto-generated [session notes file](../session-notes/_todays-session-notes.md)
 
 ## Working Agreements
 
@@ -16,20 +16,22 @@
 
 # Doing (WIP)
 
-- tennis kata in cyber-dojo  using C#
-    -   https://cyber-dojo.org/kata/edit/0htSZJ
+-   tennis refactoring kata in cyber-dojo using C#:
+    -   Cyber-dojo: https://cyber-dojo.org/kata/edit/0htSZJ
+    -   ChatGPT convo: https://chat.openai.com/share/a9f88e66-8e53-4c3e-8346-2eeb7c442c0d
+    -   
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
-- Kata short with learning goal
-- Automate co-authors further for committing
+-   Kata short with learning goal
+-   Automate co-authors further for committing
 
 # Someday maybe later
 
 -
 -   **Points Form** Gain points using a form per player, where you choose actions/skills deserving points [scoring points](../docs/scoring-points.md)
     -   [ ] F!! Show the skills in the card - below the points bar, per role
-        -  Consider using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
+        -   Consider using TDD starting with [RoleSheet.spec.ts](../webapp/src/RoleSheet.spec.tsx), replace dummy text with actual skills in the card
         -   Manually test in UI, using this command in the terminal:
             -   To show skills: `REACT_APP_FEATURE_FLAG_SHOW_SKILLS_PER_ROLE=1 npm start`
             -   To hide skills: `npm start`
@@ -95,9 +97,9 @@
 
 # DONE (most recently finished first)
 
-- [ ] Install extension to extract whole React components:
-  - [x] Abracabra - it works, but requires multiple steps (extract function in module scope; move to file; quick fix to convert parameters to destructured object; remove return type; change call site from function call to <... />)
-  - [ ] VSCode React Refactoring - works locally, but not on remote/GitPod  
+-   [ ] Install extension to extract whole React components:
+    -   [x] Abracabra - it works, but requires multiple steps (extract function in module scope; move to file; quick fix to convert parameters to destructured object; remove return type; change call site from function call to <... />)
+    -   [ ] VSCode React Refactoring - works locally, but not on remote/GitPod
 -   change the README to only have the first mob session
 -   Fix broken pipeline by explicitly declaring fields to be optional using the `?`. `npm run build` fails while `npm test` succeeds/passes!!!
 
