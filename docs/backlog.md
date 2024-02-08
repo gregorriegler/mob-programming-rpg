@@ -22,6 +22,7 @@
 
 # To Do (prioritized) (r = refactor, d = doc, f = feature, b = bug, e = environment)
 
+-   create a PR for cyber-dojo: there's a missing test in cyber-dojo C# Tennis refactoring kata: missing test for "Deuce" vs. "Forty-All"
 -   Kata short with learning goal
 -   Automate co-authors further for committing
 
