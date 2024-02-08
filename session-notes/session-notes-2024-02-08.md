@@ -26,8 +26,9 @@ Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com
   - [x] Add "Retro" as the last participant in the timer
   - [x] Code
   - [...] 10m mid-session retro
-  - [ ] More code - switched to Joel's local machine to try the VS Resharper AI
+  - [x] More code - switched to Joel's local machine to try the VS Resharper AI
     - there's a missing test in cyber-dojo C# Tennis refactoring kata: missing test for "Deuce" vs. "Forty-All"
+    - we found that Emily fixed "Forty-All" to "Deuce" 11 years ago - https://github.com/emilybache/Tennis-Refactoring-Kata/commit/192bc2c15de405ea17244f07ec7c82098167d991
   - [ ] 10m retro
 - [ ] **Process improvement:** Improving process (e.g. the .md files)
   - The process is defined by the [template](./session-notes-YYYY-MM-DD.md)
