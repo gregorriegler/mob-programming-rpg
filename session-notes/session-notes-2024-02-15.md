@@ -1,20 +1,20 @@
-# Session Date: YYYY-MM-DD
+# Session Date: 2024-02-15
 
 ## Agenda
 
-- [ ] HH:00 **Bond:** Bonding
-- [ ] **Facilitator:** Identify who facilitates
+- [x] HH:00 **Bond:** Bonding
+- [x] **Facilitator:** Identify who facilitates
 - [ ] **Time-Keeper:** Identify who keeps track of total time for session
-- [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
-- [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
+- [x] **Co-Authors:** Update the [Co-Authors](#co-authors) 
+- [x] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
 - [ ] HH:25 **Decide on What to Code** by 25 min after the hour; choose either:
     - continuing kata 
     - new kata
     - well refined backlog item
     - new item - "follow the energy" - something else that can be coded by the mob 
 - [ ] HH:30 **Code:** Get to coding by 30 min after the hour 
-  - [ ] Everyone: turn on mob timer sounds 📣
-  - [ ] Add "Retro" as the last participant in the timer
+  - [x] Everyone: turn on mob timer sounds 📣
+  - [x] Add "Retro" as the last participant in the timer
   - [ ] Code
   - [ ] 10m mid-session retro
   - [ ] More code
@@ -25,35 +25,17 @@
 - [ ] **Retro:** Final longer retro (consider: aim to start 30 min before end time)
 - [ ] Done by end of 3 hour (consider: aim to finish 10 min early)
 
-## Facilitated by:
+## Facilitated by: Diana
 
 ## Time-Keeper:
 
 ## Co-Authors
-
-## Inactive Co-Authors
-Co-Authored-By: martin-martin <breuss.martin@gmail.com>
-Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
-Co-Authored-By: Blaise Pabon <blaise@gmail.com>
-Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
-Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
-Co-Authored-By: arrockt <cariari385@gmail.com>
-Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
-Co-Authored-By: Blessed538 <blesseddominic98@gmail.com>
-Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
-Co-Authored-By: Gabriel Mbaiorga <gabrielmbaiorga@gmail.com>
-Co-Authored-By: Idan Melamed <idanmel@gmail.com>
-Co-Authored-By: Rea <reasu@protonmail.com>
-Co-Authored-By: Tsvetan Tsvetanov <cpi.cecko@gmail.com>
-Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
-Co-Authored-By: David Campey <campey@gmail.com>
-Co-Authored-by: Zac Ball <zac156@gmail.com>
-Co-Authored-By: Kitastro <admin@metafor.co.za>
-Co-Authored-By: Woody Zuill <wzuill@yahoo.com>
-Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
+
+## Inactive Co-Authors
+Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 
 ## Retro [Templates](../docs/retro-templates.md)
 
