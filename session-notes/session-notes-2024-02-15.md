@@ -63,6 +63,17 @@ Joel
 
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 
+Nitsan
+- Got to red using a mutation; prompt to Chat wasn't clear enough (it didn't know "mutation"), so it refactored. 
+  - We need to be more precise with Chat as to what we mean by mutation or refactoring. (Say what we mean by the terms.)
+
+Gregor
+- Surprised you needed the number of test cases (in perl) and that it added value for someone; happy to try it out
+
+Joel
+- Like: Gregor made sure that the test would fail using mutation testing
+- going forward would like to go through Red before Green
+
 ### Final Retro
 
 ### How we spent our time today:
