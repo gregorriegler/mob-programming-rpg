@@ -76,6 +76,29 @@ Joel
 
 ### Final Retro
 
+Gregor
+- Liked the responses from ChatGPT; e.g. coming up with a new design to work with existing design - seems very good at these simple problems
+- Worked well - we kept copy-pasting, 
+- As long as the context is small, it works well - puts boundaries on how large we can go with the modules we work with
+- Prompts: Use simple language and ask for short answers. Maybe can be simpler.
+
+Joel
+- Liked - helped to have the production code and tests in the same file - for GPT
+- Liked - The mob pushed GPT until satisfied
+- Liked - finding our way in terms of hand-over, even with prompts; we keep adjusting how we do that
+
+Nitsan
+- It's gotten much smoother - handling responses from GPT, the output, the code. Each of us has our own context with GPT, but it doesn't matter because our questions are focused. It still flows. We have matured in terms of realizing the chats with AI are ephemeral, just ask (no need to save the response; you can always ask again). This makes for smooth handovers in the mob (if not too attached to a particular convo with Chat).
+
+Questions:
+- Did we learn a bit of Pearl today? Was Chat helpful or destructive for the learning process? Was it too easy to get any answer from Chat?
+- Some answers/thoughts: 
+  - It was useful, was motivating, easy to get to success, motion/progress, learning from it; not remembering all the details since didn't need to; good starting point. Analogy: kids who play with calculators may learn to do math by hand faster than otherwise.
+
+Ideas:
+- We could have Chat quiz us on the code we've been working on.
+- We could review the code after, and ask GPT questions about it if we don't understand.
+
 ### How we spent our time today:
 - __ minutes coding
 - __ minutes template edits (?)
