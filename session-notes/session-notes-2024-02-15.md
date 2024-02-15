@@ -98,6 +98,7 @@ Questions:
 Ideas:
 - We could have Chat quiz us on the code we've been working on.
 - We could review the code after, and ask GPT questions about it if we don't understand.
+- Make sure to ask GPT to refactor with each TDD cycle, and consider making sure we as humans understand what it's giving us, in case we don't agree with the refactoring or don't think it goes far enough in the refactoring.
 
 ### How we spent our time today:
 - __ minutes coding
