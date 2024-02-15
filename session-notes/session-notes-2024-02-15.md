@@ -33,15 +33,33 @@
 Co-Authored-By: Nitsan Avni <nitsanav@gmail.com>
 Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com>
 Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
+Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 
 ## Inactive Co-Authors
-Co-Authored-By: Gregor Riegler <rieglerg85@gmail.com>
 
 ## Retro [Templates](../docs/retro-templates.md)
 
 Retro Notes go here:
 
 ### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
+
+Diana
+- Loved this, fulfilling my needs; feel honored to get to choose what we did today; it was what I wanted
+- I would save the links to the AI chats in cyber-dojo or gitpod session notes
+
+Gregor
+- I liked this idea - coding with GPT.
+- Opinion - you can tackle anything this way (with GPT); have faith you will understand.
+
+Nitsan
+- Surprised by last prompt; results were great. New test looks more promising. Like a rachet
+- Asked about Bing.com chat access. Answer: free for all, running GPT-4
+
+Joel
+- Find it interesting
+- Liked - asked to make the method -> let's do both the test and the production code
+- a bit more complicated due to the new language - Perl
+- Like - to keep going this way
 
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 

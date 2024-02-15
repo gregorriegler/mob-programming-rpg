@@ -16,7 +16,8 @@
 
 # Doing (WIP)
 
--   mob timer kata: https://cyber-dojo.org/kata/edit/p5uc7l
+-   mob timer kata: 
+    - https://cyber-dojo.org/kata/edit/p5uc7l
 -   tennis refactoring kata in cyber-dojo using C#:
     -   Cyber-dojo: https://cyber-dojo.org/kata/edit/0htSZJ
     -   ChatGPT convo: https://chat.openai.com/share/a9f88e66-8e53-4c3e-8346-2eeb7c442c0d
