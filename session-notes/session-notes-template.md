@@ -4,7 +4,7 @@
 
 - [ ] HH:00 **Bond:** Bonding
 - [ ] **Facilitator:** Identify who facilitates
-- [ ] **Time-Keeper:** Identify who keeps track of total time for session
+- [ ] **Time-Archivist:** Identify who keeps records times for sections [below](#how-we-spent-our-time-today)
 - [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
 - [ ] HH:25 **Decide on What to Code** by 25 min after the hour; choose either:
@@ -13,8 +13,10 @@
     - well refined backlog item
     - new item - "follow the energy" - something else that can be coded by the mob 
 - [ ] HH:30 **Code:** Get to coding by 30 min after the hour 
-  - [ ] Everyone: turn on mob timer sounds 📣
-  - [ ] Add "Retro" as the last participant in the timer
+  - [ ] Modify Timer:
+    - [ ] Everyone: turn on mob timer sounds 📣
+    - [ ] Add "Retro" as the last participant in the timer
+    - [ ] Append "(Facilitor)" to the name of the participant who is facilitating
   - [ ] Code
   - [ ] 10m mid-session retro
   - [ ] More code
@@ -66,11 +68,12 @@ Retro Notes go here:
 ### Final Retro
 
 ### How we spent our time today:
-- __ minutes coding
-- __ minutes template edits (?)
-- H1:00 - H0:__ bonding            (__ min)
-- H1:__ - H1:__ agenda & deciding  (__ min)
-- H1:__ - H2:__ round 1 of coding  (__ min)
-- ...
-- Thoughts:
-  - __
+- Time-Archivist will record the total time for each section of today's session:
+  - __ minutes coding
+  - __ minutes template edits (?)
+  - H1:00 - H0:__ bonding            (__ min)
+  - H1:__ - H1:__ agenda & deciding  (__ min)
+  - H1:__ - H2:__ round 1 of coding  (__ min)
+  - ...
+  - Thoughts:
+    - __
