@@ -3,17 +3,19 @@
 ## Agenda
 
 - [ ] HH:00 **Bond:** Bonding
-- [ ] **Facilitator:** Identify who facilitates
+- [ ] **Facilitator:** Identify who facilitates and record [here](#co-authors)
 - [ ] **Time-Archivist:** Identify who keeps records times for sections [below](#how-we-spent-our-time-today)
 - [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)
 - [ ] HH:25 **Decide on What to Code** by 25 min after the hour; choose either:
-    - continuing kata 
+    - continue with [last session's WIP](../docs/backlog.md#doing-wip)
     - new kata
     - well refined backlog item
-    - new item - "follow the energy" - something else that can be coded by the mob 
+    - new item - "follow the energy" - something else that can be coded by the mob
+- [ ] put today's plan into [doing WIP](../docs/backlog.md#doing-wip)
 - [ ] HH:30 **Code:** Get to coding by 30 min after the hour 
-  - [ ] Modify Timer:
+  - [ ] setup the mobtime Timer
+        NOTE: to open mob timer manually find "mobtime" in [this file](../.gitpod.yml)
     - [ ] Everyone: turn on mob timer sounds 📣
     - [ ] Add "Retro" as the last participant in the timer
     - [ ] Append "(Facilitor)" to the name of the participant who is facilitating
