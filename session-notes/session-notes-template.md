@@ -3,7 +3,7 @@
 ## Agenda
 
 - [ ] HH:00 **Bond:** Bonding
-- [ ] **Facilitator:** Identify who facilitates and record [here](#co-authors)
+- [ ] **Facilitator:** Identify who facilitates and record [here](#facilitated-by)
 - [ ] **Time-Archivist:** Identify who keeps records times for sections [below](#how-we-spent-our-time-today)
 - [ ] **Co-Authors:** Update the [Co-Authors](#co-authors) 
 - [ ] **Welcome Newcomers:** If we have any newcomers review our [onboarding notes](../docs/onboarding-notes.md)

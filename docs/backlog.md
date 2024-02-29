@@ -16,9 +16,11 @@
 
 # Doing (WIP)
 - use GPT as a coding assistant while designing a text based mob timer:
--   mob timer kata: 
+-   fizz buzz print 100 lines using double-loop TDD (in python)
+    - https://cyber-dojo.org/kata/edit/vJQEaU
+-   mob timer kata (in perl): 
     - https://cyber-dojo.org/kata/edit/p5uc7l on feb 22 started with Version 23
--   tennis refactoring kata in cyber-dojo using C#:
+-   tennis refactoring kata in cyber-dojo (in C#):
     -   Cyber-dojo: https://cyber-dojo.org/kata/edit/0htSZJ
     -   ChatGPT convo: https://chat.openai.com/share/a9f88e66-8e53-4c3e-8346-2eeb7c442c0d
 
