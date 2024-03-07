@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/mob-programming-rpg/static/css/main.0f6635f5.css",
+    "main.js": "/mob-programming-rpg/static/js/main.49de8bdc.js",
+    "static/media/sea-waves-bg.png": "/mob-programming-rpg/static/media/sea-waves-bg.1305269efbea1b69b249.png",
+    "static/media/border-image-golden2.png": "/mob-programming-rpg/static/media/border-image-golden2.46c876a09f390e28b086.png",
+    "static/media/border-image-grey.png": "/mob-programming-rpg/static/media/border-image-grey.2374b131df7f4287987f.png",
+    "static/media/border-image-golden.png": "/mob-programming-rpg/static/media/border-image-golden.6cbd0e7070bf9898fb40.png",
+    "index.html": "/mob-programming-rpg/index.html",
+    "main.0f6635f5.css.map": "/mob-programming-rpg/static/css/main.0f6635f5.css.map",
+    "main.49de8bdc.js.map": "/mob-programming-rpg/static/js/main.49de8bdc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f6635f5.css",
+    "static/js/main.49de8bdc.js"
+  ]
+}
