@@ -102,6 +102,40 @@ nitsan
  - WRITE test before code, write the name of the test before the code
  - the name should tell me whjat the test is trying to do 
 
+### Retro #3
+
+Joel
+- Getting into an issue, haven't figured it out yet - what are the pattern that already exist for double-loop TDD?
+  - I would like to get to testing the inner loop already
+  - right now feels like we're duplicating a loop in tests and prod
+
+Diana
+- Going OK
+- Interesting doing fizzbuzz in an unusual way - how much learning there is!
+- Liked - able to mute other person's audio on Gather
+- Liked - Joel verbally talked through his thinking, the outcome he wanted, help me getting aligned
+- Worried - are we going to dup the fizzbuzz asserts up to 100?! But prob shouldn't be worried, as this is software and we'll be able to extract commonalities later, incrementally.
+
+Nitsan
+- from my perspective. we are at the outer loop and we have not gone into the inner loop
+- we are following the familiar pattern of adding more fizzbuzz numbers
+- joel did. anice step extracted a function called fizzbuzz. 
+- not testing outer loop yet
+- we have to think and learn when we changed the rules 
+
+### Retro #4
+
+Joel
+- Feel like we're picking up speed wihtout hurrying
+- Clearer direction now
+- Double lines between function - less lines on the screen
+- Would like to move to parameterized tests (e.g. all the fizz, all the buzz...)
+- Learning a lot, outer and inner.
+
+Nitsan
+- It's getting clearer but still have questions: Feels like we're duplicating the same test value in inner and outer loop
+- Wonder if we should ask, what can *only* be tested from the outside; and then all the details go inside
+
 ### Final Retro
 
 ### How we spent our time today:
