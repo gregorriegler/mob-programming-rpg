@@ -15,6 +15,7 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
+- March 7, 2024: https://cyber-dojo.org/kata/edit/qNwx86
 - use GPT as a coding assistant while designing a text based mob timer:
 -   fizz buzz print 100 lines using double-loop TDD (in python)
     - https://cyber-dojo.org/kata/edit/vJQEaU
