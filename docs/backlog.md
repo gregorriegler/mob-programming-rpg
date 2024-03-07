@@ -15,7 +15,11 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
-- March 7, 2024: https://cyber-dojo.org/kata/edit/qNwx86
+- March 7, 2024: 
+    - Code: https://cyber-dojo.org/kata/edit/qNwx86
+    - At the end of the session (Mar. 7, 2024), things left to do:
+        - Separate tests into 2 test files: one for fizzbuzz tests (inner loop) and one for fizzbuzz program tests (outer loop)
+        - Separate fizzbuzz production code into 2 files: one for the fizzbuzz function and one for the fizzbuzz program
 - use GPT as a coding assistant while designing a text based mob timer:
 -   fizz buzz print 100 lines using double-loop TDD (in python)
     - https://cyber-dojo.org/kata/edit/vJQEaU
