@@ -47,7 +47,60 @@ Retro Notes go here:
 
 ### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
 
+
+Joel
+- Liked - "let's do TDD" - helping each other when forgetting
+- hello world - testing the test system - a more precise name vs. testing fizzbuzz
+- Liked - getting the cyber-dojo quickly, in the background - updting the gitpod
+
+Diana
+- Liked - at 20m after start time, having code running
+- Liked - sharing the screen, starting cyber-dojo - getting into the shared context
+- Liked - feels safe not to know, to not have the screen work correctly
+
+Gregor
+- good to be back! thanks for wuickly starting something
+- love double-loop
+- Q: double looping, started from outside; is it ok to have the first test pass w/o a running program?
+
+Nitsan
+- thesting hello world vs testing our instance of fizz buzz
+- we do not have a program
+- CHANGE. fizzbuzz should be an actual program and we should test it more from the outside
+- we can explore.
+
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
+
+Diana
+- Love the fact that changing the approach to fizzbuzz, makes it confusing all of the sudden
+- Helpful asking "what is your intention?", could phrase it just enough to pass it forward
+- Being a verbal thinker - by answering a Q, helps me discover what am thinking
+
+Joel
+- Enjoyed it, nice flow
+- improve - have timer sound
+- trying to capture the output from separate program, but deffered to keep the focus, and the steps small
+- Liked: code is now cleaner, working with refactoring, removing clutter helps us focus
+
+Gregor
+- Enjoyed wroking together! We understand each other, how we would approach things, feels comfortable
+- Wish - should have asked on what was the high level intent for the `first_line` variable
+
+nitsan
+- good points in this retro
+- one min pers person retro
+ - people are veery insightful and conveying a lot
+ -  Gregor:  I wish I could have asked about the intention
+ - I learn about how to hand over something clearly,
+ - could have stoppped and not do anytyhing
+ - the first test:  test the first line of the program
+ - make it clear that we are only asserting on the first line
+ - very small difference:  1 vs 1\n
+ - the assertion tests the whole output of the program
+ - have the test, test. what it says
+ - change the test to what it affects the test
+ - WRITE test before code, write the name of the test before the code
+ - the name should tell me whjat the test is trying to do 
 
 ### Final Retro
 
