@@ -15,6 +15,10 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
+- June 4, 2024: 
+    - Solve Lift Pass Kata, as we want to simulate Testing of a Legacy Microservice via JSON HTTP Api
+    - https://gregorriegl-refactoring-13dc4q522u7.ws-eu110.gitpod.io
+    - https://github.com/gregorriegler/Refactoring-Kata-Lift-Pass-Pricing
 - March 7, 2024: 
     - Code: https://cyber-dojo.org/kata/edit/qNwx86
     - At the end of the session (Mar. 7, 2024), things left to do:
