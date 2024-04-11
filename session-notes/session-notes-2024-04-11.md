@@ -48,6 +48,32 @@ Retro Notes go here:
 
 ### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
 
+Diana
+- Love the intention - suport each other in learning
+- Want to understand the code
+  - Idea - read the README +1
+  - Also - Curious about how we might read the code to understand
+- Excited about maybe using pytest at work
+
+Joel
+- Going fast doing the setup - a bit disequilebrating(?!)
+  - Idea - Maybe we could have a script / document to automate this
+- Appreciate the group!
+
+Nate
+- Little Nate is proud! Able to contribute, even when thought I couldn't when being a Speaker!
+- Following along, getting some of the steps but not all; got it done in the end, not fully understading; Forgiving of that
+- A little overwhelmed
+
+Nitsan
+- sorry for going to fast for the set up
+I just remeembered and went rhough them 
+the steps are in the readme
+
+I like how we work together
++1 look at the read me for better understanding of the kata before going forward
+
+
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 
 ### Final Retro
