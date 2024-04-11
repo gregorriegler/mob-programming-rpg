@@ -98,6 +98,20 @@ Nitsan
 
 ### Final Retro
 
+Nitsan
+- We actually did a very minimal untested refactoring: extracted the whole body of a function into a new functions.
+  Very safe, very minimal. Beyond that, we did regular TDD.
+- Made code worse, more debt
+- Want as much coverage as possible before refactor.
+- Workflow proposal (for next steps): Mutation tests - e.g., change one line of code to see if the tests fail; if they don't, the code isn't covered by a test
+
+Diana
+- Next steps: What tests do we need before refactoring?
+
+Nate
+- This is such stimulating learning
+- I really liked watching the mob really push forward coding and how Nitsan said he was supermotivated b/c he was curious
+
 ### How we spent our time today:
 - Time-Archivist will record the total time for each section of today's session:
   - __ minutes coding
