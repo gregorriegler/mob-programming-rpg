@@ -76,6 +76,26 @@ I like how we work together
 
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 
+Diana
+- Going really well.
+- Seems like we're on the right path to practice testing with relevant patterns
+- Same kata two weeks in a row - getting better at starting it
+- Remember to commit!
+
+Joel
+- Like how we went about deciding what to do next - a few ideas
+- Enjoyable; Fun to figure out how to test old code, where to start
+- Having a specific test for a new requirement feels good
+
+Nate
+- Like: "downloads", super fast learning
+- Dislike: in between difficult to stay focused, trying not to distract the group
+
+Nitsan
+- Curious how this will turn out 
+- We have a test and need to see if we can get it to pass without touching the existing code
+- Consider 4 minutes per turn, or keep at 3 minutes
+
 ### Final Retro
 
 ### How we spent our time today:
