@@ -48,12 +48,16 @@ def test_fizz_divisor_is_3(fizzbuzz_db):
 def test_buzz_divisor_is_5(fizzbuzz_db):
     assert fizzbuzz_db.fizzbuzz_rules.find_one({"word": "Buzz"})["divisor"] == 5
 
+# ----------------------------------------------------------
+# todo: move this production code to another file later:
 FizzbuzzFn = Callable[[int], str]
 
+# todo: move this production code to another file later:
 def make_fizzbuzz(db) -> FizzbuzzFn:
     def fizzbuzz_fn(number):  
         return "Fizz"
     return fizzbuzz_fn
+# ----------------------------------------------------------    
 
 def test_fizzbuzz(fizzbuzz_db):
     fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
