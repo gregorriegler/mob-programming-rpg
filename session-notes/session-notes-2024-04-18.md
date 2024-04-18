@@ -78,6 +78,27 @@ Joel
 
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 
+Joel
+- Enjoyed it! Interesting conversation, and getting on same page, uncharted territory
+- Liked: taking a dummy test -> changing the fields -> just worked
+- Still interested to see how this goes
+
+Diana
+- Working well
+- Appreciate talking through the different representations, talking about it made it clearer to see the differences
+- As Typist did not see it clearly
+- Tests helped reveal that
+- Excited about using a DB
+- propose to commit soon
+
+Nitsan
+- Very interesting - PO discussion; where is the responsibility of who?
+- Representing something in DB but usually isn't something a PO cares about
+- Up to tech and non-tech people to have an understanding of the domain
+- Nice to have DB represent domain to avoid confusion; so not solely a tech concern
+- Not sure what answer is; instinct: PO shouldn't tell tech what the internals should be, but good to be part of discussion
+
+
 ### Final Retro
 
 ### How we spent our time today:
