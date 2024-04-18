@@ -46,6 +46,36 @@ Retro Notes go here:
 
 ### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
 
+Kevin
+- Liked the feeling. Time went quickly. Rotation gave everyone a chance. Liked tooling in a browser window, VSCode. 
+- Liked working with the tests & quick & dirty DB, looked promising.
+- Overall positive.
+
+Matt
+- A little nervous - a lot of people this time; previously was fewer people. Never used GitPod before, a little stressful.
+- Liked - very cool to try using DB with FizzBuzz.
+- Felt guilty suggesting ChatGPT, not sure if a faux pas. (Mob response: Not a problem at all; it's helpful, just up to the Talker to go along or not. Totally fine to take time on something new - or anyting. The time takes what it takes)
+
+Nitsan
+- What we're working on is less clear than usual
+- When should we connect to a DB? etc.
+- We just said let's do FizzBuzz and see if we can use a DB; a vaguer problem space
+- Liked more people today, awesome; wish they could've stayed long
+
+Diana
+- Really fun. Like using DB for FizzBuzz.
+- Did later have an opinion on which DB, but still not sure.
+- Going well
+- Curious about DB, like using python since team is using it
+
+Joel
+- Liked meeting Kevin and having Matt come back
+- In retrospect - maybe start with requirements; let the DB be introduced using TDD
+- Eager to see how it will come out
+- Onboarding process - try to get to coding quickly, and use a simple problem
+- Love talking Spanish with the mob!
+
+
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 
 ### Final Retro
