@@ -101,6 +101,16 @@ Nitsan
 
 ### Final Retro
 
+Nitsan
+- Now see a clear path, how we can TDD multiple paths
+- Interesting: how does the mock mongo relate to using an actual mongo connection?
+- Could do end-to-end testing with a real database, not just mock
+
+Joel
+- Like how things are unfolding
+- Found it a bit confusing - injecting something to a function in python; putting the production code in the test code itself
+- A better name for `ret` (maybe `fizzbuzz_factory` -> returing a `fizzbuzz_function`)
+
 ### How we spent our time today:
 - Time-Archivist will record the total time for each section of today's session:
   - __ minutes coding
