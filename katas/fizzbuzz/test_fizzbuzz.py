@@ -53,8 +53,16 @@ def test_buzz_divisor_is_5(fizzbuzz_db):
 FizzbuzzFn = Callable[[int], str]
 
 # todo: move this production code to another file later:
+## grab all rules and sort them by divisor and loop through (rather than being hardcoded)
+#failing test to surface something
 def make_fizzbuzz(db) -> FizzbuzzFn:
     def fizzbuzz_fn(number):  
+        # get the rules from DB sorted by the divisor
+        rules = db.fizzbuzz_rules.find().sort("divisor", 1)
+        for rule in rules:
+            print(rule)
+        # loop through each rule and append the word if the input number is divisible by the divisor
+        #retrun the number as a string
         divisor = 5
         word = db.fizzbuzz_rules.find_one({"divisor": divisor})["word"]        
         if number == divisor:

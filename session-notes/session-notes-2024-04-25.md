@@ -125,6 +125,23 @@ Nitsan
 - Liked how we uncovered the bug for the new test, i.e., duplicate test with new rule; resulted in different failure.
 - Is this a refactoring, or are we adding functionality? Duplication can be refactored. Mainly we are still adding functionality.
 
+### Retro 5
+
+Diana
+- was very important to write the comments and pseudo-code
+- just followed it
+- did not understand the intention w/o the comments; fine following
+- amazing - ChatGPT gave us something too verbose; still learned from it
+
+Joel
+- like our progress
+- found it easier to state intentions with comments / pseudo-code; capturing on the screen makes it easier to follow
+- enjoyed the session!
+
+Nitsan
+- Like doing fizzbuzz with db - so many considerations; very interesting to manage everyone's understanding 
+- Don't have a clear idea how to go about it, but like exploring different directions together
+
 ### Final Retro
 
 ### How we spent our time today:
