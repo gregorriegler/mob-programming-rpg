@@ -74,6 +74,22 @@ Joel
 
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 
+Nitsan
+- In retrospect, prefer not to be testing 7, but 5 again; only change 1 thing between 2 tests; last tested 5, so
+  now do it again and expect a different word (only change was the rule, not the number); e.g., input = 5, word = something else
+
+Diana
+- Like that we have a rotation with being Typer first and then becoming the Talker
+- Used my turn to get better understanding
+- Wait and watch
+
+Joel
+- Getting into a bit of a flow
+- Figuring out how to write this test
+- a test for not fizz nor buzz: two variables: 1. the number 2. the rules
+- Next: continue as we are
+- Good to do the retro now
+
 ### Final Retro
 
 ### How we spent our time today:

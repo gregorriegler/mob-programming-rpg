@@ -72,6 +72,18 @@ def test_buzz(fizzbuzz_db):
     fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
     assert "Buzz" == fizzbuzz_fn(5)
 
+def test_different_rules(fizzbuzz_db):
+    rules = fizzbuzz_db.fizzbuzz_rules
+    rules.insert_many(
+        [
+            {"word": "Fizz", "divisor": 3},
+            {"word": "Buzz", "divisor": 5},
+            # add Bang, 7
+        ]
+    )
+    fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
+    assert "Bang" == fizzbuzz_fn(7)
+
 def skip_test_15(fizzbuzz_db):
     fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
     assert "FizzBuzz" == fizzbuzz_fn(15)
