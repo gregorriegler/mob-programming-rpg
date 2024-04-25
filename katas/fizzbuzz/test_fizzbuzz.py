@@ -73,7 +73,20 @@ def test_buzz(fizzbuzz_db):
     fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
     assert "Buzz" == fizzbuzz_fn(5)
 
-def test_different_rules(fizzbuzz_db):
+# test: a non-fizzbuzz rule for 3
+
+def test_wow_instead_of_fizz(fizzbuzz_db):
+    rules = fizzbuzz_db.fizzbuzz_rules
+    # rules.delete_many(filter={})
+    rules.insert_many(
+        [
+            {"word": "Wow", "divisor": 3},
+        ]
+    )
+    fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
+    assert "Wow" == fizzbuzz_fn(3)
+
+def test_Bang_instead_of_Buzz(fizzbuzz_db):
     rules = fizzbuzz_db.fizzbuzz_rules
     rules.delete_many(filter={})
     rules.insert_many(

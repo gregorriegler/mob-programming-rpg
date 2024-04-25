@@ -109,6 +109,22 @@ Joel
 - Clear intentions: helps with different ideas people might have
 
 
+### Retro 4
+
+Diana
+- I have faith we'll get there this way with the group
+- Having the db, and ask something wrong, that would fail
+
+Joel
+- Like the pattern we have
+- Something we're doing is a bit confusing
+- Maybe extract helper function for readability
+- Losing track about red / refactor
+
+Nitsan
+- Liked how we uncovered the bug for the new test, i.e., duplicate test with new rule; resulted in different failure.
+- Is this a refactoring, or are we adding functionality? Duplication can be refactored. Mainly we are still adding functionality.
+
 ### Final Retro
 
 ### How we spent our time today:
