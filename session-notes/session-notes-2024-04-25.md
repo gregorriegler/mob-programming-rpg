@@ -41,32 +41,36 @@ Co-Authored-By: Joel Silberman <42779942+jcs-instructor@users.noreply.github.com
 Co-Authored-By: 4dsherwood <4dsherwood@users.noreply.github.com>
 Co-Authored-By: Matt <matthew.anderson11@gmail.com>
 
-## Inactive Co-Authors
-Co-Authored-By: Kevin Maes <kevin@kevinmaes.com>
-Co-Authored-By: martin-martin <breuss.martin@gmail.com>
-Co-Authored-By: Nathaniel Herman <nathaniel.herman@gmail.com>
-Co-Authored-By: Blaise Pabon <blaise@gmail.com>
-Co-Authored-By: Michael R. Wolf <MichaelRWolf@att.net>
-Co-Authored-By: arrockt <cariari385@gmail.com>
-Co-Authored-By: Austin Chadwick <austin.chadwick11@gmail.com>
-Co-Authored-By: Blessed538 <blesseddominic98@gmail.com>
-Co-Authored-By: Eddie Bush <eddie@craftsmanshipcounts.com>
-Co-Authored-By: Gabriel Mbaiorga <gabrielmbaiorga@gmail.com>
-Co-Authored-By: Idan Melamed <idanmel@gmail.com>
-Co-Authored-By: Rea <reasu@protonmail.com>
-Co-Authored-By: Tsvetan Tsvetanov <cpi.cecko@gmail.com>
-Co-Authored-By: Willem Larsen <willemlarsen@gmail.com>
-Co-Authored-By: David Campey <campey@gmail.com>
-Co-Authored-by: Zac Ball <zac156@gmail.com>
-Co-Authored-By: Kitastro <admin@metafor.co.za>
-Co-Authored-By: Woody Zuill <wzuill@yahoo.com>
-Co-Authored-By: Llewellyn Falco <llewellyn.falco@gmail.com>
-
 ## Retro [Templates](../docs/retro-templates.md)
 
 Retro Notes go here:
 
 ### Mid-Session Retro 1 (1 minute per person - what liked/disliked & propose changes)
+
+Typer (most;y): Nitsan
+
+Diana
+- Noticed - did a good job of not being worried about not being set up; was quick to get set up
+- "don't know if I should refactor..."
+
+Gregor
+- Surprised to see a new person! Good to see you all again
+- Learned: `skip_test_`
+- Cool: using `pytest-watch` - a continuous test runer
+- `make_fizzbuzz` - pass the db - how can we not pass it?
+  - Maybe: fetch data -> pass the data to `make_fizzbuzz`
+
+Nitsan
+- make_fizzbuzz - idea was to separate the entire app from the tests (that's why the db is injected); can also have something
+  that accepts the rules without the db (later)
+- we could try having a failing test about not using the db correctly
+
+Joel
+- would have liked longer bonding, but good to get to codign quickly
+- borderline case: is what we're doing a bit too complex?
+- figuring out how to fizzbuzz + db kata
+- could we do this kata on cyber dojo?
+- to improve (in the future) python refactoring tool on gitpod
 
 ### Mid-Session Retro 2 (1 minute per person - what liked/disliked & propose changes)
 
