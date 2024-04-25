@@ -90,6 +90,25 @@ Joel
 - Next: continue as we are
 - Good to do the retro now
 
+### Retro 3
+
+Nitsan
+- Wondering about this pattern: many refactorings until the change is very small (possibly 1 line)
+- Dilemma: do this on green? or red? (or orange?) We have a relevant failing test. Let's do the simplest thing to pass;
+  maybe refactor so it's easier & maybe better than refactoring on red. "Orange state" - want a failing test to tell us
+  where we're going and also the ability to refactor.
+
+Diana
+- Request: when talking, make sure to state your intention, and how it fits
+- Enjoying the rotations
+
+Joel
+- Happy +1 on stating the intention
+- Thought this would be simpler than it is; surprised how complicated this is, and how it fits into TDD
+- Things getting clearer
+- Clear intentions: helps with different ideas people might have
+
+
 ### Final Retro
 
 ### How we spent our time today:
