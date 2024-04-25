@@ -59,9 +59,8 @@ def make_fizzbuzz(db) -> FizzbuzzFn:
         word = db.fizzbuzz_rules.find_one({"divisor": divisor})["word"]        
         if number == divisor:
             return word
-        return "Fizz"
+        return db.fizzbuzz_rules.find_one({"divisor": 3})["word"]
     return fizzbuzz_fn
-
 
 # ----------------------------------------------------------    
 
@@ -77,10 +76,11 @@ def test_buzz(fizzbuzz_db):
 
 def test_wow_instead_of_fizz(fizzbuzz_db):
     rules = fizzbuzz_db.fizzbuzz_rules
-    # rules.delete_many(filter={})
+    rules.delete_many(filter={})
     rules.insert_many(
         [
             {"word": "Wow", "divisor": 3},
+            {"word": "Bang", "divisor": 5},
         ]
     )
     fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
