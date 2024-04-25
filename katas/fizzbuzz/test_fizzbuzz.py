@@ -55,9 +55,8 @@ FizzbuzzFn = Callable[[int], str]
 # todo: move this production code to another file later:
 def make_fizzbuzz(db) -> FizzbuzzFn:
     def fizzbuzz_fn(number):  
-        # TODO: get the rule from the db for 5
         divisor = 5
-        word = "Buzz"
+        word = db.fizzbuzz_rules.find_one({"divisor": divisor})["word"]        
         if number == divisor:
             return word
         return "Fizz"
@@ -74,7 +73,7 @@ def test_buzz(fizzbuzz_db):
     fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
     assert "Buzz" == fizzbuzz_fn(5)
 
-def skip_test_different_rules(fizzbuzz_db):
+def test_different_rules(fizzbuzz_db):
     rules = fizzbuzz_db.fizzbuzz_rules
     rules.delete_many(filter={})
     rules.insert_many(
