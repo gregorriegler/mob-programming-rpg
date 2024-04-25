@@ -55,10 +55,24 @@ FizzbuzzFn = Callable[[int], str]
 # todo: move this production code to another file later:
 def make_fizzbuzz(db) -> FizzbuzzFn:
     def fizzbuzz_fn(number):  
+        # TODO: get the rule from the db for 5
+        if number == 5:
+            return "Buzz"
         return "Fizz"
     return fizzbuzz_fn
+
+
 # ----------------------------------------------------------    
 
 def test_fizzbuzz(fizzbuzz_db):
     fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
-    assert "Fizz" == fizzbuzz_fn(3)    
+    assert "Fizz" == fizzbuzz_fn(3)
+
+def test_buzz(fizzbuzz_db):
+    fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
+    assert "Buzz" == fizzbuzz_fn(5)
+
+def skip_test_15(fizzbuzz_db):
+    fizzbuzz_fn = make_fizzbuzz(fizzbuzz_db)
+    assert "FizzBuzz" == fizzbuzz_fn(15)
+
