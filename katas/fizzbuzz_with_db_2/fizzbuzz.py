@@ -24,7 +24,7 @@ def fizz_buzz(i, rules=None):
     #     rules = default_rules_from_db
     output = []
     for rule in rules:
-        if i % rule.divisor == 0 or str(rule.divisor) in str(i):
+        if i % rule.divisor == 0: # Later: if we want contains functionality, add: or str(rule.divisor) in str(i)
             output.append(rule.word)
     return ''.join(output) if output else str(i)
 

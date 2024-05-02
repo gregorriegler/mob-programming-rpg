@@ -13,6 +13,7 @@ def fizz_buzz_default(num):
 @pytest.mark.parametrize("input, expected", [
     (1, "1"),
     (2, "2"),
+    (13, "13"),
 ])
 def test_return_number(input, expected):
     assert fizz_buzz_default(input) == expected
