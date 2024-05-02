@@ -19,15 +19,18 @@ class Rule:
 #         print(f"An error occurred while fetching rules from MongoDB: {e}")
 #     return rules
 
-def fizz_buzz(i, rules=None):
+def does_rule_apply(number, divisor):
+    return number % divisor == 0 # Later: if we want 'contains' functionality, add: `or str(divisor) in str(num)`
+
+def fizz_buzz(number, rules=None):
     # TODO: Use default rules from MongoDB if no rules are specified
     # if rules is None:
     #     rules = default_rules_from_db
     output = []
     for rule in rules:
-        if i % rule.divisor == 0: # Later: if we want contains functionality, add: or str(rule.divisor) in str(i)
+        if does_rule_apply(number, rule.divisor): 
             output.append(rule.word)
-    return ''.join(output) if output else str(i)
+    return ''.join(output) if output else str(number)
 
 # TODO: DB work:
 
