@@ -7,16 +7,17 @@ class Rule:
         self.word = word
         self.divisor = divisor
 
-def get_rules_from_db(collection):
-    # Fetches rules from MongoDB, sorted by the divisor in ascending order
-    rules = []
-    try:
-        rules_data = collection.find({}).sort("divisor", 1)  # Sorting by 'divisor' in ascending order
-        for rule in rules_data:
-            rules.append(Rule(rule['word'], rule['divisor']))
-    except Exception as e:
-        print(f"An error occurred while fetching rules from MongoDB: {e}")
-    return rules
+# TODO: When implement DB logic.
+# def get_rules_from_db(collection):
+#     # Fetches rules from MongoDB, sorted by the divisor in ascending order
+#     rules = []
+#     try:
+#         rules_data = collection.find({}).sort("divisor", 1)  # Sorting by 'divisor' in ascending order
+#         for rule in rules_data:
+#             rules.append(Rule(rule['word'], rule['divisor']))
+#     except Exception as e:
+#         print(f"An error occurred while fetching rules from MongoDB: {e}")
+#     return rules
 
 def fizz_buzz(i, rules=None):
     # TODO: Use default rules from MongoDB if no rules are specified
