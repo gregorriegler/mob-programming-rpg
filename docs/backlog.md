@@ -15,6 +15,9 @@
 -   r Fix implicit any types (now that set compiler options to disallow implicit any)
 
 # Doing (WIP)
+- May 9, 2024:
+    - FizzBuzz with a rules object in cyber-dojo
+    - Link: https://cyber-dojo.org/kata/edit/SbyLlU
 - April 4 and 11, 2024: 
     - Solve Lift Pass Kata, as we want to simulate Testing of a Legacy Microservice via JSON HTTP Api    
     - https://github.com/jcs-instructor/Refactoring-Kata-Lift-Pass-Pricing
