@@ -7,12 +7,14 @@ import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 type RoleSheetProps = {
     player: Player;
     role: Role;
+    position: string;
     scorePoints: any;
 };
 
 export function RoleSheet({
     player,
     role,
+    position,
     scorePoints
 }: RoleSheetProps): JSX.Element {
     return <div className="role">
@@ -28,9 +30,10 @@ export function RoleSheet({
             />
         </label>
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
-        {/* TODO: Add list of activities for this role */}
         <div>
-            {roles[role].todos.map(s => <div key={s}>{s}</div>)}
+            {role == "Driver" && position == "Driver" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
+            {role == "Navigator" && position == "Navigator" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
+            {role == "Mobber" && position == "Mobber" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
         </div>
         {/*
                  some_function({role}) returns string (or list of strings) to display here....

@@ -6,12 +6,23 @@ import { Role, levels, roles } from "./model/Roles";
 
 
 describe('RoleSheet', () => {
-    const firstLevelRoles = levels[0].map((name) => roles[name]);
-    firstLevelRoles.forEach((role) => it(`shows skills for the ${role.name} role`, () => {
-        render(<RoleSheet role={role.name as Role} player={new Player("Roger")} scorePoints={() => { }} />);
+    it(`shows Driver skills when in Driver position`, () => {
+        render(<RoleSheet role="Driver" position="Driver" player={new Player("Roger")} scorePoints={() => { }} />);
 
-        role.todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
-    }))
+        roles["Driver"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
+    });
+
+    it(`shows Navigator skills when in Navigator position`, () => {
+        render(<RoleSheet role="Navigator" position="Navigator" player={new Player("Roger")} scorePoints={() => { }} />);
+
+        roles["Navigator"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
+    });
+
+    it(`shows Mobber skills when in Mobber position`, () => {
+        render(<RoleSheet role="Mobber" position="Mobber" player={new Player("Roger")} scorePoints={() => { }} />);
+
+        roles["Mobber"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
+    });
 })
 
 // TODO if canEarnPoints for role, show skills of role

@@ -62,6 +62,7 @@ const PlayerDisplay = ({
         <RoleSheet
           key={role}
           role={role}
+          position={position}
           player={player}
           scorePoints={scorePoints}
         />
