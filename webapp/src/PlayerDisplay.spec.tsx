@@ -51,9 +51,9 @@ describe('PlayerDisplay', () => {
         render(<PlayerDisplay player={new Player("Roger")} />);
 
         function roleInitialized(role: string) {
-            const driverPoints = screen.getByLabelText(role);
-            expect(driverPoints).toHaveValue("0");
-            expect(driverPoints).toBeDisabled();
+            const typerPoints = screen.getByLabelText(role);
+            expect(typerPoints).toHaveValue("0");
+            expect(typerPoints).toBeDisabled();
         }
 
         roleInitialized('Typing');
@@ -61,7 +61,7 @@ describe('PlayerDisplay', () => {
         roleInitialized('Mobber');
     });
 
-    it('adds driver points', () => {
+    it('adds typer points', () => {
         render(<PlayerDisplay player={new Player("Roger")} />);
         player.clickAddPoints('Typing');
         expect(player.addPointsInput()).toBeInTheDocument();

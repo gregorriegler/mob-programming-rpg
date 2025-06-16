@@ -122,12 +122,12 @@ describe('Game', () => {
         ]);
     });
 
-    it('has the first player starting as a driver', () => {
+    it('has the first player starting as a typer', () => {
         const game = createGame();
 
         game.setPlayers('Max,Rita,  Peter');
 
-        expect(game.driver()).toEqual('Max');
+        expect(game.typer()).toEqual('Max');
         expect(game.navigator()).toEqual('Rita');
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Max')).toEqual('Typing');
@@ -141,7 +141,7 @@ describe('Game', () => {
 
         game.navigatorThenTyping();
 
-        expect(game.driver()).toEqual('Rita');
+        expect(game.typer()).toEqual('Rita');
         expect(game.navigator()).toEqual('Max');
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
@@ -156,7 +156,7 @@ describe('Game', () => {
 
         game.typingThenNavigator();
 
-        expect(game.driver()).toEqual('Max');
+        expect(game.typer()).toEqual('Max');
         expect(game.navigator()).toEqual('Rita');
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Max')).toEqual('Typing');
@@ -209,7 +209,7 @@ describe('Game', () => {
 
         game.rotate();
 
-        expect(game.driver()).toEqual('Rita');
+        expect(game.typer()).toEqual('Rita');
         expect(game.navigator()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
         expect(game.positionOf('Peter')).toEqual('Navigator');
@@ -225,7 +225,7 @@ describe('Game', () => {
 
         game.rotateToTarget();
 
-        expect(game.driver()).toEqual('Rita');
+        expect(game.typer()).toEqual('Rita');
         expect(game.navigator()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
         expect(game.positionOf('Peter')).toEqual('Navigator');
@@ -240,7 +240,7 @@ describe('Game', () => {
         game.rotate();
         game.rotate();
 
-        expect(game.driver()).toEqual('Peter');
+        expect(game.typer()).toEqual('Peter');
         expect(game.navigator()).toEqual('Sam');
     });
 
@@ -251,7 +251,7 @@ describe('Game', () => {
 
         game.rotate();
 
-        expect(game.driver()).toEqual('Peter');
+        expect(game.typer()).toEqual('Peter');
         expect(game.navigator()).toEqual('Rita');
         expect(game.positionOf('Peter')).toEqual('Typing');
         expect(game.positionOf('Rita')).toEqual('Navigator');

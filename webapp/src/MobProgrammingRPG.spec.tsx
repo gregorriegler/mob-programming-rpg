@@ -4,7 +4,7 @@ import React from "react";
 import { gameIdFromUrl } from "./infrastructure/GameIdFromUrl";
 import MobProgrammingRPG from "./MobProgrammingRPG";
 import { ClockStub, MilliSeconds } from "./model/Clock";
-import { GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR, Game, GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER } from "./model/Game";
+import { GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR, Game, GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER } from "./model/Game";
 import { getButton } from "./TestHarnessConvenienceFunctions";
 
 function getPlayerListItems() {
@@ -241,11 +241,11 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
-            expect(getButton({ name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR })).toBeInTheDocument();
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER }));
+            expect(getButton({ name: GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR })).toBeInTheDocument();
 
-            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
-            expect(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR }));
+            expect(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER })).toBeInTheDocument();
         })
 
         it('that allows to change rotation direction to (Navigator,Typing)', () => {
@@ -254,7 +254,7 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER }));
             fireEvent.click(screen.getByText("Save"));
 
             expect(game.navigatorThenTyping).toHaveBeenCalledTimes(1);
@@ -267,8 +267,8 @@ describe('Mob Programming RPG', () => {
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
-            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
-            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER }));
+            fireEvent.click(getButton({ name: GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR }));
             fireEvent.click(screen.getByText("Save"));
 
             expect(game.navigatorThenTyping).not.toHaveBeenCalled();

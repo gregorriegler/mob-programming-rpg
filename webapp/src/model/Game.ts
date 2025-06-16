@@ -1,9 +1,9 @@
 import { Avatar, Player } from "./Player";
 
-const DRIVER = "Typing";
+const TYPER = "Typing";
 const NAVIGATOR = "Navigator";
-export const GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR: string = "Typing,Navigator"
-export const GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER: string = "Navigator,Typing"
+export const GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR: string = "Typing,Navigator"
+export const GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER: string = "Navigator,Typing"
 
 export type GameId = string;
 type Seconds = number;
@@ -45,7 +45,7 @@ export class Game {
     private _timerStatus: TimerStatus;
     private _targetRotation;
     private _rotations;
-    private _roleIndex = [DRIVER, NAVIGATOR];
+    private _roleIndex = [TYPER, NAVIGATOR];
 
     constructor({
         id = generateId(),
@@ -70,8 +70,8 @@ export class Game {
 
     // game.mob.getPlayers()
     // game.mob.names()
-    // game.mob.getDriver()
-    // game.mob.getDriver()
+    // game.mob.getTyper()
+    // game.mob.getTyper()
 
     mob() {
         return this._mob;
@@ -117,12 +117,12 @@ export class Game {
         this._mob.push(new Player(name.trim(), avatar))
     }
 
-    driver() {
-        return this.whoIs(this.indexOfDriver());
+    typer() {
+        return this.whoIs(this.indexOfTyper());
     }
 
-    private indexOfDriver() {
-        return this._roleIndex.indexOf(DRIVER);
+    private indexOfTyper() {
+        return this._roleIndex.indexOf(TYPER);
     }
 
     navigator() {
@@ -154,7 +154,7 @@ export class Game {
     }
 
     positionOf(player: string) {
-        if (this.driver() === player) return DRIVER;
+        if (this.typer() === player) return TYPER;
         if (this.navigator() === player) return NAVIGATOR;
         return 'Mobber';
     }
@@ -191,10 +191,10 @@ export class Game {
     }
 
     navigatorThenTyping() {
-        this._roleIndex = [NAVIGATOR, DRIVER];
+        this._roleIndex = [NAVIGATOR, TYPER];
     }
 
     typingThenNavigator() {
-        this._roleIndex = [DRIVER, NAVIGATOR];
+        this._roleIndex = [TYPER, NAVIGATOR];
     }
 }

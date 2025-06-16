@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR, Game, GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER } from "./model/Game";
+import { GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR, Game, GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER } from "./model/Game";
 
 export function Settings({ game, updateGameState, onClose }: { game: Game, updateGameState: () => void, onClose: () => void }) {
 
@@ -9,7 +9,7 @@ export function Settings({ game, updateGameState, onClose }: { game: Game, updat
         const timer = formData.get("change-timer") as string;
         game.setPlayers(players);
         game.changeTimer(parseInt(timer) * 60);
-        if (roles === GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR) {
+        if (roles === GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR) {
             game.navigatorThenTyping();
         } else {
             game.typingThenNavigator();
@@ -18,13 +18,13 @@ export function Settings({ game, updateGameState, onClose }: { game: Game, updat
         event.preventDefault();
     };
 
-    const [roles, setRoles] = useState(GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER);
+    const [roles, setRoles] = useState(GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER);
 
     function onClickRoles() {
-        if (roles === GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER) {
-            setRoles(GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR)
+        if (roles === GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER) {
+            setRoles(GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR)
         } else {
-            setRoles(GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER)
+            setRoles(GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER)
         }
     }
 
