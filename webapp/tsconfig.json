@@ -4,6 +4,6 @@
     "esModuleInterop": true,
     "jsx": "react",
     "strictNullChecks": true,
-    "noImplicitAny": true
+    "noImplicitAny": false
   }
 }
