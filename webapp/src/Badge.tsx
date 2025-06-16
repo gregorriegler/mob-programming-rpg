@@ -4,7 +4,7 @@ import { Role } from "./model/Roles";
 export function Badge({ role }: any) {
   function badgeSource(role: Role) {
     const images = {
-      Driver: "driver-badge.png",
+      Typing: "driver-badge.png",
       Navigator: "navigator-badge.png",
       Mobber: "mobber-badge.png",
       Researcher: "researcher-badge.png",

@@ -6,10 +6,10 @@ import { Role, levels, roles } from "./model/Roles";
 
 
 describe('RoleSheet', () => {
-    it(`shows Driver skills when in Driver position`, () => {
-        render(<RoleSheet role="Driver" position="Driver" player={new Player("Roger")} scorePoints={() => { }} />);
+    it(`shows Typing skills when in Typing position`, () => {
+        render(<RoleSheet role="Typing" position="Typing" player={new Player("Roger")} scorePoints={() => { }} />);
 
-        roles["Driver"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
+        roles["Typing"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
     });
 
     it(`shows Navigator skills when in Navigator position`, () => {

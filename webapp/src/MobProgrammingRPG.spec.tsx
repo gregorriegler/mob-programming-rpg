@@ -170,7 +170,7 @@ describe('Mob Programming RPG', () => {
         // we should change this test to not create this confusion
         // role has two contexts: testing framework, the game player
         expect(within(items[0]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber')
-        expect(within(items[1]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Driver')
+        expect(within(items[1]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Typing')
         expect(within(items[2]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator')
     })
 
@@ -237,7 +237,7 @@ describe('Mob Programming RPG', () => {
             expect(screen.getByTitle("timer")).toHaveTextContent('10:00');
         })
 
-        it('that allows to change rotation direction (Navigator -> Driver) <-> (Driver -> Navigator)', () => {
+        it('that allows to change rotation direction (Navigator -> Typing) <-> (Typing -> Navigator)', () => {
             render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
@@ -248,22 +248,22 @@ describe('Mob Programming RPG', () => {
             expect(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER })).toBeInTheDocument();
         })
 
-        it('that allows to change rotation direction to (Navigator,Driver)', () => {
+        it('that allows to change rotation direction to (Navigator,Typing)', () => {
             const game = new Game({players:["Gregor", "Peter", "Rita"]});
-            jest.spyOn(game, "navigatorThenDriver");
+            jest.spyOn(game, "navigatorThenTyping");
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
             fireEvent.click(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER }));
             fireEvent.click(screen.getByText("Save"));
 
-            expect(game.navigatorThenDriver).toHaveBeenCalledTimes(1);
+            expect(game.navigatorThenTyping).toHaveBeenCalledTimes(1);
         })
 
-        it('that allows to change rotation direction back to (Driver,Navigator)', () => {
+        it('that allows to change rotation direction back to (Typing,Navigator)', () => {
             const game = new Game({players:["Gregor", "Peter", "Rita"]});
-            jest.spyOn(game, "navigatorThenDriver");
-            jest.spyOn(game, "driverThenNavigator");
+            jest.spyOn(game, "navigatorThenTyping");
+            jest.spyOn(game, "typingThenNavigator");
             render(<MobProgrammingRPG initGame={game} />);
             fireEvent.click(getSettingsButton());
 
@@ -271,8 +271,8 @@ describe('Mob Programming RPG', () => {
             fireEvent.click(getButton({ name: GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR }));
             fireEvent.click(screen.getByText("Save"));
 
-            expect(game.navigatorThenDriver).not.toHaveBeenCalled();
-            expect(game.driverThenNavigator).toHaveBeenCalledTimes(1);
+            expect(game.navigatorThenTyping).not.toHaveBeenCalled();
+            expect(game.typingThenNavigator).toHaveBeenCalledTimes(1);
         })
 
         it('close', () => {
@@ -372,8 +372,8 @@ describe('Mob Programming RPG', () => {
             advanceTimeBy(1000 * 60 * 4)
 
             expect(screen.getByText("Time is over")).toBeInTheDocument();
-            expect(screen.getByTitle("Next Driver")).toHaveTextContent("Peter");
-            expect(screen.getByTitle("Next Driver")).toHaveTextContent("Driver");
+            expect(screen.getByTitle("Next Typing")).toHaveTextContent("Peter");
+            expect(screen.getByTitle("Next Typing")).toHaveTextContent("Typing");
             expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Rita");
             expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Navigator");
         })

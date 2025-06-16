@@ -10,9 +10,9 @@ export function Settings({ game, updateGameState, onClose }: { game: Game, updat
         game.setPlayers(players);
         game.changeTimer(parseInt(timer) * 60);
         if (roles === GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR) {
-            game.navigatorThenDriver();
+            game.navigatorThenTyping();
         } else {
-            game.driverThenNavigator();
+            game.typingThenNavigator();
         }
         updateGameState();
         event.preventDefault();

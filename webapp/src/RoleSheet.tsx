@@ -31,7 +31,7 @@ export function RoleSheet({
         </label>
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
         <div>
-            {role == "Driver" && position == "Driver" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
+            {role == "Typing" && position == "Typing" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
             {role == "Navigator" && position == "Navigator" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
             {role == "Mobber" && position == "Mobber" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
         </div>

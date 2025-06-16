@@ -1,5 +1,5 @@
 export type Role =
-    | "Driver"
+    | "Typing"
     | "Navigator"
     | "Mobber"
     | "Archivist"
@@ -12,7 +12,7 @@ export type Role =
     | "Traffic Cop";
 
 export const levels: Role[][] = [
-    ["Driver", "Navigator", "Mobber"],
+    ["Typing", "Navigator", "Mobber"],
     ["Researcher", "Sponsor", "Archivist", "Traffic Cop"],
     ["Disciplinarian", "Nose", "Rear Admiral"],
     ["Automationist"],
@@ -40,8 +40,8 @@ type AllRoleDetails = {
     [key in Role]: RoleDetails;
 };
 export const roles: AllRoleDetails = {
-    Driver: {
-        name: "Driver",
+    Typing: {
+        name: "Typing",
         todos: [
             "Ask a clarifying question about what to type",
             "Type something you disagree with",
@@ -54,8 +54,8 @@ export const roles: AllRoleDetails = {
         name: "Navigator",
         todos: [
             "Ask for ideas",
-            "Filter the mob's ideas then tell the Driver exactly what to type",
-            "Tell the Driver only your high-level intent and have them implement the details",
+            "Filter the mob's ideas then tell the Typing exactly what to type",
+            "Tell the Typing only your high-level intent and have them implement the details",
             "Create a failing test",
             "Make it pass as simple as possible",
             "Do a refactoring while staying in the green",

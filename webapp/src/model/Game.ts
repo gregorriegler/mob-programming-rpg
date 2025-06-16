@@ -1,9 +1,9 @@
 import { Avatar, Player } from "./Player";
 
-const DRIVER = "Driver";
+const DRIVER = "Typing";
 const NAVIGATOR = "Navigator";
-export const GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR: string = "Driver,Navigator"
-export const GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER: string = "Navigator,Driver"
+export const GAMEPLAY_ORDER_DRIVER_THEN_NAVIGATOR: string = "Typing,Navigator"
+export const GAMEPLAY_ORDER_NAVIGATOR_THEN_DRIVER: string = "Navigator,Typing"
 
 export type GameId = string;
 type Seconds = number;
@@ -190,11 +190,11 @@ export class Game {
         return this._mob[(index + this._rotations) % this._mob.length];
     }
 
-    navigatorThenDriver() {
+    navigatorThenTyping() {
         this._roleIndex = [NAVIGATOR, DRIVER];
     }
 
-    driverThenNavigator() {
+    typingThenNavigator() {
         this._roleIndex = [DRIVER, NAVIGATOR];
     }
 }

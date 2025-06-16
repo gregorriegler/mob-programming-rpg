@@ -44,7 +44,7 @@ describe('PlayerDisplay', () => {
 
     it('shows the players role', () => {
         render(<PlayerDisplay player={new Player("Roger")} />);
-        expect(screen.getByRole('listitem')).toHaveTextContent("Driver");
+        expect(screen.getByRole('listitem')).toHaveTextContent("Typing");
     });
 
     it('shows the initial points', () => {
@@ -56,34 +56,34 @@ describe('PlayerDisplay', () => {
             expect(driverPoints).toBeDisabled();
         }
 
-        roleInitialized('Driver');
+        roleInitialized('Typing');
         roleInitialized('Navigator');
         roleInitialized('Mobber');
     });
 
     it('adds driver points', () => {
         render(<PlayerDisplay player={new Player("Roger")} />);
-        player.clickAddPoints('Driver');
+        player.clickAddPoints('Typing');
         expect(player.addPointsInput()).toBeInTheDocument();
         expect(player.addPointsInput()).toHaveValue("0");
 
         player.enterAddPointsForm("2");
 
-        expect(player.pointsDisplay('Driver')).toHaveValue("2");
+        expect(player.pointsDisplay('Typing')).toHaveValue("2");
         expect(screen.queryByLabelText('Add Points')).toBeNull();
     });
 
     it('adds up points', () => {
         render(<PlayerDisplay player={new Player("Roger")} />);
-        player.clickAddPoints('Driver');
+        player.clickAddPoints('Typing');
         player.enterAddPointsForm("1");
-        expect(player.pointsDisplay('Driver')).toHaveValue("1");
+        expect(player.pointsDisplay('Typing')).toHaveValue("1");
 
-        player.clickAddPoints('Driver');
+        player.clickAddPoints('Typing');
         player.enterAddPointsForm("2");
 
-        expect(player.pointsDisplay('Driver')).toHaveValue("3");
-        expect(screen.getByAltText('Driver Badge')).toBeInTheDocument();
+        expect(player.pointsDisplay('Typing')).toHaveValue("3");
+        expect(screen.getByAltText('Typing Badge')).toBeInTheDocument();
     });
 
     it('cannot select a new role before having a badge', () => {

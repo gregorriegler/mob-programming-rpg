@@ -1,8 +1,8 @@
 import React from "react";
 
-export function EarnPointsForRoleForm({ onSubmit: earnDriverPoints }: { onSubmit: (e: any) => void; }): JSX.Element {
+export function EarnPointsForRoleForm({ onSubmit: earnRolePoints }: { onSubmit: (e: any) => void; }): JSX.Element {
     return (
-        <form className="add-points-form" onSubmit={earnDriverPoints}>
+        <form className="add-points-form" onSubmit={earnRolePoints}>
             <label>
                 Add Points
                 <input
