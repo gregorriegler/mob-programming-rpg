@@ -1,7 +1,7 @@
 export type Role =
     | "Typing"
     | "Talking"
-    | "Mobber"
+    | "Observing"
     | "Archivist"
     | "Automationist"
     | "Nose"
@@ -12,7 +12,7 @@ export type Role =
     | "Traffic Cop";
 
 export const levels: Role[][] = [
-    ["Typing", "Talking", "Mobber"],
+    ["Typing", "Talking", "Observing"],
     ["Researcher", "Sponsor", "Archivist", "Traffic Cop"],
     ["Disciplinarian", "Nose", "Rear Admiral"],
     ["Automationist"],
@@ -61,8 +61,8 @@ export const roles: AllRoleDetails = {
             "Do a refactoring while staying in the green",
         ],
     },
-    Mobber: {
-        name: "Mobber",
+    Observing: {
+        name: "Observing",
         todos: [
             "Contribute an idea",
             "Admit a thing you didn't understand",

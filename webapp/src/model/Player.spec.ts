@@ -16,12 +16,12 @@ describe('Player', () => {
         expectRolesAndPoints([
             ['Typing', 0],
             ['Talking', 0],
-            ['Mobber', 0],
+            ['Observing', 0],
         ]);
         expectPercentage([
             ['Typing', 0],
             ['Talking', 0],
-            ['Mobber', 0],
+            ['Observing', 0],
         ])
     });
 
@@ -39,12 +39,12 @@ describe('Player', () => {
         expectRolesAndPoints([
             ['Typing', 1],
             ['Talking', 0],
-            ['Mobber', 0],
+            ['Observing', 0],
         ]);
         expectPercentage([
             ['Typing', 33.3],
             ['Talking', 0],
-            ['Mobber', 0],
+            ['Observing', 0],
         ])
     });
 
@@ -55,45 +55,45 @@ describe('Player', () => {
         expectRolesAndPoints([
             ['Typing', 0],
             ['Talking', 2],
-            ['Mobber', 0],
+            ['Observing', 0],
         ]);
         expectPercentage([
             ['Typing', 0],
             ['Talking', 66.6],
-            ['Mobber', 0],
+            ['Observing', 0],
         ])
     });
 
-    it('earns Mobber Badge', () => {
-        expect(player.hasBadge('Mobber')).toBeFalsy();
+    it('earns Observing Badge', () => {
+        expect(player.hasBadge('Observing')).toBeFalsy();
 
-        player.scoreTimes('Mobber', 3);
+        player.scoreTimes('Observing', 3);
 
-        expect(player.hasBadge('Mobber')).toBeTruthy();
-        expect(player.badges).toEqual(['Mobber']);
+        expect(player.hasBadge('Observing')).toBeTruthy();
+        expect(player.badges).toEqual(['Observing']);
         expect(player.level()).toBe(1);
         expectRolesAndPoints([
             ['Typing', 0],
             ['Talking', 0],
-            ['Mobber', 3],
+            ['Observing', 3],
         ]);
         expectPercentage([
             ['Typing', 0],
             ['Talking', 0],
-            ['Mobber', 100],
+            ['Observing', 100],
         ])
     });
 
     it('earns all level 1 Badges', () => {
-        player.scoreTimes('Mobber', 3);
+        player.scoreTimes('Observing', 3);
         player.scoreTimes('Typing', 3);
         player.scoreTimes('Talking', 3);
 
-        expect(player.badges).toEqual(expect.arrayContaining(['Mobber', 'Typing', 'Talking']));
+        expect(player.badges).toEqual(expect.arrayContaining(['Observing', 'Typing', 'Talking']));
         expectRolesAndPoints([
             ['Typing', 3],
             ['Talking', 3],
-            ['Mobber', 3],
+            ['Observing', 3],
         ]);
     });
 
@@ -106,7 +106,7 @@ describe('Player', () => {
 
     it('can select level 2 Role after gaining a level 1 Badge', () => {
         expect(player.selectableRoles()).toEqual([]);
-        player.scoreTimes('Mobber', 3);
+        player.scoreTimes('Observing', 3);
 
         expect(player.selectableRoles()).toContain("Researcher");
         player.selectRole('Researcher');
@@ -117,11 +117,11 @@ describe('Player', () => {
     });
 
     it('does not reset points on selecting an already selected role', () => {
-        player.doScoreAndAddBadge('Mobber');
+        player.doScoreAndAddBadge('Observing');
 
-        player.selectRole('Mobber');
+        player.selectRole('Observing');
 
-        expect(player.pointsFor('Mobber')).toEqual(1);
+        expect(player.pointsFor('Observing')).toEqual(1);
     });
 
     it('cannot select a level 2 role without gaining a level 1 Badge', () => {
@@ -133,7 +133,7 @@ describe('Player', () => {
     });
 
     it('cannot select a level 3 role without gaining a level 2 Badge', () => {
-        player.scoreTimes('Mobber', 3);
+        player.scoreTimes('Observing', 3);
 
         const act = () => player.selectRole('Automationist');
 
@@ -141,7 +141,7 @@ describe('Player', () => {
     });
 
     it('reaches level 2 and 3', () => {
-        player.scoreTimes('Mobber', 3);
+        player.scoreTimes('Observing', 3);
         player.selectRole('Researcher');
         player.scoreTimes('Researcher', 3);
         expect(player.level()).toBe(2);
@@ -151,7 +151,7 @@ describe('Player', () => {
     });
 
     it('converts to object', () => {
-        player.scoreTimes('Mobber', 3);
+        player.scoreTimes('Observing', 3);
         player.selectRole('Researcher');
         player.changeAvatar('dev');
 
@@ -162,12 +162,12 @@ describe('Player', () => {
                 name: 'Gregor',
                 avatar: 'dev',
                 roles: {
-                    "Mobber": 3,
+                    "Observing": 3,
                     "Typing": 0,
                     "Talking": 0,
                     "Researcher": 0
                 },
-                badges: ["Mobber"]
+                badges: ["Observing"]
             }
         );
     });
@@ -178,26 +178,26 @@ describe('Player', () => {
                 name: 'Gregor',
                 avatar: 'dev',
                 roles: {
-                    "Mobber": 3,
+                    "Observing": 3,
                     "Typing": 0,
                     "Talking": 0,
                     "Researcher": 0
                 },
-                badges: ["Mobber"]
+                badges: ["Observing"]
             }
         );
 
         expect(player.name).toEqual('Gregor');
         expect(player.avatar).toEqual('dev');
         expect(player.roles).toEqual([
-            "Mobber",
+            "Observing",
             "Typing",
             "Talking",
             "Researcher"
         ])
-        expect(player.pointsFor("Mobber")).toEqual(3)
+        expect(player.pointsFor("Observing")).toEqual(3)
         expect(player.pointsFor("Researcher")).toEqual(0)
-        expect(player.badges).toEqual(["Mobber"]);
+        expect(player.badges).toEqual(["Observing"]);
     });
 
     describe("Score", () => {

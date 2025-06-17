@@ -169,7 +169,7 @@ describe('Mob Programming RPG', () => {
         // TODO: role has a different meaning here as its defined by the testing framework
         // we should change this test to not create this confusion
         // role has two contexts: testing framework, the game player
-        expect(within(items[0]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber')
+        expect(within(items[0]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Observing')
         expect(within(items[1]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Typing')
         expect(within(items[2]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Talking')
     })

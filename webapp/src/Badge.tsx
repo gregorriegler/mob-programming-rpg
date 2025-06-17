@@ -6,7 +6,7 @@ export function Badge({ role }: any) {
     const images = {
       Typing: "driver-badge.png",
       Talking: "navigator-badge.png",
-      Mobber: "mobber-badge.png",
+      Observing: "observing-badge.png",
       Researcher: "researcher-badge.png",
       Sponsor: "sponsor-badge.png",
       "Rear Admiral": "rear-admiral-badge.png",

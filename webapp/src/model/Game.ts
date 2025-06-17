@@ -156,7 +156,7 @@ export class Game {
     positionOf(player: string) {
         if (this.typer() === player) return TYPER;
         if (this.navigator() === player) return NAVIGATOR;
-        return 'Mobber';
+        return 'Observing';
     }
 
     toJSON() {

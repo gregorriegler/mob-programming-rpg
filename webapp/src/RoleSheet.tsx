@@ -33,7 +33,7 @@ export function RoleSheet({
         <div>
             {role == "Typing" && position == "Typing" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
             {role == "Talking" && position == "Talking" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
-            {role == "Mobber" && position == "Mobber" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
+            {role == "Observing" && position == "Observing" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
         </div>
         {/*
                  some_function({role}) returns string (or list of strings) to display here....

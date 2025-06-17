@@ -132,7 +132,7 @@ describe('Game', () => {
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Max')).toEqual('Typing');
         expect(game.positionOf('Rita')).toEqual('Talking');
-        expect(game.positionOf('Peter')).toEqual('Mobber');
+        expect(game.positionOf('Peter')).toEqual('Observing');
     });
 
     it('set the direction of roles: Talking, Typing', () => {
@@ -146,7 +146,7 @@ describe('Game', () => {
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
         expect(game.positionOf('Max')).toEqual('Talking');
-        expect(game.positionOf('Peter')).toEqual('Mobber');
+        expect(game.positionOf('Peter')).toEqual('Observing');
     });
 
     it('set the direction of roles: Typing, Talking', () => {
@@ -161,7 +161,7 @@ describe('Game', () => {
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Max')).toEqual('Typing');
         expect(game.positionOf('Rita')).toEqual('Talking');
-        expect(game.positionOf('Peter')).toEqual('Mobber');
+        expect(game.positionOf('Peter')).toEqual('Observing');
     });
 
     it('initialized with a 4 minute timer', () => {
@@ -213,8 +213,8 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
         expect(game.positionOf('Peter')).toEqual('Talking');
-        expect(game.positionOf('Sam')).toEqual('Mobber');
-        expect(game.positionOf('Max')).toEqual('Mobber');
+        expect(game.positionOf('Sam')).toEqual('Observing');
+        expect(game.positionOf('Max')).toEqual('Observing');
     });
 
     // rotate to target
@@ -229,8 +229,8 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
         expect(game.positionOf('Peter')).toEqual('Talking');
-        expect(game.positionOf('Sam')).toEqual('Mobber');
-        expect(game.positionOf('Max')).toEqual('Mobber');
+        expect(game.positionOf('Sam')).toEqual('Observing');
+        expect(game.positionOf('Max')).toEqual('Observing');
     });
 
     it('rotates around', () => {
@@ -255,8 +255,8 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Rita');
         expect(game.positionOf('Peter')).toEqual('Typing');
         expect(game.positionOf('Rita')).toEqual('Talking');
-        expect(game.positionOf('Sam')).toEqual('Mobber');
-        expect(game.positionOf('Max')).toEqual('Mobber');
+        expect(game.positionOf('Sam')).toEqual('Observing');
+        expect(game.positionOf('Max')).toEqual('Observing');
     });
 
     it('serializes to json', () => {
@@ -285,12 +285,12 @@ describe('Game', () => {
             {
               "name": "Gregor",
               "roles": {
-                "Mobber": 3,
+                "Observing": 3,
                 "Typing": 0,
                 "Talking": 0,
                 "Researcher": 0
               },
-              "badges": ["Mobber"]
+              "badges": ["Observing"]
             }
           ],
           "timer": {
@@ -304,7 +304,7 @@ describe('Game', () => {
 
         expect(game.mob().length).toEqual(1);
         expect(game.mob()[0].name).toEqual("Gregor");
-        expect(game.mob()[0].badges).toEqual(["Mobber"]);
+        expect(game.mob()[0].badges).toEqual(["Observing"]);
         expect(game.timer()).toEqual(240);
         expect(game.timerStatus()).toEqual("STOPPED");
         expect(game.rotations()).toEqual(1);

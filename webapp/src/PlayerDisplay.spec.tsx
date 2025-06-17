@@ -58,7 +58,7 @@ describe('PlayerDisplay', () => {
 
         roleInitialized('Typing');
         roleInitialized('Talking');
-        roleInitialized('Mobber');
+        roleInitialized('Observing');
     });
 
     it('adds typer points', () => {

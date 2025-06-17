@@ -9,7 +9,7 @@ import { SelectRole } from "./SelectRole";
 const PlayerDisplay = ({
   player: _player,
   updateGameState = noOp,
-  position = "Mobber"
+  position = "Observing"
 }: {
   player: Player;
   updateGameState?: () => void;

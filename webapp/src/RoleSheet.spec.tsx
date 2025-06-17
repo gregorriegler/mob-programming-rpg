@@ -18,10 +18,10 @@ describe('RoleSheet', () => {
         roles["Talking"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
     });
 
-    it(`shows Mobber skills when in Mobber position`, () => {
-        render(<RoleSheet role="Mobber" position="Mobber" player={new Player("Roger")} scorePoints={() => { }} />);
+    it(`shows Observing skills when in Observing position`, () => {
+        render(<RoleSheet role="Observing" position="Observing" player={new Player("Roger")} scorePoints={() => { }} />);
 
-        roles["Mobber"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
+        roles["Observing"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
     });
 })
 

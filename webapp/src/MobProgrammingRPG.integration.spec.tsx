@@ -57,8 +57,8 @@ describe('Mob Programming RPG', () => {
             client2
         ] = await renderTwoGameClients(makeGame());
 
-        expectPlayerPositions(client1, ['Typing', 'Talking', 'Mobber']);
-        expectPlayerPositions(client2, ['Typing', 'Talking', 'Mobber']);
+        expectPlayerPositions(client1, ['Typing', 'Talking', 'Observing']);
+        expectPlayerPositions(client2, ['Typing', 'Talking', 'Observing']);
     });
 
     itButNotOnOurCi('two game clients with the same init game - same positions after rotation', async () => {
@@ -70,8 +70,8 @@ describe('Mob Programming RPG', () => {
         await startTimer(client1);
         await waitForRotation();
 
-        expectPlayerPositions(client1, ['Mobber', 'Typing', 'Talking']);
-        expectPlayerPositions(client2, ['Mobber', 'Typing', 'Talking']);
+        expectPlayerPositions(client1, ['Observing', 'Typing', 'Talking']);
+        expectPlayerPositions(client2, ['Observing', 'Typing', 'Talking']);
     });
 
     async function renderTwoGameClients(game: Game) {
