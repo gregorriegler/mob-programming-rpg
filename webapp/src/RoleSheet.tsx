@@ -17,6 +17,17 @@ export function RoleSheet({
     position,
     scorePoints
 }: RoleSheetProps): JSX.Element {
+    const [pointsScored, setPointsScored] = useState(false);
+
+    function onSubmitCheckboxes(e) {
+        e.preventDefault();
+        // Only count checkboxes within this specific form for this role
+        const checkboxes = e.target.querySelectorAll(`input[type="checkbox"][id^="${role}-"]:checked`);
+        const amount = checkboxes.length;
+        scorePoints(role, amount);
+        setPointsScored(true);
+    }
+
     return <div className="role">
         <hr />
         <label className="role-label">
@@ -31,9 +42,20 @@ export function RoleSheet({
         </label>
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
         <div>
-            {role == "Typing" && position == "Typing" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
-            {role == "Talking" && position == "Talking" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
-            {role == "Observing" && position == "Observing" && roles[role].todos.map(s => <div key={s}>{s}</div>)}
+            <form onSubmit={onSubmitCheckboxes}>
+                {role == position && roles[role].todos.map((s, index) => <div key={s}>
+                <input type="checkbox" id={`${role}-${index}`} className="earn-points-checkbox" style={{float: "left", display: "block", marginTop: "6px", width: "9%", minHeight: "20px"}} />
+                <div style={{marginLeft: "32px", margin: "4px", padding: "4px"}}>{s}</div>
+                </div>)}
+
+                {!pointsScored && (
+                    <button
+                        className="rpgui-button add-points-button"
+                        aria-label={"Earn Points"}>
+                        <p>Earn</p>
+                    </button>
+                )}
+            </form>
         </div>
         {/*
                  some_function({role}) returns string (or list of strings) to display here....
