@@ -15,12 +15,12 @@ describe('Player', () => {
         expect(player.avatar).toEqual('dodo');
         expectRolesAndPoints([
             ['Typing', 0],
-            ['Navigator', 0],
+            ['Talking', 0],
             ['Mobber', 0],
         ]);
         expectPercentage([
             ['Typing', 0],
-            ['Navigator', 0],
+            ['Talking', 0],
             ['Mobber', 0],
         ])
     });
@@ -38,28 +38,28 @@ describe('Player', () => {
         expect(player.level()).toBe(0);
         expectRolesAndPoints([
             ['Typing', 1],
-            ['Navigator', 0],
+            ['Talking', 0],
             ['Mobber', 0],
         ]);
         expectPercentage([
             ['Typing', 33.3],
-            ['Navigator', 0],
+            ['Talking', 0],
             ['Mobber', 0],
         ])
     });
 
-    it('scores two times as Navigator', () => {
-        player.scoreTimes('Navigator', 2);
+    it('scores two times as Talking', () => {
+        player.scoreTimes('Talking', 2);
 
         expect(player.badges).toEqual([]);
         expectRolesAndPoints([
             ['Typing', 0],
-            ['Navigator', 2],
+            ['Talking', 2],
             ['Mobber', 0],
         ]);
         expectPercentage([
             ['Typing', 0],
-            ['Navigator', 66.6],
+            ['Talking', 66.6],
             ['Mobber', 0],
         ])
     });
@@ -74,12 +74,12 @@ describe('Player', () => {
         expect(player.level()).toBe(1);
         expectRolesAndPoints([
             ['Typing', 0],
-            ['Navigator', 0],
+            ['Talking', 0],
             ['Mobber', 3],
         ]);
         expectPercentage([
             ['Typing', 0],
-            ['Navigator', 0],
+            ['Talking', 0],
             ['Mobber', 100],
         ])
     });
@@ -87,12 +87,12 @@ describe('Player', () => {
     it('earns all level 1 Badges', () => {
         player.scoreTimes('Mobber', 3);
         player.scoreTimes('Typing', 3);
-        player.scoreTimes('Navigator', 3);
+        player.scoreTimes('Talking', 3);
 
-        expect(player.badges).toEqual(expect.arrayContaining(['Mobber', 'Typing', 'Navigator']));
+        expect(player.badges).toEqual(expect.arrayContaining(['Mobber', 'Typing', 'Talking']));
         expectRolesAndPoints([
             ['Typing', 3],
-            ['Navigator', 3],
+            ['Talking', 3],
             ['Mobber', 3],
         ]);
     });
@@ -164,7 +164,7 @@ describe('Player', () => {
                 roles: {
                     "Mobber": 3,
                     "Typing": 0,
-                    "Navigator": 0,
+                    "Talking": 0,
                     "Researcher": 0
                 },
                 badges: ["Mobber"]
@@ -180,7 +180,7 @@ describe('Player', () => {
                 roles: {
                     "Mobber": 3,
                     "Typing": 0,
-                    "Navigator": 0,
+                    "Talking": 0,
                     "Researcher": 0
                 },
                 badges: ["Mobber"]
@@ -192,7 +192,7 @@ describe('Player', () => {
         expect(player.roles).toEqual([
             "Mobber",
             "Typing",
-            "Navigator",
+            "Talking",
             "Researcher"
         ])
         expect(player.pointsFor("Mobber")).toEqual(3)

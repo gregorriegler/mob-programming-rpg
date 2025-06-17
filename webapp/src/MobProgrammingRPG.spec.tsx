@@ -171,7 +171,7 @@ describe('Mob Programming RPG', () => {
         // role has two contexts: testing framework, the game player
         expect(within(items[0]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Mobber')
         expect(within(items[1]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Typing')
-        expect(within(items[2]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Navigator')
+        expect(within(items[2]).getAllByRole('heading', { level: 2 })[0]).toHaveTextContent('Talking')
     })
 
     it("has a help button once clicked shows what a player should do", () => {
@@ -237,7 +237,7 @@ describe('Mob Programming RPG', () => {
             expect(screen.getByTitle("timer")).toHaveTextContent('10:00');
         })
 
-        it('that allows to change rotation direction (Navigator -> Typing) <-> (Typing -> Navigator)', () => {
+        it('that allows to change rotation direction (Talking -> Typing) <-> (Typing -> Talking)', () => {
             render(<MobProgrammingRPG />);
             fireEvent.click(getSettingsButton());
 
@@ -248,7 +248,7 @@ describe('Mob Programming RPG', () => {
             expect(getButton({ name: GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER })).toBeInTheDocument();
         })
 
-        it('that allows to change rotation direction to (Navigator,Typing)', () => {
+        it('that allows to change rotation direction to (Talking,Typing)', () => {
             const game = new Game({players:["Gregor", "Peter", "Rita"]});
             jest.spyOn(game, "navigatorThenTyping");
             render(<MobProgrammingRPG initGame={game} />);
@@ -260,7 +260,7 @@ describe('Mob Programming RPG', () => {
             expect(game.navigatorThenTyping).toHaveBeenCalledTimes(1);
         })
 
-        it('that allows to change rotation direction back to (Typing,Navigator)', () => {
+        it('that allows to change rotation direction back to (Typing,Talking)', () => {
             const game = new Game({players:["Gregor", "Peter", "Rita"]});
             jest.spyOn(game, "navigatorThenTyping");
             jest.spyOn(game, "typingThenNavigator");
@@ -374,8 +374,8 @@ describe('Mob Programming RPG', () => {
             expect(screen.getByText("Time is over")).toBeInTheDocument();
             expect(screen.getByTitle("Next Typing")).toHaveTextContent("Peter");
             expect(screen.getByTitle("Next Typing")).toHaveTextContent("Typing");
-            expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Rita");
-            expect(screen.getByTitle("Next Navigator")).toHaveTextContent("Navigator");
+            expect(screen.getByTitle("Next Talking")).toHaveTextContent("Rita");
+            expect(screen.getByTitle("Next Talking")).toHaveTextContent("Talking");
         })
 
         it("that allows to continue after the time is over", () => {

@@ -131,11 +131,11 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Rita');
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Max')).toEqual('Typing');
-        expect(game.positionOf('Rita')).toEqual('Navigator');
+        expect(game.positionOf('Rita')).toEqual('Talking');
         expect(game.positionOf('Peter')).toEqual('Mobber');
     });
 
-    it('set the direction of roles: Navigator, Typing', () => {
+    it('set the direction of roles: Talking, Typing', () => {
         const game = createGame();
         game.setPlayers('Max,Rita,Peter');
 
@@ -145,11 +145,11 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Max');
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
-        expect(game.positionOf('Max')).toEqual('Navigator');
+        expect(game.positionOf('Max')).toEqual('Talking');
         expect(game.positionOf('Peter')).toEqual('Mobber');
     });
 
-    it('set the direction of roles: Typing, Navigator', () => {
+    it('set the direction of roles: Typing, Talking', () => {
         const game = createGame();
         game.setPlayers('Max,Rita,Peter');
         game.navigatorThenTyping();
@@ -160,7 +160,7 @@ describe('Game', () => {
         expect(game.navigator()).toEqual('Rita');
         expect(game.next()).toEqual('Peter');
         expect(game.positionOf('Max')).toEqual('Typing');
-        expect(game.positionOf('Rita')).toEqual('Navigator');
+        expect(game.positionOf('Rita')).toEqual('Talking');
         expect(game.positionOf('Peter')).toEqual('Mobber');
     });
 
@@ -212,7 +212,7 @@ describe('Game', () => {
         expect(game.typer()).toEqual('Rita');
         expect(game.navigator()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
-        expect(game.positionOf('Peter')).toEqual('Navigator');
+        expect(game.positionOf('Peter')).toEqual('Talking');
         expect(game.positionOf('Sam')).toEqual('Mobber');
         expect(game.positionOf('Max')).toEqual('Mobber');
     });
@@ -228,7 +228,7 @@ describe('Game', () => {
         expect(game.typer()).toEqual('Rita');
         expect(game.navigator()).toEqual('Peter');
         expect(game.positionOf('Rita')).toEqual('Typing');
-        expect(game.positionOf('Peter')).toEqual('Navigator');
+        expect(game.positionOf('Peter')).toEqual('Talking');
         expect(game.positionOf('Sam')).toEqual('Mobber');
         expect(game.positionOf('Max')).toEqual('Mobber');
     });
@@ -254,7 +254,7 @@ describe('Game', () => {
         expect(game.typer()).toEqual('Peter');
         expect(game.navigator()).toEqual('Rita');
         expect(game.positionOf('Peter')).toEqual('Typing');
-        expect(game.positionOf('Rita')).toEqual('Navigator');
+        expect(game.positionOf('Rita')).toEqual('Talking');
         expect(game.positionOf('Sam')).toEqual('Mobber');
         expect(game.positionOf('Max')).toEqual('Mobber');
     });
@@ -287,7 +287,7 @@ describe('Game', () => {
               "roles": {
                 "Mobber": 3,
                 "Typing": 0,
-                "Navigator": 0,
+                "Talking": 0,
                 "Researcher": 0
               },
               "badges": ["Mobber"]

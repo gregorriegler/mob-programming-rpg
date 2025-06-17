@@ -1,6 +1,6 @@
 export type Role =
     | "Typing"
-    | "Navigator"
+    | "Talking"
     | "Mobber"
     | "Archivist"
     | "Automationist"
@@ -12,7 +12,7 @@ export type Role =
     | "Traffic Cop";
 
 export const levels: Role[][] = [
-    ["Typing", "Navigator", "Mobber"],
+    ["Typing", "Talking", "Mobber"],
     ["Researcher", "Sponsor", "Archivist", "Traffic Cop"],
     ["Disciplinarian", "Nose", "Rear Admiral"],
     ["Automationist"],
@@ -47,11 +47,11 @@ export const roles: AllRoleDetails = {
             "Type something you disagree with",
             "Use a new keyboard shortcut",
             "Learn something new about tooling",
-            "Ignore a direct instruction from someone who isn't the Navigator",
+            "Ignore a direct instruction from someone who isn't the Talking",
         ],
     },
-    Navigator: {
-        name: "Navigator",
+    Talking: {
+        name: "Talking",
         todos: [
             "Ask for ideas",
             "Filter the mob's ideas then tell the Typing exactly what to type",
@@ -73,9 +73,9 @@ export const roles: AllRoleDetails = {
     "Rear Admiral": {
         name: "Rear Admiral",
         todos: [
-            "Quietly speak into the Navigators ear",
-            "Give the smallest cue necessary to move the Navigator forward through the problem",
-            "Navigate the Navigator at the highest level of abstraction they can successfully implement",
+            "Quietly speak into the Talkings ear",
+            "Give the smallest cue necessary to move the Talking forward through the problem",
+            "Navigate the Talking at the highest level of abstraction they can successfully implement",
         ],
     },
     "Traffic Cop": {
@@ -124,7 +124,7 @@ export const roles: AllRoleDetails = {
         name: "Disciplinarian",
         todos: [
             "Remind the team to check if the tests pass.",
-            "Remind the navigator to write a failing test first.",
+            "Remind the talking to write a failing test first.",
             "Make sure we do not refactor while the tests are failing.",
             "Remind the group to refactor when in the green.",
         ],
@@ -141,7 +141,7 @@ export const roles: AllRoleDetails = {
         name: "Sponsor",
         todos: [
             "Amplify the unheard voice",
-            "Make sure the current Navigator is not overruled and gets their fair chance.",
+            "Make sure the current Talking is not overruled and gets their fair chance.",
             "Celebrate moments of excellence",
             "Cheer up the mob in times of struggle",
         ],

@@ -5,7 +5,7 @@ export function Badge({ role }: any) {
   function badgeSource(role: Role) {
     const images = {
       Typing: "driver-badge.png",
-      Navigator: "navigator-badge.png",
+      Talking: "navigator-badge.png",
       Mobber: "mobber-badge.png",
       Researcher: "researcher-badge.png",
       Sponsor: "sponsor-badge.png",

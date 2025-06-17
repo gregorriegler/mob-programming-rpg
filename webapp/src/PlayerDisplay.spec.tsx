@@ -57,7 +57,7 @@ describe('PlayerDisplay', () => {
         }
 
         roleInitialized('Typing');
-        roleInitialized('Navigator');
+        roleInitialized('Talking');
         roleInitialized('Mobber');
     });
 
@@ -94,10 +94,10 @@ describe('PlayerDisplay', () => {
 
     it('can select a new role after earning a badge', () => {
         render(<PlayerDisplay player={new Player("Roger")} />);
-        player.clickAddPoints("Navigator");
+        player.clickAddPoints("Talking");
         player.enterAddPointsForm("3");
 
-        expect(screen.getByAltText('Navigator Badge')).toBeInTheDocument();
+        expect(screen.getByAltText('Talking Badge')).toBeInTheDocument();
         expect(screen.getByRole('listitem', { name: /Roger/i })).toBeInTheDocument();
 
         const availableRoles = screen.getByLabelText(/available roles/i);

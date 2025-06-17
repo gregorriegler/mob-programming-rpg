@@ -1,9 +1,9 @@
 import { Avatar, Player } from "./Player";
 
 const TYPER = "Typing";
-const NAVIGATOR = "Navigator";
-export const GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR: string = "Typing,Navigator"
-export const GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER: string = "Navigator,Typing"
+const NAVIGATOR = "Talking";
+export const GAMEPLAY_ORDER_TYPER_THEN_NAVIGATOR: string = "Typing,Talking"
+export const GAMEPLAY_ORDER_NAVIGATOR_THEN_TYPER: string = "Talking,Typing"
 
 export type GameId = string;
 type Seconds = number;

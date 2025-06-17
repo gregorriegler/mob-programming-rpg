@@ -9,8 +9,8 @@ export function Help({game, timeIsOver, onClose}) {
                 <h2>Time is over</h2>
                 <h3 title="Next Typing"><span className="yellow">{game.typer()}</span>, you're the next Typing
                 </h3>
-                <h3 title="Next Navigator"><span className="yellow">{game.navigator()}</span>, you're the next
-                    Navigator</h3>
+                <h3 title="Next Talking"><span className="yellow">{game.navigator()}</span>, you're the next
+                    Talking</h3>
             </>
         }
         {!timeIsOver &&
