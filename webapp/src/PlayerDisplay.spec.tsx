@@ -7,23 +7,23 @@ import { act } from "react-dom/test-utils";
 
 describe('PlayerDisplay', () => {
     class PlayerComponent {
-        addPointsButton(role) {
-            return screen.getByLabelText(`Earn ${role} Points`);
-        }
-
-        clickAddPoints(role: string) {
-            fireEvent.click(player.addPointsButton(role));
-        }
-
+        
         addPointsInput() {
             return screen.getByLabelText('Add Points');
         }
 
-        enterAddPointsForm(value: string) {
-            act(() => {
-                fireEvent.change(this.addPointsInput(), { target: { value: value } })
-                fireEvent.click(screen.getByText('Add'));
-            })
+        async checkTodo(todo) {
+            const checkbox = screen.getByRole('checkbox', { name: new RegExp(todo, 'i') });
+            await act(async () => {
+                await userEvent.click(checkbox);
+            });
+        }
+
+        async clickEarnPoints() {
+            const submitButton = screen.getByText('Earn');
+            await act(async () => {
+                await userEvent.click(submitButton);
+            });
         }
 
         pointsDisplay(role: string) {
@@ -38,17 +38,17 @@ describe('PlayerDisplay', () => {
     const player = new PlayerComponent();
 
     it('shows the players name', () => {
-        render(<PlayerDisplay player={new Player("Roger")} />);
+        render(<PlayerDisplay player={new Player("Roger")} position="Typing" />);
         expect(screen.getByRole('listitem')).toHaveTextContent("Roger");
     });
 
     it('shows the players role', () => {
-        render(<PlayerDisplay player={new Player("Roger")} />);
+        render(<PlayerDisplay player={new Player("Roger")} position="Typing" />);
         expect(screen.getByRole('listitem')).toHaveTextContent("Typing");
     });
 
     it('shows the initial points', () => {
-        render(<PlayerDisplay player={new Player("Roger")} />);
+        render(<PlayerDisplay player={new Player("Roger")} position="Typing" />);
 
         function roleInitialized(role: string) {
             const typerPoints = screen.getByLabelText(role);
@@ -61,50 +61,39 @@ describe('PlayerDisplay', () => {
         roleInitialized('Observing');
     });
 
-    it('adds typer points', () => {
-        render(<PlayerDisplay player={new Player("Roger")} />);
-        player.clickAddPoints('Typing');
-        expect(player.addPointsInput()).toBeInTheDocument();
-        expect(player.addPointsInput()).toHaveValue("0");
-
-        player.enterAddPointsForm("2");
-
-        expect(player.pointsDisplay('Typing')).toHaveValue("2");
-        expect(screen.queryByLabelText('Add Points')).toBeNull();
-    });
-
-    it('adds up points', () => {
-        render(<PlayerDisplay player={new Player("Roger")} />);
-        player.clickAddPoints('Typing');
-        player.enterAddPointsForm("1");
-        expect(player.pointsDisplay('Typing')).toHaveValue("1");
-
-        player.clickAddPoints('Typing');
-        player.enterAddPointsForm("2");
-
+    
+    it('adds up points', async () => {
+        render(<PlayerDisplay player={new Player("Roger")} position="Typing" />);
+        await player.checkTodo("Ask a clarifying question about what to type");
+        await player.checkTodo("Type something you disagree with");
+        await player.checkTodo("Use a new keyboard shortcut");
+        await player.clickEarnPoints();
+        
         expect(player.pointsDisplay('Typing')).toHaveValue("3");
         expect(screen.getByAltText('Typing Badge')).toBeInTheDocument();
     });
 
     it('cannot select a new role before having a badge', () => {
-        render(<PlayerDisplay player={new Player("Roger")} />);
+        render(<PlayerDisplay player={new Player("Roger")} position="Typing" />);
 
         expect(player.selectNextRole()).not.toBeInTheDocument()
     });
 
-    it('can select a new role after earning a badge', () => {
-        render(<PlayerDisplay player={new Player("Roger")} />);
-        player.clickAddPoints("Talking");
-        player.enterAddPointsForm("3");
-
-        expect(screen.getByAltText('Talking Badge')).toBeInTheDocument();
+    it('can select a new role after earning a badge', async () => {
+        render(<PlayerDisplay player={new Player("Roger")} position="Typing" />);
+        await player.checkTodo("Ask a clarifying question about what to type");
+        await player.checkTodo("Type something you disagree with");
+        await player.checkTodo("Use a new keyboard shortcut");
+        await player.clickEarnPoints();
+        
+        expect(screen.getByAltText('Typing Badge')).toBeInTheDocument();
         expect(screen.getByRole('listitem', { name: /Roger/i })).toBeInTheDocument();
 
         const availableRoles = screen.getByLabelText(/available roles/i);
         expect(availableRoles).toBeInTheDocument()
         const researcherOption = within(availableRoles).getByRole('option', { name: /researcher/i });
         fireEvent.select(researcherOption)
-        userEvent.selectOptions(
+        await userEvent.selectOptions(
             availableRoles,
             researcherOption
         )

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Player } from "./model/Player";
 import { RoleSheet } from "./RoleSheet";
-import { Role, levels, roles } from "./model/Roles";
+import { roles } from "./model/Roles";
 
 
 describe('RoleSheet', () => {
@@ -115,7 +115,6 @@ async function checkTodo(todo) {
 }
 
 async function clickEarnPoints() {
-    // Find the submit button within the form by its aria-label
     const submitButton = screen.getByLabelText('Earn Points');
     await act(async () => {
         userEvent.click(submitButton);

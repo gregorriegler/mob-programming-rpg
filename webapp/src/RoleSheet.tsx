@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Role, roles } from "./model/Roles";
 import { Player } from "./model/Player";
 import { ProgressBar } from "./ProgressBar";
-import { EarnPointsForRoleForm } from "./EarnPointsForRoleForm";
 
 type RoleSheetProps = {
     player: Player;
@@ -43,7 +42,6 @@ export function RoleSheet({
                 value={player.pointsFor(role)}
             />
         </label>
-        <EarnPointsForRole role={role} scorePoints={scorePoints} />
         
         <form onSubmit={onSubmitCheckboxes}>
             {canEarnPoints && (
@@ -74,33 +72,6 @@ export function RoleSheet({
                  <p>Text goes here</p>
               */}
     </div>;
-}
-
-type EarnPointsForRoleProps = {
-    role: string;
-    scorePoints: any;
-};
-
-
-function EarnPointsForRole({ role, scorePoints }: EarnPointsForRoleProps) {
-    const [formVisible, setFormVisible] = useState(false);
-
-    function onSubmit(e) {
-        e.preventDefault();
-        const amount = Number(new FormData(e.target).get("amount") as String);
-        scorePoints(role, amount);
-        setFormVisible(false);
-    }
-
-    return <>
-        <button
-            onClick={() => setFormVisible(true)}
-            className="rpgui-button add-points-button"
-            aria-label={"Earn " + role + " Points"}>
-            <p>Earn</p>
-        </button>
-        {formVisible && <EarnPointsForRoleForm onSubmit={onSubmit} />}
-    </>
 }
 
 type TodoItemProps = {
