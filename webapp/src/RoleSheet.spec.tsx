@@ -56,6 +56,20 @@ describe('RoleSheet', () => {
         
         expect(mockScorePoints).toHaveBeenCalledWith("Talking", 2);
     })
+
+    it(`earn button stays when no todos are marked`, async () => {
+        const mockScorePoints = jest.fn();
+        render(<RoleSheet role="Typing" position="Typing" player={new Player("Roger")} scorePoints={mockScorePoints} />);
+        
+        const earnPointsButton = screen.getByLabelText('Earn Points');
+        expect(earnPointsButton).toBeInTheDocument();
+        
+        await clickEarnPoints();
+        
+        expect(mockScorePoints).toHaveBeenCalledTimes(0);
+        expect(earnPointsButton).toBeInTheDocument();
+    })
+
 })
 
 
@@ -67,7 +81,8 @@ async function checkTodo(todo) {
 }
 
 async function clickEarnPoints() {
-    const submitButton = screen.getByRole('button', { name: /Earn Points/ });
+    // Find the submit button within the form by its aria-label
+    const submitButton = screen.getByLabelText('Earn Points');
     await act(async () => {
         userEvent.click(submitButton);
     });
