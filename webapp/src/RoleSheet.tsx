@@ -43,27 +43,31 @@ export function RoleSheet({
             />
         </label>
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
-        <div>
-            <form onSubmit={onSubmitCheckboxes}>
-                {role === position && roles[role]?.todos?.map((todo, index) => (
-                      <TodoItem
-                          key={`${role}-${index}`}
-                          todo={todo}
-                          role={role}
-                          index={index}
-                      />
-                  ))}
-  
-                  {role === position && !pointsScored && (
-                      <button
-                          type="submit"
-                          className="rpgui-button"
-                          aria-label="Earn Points">
-                          <p>Earn</p>
-                      </button>
-                  )}
-            </form>
-        </div>
+        
+        <form onSubmit={onSubmitCheckboxes}>
+            {role === position && (
+                    <>
+                        {roles[role]?.todos?.map((todo, index) => (
+                            <TodoItem
+                                key={`${role}-${index}`}
+                                todo={todo}
+                                role={role}
+                                index={index}
+                            />
+                        ))}
+
+                        {!pointsScored && (
+                            <button
+                                type="submit"
+                                className="rpgui-button"
+                                aria-label="Earn Points">
+                                <p>Earn</p>
+                            </button>
+                        )}
+                    </>
+                )}
+        </form>
+    
         {/*
                  some_function({role}) returns string (or list of strings) to display here....
                  <p>Text goes here</p>
