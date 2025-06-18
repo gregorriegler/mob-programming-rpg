@@ -70,6 +70,19 @@ describe('RoleSheet', () => {
         expect(earnPointsButton).toBeInTheDocument();
     })
 
+    it('hides earn button when role does not match position', () => {       
+        render(
+            <RoleSheet
+                role="Talking"
+                position="Typing"
+                player={new Player("Roger")}
+                scorePoints={jest.fn()}
+            />
+        );
+        
+        expect(screen.queryByLabelText('Earn Points')).not.toBeInTheDocument();
+    });
+
 })
 
 

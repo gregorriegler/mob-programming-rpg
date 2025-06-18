@@ -51,7 +51,7 @@ export function RoleSheet({
                     </div>
                 )}
 
-                {!pointsScored && (
+                {role == position && !pointsScored && (
                     <button
                         className="rpgui-button"
                         aria-label={"Earn Points"}>
