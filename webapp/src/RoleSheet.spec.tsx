@@ -45,8 +45,26 @@ describe('RoleSheet', () => {
         
         expect(mockScorePoints).toHaveBeenCalledWith("Typing", 2);
     })
+
+    it(`scores two points Talking using the checkboxes when submitting`, async () => {
+        const mockScorePoints = jest.fn();
+        render(<RoleSheet role="Talking" position="Talking" player={new Player("Roger")} scorePoints={mockScorePoints} />);
+        await checkTodo('Talking-0');
+        await checkTodo('Talking-1');
+
+        await clickEarnPoints();
+        
+        expect(mockScorePoints).toHaveBeenCalledWith("Talking", 2);
+    })
 })
 
+
+async function checkTodo(todo) {
+    const firstCheckbox = document.getElementById(todo) as HTMLInputElement;
+    await act(async () => {
+        userEvent.click(firstCheckbox);
+    });
+}
 
 async function clickEarnPoints() {
     const submitButton = screen.getByRole('button', { name: /Earn Points/ });
@@ -55,12 +73,6 @@ async function clickEarnPoints() {
     });
 }
 
-async function checkTodo(todo) {
-    const firstCheckbox = document.getElementById(todo) as HTMLInputElement;
-    await act(async () => {
-        userEvent.click(firstCheckbox);
-    });
-}
 // TODO if canEarnPoints for role, show skills of role
 // cannot rotate until players have filled the form
 // TODO use it.each ??? but maybe its too clever?
