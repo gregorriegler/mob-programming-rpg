@@ -26,6 +26,7 @@ export function RoleSheet({
         if(amount > 0) {
             scorePoints(role, amount);
             setPointsScored(true);
+            checkboxes.forEach(checkbox => checkbox.checked = false);
         }
     }
 
