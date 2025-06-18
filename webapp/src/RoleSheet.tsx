@@ -45,20 +45,23 @@ export function RoleSheet({
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
         <div>
             <form onSubmit={onSubmitCheckboxes}>
-                {role == position && roles[role].todos.map((todo, index) => 
-                    <div key={todo}>
-                        <input type="checkbox" id={`${role}-${index}`} className="earn-points-checkbox" style={{float: "left", display: "block", marginTop: "6px", width: "9%", minHeight: "20px"}} />
-                        <div style={{marginLeft: "32px", margin: "4px", padding: "4px"}}>{todo}</div>
-                    </div>
-                )}
-
-                {role == position && !pointsScored && (
-                    <button
-                        className="rpgui-button"
-                        aria-label={"Earn Points"}>
-                        <p>Earn</p>
-                    </button>
-                )}
+                {role === position && roles[role]?.todos?.map((todo, index) => (
+                      <TodoItem
+                          key={`${role}-${index}`}
+                          todo={todo}
+                          role={role}
+                          index={index}
+                      />
+                  ))}
+  
+                  {role === position && !pointsScored && (
+                      <button
+                          type="submit"
+                          className="rpgui-button"
+                          aria-label="Earn Points">
+                          <p>Earn</p>
+                      </button>
+                  )}
             </form>
         </div>
         {/*
@@ -93,5 +96,28 @@ function EarnPointsForRole({ role, scorePoints }: EarnPointsForRoleProps) {
         </button>
         {formVisible && <EarnPointsForRoleForm onSubmit={onSubmit} />}
     </>
+}
+
+type TodoItemProps = {
+    todo: string;
+    role: string;
+    index: number;
+};
+
+function TodoItem({ todo, role, index }: TodoItemProps) {
+    const checkboxId = `${role}-${index}`;
+    
+    return (
+        <div className="todo-item">
+            <input
+                type="checkbox"
+                id={checkboxId}
+                className="earn-points-checkbox"
+            />
+            <label htmlFor={checkboxId} className="todo-label">
+                {todo}
+            </label>
+        </div>
+    );
 }
 
