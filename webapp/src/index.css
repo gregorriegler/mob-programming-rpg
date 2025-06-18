@@ -14,11 +14,12 @@
   width: 20px;
   min-height: 20px;
   flex-shrink: 0;
+  cursor: url("../public/img/cursor/point.png") 10 0, auto;
 }
 
 .todo-label {
   flex: 1;
-  cursor: pointer;
+  cursor: url("../public/img/cursor/point.png") 10 0, auto;
   line-height: 1.4;
 }
 
