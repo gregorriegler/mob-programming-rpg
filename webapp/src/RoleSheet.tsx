@@ -30,6 +30,7 @@ export function RoleSheet({
         }
     }
 
+    const canEarnPoints = role === position || position === "Observing" && role !== "Talking" && role != "Typing";
     return <div className="role">
         <hr />
         <label className="role-label">
@@ -45,7 +46,7 @@ export function RoleSheet({
         <EarnPointsForRole role={role} scorePoints={scorePoints} />
         
         <form onSubmit={onSubmitCheckboxes}>
-            {role === position && (
+            {canEarnPoints && (
                     <>
                         {roles[role]?.todos?.map((todo, index) => (
                             <TodoItem

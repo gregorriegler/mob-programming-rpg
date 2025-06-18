@@ -25,6 +25,16 @@ describe('RoleSheet', () => {
         roles["Observing"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
     });
 
+
+    it(`shows Other Roles todos when in Observing position`, () => {
+        const roger = new Player("Roger");
+        roger.scoreTimes("Typing", 3);
+        roger.selectRole("Sponsor");
+        render(<RoleSheet role="Sponsor" position="Observing" player={roger} scorePoints={() => { }} />);
+
+        roles["Sponsor"].todos.forEach(todo => expect(screen.getByText(todo)).toBeInTheDocument())
+    });
+
     it(`scores a single point using the checkboxes when submitting`, async () => {
         const mockScorePoints = jest.fn();
         render(<RoleSheet role="Typing" position="Typing" player={new Player("Roger")} scorePoints={mockScorePoints} />);
