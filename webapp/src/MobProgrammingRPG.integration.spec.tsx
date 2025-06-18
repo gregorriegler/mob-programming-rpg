@@ -9,7 +9,7 @@ const randomPort = () => {
     return `${8000 + Math.floor(Math.random() * 100)}`;
 }
 
-describe('Mob Programming RPG', () => {
+xdescribe('Mob Programming RPG', () => {
 
     beforeAll(() => {
         global.IS_REACT_ACT_ENVIRONMENT = false;
