@@ -6,6 +6,7 @@
   align-items: flex-start;
   margin: 4px 0;
   padding: 4px;
+  cursor: url("../public/img/cursor/point.png") 10 0, auto;
 }
 
 .todo-item .earn-points-checkbox {
@@ -21,6 +22,8 @@
   flex: 1;
   cursor: url("../public/img/cursor/point.png") 10 0, auto;
   line-height: 1.4;
+  margin: 0;
+  padding: 0;
 }
 
 body {
