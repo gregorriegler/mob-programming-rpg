@@ -91,7 +91,18 @@ describe('RoleSheet', () => {
         expect(earnPointsButton).toBeInTheDocument();
     })
 
-    it('hides earn button when role does not match position', () => {       
+    it(`earn button remains visible after earning points`, async () => {
+        const mockScorePoints = jest.fn();
+        render(<RoleSheet role="Typing" position="Typing" player={new Player("Roger")} scorePoints={mockScorePoints} />);
+        await checkTodo('Typing-0');
+
+        await clickEarnPoints();
+        
+        expect(mockScorePoints).toHaveBeenCalledWith("Typing", 1);
+        expect(screen.getByLabelText('Earn Points')).toBeInTheDocument();
+    })
+
+    it('hides earn button when role does not match position', () => {
         render(
             <RoleSheet
                 role="Talking"

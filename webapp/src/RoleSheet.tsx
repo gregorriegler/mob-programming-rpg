@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Role, roles } from "./model/Roles";
 import { Player } from "./model/Player";
 import { ProgressBar } from "./ProgressBar";
@@ -16,15 +16,12 @@ export function RoleSheet({
     position,
     scorePoints
 }: RoleSheetProps): JSX.Element {
-    const [pointsScored, setPointsScored] = useState(false);
-
     function onSubmitCheckboxes(e) {
         e.preventDefault();
         const checkboxes = e.target.querySelectorAll(`input[type="checkbox"][id^="${role}-"]:checked`);
         const amount = checkboxes.length;
         if(amount > 0) {
             scorePoints(role, amount);
-            setPointsScored(true);
             checkboxes.forEach(checkbox => checkbox.checked = false);
         }
     }
@@ -55,14 +52,12 @@ export function RoleSheet({
                             />
                         ))}
 
-                        {!pointsScored && (
-                            <button
-                                type="submit"
-                                className="rpgui-button"
-                                aria-label="Earn Points">
-                                <p>Earn</p>
-                            </button>
-                        )}
+                        <button
+                            type="submit"
+                            className="rpgui-button"
+                            aria-label="Earn Points">
+                            <p>Earn</p>
+                        </button>
                     </>
                 )}
         </form>
