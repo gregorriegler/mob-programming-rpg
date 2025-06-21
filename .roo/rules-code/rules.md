@@ -6,4 +6,4 @@ I prefer SIMPLE design with fewer elements
 
 before running a cli command verify the current working directory via `pwd`
 
-run the tests after each change using just `npm test`
+run the tests after each change using just `./test.sh`

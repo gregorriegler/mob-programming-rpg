@@ -23,7 +23,7 @@
     "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "node run-tests-quiet.js",
+    "test": "react-app-rewired test --watchAll=false",
     "test:watch": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
@@ -48,8 +48,7 @@
   "jest": {
     "reporters": [
       "<rootDir>/jest-quiet-reporter.js"
-    ],
-    "verbose": false
+    ]
   },
   "devDependencies": {
     "execa": "^5.1.1",

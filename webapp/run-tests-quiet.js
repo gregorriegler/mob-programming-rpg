@@ -5,20 +5,25 @@ const child = spawn('npx', ['react-app-rewired', 'test', '--watchAll=false', '--
   shell: true
 });
 
+let testOutput = '';
+
 child.stdout.on('data', (data) => {
   const output = data.toString();
-  if (!output.includes('Determining test suites to run')) {
-    process.stdout.write(output);
+  if (output.includes('✅') || output.includes('❌')) {
+    testOutput += output;
   }
 });
 
 child.stderr.on('data', (data) => {
   const output = data.toString();
-  if (!output.includes('Determining test suites to run')) {
-    process.stderr.write(output);
+  if (output.includes('✅') || output.includes('❌')) {
+    testOutput += output;
   }
 });
 
 child.on('close', (code) => {
+  if (testOutput) {
+    process.stdout.write(testOutput);
+  }
   process.exit(code);
 });
