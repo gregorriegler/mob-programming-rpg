@@ -18,7 +18,7 @@ export function RoleSheet({
 }: RoleSheetProps): JSX.Element {
     function onSubmitCheckboxes(e) {
         e.preventDefault();
-        const checkboxes = e.target.querySelectorAll(`input[type="checkbox"][id^="${role}-"]:checked`);
+        const checkboxes = e.target.querySelectorAll(`input[type="checkbox"]:checked`);
         const amount = checkboxes.length;
         if(amount > 0) {
             scorePoints(role, amount);
@@ -47,8 +47,6 @@ export function RoleSheet({
                             <TodoItem
                                 key={`${role}-${index}`}
                                 todo={todo}
-                                role={role}
-                                index={index}
                             />
                         ))}
 
@@ -71,24 +69,19 @@ export function RoleSheet({
 
 type TodoItemProps = {
     todo: string;
-    role: string;
-    index: number;
 };
 
-function TodoItem({ todo, role, index }: TodoItemProps) {
-    const checkboxId = `${role}-${index}`;
-    
+function TodoItem({ todo }: TodoItemProps) {
     return (
-        <div className="todo-item">
+        <label className="todo-item">
             <input
                 type="checkbox"
-                id={checkboxId}
                 className="earn-points-checkbox"
             />
-            <label htmlFor={checkboxId} className="todo-label">
+            <span className="todo-label">
                 {todo}
-            </label>
-        </div>
+            </span>
+        </label>
     );
 }
 
