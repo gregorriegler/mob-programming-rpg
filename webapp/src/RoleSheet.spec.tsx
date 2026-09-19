@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Player } from "./model/Player";
@@ -38,7 +38,7 @@ describe('RoleSheet', () => {
     it(`scores a single point using the checkboxes when submitting`, async () => {
         const mockScorePoints = jest.fn();
         render(<RoleSheet role="Typing" position="Typing" player={new Player("Roger")} scorePoints={mockScorePoints} />);
-        await checkTodo('Typing-0');
+        await checkTodo(roles["Typing"].todos[0]);
 
         await clickEarnPoints();
         
@@ -48,8 +48,8 @@ describe('RoleSheet', () => {
     it(`scores two points using the checkboxes when submitting`, async () => {
         const mockScorePoints = jest.fn();
         render(<RoleSheet role="Typing" position="Typing" player={new Player("Roger")} scorePoints={mockScorePoints} />);
-        await checkTodo('Typing-0');
-        await checkTodo('Typing-1');
+        await checkTodo(roles["Typing"].todos[0]);
+        await checkTodo(roles["Typing"].todos[1]);
 
         await clickEarnPoints();
         
@@ -59,8 +59,8 @@ describe('RoleSheet', () => {
     it(`scores two points Talking using the checkboxes when submitting`, async () => {
         const mockScorePoints = jest.fn();
         render(<RoleSheet role="Talking" position="Talking" player={new Player("Roger")} scorePoints={mockScorePoints} />);
-        await checkTodo('Talking-0');
-        await checkTodo('Talking-1');
+        await checkTodo(roles["Talking"].todos[0]);
+        await checkTodo(roles["Talking"].todos[1]);
 
         await clickEarnPoints();
         
@@ -69,13 +69,13 @@ describe('RoleSheet', () => {
 
     it(`after scoring points todo checkboxes are reset`, async () => {
         render(<RoleSheet role="Talking" position="Talking" player={new Player("Roger")} scorePoints={jest.fn()} />);
-        await checkTodo('Talking-0');
-        await checkTodo('Talking-1');
+        await checkTodo(roles["Talking"].todos[0]);
+        await checkTodo(roles["Talking"].todos[1]);
 
         await clickEarnPoints();
         
-        expectUnchecked('Talking-0');
-        expectUnchecked('Talking-1');
+        expectUnchecked(roles["Talking"].todos[0]);
+        expectUnchecked(roles["Talking"].todos[1]);
     })
 
     it(`earn button stays when no todos are marked`, async () => {
@@ -94,13 +94,34 @@ describe('RoleSheet', () => {
     it(`earn button remains visible after earning points`, async () => {
         const mockScorePoints = jest.fn();
         render(<RoleSheet role="Typing" position="Typing" player={new Player("Roger")} scorePoints={mockScorePoints} />);
-        await checkTodo('Typing-0');
+        await checkTodo(roles["Typing"].todos[0]);
 
         await clickEarnPoints();
         
         expect(mockScorePoints).toHaveBeenCalledWith("Typing", 1);
         expect(screen.getByLabelText('Earn Points')).toBeInTheDocument();
     })
+
+    it('checks the second observer\'s todo, not the first one\'s, when two players are observing', async () => {
+        const todo = roles["Observing"].todos[0];
+        render(
+            <>
+                <RoleSheet role="Observing" position="Observing" player={new Player("Roger")} scorePoints={jest.fn()} />
+                <RoleSheet role="Observing" position="Observing" player={new Player("Sabine")} scorePoints={jest.fn()} />
+            </>
+        );
+        const [firstSheet, secondSheet] = Array.from(document.querySelectorAll('.role'));
+        const firstCheckbox = within(firstSheet as HTMLElement).getAllByRole('checkbox')[0] as HTMLInputElement;
+        const secondCheckbox = within(secondSheet as HTMLElement).getAllByRole('checkbox')[0] as HTMLInputElement;
+        const secondLabel = within(secondSheet as HTMLElement).getByText(todo);
+
+        await act(async () => {
+            userEvent.click(secondLabel);
+        });
+
+        expect(secondCheckbox.checked).toBe(true);
+        expect(firstCheckbox.checked).toBe(false);
+    });
 
     it('hides earn button when role does not match position', () => {
         render(
@@ -119,9 +140,9 @@ describe('RoleSheet', () => {
 
 
 async function checkTodo(todo) {
-    const firstCheckbox = document.getElementById(todo) as HTMLInputElement;
+    const checkbox = screen.getByRole('checkbox', { name: todo });
     await act(async () => {
-        userEvent.click(firstCheckbox);
+        userEvent.click(checkbox);
     });
 }
 
@@ -132,8 +153,8 @@ async function clickEarnPoints() {
     });
 }
 
-function expectUnchecked(todoId) {
-    const checkbox = document.getElementById(todoId) as HTMLInputElement;
+function expectUnchecked(todo) {
+    const checkbox = screen.getByRole('checkbox', { name: todo }) as HTMLInputElement;
     expect(checkbox.checked).toBe(false);
 }
 
