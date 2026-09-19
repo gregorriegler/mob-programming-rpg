@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Player } from "./model/Player";
@@ -101,6 +101,27 @@ describe('RoleSheet', () => {
         expect(mockScorePoints).toHaveBeenCalledWith("Typing", 1);
         expect(screen.getByLabelText('Earn Points')).toBeInTheDocument();
     })
+
+    it('checks the second observer\'s todo, not the first one\'s, when two players are observing', async () => {
+        const todo = roles["Observing"].todos[0];
+        render(
+            <>
+                <RoleSheet role="Observing" position="Observing" player={new Player("Roger")} scorePoints={jest.fn()} />
+                <RoleSheet role="Observing" position="Observing" player={new Player("Sabine")} scorePoints={jest.fn()} />
+            </>
+        );
+        const [firstSheet, secondSheet] = Array.from(document.querySelectorAll('.role'));
+        const firstCheckbox = within(firstSheet as HTMLElement).getAllByRole('checkbox')[0] as HTMLInputElement;
+        const secondCheckbox = within(secondSheet as HTMLElement).getAllByRole('checkbox')[0] as HTMLInputElement;
+        const secondLabel = within(secondSheet as HTMLElement).getByText(todo);
+
+        await act(async () => {
+            userEvent.click(secondLabel);
+        });
+
+        expect(secondCheckbox.checked).toBe(true);
+        expect(firstCheckbox.checked).toBe(false);
+    });
 
     it('hides earn button when role does not match position', () => {
         render(
