@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
 
 
+.rpgui-content label.todo-item,
 .todo-item {
   display: flex;
   align-items: flex-start;
